@@ -4,6 +4,7 @@ import { DATABASE_ID, COLLECTIONS } from '@/lib/constants/database';
 import { AnimalProfile, AnimalDocument } from '@/types/animal';
 import { createAnimalSchema, updateAnimalSchema } from '@/lib/validations/animal';
 import { normalizePagination, calculatePaginationMeta, QUERY_LIMITS } from './query-config';
+import { mockAnimals } from '@/lib/mock-data/animals';
 
 // Helper to convert Appwrite document to AnimalProfile
 const documentToAnimal = (doc: AnimalDocument): AnimalProfile => ({
@@ -47,8 +48,10 @@ export const getAnimalById = async (id: string): Promise<AnimalProfile | null> =
     );
     return documentToAnimal(document);
   } catch (error) {
-    console.error('Error fetching animal:', error);
-    return null;
+    console.warn('Appwrite not available, using mock data:', error);
+    // Fallback to mock data
+    const mockAnimal = mockAnimals.find(animal => animal.id === id);
+    return mockAnimal || null;
   }
 };
 
@@ -64,46 +67,80 @@ export const getAnimals = async (filters?: {
   total: number;
   pagination: ReturnType<typeof calculatePaginationMeta>;
 }> => {
-  const queries: string[] = [];
+  try {
+    const queries: string[] = [];
 
-  // Add filters in order that matches compound indexes
-  // Index: type_status (type ASC, status ASC)
-  if (filters?.type) {
-    queries.push(Query.equal('type', filters.type));
+    // Add filters in order that matches compound indexes
+    // Index: type_status (type ASC, status ASC)
+    if (filters?.type) {
+      queries.push(Query.equal('type', filters.type));
+    }
+    if (filters?.status) {
+      queries.push(Query.equal('status', filters.status));
+    }
+    
+    // Index: packId (packId ASC)
+    if (filters?.packId) {
+      queries.push(Query.equal('packId', filters.packId));
+    }
+
+    // Add ordering for consistent results
+    queries.push(Query.orderDesc('$createdAt'));
+
+    // Apply normalized pagination
+    const { limit, offset } = normalizePagination({
+      limit: filters?.limit || QUERY_LIMITS.ANIMAL_GALLERY,
+      offset: filters?.offset,
+    });
+    queries.push(Query.limit(limit));
+    queries.push(Query.offset(offset));
+
+    const response = await databases.listDocuments<AnimalDocument>(
+      DATABASE_ID,
+      COLLECTIONS.ANIMALS,
+      queries
+    );
+
+    const pagination = calculatePaginationMeta(response.total, limit, offset);
+
+    return {
+      animals: response.documents.map(documentToAnimal),
+      total: response.total,
+      pagination,
+    };
+  } catch (error) {
+    console.warn('Appwrite not available, using mock data:', error);
+    
+    // Use mock data as fallback
+    let filtered = [...mockAnimals];
+    
+    // Apply filters
+    if (filters?.type) {
+      filtered = filtered.filter(animal => animal.type === filters.type);
+    }
+    if (filters?.status) {
+      filtered = filtered.filter(animal => animal.status === filters.status);
+    }
+    if (filters?.packId) {
+      filtered = filtered.filter(animal => animal.packId === filters.packId);
+    }
+    
+    // Apply pagination
+    const { limit, offset } = normalizePagination({
+      limit: filters?.limit || QUERY_LIMITS.ANIMAL_GALLERY,
+      offset: filters?.offset,
+    });
+    
+    const total = filtered.length;
+    const paginatedAnimals = filtered.slice(offset, offset + limit);
+    const pagination = calculatePaginationMeta(total, limit, offset);
+    
+    return {
+      animals: paginatedAnimals,
+      total,
+      pagination,
+    };
   }
-  if (filters?.status) {
-    queries.push(Query.equal('status', filters.status));
-  }
-  
-  // Index: packId (packId ASC)
-  if (filters?.packId) {
-    queries.push(Query.equal('packId', filters.packId));
-  }
-
-  // Add ordering for consistent results
-  queries.push(Query.orderDesc('$createdAt'));
-
-  // Apply normalized pagination
-  const { limit, offset } = normalizePagination({
-    limit: filters?.limit || QUERY_LIMITS.ANIMAL_GALLERY,
-    offset: filters?.offset,
-  });
-  queries.push(Query.limit(limit));
-  queries.push(Query.offset(offset));
-
-  const response = await databases.listDocuments<AnimalDocument>(
-    DATABASE_ID,
-    COLLECTIONS.ANIMALS,
-    queries
-  );
-
-  const pagination = calculatePaginationMeta(response.total, limit, offset);
-
-  return {
-    animals: response.documents.map(documentToAnimal),
-    total: response.total,
-    pagination,
-  };
 };
 
 // Update an animal
@@ -139,30 +176,56 @@ export const searchAnimalsByName = async (
   total: number;
   pagination: ReturnType<typeof calculatePaginationMeta>;
 }> => {
-  const { limit, offset } = normalizePagination({
-    limit: options?.limit || QUERY_LIMITS.SEARCH_RESULTS,
-    offset: options?.offset,
-  });
+  try {
+    const { limit, offset } = normalizePagination({
+      limit: options?.limit || QUERY_LIMITS.SEARCH_RESULTS,
+      offset: options?.offset,
+    });
 
-  const queries = [
-    Query.search('name', searchTerm),
-    Query.limit(limit),
-    Query.offset(offset),
-  ];
+    const queries = [
+      Query.search('name', searchTerm),
+      Query.limit(limit),
+      Query.offset(offset),
+    ];
 
-  const response = await databases.listDocuments<AnimalDocument>(
-    DATABASE_ID,
-    COLLECTIONS.ANIMALS,
-    queries
-  );
+    const response = await databases.listDocuments<AnimalDocument>(
+      DATABASE_ID,
+      COLLECTIONS.ANIMALS,
+      queries
+    );
 
-  const pagination = calculatePaginationMeta(response.total, limit, offset);
+    const pagination = calculatePaginationMeta(response.total, limit, offset);
 
-  return {
-    animals: response.documents.map(documentToAnimal),
-    total: response.total,
-    pagination,
-  };
+    return {
+      animals: response.documents.map(documentToAnimal),
+      total: response.total,
+      pagination,
+    };
+  } catch (error) {
+    console.warn('Appwrite not available, using mock data:', error);
+    
+    // Fallback to mock data with simple search
+    const { limit, offset } = normalizePagination({
+      limit: options?.limit || QUERY_LIMITS.SEARCH_RESULTS,
+      offset: options?.offset,
+    });
+    
+    const searchLower = searchTerm.toLowerCase();
+    const filtered = mockAnimals.filter(animal =>
+      animal.name.toLowerCase().includes(searchLower) ||
+      animal.breed?.toLowerCase().includes(searchLower)
+    );
+    
+    const total = filtered.length;
+    const paginatedAnimals = filtered.slice(offset, offset + limit);
+    const pagination = calculatePaginationMeta(total, limit, offset);
+    
+    return {
+      animals: paginatedAnimals,
+      total,
+      pagination,
+    };
+  }
 };
 
 // Get animals needing attention (optimized for medical alerts)

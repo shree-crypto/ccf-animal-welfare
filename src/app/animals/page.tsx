@@ -18,8 +18,8 @@ export default function AnimalsPage() {
     const fetchAnimals = async () => {
       try {
         setLoading(true);
-        const data = await getAnimals();
-        setAnimals(data);
+        const { animals: fetchedAnimals } = await getAnimals();
+        setAnimals(fetchedAnimals);
       } catch (error) {
         console.error('Error fetching animals:', error);
       } finally {
