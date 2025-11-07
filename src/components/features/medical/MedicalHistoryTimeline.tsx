@@ -56,7 +56,7 @@ export function MedicalHistoryTimeline({ animalId }: MedicalHistoryTimelineProps
         setLoading(true);
         setError(null);
         const data = await getAnimalMedicalHistory(animalId);
-        setRecords(data);
+        setRecords(data.records);
       } catch (err) {
         console.error('Error fetching medical history:', err);
         setError('Failed to load medical history');

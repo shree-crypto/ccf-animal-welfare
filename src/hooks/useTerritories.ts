@@ -21,7 +21,7 @@ export function useTerritories(options: UseTerritoriesOptions = {}) {
       setLoading(true);
       setError(null);
       const data = await getTerritories({ limit, offset });
-      setTerritories(data);
+      setTerritories(data.territories);
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Failed to fetch territories'));
       console.error('Error fetching territories:', err);

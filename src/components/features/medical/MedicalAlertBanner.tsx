@@ -29,7 +29,7 @@ export function MedicalAlertBanner() {
         
         // Fetch animal details for each record
         const recordsWithAnimals = await Promise.all(
-          records.map(async (record) => {
+          records.records.map(async (record) => {
             const animal = await getAnimalById(record.animalId);
             return { ...record, animal: animal || undefined };
           })

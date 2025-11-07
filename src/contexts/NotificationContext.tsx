@@ -52,7 +52,7 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
         getUserNotifications(user.$id, { limit: 50 }),
         getUnreadCount(user.$id),
       ]);
-      setNotifications(notifs);
+      setNotifications(notifs.notifications);
       setUnreadCount(count);
     } catch (error) {
       console.error('Error fetching notifications:', error);

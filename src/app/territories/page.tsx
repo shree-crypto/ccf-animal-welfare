@@ -1,9 +1,22 @@
 'use client';
 
 import { useState } from 'react';
-import { InteractiveMap } from '@/components/features/territories';
+import dynamic from 'next/dynamic';
 import { useTerritories } from '@/hooks/useTerritories';
 import { MapPin, Loader2 } from 'lucide-react';
+
+// Dynamically import the map component with no SSR
+const InteractiveMap = dynamic(
+  () => import('@/components/features/territories').then(mod => ({ default: mod.InteractiveMap })),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="h-full flex items-center justify-center bg-gray-50">
+        <Loader2 className="w-12 h-12 text-blue-600 animate-spin" />
+      </div>
+    )
+  }
+);
 
 export default function TerritoriesPage() {
   const { territories, loading, error, refetch } = useTerritories();

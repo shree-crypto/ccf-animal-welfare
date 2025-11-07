@@ -44,7 +44,7 @@ export default function AdminAnimalsPage() {
     try {
       setLoading(true);
       const data = await getAnimals();
-      setAnimals(data);
+      setAnimals(data.animals);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load animals');
     } finally {

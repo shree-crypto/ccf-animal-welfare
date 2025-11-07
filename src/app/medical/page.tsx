@@ -72,7 +72,7 @@ export default function MedicalRecordsPage() {
         
         // Fetch animal details for each record
         const recordsWithAnimals = await Promise.all(
-          data.map(async (record) => {
+          data.records.map(async (record) => {
             const animal = await getAnimalById(record.animalId);
             return { ...record, animal: animal || undefined };
           })

@@ -17,9 +17,7 @@ export const taskSchema = z.object({
   }),
 });
 
-export const createTaskSchema = taskSchema.omit({ completed: true, completedAt: true }).extend({
-  completed: z.boolean().default(false),
-});
+export const createTaskSchema = taskSchema.omit({ completedAt: true });
 
 export const updateTaskSchema = taskSchema.partial();
 

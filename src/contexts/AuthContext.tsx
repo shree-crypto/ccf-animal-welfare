@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback, useMemo } from 'react';
 import { authService } from '@/lib/auth';
 import { User, AuthContextType, UserRole } from '@/types/auth';
 
@@ -10,11 +10,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    checkUser();
-  }, []);
-
-  async function checkUser() {
+  const checkUser = useCallback(async () => {
     try {
       const currentUser = await authService.getCurrentUser();
       if (currentUser) {
@@ -26,34 +22,38 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
-  async function login(email: string, password: string) {
+  useEffect(() => {
+    checkUser();
+  }, [checkUser]);
+
+  const login = useCallback(async (email: string, password: string) => {
     await authService.login(email, password);
     await checkUser();
-  }
+  }, [checkUser]);
 
-  async function register(email: string, password: string, name: string) {
+  const register = useCallback(async (email: string, password: string, name: string) => {
     await authService.register(email, password, name);
     await checkUser();
-  }
+  }, [checkUser]);
 
-  async function logout() {
+  const logout = useCallback(async () => {
     await authService.logout();
     setUser(null);
-  }
+  }, []);
 
-  async function updateProfile(name: string) {
+  const updateProfile = useCallback(async (name: string) => {
     await authService.updateProfile(name);
     await checkUser();
-  }
+  }, [checkUser]);
 
-  function checkRole(requiredRole: UserRole): boolean {
+  const checkRole = useCallback((requiredRole: UserRole): boolean => {
     if (!user || !user.role) return false;
     return authService.checkRole(user.role, requiredRole);
-  }
+  }, [user]);
 
-  const value: AuthContextType = {
+  const value: AuthContextType = useMemo(() => ({
     user,
     loading,
     login,
@@ -61,7 +61,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     logout,
     updateProfile,
     checkRole,
-  };
+  }), [user, loading, login, register, logout, updateProfile, checkRole]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

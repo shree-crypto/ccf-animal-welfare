@@ -34,7 +34,7 @@ export default function TasksPage() {
       const fetchedTasks = await getTasks({
         assignedTo: user?.$id,
       });
-      setTasks(fetchedTasks);
+      setTasks(fetchedTasks.tasks);
     } catch (error) {
       console.error('Error loading tasks:', error);
     } finally {
