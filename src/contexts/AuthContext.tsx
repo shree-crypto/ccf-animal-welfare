@@ -12,13 +12,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const checkUser = useCallback(async () => {
     try {
+      console.log('🔍 Checking user...');
       const currentUser = await authService.getCurrentUser();
+      console.log('👤 Current user:', currentUser?.email || 'none');
+      
       if (currentUser) {
         const role = await authService.getUserRole();
+        console.log('🎭 User role:', role);
         setUser({ ...currentUser, role });
+        console.log('✅ User set in context:', currentUser.email, role);
+      } else {
+        console.log('❌ No user found');
+        setUser(null);
       }
     } catch (error) {
-      console.error('Check user error:', error);
+      console.error('❌ Check user error:', error);
+      setUser(null);
     } finally {
       setLoading(false);
     }
@@ -29,7 +38,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [checkUser]);
 
   const login = useCallback(async (email: string, password: string) => {
+    console.log('🔐 Attempting login for:', email);
     await authService.login(email, password);
+    console.log('✅ Login successful, checking user...');
     await checkUser();
   }, [checkUser]);
 

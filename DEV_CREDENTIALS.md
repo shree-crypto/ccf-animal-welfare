@@ -9,6 +9,33 @@ For local development and testing, you can use these mock credentials.
 3. Use any of the credentials below
 4. You'll be redirected to the dashboard automatically
 
+## Troubleshooting
+
+If mock login isn't working:
+
+1. **Check the browser console** - You should see:
+   - `✅ Mock auth successful: admin@ccf.dev` (on successful login)
+   - `❌ Mock auth failed: Invalid password for mock user` (on wrong password)
+   - `ℹ️ Not a mock user, trying Appwrite auth...` (if email is not a mock user)
+
+2. **Verify NODE_ENV** - Mock auth only works in development mode
+   - Check console: `console.log(process.env.NODE_ENV)` should show `'development'`
+
+3. **Check localStorage** - After successful login:
+   - Open DevTools → Application → Local Storage
+   - Look for key `ccf_mock_session`
+   - Should contain user data with role
+
+4. **Clear cache and localStorage**:
+   ```javascript
+   localStorage.clear();
+   location.reload();
+   ```
+
+5. **Verify credentials exactly**:
+   - Email: `admin@ccf.dev` (not admin@ccf.com or admin@dev)
+   - Password: `admin123` (case-sensitive)
+
 ---
 
 ## Mock Users
@@ -43,7 +70,8 @@ For local development and testing, you can use these mock credentials.
 - **URL**: `/territories`
 - **Access**: Public (no login required)
 - **Features**: Interactive map with pack territories, heatmap overlay
-- **Note**: Uses React Leaflet with OpenStreetMap
+- **Technology**: React Leaflet with OpenStreetMap
+- **Mock Data**: 6 territories with different pack sizes automatically loaded in development
 
 ### Dashboard
 - **URL**: `/dashboard`

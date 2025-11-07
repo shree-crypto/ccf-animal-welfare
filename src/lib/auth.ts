@@ -12,9 +12,11 @@ export class AuthService {
     // Try mock auth first in development
     if (mockAuthService.isAvailable()) {
       try {
-        return await mockAuthService.register(email, password, name);
+        const result = await mockAuthService.register(email, password, name);
+        console.log('Mock registration successful:', result.email);
+        return result;
       } catch (mockError) {
-        console.log('Mock auth failed, trying real auth:', mockError);
+        console.log('Mock auth not applicable, trying real auth:', mockError);
       }
     }
 
@@ -36,9 +38,17 @@ export class AuthService {
     // Try mock auth first in development
     if (mockAuthService.isAvailable()) {
       try {
-        return await mockAuthService.login(email, password);
-      } catch (mockError) {
-        console.log('Mock auth failed, trying real auth:', mockError);
+        const result = await mockAuthService.login(email, password);
+        console.log('✅ Mock auth successful:', result.email);
+        return result;
+      } catch (mockError: any) {
+        // If it's a mock user but wrong password, don't fall through to real auth
+        if (mockError.message === 'Invalid credentials') {
+          console.error('❌ Mock auth failed: Invalid password for mock user');
+          throw mockError;
+        }
+        // Not a mock user, try real Appwrite
+        console.log('ℹ️ Not a mock user, trying Appwrite auth...');
       }
     }
 

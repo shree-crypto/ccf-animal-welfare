@@ -73,7 +73,8 @@ export function InteractiveMap({
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    console.log('🗺️ Map mounted with', territories.length, 'territories');
+  }, [territories.length]);
 
   const handleTerritoryClick = (territory: Territory) => {
     setSelectedTerritory(territory);
@@ -101,6 +102,10 @@ export function InteractiveMap({
     );
   }
 
+  if (territories.length === 0) {
+    console.warn('⚠️ No territories to display on map');
+  }
+
   return (
     <div className="relative w-full h-full">
       <MapContainer
@@ -108,6 +113,7 @@ export function InteractiveMap({
         zoom={zoom}
         className="w-full h-full z-0"
         scrollWheelZoom={true}
+        style={{ minHeight: '500px' }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

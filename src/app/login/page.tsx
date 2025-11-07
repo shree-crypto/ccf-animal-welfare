@@ -4,6 +4,7 @@ import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { LoginForm } from '@/components/features/auth/LoginForm';
 import { RegisterForm } from '@/components/features/auth/RegisterForm';
+import { AuthDebug } from '@/components/features/auth/AuthDebug';
 
 function LoginContent() {
   const [showRegister, setShowRegister] = useState(false);
@@ -50,12 +51,15 @@ function LoginContent() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
-        <div className="text-center">Loading...</div>
-      </div>
-    }>
-      <LoginContent />
-    </Suspense>
+    <>
+      <Suspense fallback={
+        <div className="flex items-center justify-center min-h-screen bg-gray-50">
+          <div className="text-center">Loading...</div>
+        </div>
+      }>
+        <LoginContent />
+      </Suspense>
+      <AuthDebug />
+    </>
   );
 }

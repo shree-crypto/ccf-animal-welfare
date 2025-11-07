@@ -1,9 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useMap } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet.heat';
+import { useMap, CircleMarker } from 'react-leaflet';
 import { Territory } from '@/types/territory';
 
 interface TerritoryHeatmapProps {
@@ -15,51 +13,53 @@ interface TerritoryHeatmapProps {
 
 export function TerritoryHeatmap({
   territories,
-  intensity = 0.5,
-  radius = 25,
-  blur = 15,
 }: TerritoryHeatmapProps) {
   const map = useMap();
 
   useEffect(() => {
     if (!map || territories.length === 0) return;
 
-    // Create heatmap data points from territory centers with pack size as intensity
-    const heatmapData: [number, number, number][] = territories.map((territory) => {
-      // Calculate center of territory
-      const lats = territory.boundaries.map((b) => b[0]);
-      const lngs = territory.boundaries.map((b) => b[1]);
-      const centerLat = lats.reduce((a, b) => a + b, 0) / lats.length;
-      const centerLng = lngs.reduce((a, b) => a + b, 0) / lngs.length;
+    console.log('🗺️ Heatmap: Rendering circles for', territories.length, 'territories');
+  }, [map, territories]);
 
-      // Use pack size as intensity (normalized)
-      const normalizedIntensity = Math.min(territory.packSize / 10, 1);
+  // Get color based on pack size
+  const getHeatColor = (packSize: number): string => {
+    if (packSize === 0) return '#3b82f6'; // blue
+    if (packSize <= 3) return '#22c55e'; // green
+    if (packSize <= 6) return '#eab308'; // yellow
+    if (packSize <= 10) return '#f97316'; // orange
+    return '#ef4444'; // red
+  };
 
-      return [centerLat, centerLng, normalizedIntensity];
-    });
+  // Get radius based on pack size
+  const getHeatRadius = (packSize: number): number => {
+    return Math.max(20, packSize * 5);
+  };
 
-    // Create heatmap layer
-    const heatLayer = (L as any).heatLayer(heatmapData, {
-      radius,
-      blur,
-      maxZoom: 17,
-      max: intensity,
-      gradient: {
-        0.0: '#3b82f6', // blue
-        0.3: '#22c55e', // green
-        0.5: '#eab308', // yellow
-        0.7: '#f97316', // orange
-        1.0: '#ef4444', // red
-      },
-    });
+  return (
+    <>
+      {territories.map((territory) => {
+        // Calculate center of territory
+        const lats = territory.boundaries.map((b) => b[0]);
+        const lngs = territory.boundaries.map((b) => b[1]);
+        const centerLat = lats.reduce((a, b) => a + b, 0) / lats.length;
+        const centerLng = lngs.reduce((a, b) => a + b, 0) / lngs.length;
 
-    heatLayer.addTo(map);
-
-    // Cleanup
-    return () => {
-      map.removeLayer(heatLayer);
-    };
-  }, [map, territories, intensity, radius, blur]);
-
-  return null;
+        return (
+          <CircleMarker
+            key={`heat-${territory.id}`}
+            center={[centerLat, centerLng]}
+            radius={getHeatRadius(territory.packSize)}
+            pathOptions={{
+              fillColor: getHeatColor(territory.packSize),
+              fillOpacity: 0.4,
+              color: getHeatColor(territory.packSize),
+              weight: 1,
+              opacity: 0.6,
+            }}
+          />
+        );
+      })}
+    </>
+  );
 }

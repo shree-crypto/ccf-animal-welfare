@@ -1,39 +1,41 @@
-import { UserRole } from '@/types/auth';
+import { UserRole, User } from '@/types/auth';
 
-interface MockUser {
-  $id: string;
-  email: string;
-  name: string;
-  role: UserRole;
-}
+// Create a mock user that matches the Appwrite User structure
+const createMockUser = (id: string, email: string, name: string, role: UserRole): User => {
+  const now = new Date().toISOString();
+  return {
+    $id: id,
+    $createdAt: now,
+    $updatedAt: now,
+    name,
+    registration: now,
+    status: true,
+    labels: [],
+    passwordUpdate: now,
+    email,
+    phone: '',
+    emailVerification: false,
+    phoneVerification: false,
+    mfa: false,
+    prefs: {},
+    targets: [],
+    accessedAt: now,
+    role,
+  };
+};
 
-const MOCK_USERS: Record<string, { password: string; user: MockUser }> = {
+const MOCK_USERS: Record<string, { password: string; user: User }> = {
   'admin@ccf.dev': {
     password: 'admin123',
-    user: {
-      $id: 'mock-admin-id',
-      email: 'admin@ccf.dev',
-      name: 'Admin User',
-      role: 'admin',
-    },
+    user: createMockUser('mock-admin-id', 'admin@ccf.dev', 'Admin User', 'admin'),
   },
   'volunteer@ccf.dev': {
     password: 'volunteer123',
-    user: {
-      $id: 'mock-volunteer-id',
-      email: 'volunteer@ccf.dev',
-      name: 'Volunteer User',
-      role: 'volunteer',
-    },
+    user: createMockUser('mock-volunteer-id', 'volunteer@ccf.dev', 'Volunteer User', 'volunteer'),
   },
   'user@ccf.dev': {
     password: 'user123',
-    user: {
-      $id: 'mock-user-id',
-      email: 'user@ccf.dev',
-      name: 'Public User',
-      role: 'public',
-    },
+    user: createMockUser('mock-user-id', 'user@ccf.dev', 'Public User', 'public'),
   },
 };
 
@@ -50,19 +52,27 @@ export class MockAuthService {
   /**
    * Mock login
    */
-  async login(email: string, password: string): Promise<MockUser> {
+  async login(email: string, password: string): Promise<User> {
     if (!this.isDevelopment()) {
       throw new Error('Mock authentication only available in development');
     }
 
     const mockUser = MOCK_USERS[email];
-    if (!mockUser || mockUser.password !== password) {
+    
+    // If email is not a mock user, throw a different error
+    if (!mockUser) {
+      throw new Error('Not a mock user');
+    }
+    
+    // If password is wrong, throw invalid credentials
+    if (mockUser.password !== password) {
       throw new Error('Invalid credentials');
     }
 
     // Store session in localStorage
     if (typeof window !== 'undefined') {
       localStorage.setItem(MOCK_SESSION_KEY, JSON.stringify(mockUser.user));
+      console.log('Mock user logged in:', email);
     }
 
     return mockUser.user;
@@ -71,18 +81,13 @@ export class MockAuthService {
   /**
    * Mock register
    */
-  async register(email: string, password: string, name: string): Promise<MockUser> {
+  async register(email: string, password: string, name: string): Promise<User> {
     if (!this.isDevelopment()) {
       throw new Error('Mock authentication only available in development');
     }
 
     // For mock, just create a volunteer user
-    const newUser: MockUser = {
-      $id: `mock-${Date.now()}`,
-      email,
-      name,
-      role: 'volunteer',
-    };
+    const newUser = createMockUser(`mock-${Date.now()}`, email, name, 'volunteer');
 
     // Store session in localStorage
     if (typeof window !== 'undefined') {
@@ -104,7 +109,7 @@ export class MockAuthService {
   /**
    * Get current mock user
    */
-  async getCurrentUser(): Promise<MockUser | null> {
+  async getCurrentUser(): Promise<User | null> {
     if (!this.isDevelopment()) {
       return null;
     }
@@ -119,7 +124,7 @@ export class MockAuthService {
     }
 
     try {
-      return JSON.parse(sessionData);
+      return JSON.parse(sessionData) as User;
     } catch {
       return null;
     }

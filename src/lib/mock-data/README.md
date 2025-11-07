@@ -17,6 +17,15 @@ Contains 12 mock animal profiles with:
 - Profile photos from Unsplash
 - Realistic data for testing UI components
 
+### `territories.ts`
+
+Contains 6 mock territories with:
+- Realistic boundaries using IIT Roorkee coordinates
+- Pack sizes ranging from 2 to 12 animals
+- Assigned volunteers for testing
+- Different areas: Main Building, Hostel Complex, Library Lawn, Sports Complex, Academic Block, Cafeteria
+- Visible on the interactive map at `/territories`
+
 ## Adding Mock Data
 
 When adding new collections, create corresponding mock data files:

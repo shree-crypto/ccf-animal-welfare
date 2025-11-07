@@ -1,0 +1,88 @@
+import { Territory } from '@/types/territory';
+
+export const mockTerritories: Territory[] = [
+  {
+    id: 'territory-1',
+    name: 'Main Building Area',
+    boundaries: [
+      [29.8550, 77.8870],
+      [29.8560, 77.8870],
+      [29.8560, 77.8890],
+      [29.8550, 77.8890],
+    ],
+    packSize: 5,
+    animals: ['animal-1', 'animal-2', 'animal-3', 'animal-4', 'animal-5'],
+    assignedVolunteers: ['volunteer-1'],
+    lastUpdated: new Date().toISOString(),
+  },
+  {
+    id: 'territory-2',
+    name: 'Hostel Complex',
+    boundaries: [
+      [29.8530, 77.8870],
+      [29.8540, 77.8870],
+      [29.8540, 77.8890],
+      [29.8530, 77.8890],
+    ],
+    packSize: 8,
+    animals: ['animal-6', 'animal-7', 'animal-8'],
+    assignedVolunteers: ['volunteer-2'],
+    lastUpdated: new Date().toISOString(),
+  },
+  {
+    id: 'territory-3',
+    name: 'Library Lawn',
+    boundaries: [
+      [29.8545, 77.8895],
+      [29.8555, 77.8895],
+      [29.8555, 77.8910],
+      [29.8545, 77.8910],
+    ],
+    packSize: 3,
+    animals: ['animal-9', 'animal-10'],
+    assignedVolunteers: ['volunteer-1', 'volunteer-3'],
+    lastUpdated: new Date().toISOString(),
+  },
+  {
+    id: 'territory-4',
+    name: 'Sports Complex',
+    boundaries: [
+      [29.8520, 77.8895],
+      [29.8530, 77.8895],
+      [29.8530, 77.8910],
+      [29.8520, 77.8910],
+    ],
+    packSize: 12,
+    animals: ['animal-11', 'animal-12', 'animal-13'],
+    assignedVolunteers: ['volunteer-2', 'volunteer-3'],
+    lastUpdated: new Date().toISOString(),
+  },
+  {
+    id: 'territory-5',
+    name: 'Academic Block',
+    boundaries: [
+      [29.8560, 77.8895],
+      [29.8570, 77.8895],
+      [29.8570, 77.8910],
+      [29.8560, 77.8910],
+    ],
+    packSize: 2,
+    animals: ['animal-14'],
+    assignedVolunteers: [],
+    lastUpdated: new Date().toISOString(),
+  },
+  {
+    id: 'territory-6',
+    name: 'Cafeteria Area',
+    boundaries: [
+      [29.8535, 77.8850],
+      [29.8545, 77.8850],
+      [29.8545, 77.8865],
+      [29.8535, 77.8865],
+    ],
+    packSize: 6,
+    animals: ['animal-15', 'animal-16'],
+    assignedVolunteers: ['volunteer-1'],
+    lastUpdated: new Date().toISOString(),
+  },
+];
