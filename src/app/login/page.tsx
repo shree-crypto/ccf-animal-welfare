@@ -13,7 +13,9 @@ function LoginContent() {
 
   const handleSuccess = () => {
     const redirect = searchParams.get('redirect') || '/dashboard';
-    router.push(redirect);
+    console.log('🎉 Login successful, redirecting to:', redirect);
+    // Use window.location to force a full page reload and re-initialize AuthContext
+    window.location.href = redirect;
   };
 
   const isDev = process.env.NODE_ENV === 'development';

@@ -11,19 +11,37 @@ import { useAuth } from '@/contexts/AuthContext';
 
 export function Header() {
   const pathname = usePathname();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navLinks = [
+  // Public links - always visible
+  const publicLinks = [
     { href: '/', label: 'Home' },
     { href: '/animals', label: 'Animals' },
+    { href: '/territories', label: 'Map' },
     { href: '/about', label: 'About' },
     { href: '/stories', label: 'Stories' },
     { href: '/events', label: 'Events' },
     { href: '/contact', label: 'Contact' },
     { href: '/donate', label: 'Donate' },
+  ];
+
+  // Authenticated user links
+  const authLinks = [
     { href: '/dashboard', label: 'Dashboard' },
-    { href: '/login', label: 'Login' },
+    { href: '/tasks', label: 'Tasks' },
+    { href: '/medical', label: 'Medical' },
+  ];
+
+  // Admin only links
+  const adminLinks = user?.role === 'admin' ? [
+    { href: '/admin/animals', label: 'Admin' },
+  ] : [];
+
+  // Combine links based on auth state
+  const navLinks = [
+    ...publicLinks,
+    ...(user ? [...authLinks, ...adminLinks] : []),
   ];
 
   const isActive = (href: string) => {
@@ -50,18 +68,43 @@ export function Header() {
                   key={link.href}
                   asChild
                   variant={isActive(link.href) ? 'default' : 'ghost'}
+                  size="sm"
                 >
                   <Link href={link.href}>{link.label}</Link>
                 </Button>
               ))}
             </nav>
 
-            {/* Notification Center - Only show for authenticated users */}
-            {user && (
-              <div className="hidden md:block">
-                <NotificationCenter />
-              </div>
-            )}
+            {/* Auth Actions */}
+            <div className="hidden md:flex items-center gap-2 ml-2">
+              {user ? (
+                <>
+                  {/* Notification Center */}
+                  <NotificationCenter />
+                  
+                  {/* User Info & Logout */}
+                  <div className="flex items-center gap-2 pl-2 border-l">
+                    <span className="text-sm text-muted-foreground">
+                      {user.name}
+                    </span>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={async () => {
+                        await logout();
+                        window.location.href = '/';
+                      }}
+                    >
+                      Logout
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <Button asChild size="sm">
+                  <Link href="/login">Login</Link>
+                </Button>
+              )}
+            </div>
 
             {/* Mobile Menu Button */}
             <Button
@@ -101,6 +144,36 @@ export function Header() {
                   <Link href={link.href}>{link.label}</Link>
                 </Button>
               ))}
+              
+              {/* Mobile Auth Actions */}
+              <div className="border-t pt-2 mt-2">
+                {user ? (
+                  <>
+                    <div className="px-3 py-2 text-sm text-muted-foreground">
+                      Logged in as {user.name}
+                    </div>
+                    <Button
+                      variant="outline"
+                      className="w-full justify-start"
+                      onClick={async () => {
+                        await logout();
+                        setMobileMenuOpen(false);
+                        window.location.href = '/';
+                      }}
+                    >
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <Button
+                    asChild
+                    className="w-full justify-start"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <Link href="/login">Login</Link>
+                  </Button>
+                )}
+              </div>
             </nav>
           </motion.div>
         )}
