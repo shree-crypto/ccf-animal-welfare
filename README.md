@@ -70,12 +70,20 @@ npm run dev
 
 Comprehensive documentation is available in the [docs](./docs) folder:
 
-- **Quick Start Guides**: Step-by-step guides for each feature
-- **Setup Guides**: Detailed configuration instructions
-- **Architecture Diagrams**: System flow and integration guides
-- **Implementation History**: Task summaries and checklists
+### For New Developers
+- **[Setup Guide](./docs/SETUP_GUIDE.md)** - Complete setup instructions for local development and production
+- **[Developer Guide](./docs/DEVELOPER_GUIDE.md)** - Project overview, technology stack, and architecture
+- **[Conventions](./docs/CONVENTIONS.md)** - Code conventions and best practices to follow
 
-See [docs/README.md](./docs/README.md) for the complete documentation index.
+### Architecture Documentation
+- **[Frontend Architecture](./docs/FRONTEND_ARCHITECTURE.md)** - Pages, components, state management, and UI patterns
+- **[Backend Architecture](./docs/BACKEND_ARCHITECTURE.md)** - Database operations, authentication, storage, and real-time features
+- **[Database Schema](./docs/DATABASE_SCHEMA.md)** - Complete database schema with collections, indexes, and relationships
+
+### Specialized Guides
+- **[Query Optimization](./docs/QUERY_OPTIMIZATION.md)** - Database indexing and query performance optimization
+
+See [docs/README.md](./docs/README.md) for the complete documentation index and quick navigation guide.
 
 ## Project Structure
 
