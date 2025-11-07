@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { ErrorBoundary } from '@/components/ui/error-boundary';
 import Link from 'next/link';
 
 export default function DashboardPage() {
@@ -31,7 +32,17 @@ export default function DashboardPage() {
 
           {/* Medical Alerts */}
           <div className="mb-6">
-            <MedicalAlertBanner />
+            <ErrorBoundary
+              fallback={
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <p className="text-red-800 text-sm">
+                    Unable to load medical alerts. Please refresh the page.
+                  </p>
+                </div>
+              }
+            >
+              <MedicalAlertBanner />
+            </ErrorBoundary>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

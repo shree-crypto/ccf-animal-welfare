@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Dog, Cat, Filter } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -14,7 +14,7 @@ interface FilterBarProps {
   selectedType: AnimalType | 'all';
 }
 
-export function FilterBar({ onSearchChange, onTypeFilter, searchValue, selectedType }: FilterBarProps) {
+export const FilterBar = memo(function FilterBar({ onSearchChange, onTypeFilter, searchValue, selectedType }: FilterBarProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const filterButtons = [
@@ -100,4 +100,4 @@ export function FilterBar({ onSearchChange, onTypeFilter, searchValue, selectedT
       </div>
     </motion.div>
   );
-}
+});

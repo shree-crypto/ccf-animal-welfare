@@ -5,6 +5,7 @@ import "leaflet/dist/leaflet.css";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { NotificationProvider } from "@/contexts/NotificationContext";
 import { Header, Footer } from "@/components/layout";
+import { ErrorBoundary } from "@/components/ui/error-boundary";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -86,13 +87,15 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <AuthProvider>
-          <NotificationProvider>
-            <Header />
-            <main id="main-content">{children}</main>
-            <Footer />
-          </NotificationProvider>
-        </AuthProvider>
+        <ErrorBoundary>
+          <AuthProvider>
+            <NotificationProvider>
+              <Header />
+              <main id="main-content">{children}</main>
+              <Footer />
+            </NotificationProvider>
+          </AuthProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

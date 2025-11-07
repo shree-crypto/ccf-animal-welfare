@@ -1,5 +1,6 @@
 'use client';
 
+import { memo } from 'react';
 import { AnimalProfile } from '@/types/animal';
 import { AnimalCard } from './AnimalCard';
 
@@ -7,7 +8,7 @@ interface AnimalGridProps {
   animals: AnimalProfile[];
 }
 
-export function AnimalGrid({ animals }: AnimalGridProps) {
+export const AnimalGrid = memo(function AnimalGrid({ animals }: AnimalGridProps) {
   if (animals.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
@@ -24,4 +25,4 @@ export function AnimalGrid({ animals }: AnimalGridProps) {
       ))}
     </div>
   );
-}
+});

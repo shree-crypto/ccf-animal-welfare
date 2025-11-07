@@ -4,6 +4,7 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useTerritories } from '@/hooks/useTerritories';
 import { MapPin, Loader2 } from 'lucide-react';
+import { ErrorBoundary } from '@/components/ui/error-boundary';
 
 // Dynamically import the map component with no SSR
 const InteractiveMap = dynamic(
@@ -52,9 +53,10 @@ export default function TerritoriesPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4">
+    <ErrorBoundary>
+      <div className="min-h-screen flex flex-col">
+        {/* Header */}
+        <div className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -132,6 +134,7 @@ export default function TerritoriesPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </ErrorBoundary>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { AnimalProfile, AnimalType } from '@/types/animal';
 import { getAnimals } from '@/lib/db/animals';
@@ -9,6 +9,7 @@ import { FilterBar } from '@/components/features/animals/FilterBar';
 import { AnimatedGradient } from '@/components/ui/animated-gradient';
 import { SparklesCore } from '@/components/ui/sparkles';
 import { Loader2, Heart, Sparkles } from 'lucide-react';
+import { ErrorBoundary } from '@/components/ui/error-boundary';
 
 // Note: Metadata should be added in a separate metadata file or converted to Server Component
 // For now, using client component with dynamic title update via useEffect
@@ -18,6 +19,15 @@ export default function AnimalsPage() {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState<AnimalType | 'all'>('all');
+
+  // Memoize event handlers to prevent unnecessary re-renders
+  const handleSearchChange = useCallback((search: string) => {
+    setSearchTerm(search);
+  }, []);
+
+  const handleTypeFilter = useCallback((type: AnimalType | 'all') => {
+    setSelectedType(type);
+  }, []);
 
   useEffect(() => {
     const fetchAnimals = async () => {
@@ -58,8 +68,9 @@ export default function AnimalsPage() {
   }, [animals, selectedType, searchTerm]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-900 dark:to-blue-900 relative overflow-hidden">
-      <AnimatedGradient className="pointer-events-none" />
+    <ErrorBoundary>
+      <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-900 dark:to-blue-900 relative overflow-hidden">
+        <AnimatedGradient className="pointer-events-none" />
       
       {/* Hero Section with Sparkles */}
       <section className="relative py-20 px-4 overflow-hidden">
@@ -118,8 +129,8 @@ export default function AnimalsPage() {
             <FilterBar
               searchValue={searchTerm}
               selectedType={selectedType}
-              onSearchChange={setSearchTerm}
-              onTypeFilter={setSelectedType}
+              onSearchChange={handleSearchChange}
+              onTypeFilter={handleTypeFilter}
             />
           </motion.div>
 
@@ -151,5 +162,6 @@ export default function AnimalsPage() {
         </div>
       </section>
     </div>
+    </ErrorBoundary>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ProtectedRoute } from '@/components/features/auth/ProtectedRoute';
 import { AnimalProfile } from '@/types/animal';
 import { getAnimals, createAnimal, updateAnimal, deleteAnimal } from '@/lib/db/animals';
@@ -21,6 +21,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Plus, Upload, Download } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AnimalProfileFormData } from '@/lib/validations/animal';
+import { ErrorBoundary } from '@/components/ui/error-boundary';
 
 export default function AdminAnimalsPage() {
   const [animals, setAnimals] = useState<AnimalProfile[]>([]);
@@ -36,11 +37,7 @@ export default function AdminAnimalsPage() {
   const [profilePhoto, setProfilePhoto] = useState('');
   const [galleryPhotos, setGalleryPhotos] = useState<string[]>([]);
 
-  useEffect(() => {
-    loadAnimals();
-  }, []);
-
-  const loadAnimals = async () => {
+  const loadAnimals = useCallback(async () => {
     try {
       setLoading(true);
       const data = await getAnimals();
@@ -50,9 +47,13 @@ export default function AdminAnimalsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const handleCreate = async (data: AnimalProfileFormData) => {
+  useEffect(() => {
+    loadAnimals();
+  }, [loadAnimals]);
+
+  const handleCreate = useCallback(async (data: AnimalProfileFormData) => {
     try {
       setError(null);
       
@@ -75,16 +76,16 @@ export default function AdminAnimalsPage() {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create animal');
     }
-  };
+  }, [profilePhoto, galleryPhotos, loadAnimals]);
 
-  const handleEdit = (animal: AnimalProfile) => {
+  const handleEdit = useCallback((animal: AnimalProfile) => {
     setSelectedAnimal(animal);
     setProfilePhoto(animal.photos.profile);
     setGalleryPhotos(animal.photos.gallery);
     setShowEditDialog(true);
-  };
+  }, []);
 
-  const handleUpdate = async (data: AnimalProfileFormData) => {
+  const handleUpdate = useCallback(async (data: AnimalProfileFormData) => {
     if (!selectedAnimal) return;
 
     try {
@@ -110,9 +111,9 @@ export default function AdminAnimalsPage() {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to update animal');
     }
-  };
+  }, [selectedAnimal, profilePhoto, galleryPhotos, loadAnimals]);
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = useCallback(async (id: string) => {
     try {
       setError(null);
       await deleteAnimal(id);
@@ -123,25 +124,26 @@ export default function AdminAnimalsPage() {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to delete animal');
     }
-  };
+  }, [loadAnimals]);
 
-  const resetPhotoState = () => {
+  const resetPhotoState = useCallback(() => {
     setProfilePhoto('');
     setGalleryPhotos([]);
-  };
+  }, []);
 
-  const handleExportCSV = () => {
+  const handleExportCSV = useCallback(() => {
     exportAnimalsToCSV(animals);
-  };
+  }, [animals]);
 
-  const handleExportJSON = () => {
+  const handleExportJSON = useCallback(() => {
     exportAnimalsToJSON(animals);
-  };
+  }, [animals]);
 
   return (
     <ProtectedRoute requiredRole="admin">
-      <div className="min-h-screen bg-gray-50">
-        <div className="container mx-auto px-4 py-8">
+      <ErrorBoundary>
+        <div className="min-h-screen bg-gray-50">
+          <div className="container mx-auto px-4 py-8">
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -286,6 +288,7 @@ export default function AdminAnimalsPage() {
           </Dialog>
         </div>
       </div>
+      </ErrorBoundary>
     </ProtectedRoute>
   );
 }

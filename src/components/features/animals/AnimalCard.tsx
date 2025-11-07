@@ -1,5 +1,6 @@
 'use client';
 
+import { memo } from 'react';
 import { AnimalProfile } from '@/types/animal';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,7 +13,7 @@ interface AnimalCardProps {
   index?: number;
 }
 
-export function AnimalCard({ animal, index = 0 }: AnimalCardProps) {
+export const AnimalCard = memo(function AnimalCard({ animal, index = 0 }: AnimalCardProps) {
   const statusColors = {
     healthy: 'bg-gradient-to-r from-emerald-200 to-teal-200 text-emerald-900 dark:from-emerald-800 dark:to-teal-800 dark:text-emerald-100 shadow-lg shadow-emerald-200/50',
     needs_attention: 'bg-gradient-to-r from-amber-200 to-orange-200 text-amber-900 dark:from-amber-800 dark:to-orange-800 dark:text-amber-100 shadow-lg shadow-amber-200/50',
@@ -116,4 +117,4 @@ export function AnimalCard({ animal, index = 0 }: AnimalCardProps) {
       </Link>
     </motion.div>
   );
-}
+});

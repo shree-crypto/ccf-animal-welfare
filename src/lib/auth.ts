@@ -2,12 +2,22 @@ import { account, teams } from './appwrite';
 import { TEAM_IDS, ROLE_HIERARCHY } from './constants/teams';
 import { UserRole } from '@/types/auth';
 import { ID } from 'appwrite';
+import { mockAuthService } from './mock-auth';
 
 export class AuthService {
   /**
    * Register a new user
    */
   async register(email: string, password: string, name: string) {
+    // Try mock auth first in development
+    if (mockAuthService.isAvailable()) {
+      try {
+        return await mockAuthService.register(email, password, name);
+      } catch (mockError) {
+        console.log('Mock auth failed, trying real auth:', mockError);
+      }
+    }
+
     try {
       const user = await account.create(ID.unique(), email, password, name);
       // After registration, create a session
@@ -23,6 +33,15 @@ export class AuthService {
    * Login with email and password
    */
   async login(email: string, password: string) {
+    // Try mock auth first in development
+    if (mockAuthService.isAvailable()) {
+      try {
+        return await mockAuthService.login(email, password);
+      } catch (mockError) {
+        console.log('Mock auth failed, trying real auth:', mockError);
+      }
+    }
+
     try {
       const session = await account.createEmailPasswordSession(email, password);
       return session;
@@ -36,11 +55,16 @@ export class AuthService {
    * Logout current user
    */
   async logout() {
+    // Logout from mock auth if available
+    if (mockAuthService.isAvailable()) {
+      await mockAuthService.logout();
+    }
+
     try {
       await account.deleteSession('current');
     } catch (error) {
       console.error('Logout error:', error);
-      throw error;
+      // Don't throw error on logout
     }
   }
 
@@ -48,6 +72,14 @@ export class AuthService {
    * Get current user
    */
   async getCurrentUser() {
+    // Try mock auth first in development
+    if (mockAuthService.isAvailable()) {
+      const mockUser = await mockAuthService.getCurrentUser();
+      if (mockUser) {
+        return mockUser;
+      }
+    }
+
     try {
       const user = await account.get();
       return user;
@@ -73,6 +105,14 @@ export class AuthService {
    * Get user's role based on team membership
    */
   async getUserRole(): Promise<UserRole> {
+    // Check if mock user has role
+    if (mockAuthService.isAvailable()) {
+      const mockUser = await mockAuthService.getCurrentUser();
+      if (mockUser && 'role' in mockUser) {
+        return mockUser.role as UserRole;
+      }
+    }
+
     try {
       const teamsList = await teams.list();
       

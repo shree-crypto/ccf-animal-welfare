@@ -34,6 +34,7 @@ export function useTerritories(options: UseTerritoriesOptions = {}) {
     if (autoFetch) {
       fetchTerritories();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoFetch, limit, offset]);
 
   const refetch = () => {

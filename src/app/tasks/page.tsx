@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { ProtectedRoute } from '@/components/features/auth/ProtectedRoute';
 import { useAuth } from '@/contexts/AuthContext';
 import { Task } from '@/types/task';
@@ -14,6 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Loader2, ListTodo, Calendar as CalendarIcon } from 'lucide-react';
 import { client } from '@/lib/appwrite';
+import { ErrorBoundary } from '@/components/ui/error-boundary';
 
 export default function TasksPage() {
   const { user } = useAuth();
@@ -21,10 +22,42 @@ export default function TasksPage() {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'pending' | 'completed'>('all');
 
+  // Memoize event handlers to prevent unnecessary re-renders
+  const handleCreateTask = useCallback(async (data: CreateTaskFormData) => {
+    try {
+      await createTask(data);
+      await loadTasks();
+    } catch (error) {
+      console.error('Error creating task:', error);
+      throw error;
+    }
+  }, []);
+
+  const handleCompleteTask = useCallback(async (taskId: string) => {
+    try {
+      await completeTask(taskId);
+      await loadTasks();
+    } catch (error) {
+      console.error('Error completing task:', error);
+    }
+  }, []);
+
+  const handleDeleteTask = useCallback(async (taskId: string) => {
+    if (confirm('Are you sure you want to delete this task?')) {
+      try {
+        await deleteTask(taskId);
+        await loadTasks();
+      } catch (error) {
+        console.error('Error deleting task:', error);
+      }
+    }
+  }, []);
+
   useEffect(() => {
     if (user?.$id) {
       loadTasks();
-      subscribeToTasks();
+      const unsubscribe = subscribeToTasks();
+      return unsubscribe;
     }
   }, [user]);
 
@@ -65,36 +98,6 @@ export default function TasksPage() {
     };
   };
 
-  const handleCreateTask = async (data: CreateTaskFormData) => {
-    try {
-      await createTask(data);
-      await loadTasks();
-    } catch (error) {
-      console.error('Error creating task:', error);
-      throw error;
-    }
-  };
-
-  const handleCompleteTask = async (taskId: string) => {
-    try {
-      await completeTask(taskId);
-      await loadTasks();
-    } catch (error) {
-      console.error('Error completing task:', error);
-    }
-  };
-
-  const handleDeleteTask = async (taskId: string) => {
-    if (confirm('Are you sure you want to delete this task?')) {
-      try {
-        await deleteTask(taskId);
-        await loadTasks();
-      } catch (error) {
-        console.error('Error deleting task:', error);
-      }
-    }
-  };
-
   const filteredTasks = tasks.filter(task => {
     if (filter === 'pending') return !task.completed;
     if (filter === 'completed') return task.completed;
@@ -116,8 +119,9 @@ export default function TasksPage() {
 
   return (
     <ProtectedRoute requiredRole="volunteer">
-      <div className="min-h-screen bg-gray-50">
-        <div className="container mx-auto px-4 py-8">
+      <ErrorBoundary>
+        <div className="min-h-screen bg-gray-50">
+          <div className="container mx-auto px-4 py-8">
           <div className="flex items-center justify-between mb-8">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Task Management</h1>
@@ -203,6 +207,7 @@ export default function TasksPage() {
           </Tabs>
         </div>
       </div>
+      </ErrorBoundary>
     </ProtectedRoute>
   );
 }

@@ -32,10 +32,11 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Plus, FileText } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { format } from 'date-fns';
-import { FileUploadZone } from './FileUploadZone';
 import { MedicalRecord } from '@/types/medical';
+import { MedicationManager } from './MedicationManager';
+import { DocumentManager } from './DocumentManager';
 
 interface MedicalRecordFormProps {
   animalId: string;
@@ -54,7 +55,6 @@ export function MedicalRecordForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadedDocuments, setUploadedDocuments] = useState<string[]>(record?.documents || []);
   const [medications, setMedications] = useState<string[]>(record?.medications || []);
-  const [newMedication, setNewMedication] = useState('');
 
   const form = useForm<MedicalRecordFormData>({
     resolver: zodResolver(medicalRecordSchema),
@@ -100,11 +100,8 @@ export function MedicalRecordForm({
     }
   };
 
-  const addMedication = () => {
-    if (newMedication.trim() && !medications.includes(newMedication.trim())) {
-      setMedications([...medications, newMedication.trim()]);
-      setNewMedication('');
-    }
+  const addMedication = (medication: string) => {
+    setMedications([...medications, medication]);
   };
 
   const removeMedication = (med: string) => {
@@ -217,73 +214,18 @@ export function MedicalRecordForm({
             />
 
             {/* Medications */}
-            <div className="space-y-2">
-              <FormLabel>Medications</FormLabel>
-              <div className="flex gap-2">
-                <Input
-                  placeholder="Add medication name"
-                  value={newMedication}
-                  onChange={(e) => setNewMedication(e.target.value)}
-                  onKeyPress={(e) => {
-                    if (e.key === 'Enter') {
-                      e.preventDefault();
-                      addMedication();
-                    }
-                  }}
-                />
-                <Button type="button" onClick={addMedication} variant="outline">
-                  Add
-                </Button>
-              </div>
-              {medications.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {medications.map((med) => (
-                    <div
-                      key={med}
-                      className="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm flex items-center gap-2"
-                    >
-                      {med}
-                      <button
-                        type="button"
-                        onClick={() => removeMedication(med)}
-                        className="hover:text-destructive"
-                      >
-                        ×
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            <MedicationManager
+              medications={medications}
+              onAdd={addMedication}
+              onRemove={removeMedication}
+            />
 
             {/* File Upload */}
-            <div className="space-y-2">
-              <FormLabel>Medical Documents & Photos</FormLabel>
-              <FileUploadZone onFilesUploaded={handleFilesUploaded} />
-              {uploadedDocuments.length > 0 && (
-                <div className="space-y-2 mt-2">
-                  {uploadedDocuments.map((url, index) => (
-                    <div
-                      key={url}
-                      className="flex items-center justify-between p-2 bg-secondary rounded-md"
-                    >
-                      <div className="flex items-center gap-2">
-                        <FileText className="h-4 w-4" />
-                        <span className="text-sm">Document {index + 1}</span>
-                      </div>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => removeDocument(url)}
-                      >
-                        Remove
-                      </Button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            <DocumentManager
+              documents={uploadedDocuments}
+              onFilesUploaded={handleFilesUploaded}
+              onRemove={removeDocument}
+            />
 
             {/* Follow-up */}
             <div className="space-y-4">

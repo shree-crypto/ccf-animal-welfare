@@ -3,6 +3,7 @@
 import { useRequireAuth } from '@/hooks/useRequireAuth';
 import NotificationPreferences from '@/components/features/notifications/NotificationPreferences';
 import { Bell } from 'lucide-react';
+import { ErrorBoundary } from '@/components/ui/error-boundary';
 
 export default function NotificationsPage() {
   const { loading } = useRequireAuth('volunteer');
@@ -16,8 +17,9 @@ export default function NotificationsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4">
+    <ErrorBoundary>
+      <div className="min-h-screen bg-gray-50 py-8">
+        <div className="max-w-4xl mx-auto px-4">
         {/* Page Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
@@ -54,7 +56,8 @@ export default function NotificationsPage() {
             </p>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 }

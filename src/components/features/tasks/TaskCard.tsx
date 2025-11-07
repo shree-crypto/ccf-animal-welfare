@@ -1,5 +1,6 @@
 'use client';
 
+import { memo } from 'react';
 import { Task } from '@/types/task';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -27,7 +28,7 @@ const priorityColors = {
   urgent: 'bg-red-100 text-red-800 hover:bg-red-200',
 };
 
-export function TaskCard({ task, onComplete, onEdit, onDelete }: TaskCardProps) {
+export const TaskCard = memo(function TaskCard({ task, onComplete, onEdit, onDelete }: TaskCardProps) {
   const Icon = taskTypeIcons[task.type];
   const isOverdue = !task.completed && new Date(task.scheduledDate) < new Date();
 
@@ -101,4 +102,4 @@ export function TaskCard({ task, onComplete, onEdit, onDelete }: TaskCardProps) 
       </CardContent>
     </Card>
   );
-}
+});

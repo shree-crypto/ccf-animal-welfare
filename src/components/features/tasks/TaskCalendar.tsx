@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo, useMemo } from 'react';
 import { Task } from '@/types/task';
 import { Calendar } from '@/components/ui/calendar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,7 +13,7 @@ interface TaskCalendarProps {
   onDateSelect?: (date: Date) => void;
 }
 
-export function TaskCalendar({ tasks, onDateSelect }: TaskCalendarProps) {
+export const TaskCalendar = memo(function TaskCalendar({ tasks, onDateSelect }: TaskCalendarProps) {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
 
   const handleDateSelect = (date: Date | undefined) => {
@@ -23,13 +23,16 @@ export function TaskCalendar({ tasks, onDateSelect }: TaskCalendarProps) {
     }
   };
 
-  // Get tasks for selected date
-  const tasksForSelectedDate = selectedDate
-    ? tasks.filter(task => isSameDay(new Date(task.scheduledDate), selectedDate))
-    : [];
+  // Memoize expensive computations
+  const tasksForSelectedDate = useMemo(() => {
+    return selectedDate
+      ? tasks.filter(task => isSameDay(new Date(task.scheduledDate), selectedDate))
+      : [];
+  }, [tasks, selectedDate]);
 
-  // Get dates with tasks for highlighting
-  const datesWithTasks = tasks.map(task => new Date(task.scheduledDate));
+  const datesWithTasks = useMemo(() => {
+    return tasks.map(task => new Date(task.scheduledDate));
+  }, [tasks]);
 
   return (
     <div className="grid gap-4 md:grid-cols-2">
@@ -102,4 +105,4 @@ export function TaskCalendar({ tasks, onDateSelect }: TaskCalendarProps) {
       </Card>
     </div>
   );
-}
+});

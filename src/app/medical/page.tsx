@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { ProtectedRoute } from '@/components/features/auth/ProtectedRoute';
 import { MedicalAlertBanner } from '@/components/features/medical';
 import { MedicalRecord } from '@/types/medical';
@@ -31,6 +31,7 @@ import {
 } from 'lucide-react';
 import { format } from 'date-fns';
 import Link from 'next/link';
+import { ErrorBoundary } from '@/components/ui/error-boundary';
 
 interface RecordWithAnimal extends MedicalRecord {
   animal?: AnimalProfile;
@@ -89,7 +90,21 @@ export default function MedicalRecordsPage() {
     fetchRecords();
   }, []);
 
-  const filteredRecords = records.filter((record) => {
+  // Memoize event handlers
+  const handleSearchChange = useCallback((value: string) => {
+    setSearchTerm(value);
+  }, []);
+
+  const handleTypeFilterChange = useCallback((value: string) => {
+    setTypeFilter(value);
+  }, []);
+
+  const handleFollowUpFilterChange = useCallback((value: string) => {
+    setFollowUpFilter(value);
+  }, []);
+
+  // Memoize filtered records computation
+  const filteredRecords = useMemo(() => records.filter((record) => {
     const matchesSearch = 
       !searchTerm ||
       record.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -104,12 +119,13 @@ export default function MedicalRecordsPage() {
       (followUpFilter === 'not-required' && !record.followUpRequired);
 
     return matchesSearch && matchesType && matchesFollowUp;
-  });
+  }), [records, searchTerm, typeFilter, followUpFilter]);
 
   return (
     <ProtectedRoute requiredRole="volunteer">
-      <div className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 py-8">
+      <ErrorBoundary>
+        <div className="min-h-screen bg-background">
+          <div className="container mx-auto px-4 py-8">
           <div className="mb-8">
             <h1 className="text-3xl font-bold mb-2">Medical Records</h1>
             <p className="text-muted-foreground">
@@ -119,7 +135,17 @@ export default function MedicalRecordsPage() {
 
           {/* Medical Alerts */}
           <div className="mb-6">
-            <MedicalAlertBanner />
+            <ErrorBoundary
+              fallback={
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <p className="text-red-800 text-sm">
+                    Unable to load medical alerts. Please refresh the page.
+                  </p>
+                </div>
+              }
+            >
+              <MedicalAlertBanner />
+            </ErrorBoundary>
           </div>
 
           {/* Filters */}
@@ -134,12 +160,12 @@ export default function MedicalRecordsPage() {
                   <Input
                     placeholder="Search records..."
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onChange={(e) => handleSearchChange(e.target.value)}
                     className="pl-10"
                   />
                 </div>
 
-                <Select value={typeFilter} onValueChange={setTypeFilter}>
+                <Select value={typeFilter} onValueChange={handleTypeFilterChange}>
                   <SelectTrigger>
                     <SelectValue placeholder="Filter by type" />
                   </SelectTrigger>
@@ -152,7 +178,7 @@ export default function MedicalRecordsPage() {
                   </SelectContent>
                 </Select>
 
-                <Select value={followUpFilter} onValueChange={setFollowUpFilter}>
+                <Select value={followUpFilter} onValueChange={handleFollowUpFilterChange}>
                   <SelectTrigger>
                     <SelectValue placeholder="Filter by follow-up" />
                   </SelectTrigger>
@@ -271,6 +297,7 @@ export default function MedicalRecordsPage() {
           )}
         </div>
       </div>
+      </ErrorBoundary>
     </ProtectedRoute>
   );
 }

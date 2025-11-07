@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { createTaskSchema, CreateTaskFormData } from '@/lib/validations/task';
@@ -38,7 +38,7 @@ interface QuickActionsProps {
   currentUserId: string;
 }
 
-export function QuickActions({ onCreateTask, currentUserId }: QuickActionsProps) {
+export const QuickActions = memo(function QuickActions({ onCreateTask, currentUserId }: QuickActionsProps) {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -225,4 +225,4 @@ export function QuickActions({ onCreateTask, currentUserId }: QuickActionsProps)
       </DialogContent>
     </Dialog>
   );
-}
+});
