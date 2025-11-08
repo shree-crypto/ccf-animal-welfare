@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback, useMemo } from 'react';
 import { client } from '@/lib/appwrite';
 import { DATABASE_ID, COLLECTIONS } from '@/lib/constants/database';
 import { Notification } from '@/types/notification';
@@ -31,6 +31,15 @@ export const useNotifications = () => {
   return context;
 };
 
+/**
+ * NotificationProvider manages notification state and real-time updates.
+ * 
+ * Optimization notes:
+ * - Uses useMemo to memoize context value and prevent unnecessary re-renders
+ * - Uses useCallback for all functions to maintain referential equality
+ * - Subscribes to real-time Appwrite updates for instant notification delivery
+ * - Only fetches notifications when user is authenticated
+ */
 export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user } = useAuth();
   const [notifications, setNotifications] = useState<Notification[]>([]);
@@ -144,17 +153,17 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
   }, [user, fetchNotifications]);
 
   // Mark notification as read
-  const markNotificationAsRead = async (id: string) => {
+  const markNotificationAsRead = useCallback(async (id: string) => {
     try {
       await markAsRead(id);
       // Real-time subscription will handle the state update
     } catch (error) {
       console.error('Error marking notification as read:', error);
     }
-  };
+  }, []);
 
   // Mark all notifications as read
-  const markAllNotificationsAsRead = async () => {
+  const markAllNotificationsAsRead = useCallback(async () => {
     if (!user) return;
 
     try {
@@ -163,16 +172,17 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
     } catch (error) {
       console.error('Error marking all notifications as read:', error);
     }
-  };
+  }, [user]);
 
-  const value: NotificationContextType = {
+  // Memoize context value to prevent unnecessary re-renders
+  const value: NotificationContextType = useMemo(() => ({
     notifications,
     unreadCount,
     loading,
     markNotificationAsRead,
     markAllNotificationsAsRead,
     refreshNotifications: fetchNotifications,
-  };
+  }), [notifications, unreadCount, loading, markNotificationAsRead, markAllNotificationsAsRead, fetchNotifications]);
 
   return <NotificationContext.Provider value={value}>{children}</NotificationContext.Provider>;
 };

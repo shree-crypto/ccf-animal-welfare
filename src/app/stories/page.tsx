@@ -1,10 +1,8 @@
-'use client';
-
-import { useState } from 'react';
 import { Heart, Calendar, Award } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { CategoryFilter } from '@/components/features/stories/CategoryFilter';
 
 // Mock data - In production, this would come from the database
 const successStories = [
@@ -79,8 +77,12 @@ const categories = [
   { value: 'community', label: 'Community' },
 ];
 
-export default function StoriesPage() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+export default function StoriesPage({
+  searchParams,
+}: {
+  searchParams: { category?: string };
+}) {
+  const selectedCategory = searchParams.category || 'all';
 
   const filteredStories = selectedCategory === 'all' 
     ? successStories 
@@ -183,17 +185,7 @@ export default function StoriesPage() {
             </h2>
 
             {/* Category Filter */}
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <Button
-                  key={category.value}
-                  variant={selectedCategory === category.value ? 'default' : 'outline'}
-                  onClick={() => setSelectedCategory(category.value)}
-                >
-                  {category.label}
-                </Button>
-              ))}
-            </div>
+            <CategoryFilter categories={categories} selectedCategory={selectedCategory} />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

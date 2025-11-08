@@ -6,6 +6,15 @@ import { User, AuthContextType, UserRole } from '@/types/auth';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+/**
+ * AuthProvider manages authentication state and user session.
+ * 
+ * Optimization notes:
+ * - Uses useMemo to memoize context value and prevent unnecessary re-renders
+ * - Uses useCallback for all functions to maintain referential equality
+ * - Only re-renders consumers when user or loading state actually changes
+ * - Functions are stable across renders unless their dependencies change
+ */
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);

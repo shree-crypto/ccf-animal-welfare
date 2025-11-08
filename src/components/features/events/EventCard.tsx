@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Clock, MapPin, Users } from 'lucide-react';
 import { format } from 'date-fns';
 import Link from 'next/link';
+import { getEventTypeColor } from '@/lib/utils/event-colors';
 
 interface Event {
   id: string;
@@ -21,14 +22,13 @@ interface Event {
 
 interface EventCardProps {
   event: Event;
-  getTypeColor: (type: string) => string;
 }
 
-export function EventCard({ event, getTypeColor }: EventCardProps) {
+export function EventCard({ event }: EventCardProps) {
   return (
     <Card className="p-6 hover:shadow-lg transition-all duration-300">
       <div className="flex items-start justify-between mb-4">
-        <Badge className={getTypeColor(event.type)} variant="outline">
+        <Badge className={getEventTypeColor(event.type)} variant="outline">
           {event.type}
         </Badge>
         <div className="text-sm text-muted-foreground">

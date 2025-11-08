@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday } from 'date-fns';
+import { getEventTypeColor } from '@/lib/utils/event-colors';
 
 interface Event {
   id: string;
@@ -16,10 +17,9 @@ interface Event {
 
 interface EventCalendarProps {
   events: Event[];
-  getTypeColor: (type: string) => string;
 }
 
-export function EventCalendar({ events, getTypeColor }: EventCalendarProps) {
+export function EventCalendar({ events }: EventCalendarProps) {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
@@ -121,7 +121,7 @@ export function EventCalendar({ events, getTypeColor }: EventCalendarProps) {
               {getEventsForDate(selectedDate).length > 0 ? (
                 getEventsForDate(selectedDate).map(event => (
                   <div key={event.id} className="border-l-4 border-primary pl-4 py-2">
-                    <Badge className={getTypeColor(event.type)} variant="outline">
+                    <Badge className={getEventTypeColor(event.type)} variant="outline">
                       {event.type}
                     </Badge>
                     <h4 className="font-semibold mt-2">{event.title}</h4>

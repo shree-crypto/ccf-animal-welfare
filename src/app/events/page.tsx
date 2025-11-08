@@ -1,6 +1,3 @@
-'use client';
-
-import { useState } from 'react';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -100,26 +97,18 @@ const eventTypes = [
   { value: 'other', label: 'Other' },
 ];
 
-export default function EventsPage() {
-  const [selectedType, setSelectedType] = useState('all');
+export default function EventsPage({
+  searchParams,
+}: {
+  searchParams: { type?: string };
+}) {
+  const selectedType = searchParams.type || 'all';
 
   const filteredEvents = selectedType === 'all'
     ? events
     : events.filter(event => event.type === selectedType);
 
   const upcomingEvents = filteredEvents.filter(event => event.status === 'upcoming');
-
-  const getTypeColor = (type: string) => {
-    const colors: Record<string, string> = {
-      feeding: 'bg-green-500/10 text-green-700 dark:text-green-400 border-green-500/20',
-      medical: 'bg-red-500/10 text-red-700 dark:text-red-400 border-red-500/20',
-      training: 'bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/20',
-      fundraiser: 'bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/20',
-      awareness: 'bg-orange-500/10 text-orange-700 dark:text-orange-400 border-orange-500/20',
-      other: 'bg-gray-500/10 text-gray-700 dark:text-gray-400 border-gray-500/20',
-    };
-    return colors[type] || colors.other;
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -152,7 +141,7 @@ export default function EventsPage() {
             </p>
           </div>
 
-          <EventCalendar events={events} getTypeColor={getTypeColor} />
+          <EventCalendar events={events} />
         </div>
       </section>
 
@@ -168,7 +157,6 @@ export default function EventsPage() {
             <EventFilter 
               eventTypes={eventTypes}
               selectedType={selectedType}
-              onTypeChange={setSelectedType}
             />
           </div>
 
@@ -177,7 +165,6 @@ export default function EventsPage() {
               <EventCard 
                 key={event.id}
                 event={event}
-                getTypeColor={getTypeColor}
               />
             ))}
           </div>
