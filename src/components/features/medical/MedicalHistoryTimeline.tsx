@@ -33,8 +33,10 @@ const typeIcons = {
 
 const typeColors = {
   checkup: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-  vaccination: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-  treatment: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
+  vaccination:
+    'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+  treatment:
+    'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
   emergency: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
 };
 
@@ -45,7 +47,9 @@ const typeLabels = {
   emergency: 'Emergency',
 };
 
-export function MedicalHistoryTimeline({ animalId }: MedicalHistoryTimelineProps) {
+export function MedicalHistoryTimeline({
+  animalId,
+}: MedicalHistoryTimelineProps) {
   const [records, setRecords] = useState<MedicalRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -122,7 +126,9 @@ export function MedicalHistoryTimeline({ animalId }: MedicalHistoryTimelineProps
             return (
               <div key={record.id} className="relative pl-10">
                 {/* Timeline dot */}
-                <div className={`absolute left-0 top-1 w-8 h-8 rounded-full flex items-center justify-center ${typeColors[record.type]}`}>
+                <div
+                  className={`absolute left-0 top-1 w-8 h-8 rounded-full flex items-center justify-center ${typeColors[record.type]}`}
+                >
                   <Icon className="h-4 w-4" />
                 </div>
 
@@ -131,20 +137,24 @@ export function MedicalHistoryTimeline({ animalId }: MedicalHistoryTimelineProps
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <Badge variant="outline" className={typeColors[record.type]}>
+                        <Badge
+                          variant="outline"
+                          className={typeColors[record.type]}
+                        >
                           {typeLabels[record.type]}
                         </Badge>
                         {record.followUpRequired && (
-                          <Badge variant="outline" className="bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200">
+                          <Badge
+                            variant="outline"
+                            className="bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
+                          >
                             Follow-up Required
                           </Badge>
                         )}
                       </div>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <Calendar className="h-3 w-3" />
-                        <span>
-                          {format(new Date(record.date), 'PPp')}
-                        </span>
+                        <span>{format(new Date(record.date), 'PPp')}</span>
                       </div>
                     </div>
                   </div>
@@ -166,7 +176,11 @@ export function MedicalHistoryTimeline({ animalId }: MedicalHistoryTimelineProps
                       </div>
                       <div className="flex flex-wrap gap-1 ml-5">
                         {record.medications.map((med, idx) => (
-                          <Badge key={idx} variant="secondary" className="text-xs">
+                          <Badge
+                            key={idx}
+                            variant="secondary"
+                            className="text-xs"
+                          >
                             {med}
                           </Badge>
                         ))}
@@ -189,7 +203,11 @@ export function MedicalHistoryTimeline({ animalId }: MedicalHistoryTimelineProps
                             className="h-7 text-xs"
                             asChild
                           >
-                            <a href={doc} target="_blank" rel="noopener noreferrer">
+                            <a
+                              href={doc}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
                               Document {idx + 1}
                               <ExternalLink className="h-3 w-3 ml-1" />
                             </a>
@@ -203,7 +221,8 @@ export function MedicalHistoryTimeline({ animalId }: MedicalHistoryTimelineProps
                     <div className="flex items-center gap-2 text-sm text-orange-600 dark:text-orange-400">
                       <Calendar className="h-3 w-3" />
                       <span>
-                        Follow-up: {format(new Date(record.followUpDate), 'PPp')}
+                        Follow-up:{' '}
+                        {format(new Date(record.followUpDate), 'PPp')}
                       </span>
                     </div>
                   )}

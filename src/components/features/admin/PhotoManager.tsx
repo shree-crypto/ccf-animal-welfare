@@ -5,7 +5,11 @@ import { useDropzone } from 'react-dropzone';
 import { X, Upload, Image as ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { uploadAnimalPhoto, isValidImageFile, isValidFileSize } from '@/lib/storage';
+import {
+  uploadAnimalPhoto,
+  isValidImageFile,
+  isValidFileSize,
+} from '@/lib/storage';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
 interface PhotoManagerProps {
@@ -28,7 +32,7 @@ export function PhotoManager({
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
       setError(null);
-      
+
       // Validate files
       for (const file of acceptedFiles) {
         if (!isValidImageFile(file)) {
@@ -46,21 +50,25 @@ export function PhotoManager({
 
       try {
         for (const file of acceptedFiles) {
-          const fileInfo = await uploadAnimalPhoto(file, (progress) => {
-            setUploadProgress((progress.chunksUploaded / progress.chunksTotal) * 100);
+          const fileInfo = await uploadAnimalPhoto(file, progress => {
+            setUploadProgress(
+              (progress.chunksUploaded / progress.chunksTotal) * 100
+            );
           });
           uploadedUrls.push(fileInfo.url);
         }
 
         // Add to gallery
         onGalleryPhotosChange([...galleryPhotos, ...uploadedUrls]);
-        
+
         // If no profile photo, set the first uploaded photo as profile
         if (!profilePhoto && uploadedUrls.length > 0) {
           onProfilePhotoChange(uploadedUrls[0]);
         }
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to upload photos');
+        setError(
+          err instanceof Error ? err.message : 'Failed to upload photos'
+        );
       } finally {
         setUploading(false);
         setUploadProgress(0);
@@ -85,9 +93,9 @@ export function PhotoManager({
   };
 
   const removePhoto = (url: string) => {
-    const updatedGallery = galleryPhotos.filter((photo) => photo !== url);
+    const updatedGallery = galleryPhotos.filter(photo => photo !== url);
     onGalleryPhotosChange(updatedGallery);
-    
+
     // If removed photo was profile, set first gallery photo as profile
     if (profilePhoto === url && updatedGallery.length > 0) {
       onProfilePhotoChange(updatedGallery[0]);
@@ -160,7 +168,9 @@ export function PhotoManager({
       {/* Gallery Photos */}
       {galleryPhotos.length > 0 && (
         <div className="space-y-2">
-          <h3 className="text-sm font-medium">Gallery Photos ({galleryPhotos.length})</h3>
+          <h3 className="text-sm font-medium">
+            Gallery Photos ({galleryPhotos.length})
+          </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {galleryPhotos.map((url, index) => (
               <div key={index} className="relative group">

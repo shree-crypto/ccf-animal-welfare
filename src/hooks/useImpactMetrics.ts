@@ -1,9 +1,9 @@
 /**
  * useImpactMetrics Hook
- * 
+ *
  * Custom hook for fetching and subscribing to real-time impact metrics
  * Requirements: 3.3
- * 
+ *
  * Note: Currently using mock data. Set USE_MOCK_DATA to false to use Appwrite backend.
  */
 
@@ -46,7 +46,7 @@ export function useImpactMetrics(): UseImpactMetricsReturn {
       if (USE_MOCK_DATA) {
         // Simulate network delay
         await new Promise(resolve => setTimeout(resolve, 500));
-        
+
         setMetrics(mockCurrentMetrics);
         setActivities(mockRecentActivities);
       } else {
@@ -60,11 +60,15 @@ export function useImpactMetrics(): UseImpactMetricsReturn {
         setMetrics(metricsData);
         setActivities(activitiesData);
         */
-        throw new Error('Appwrite backend not configured. Set USE_MOCK_DATA to true.');
+        throw new Error(
+          'Appwrite backend not configured. Set USE_MOCK_DATA to true.'
+        );
       }
     } catch (err) {
       console.error('Error fetching impact metrics:', err);
-      setError(err instanceof Error ? err : new Error('Failed to fetch metrics'));
+      setError(
+        err instanceof Error ? err : new Error('Failed to fetch metrics')
+      );
     } finally {
       setLoading(false);
     }
@@ -132,13 +136,17 @@ export function useImpactMetrics(): UseImpactMetricsReturn {
 
     // Mock real-time updates: simulate new activity every 30 seconds
     const interval = setInterval(() => {
-      const activityTypes: Array<'donation' | 'adoption' | 'volunteer' | 'rescue'> = [
-        'donation',
-        'adoption',
-        'volunteer',
-        'rescue',
+      const activityTypes: Array<
+        'donation' | 'adoption' | 'volunteer' | 'rescue'
+      > = ['donation', 'adoption', 'volunteer', 'rescue'];
+      const names = [
+        'Priya S.',
+        'Amit K.',
+        'Neha R.',
+        'Raj M.',
+        'Sarah T.',
+        'Anonymous',
       ];
-      const names = ['Priya S.', 'Amit K.', 'Neha R.', 'Raj M.', 'Sarah T.', 'Anonymous'];
       const messages = [
         'donated ₹500',
         'adopted a dog',
@@ -146,9 +154,11 @@ export function useImpactMetrics(): UseImpactMetricsReturn {
         'reported rescue case',
       ];
 
-      const randomType = activityTypes[Math.floor(Math.random() * activityTypes.length)];
+      const randomType =
+        activityTypes[Math.floor(Math.random() * activityTypes.length)];
       const randomName = names[Math.floor(Math.random() * names.length)];
-      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      const randomMessage =
+        messages[Math.floor(Math.random() * messages.length)];
 
       const newActivity: RecentActivity = {
         id: `activity-${Date.now()}`,
@@ -179,7 +189,13 @@ export function useImpactMetrics(): UseImpactMetricsReturn {
  * Currently using mock data for development
  */
 export function useMetricTrend(
-  metricName: keyof Pick<ImpactMetrics, 'animalsRescued' | 'volunteersActive' | 'mealsProvided' | 'successfulAdoptions'>,
+  metricName: keyof Pick<
+    ImpactMetrics,
+    | 'animalsRescued'
+    | 'volunteersActive'
+    | 'mealsProvided'
+    | 'successfulAdoptions'
+  >,
   period: 'daily' | 'weekly' | 'monthly' = 'daily',
   days: number = 30
 ) {
@@ -196,10 +212,12 @@ export function useMetricTrend(
         if (USE_MOCK_DATA) {
           // Simulate network delay
           await new Promise(resolve => setTimeout(resolve, 300));
-          
+
           // Import mock trend data
-          const { generateMockTrendData } = await import('@/lib/mock-data/impact');
-          
+          const { generateMockTrendData } = await import(
+            '@/lib/mock-data/impact'
+          );
+
           // Generate trend data based on metric name
           const baseValues: Record<string, number> = {
             animalsRescued: 18,
@@ -207,13 +225,13 @@ export function useMetricTrend(
             mealsProvided: 234,
             successfulAdoptions: 8,
           };
-          
+
           const trendData = generateMockTrendData(
             metricName,
             baseValues[metricName] || 10,
             days
           );
-          
+
           setTrend(trendData);
         } else {
           // Real Appwrite implementation (uncomment when backend is ready)
@@ -222,11 +240,15 @@ export function useMetricTrend(
           const trendData = await calculateMetricTrend(metricName, period, days);
           setTrend(trendData);
           */
-          throw new Error('Appwrite backend not configured. Set USE_MOCK_DATA to true.');
+          throw new Error(
+            'Appwrite backend not configured. Set USE_MOCK_DATA to true.'
+          );
         }
       } catch (err) {
         console.error('Error fetching metric trend:', err);
-        setError(err instanceof Error ? err : new Error('Failed to fetch trend'));
+        setError(
+          err instanceof Error ? err : new Error('Failed to fetch trend')
+        );
       } finally {
         setLoading(false);
       }

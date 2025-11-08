@@ -9,17 +9,20 @@ The frontend is built with Next.js 14 using the App Router, React 19, TypeScript
 ### Public Pages
 
 #### Home Page (`/`)
+
 - **Location**: `src/app/page.tsx`
 - **Purpose**: Landing page with hero section, featured animals, and call-to-action
 - **Components Used**: Hero, AnimalCard, Button
 - **Access**: Public
 
 #### About Page (`/about`)
+
 - **Location**: `src/app/about/page.tsx`
 - **Purpose**: Information about CCF mission and team
 - **Access**: Public
 
 #### Animals Gallery (`/animals`)
+
 - **Location**: `src/app/animals/page.tsx`
 - **Purpose**: Browse all animals with filtering
 - **Features**:
@@ -31,6 +34,7 @@ The frontend is built with Next.js 14 using the App Router, React 19, TypeScript
 - **Access**: Public
 
 #### Animal Detail Page (`/animals/[id]`)
+
 - **Location**: `src/app/animals/[id]/page.tsx`
 - **Purpose**: Detailed view of a single animal
 - **Features**:
@@ -42,6 +46,7 @@ The frontend is built with Next.js 14 using the App Router, React 19, TypeScript
 - **Access**: Public
 
 #### Territories Map (`/territories`)
+
 - **Location**: `src/app/territories/page.tsx`
 - **Purpose**: Interactive map showing animal territories
 - **Features**:
@@ -53,6 +58,7 @@ The frontend is built with Next.js 14 using the App Router, React 19, TypeScript
 - **Access**: Public
 
 #### Contact Page (`/contact`)
+
 - **Location**: `src/app/contact/page.tsx`
 - **Purpose**: Contact form and information
 - **Features**:
@@ -61,16 +67,19 @@ The frontend is built with Next.js 14 using the App Router, React 19, TypeScript
 - **Access**: Public
 
 #### Stories Page (`/stories`)
+
 - **Location**: `src/app/stories/page.tsx`
 - **Purpose**: Success stories and testimonials
 - **Access**: Public
 
 #### Events Page (`/events`)
+
 - **Location**: `src/app/events/page.tsx`
 - **Purpose**: Upcoming and past events
 - **Access**: Public
 
 #### Donate Page (`/donate`)
+
 - **Location**: `src/app/donate/page.tsx`
 - **Purpose**: Donation information and options
 - **Access**: Public
@@ -78,6 +87,7 @@ The frontend is built with Next.js 14 using the App Router, React 19, TypeScript
 ### Protected Pages (Volunteer)
 
 #### Dashboard (`/dashboard`)
+
 - **Location**: `src/app/dashboard/page.tsx`
 - **Purpose**: Volunteer dashboard with overview
 - **Features**:
@@ -89,6 +99,7 @@ The frontend is built with Next.js 14 using the App Router, React 19, TypeScript
 - **Hook**: Uses `useRequireAuth('volunteer')`
 
 #### Tasks Page (`/tasks`)
+
 - **Location**: `src/app/tasks/page.tsx`
 - **Purpose**: Task management and scheduling
 - **Features**:
@@ -101,6 +112,7 @@ The frontend is built with Next.js 14 using the App Router, React 19, TypeScript
 - **Protection**: Requires volunteer or admin role
 
 #### Medical Records (`/medical`)
+
 - **Location**: `src/app/medical/page.tsx`
 - **Purpose**: View and manage medical records
 - **Features**:
@@ -112,6 +124,7 @@ The frontend is built with Next.js 14 using the App Router, React 19, TypeScript
 - **Protection**: Requires volunteer or admin role
 
 #### Notifications (`/notifications`)
+
 - **Location**: `src/app/notifications/page.tsx`
 - **Purpose**: View and manage notifications
 - **Features**:
@@ -123,6 +136,7 @@ The frontend is built with Next.js 14 using the App Router, React 19, TypeScript
 - **Protection**: Requires authentication
 
 #### Profile (`/profile`)
+
 - **Location**: `src/app/profile/page.tsx`
 - **Purpose**: User profile and settings
 - **Features**:
@@ -134,6 +148,7 @@ The frontend is built with Next.js 14 using the App Router, React 19, TypeScript
 ### Admin Pages
 
 #### Admin Dashboard (`/admin`)
+
 - **Location**: `src/app/admin/page.tsx`
 - **Purpose**: Admin overview and quick actions
 - **Features**:
@@ -144,6 +159,7 @@ The frontend is built with Next.js 14 using the App Router, React 19, TypeScript
 - **Protection**: Requires admin role
 
 #### Animal Management (`/admin/animals`)
+
 - **Location**: `src/app/admin/animals/page.tsx`
 - **Purpose**: Comprehensive animal database management
 - **Features**:
@@ -159,6 +175,7 @@ The frontend is built with Next.js 14 using the App Router, React 19, TypeScript
 ### Authentication Pages
 
 #### Login/Register (`/login`)
+
 - **Location**: `src/app/login/page.tsx`
 - **Purpose**: User authentication
 - **Features**:
@@ -171,6 +188,7 @@ The frontend is built with Next.js 14 using the App Router, React 19, TypeScript
 - **Access**: Public (redirects if authenticated)
 
 #### Unauthorized (`/unauthorized`)
+
 - **Location**: `src/app/unauthorized/page.tsx`
 - **Purpose**: Access denied page
 - **Access**: Public
@@ -195,12 +213,13 @@ The frontend is built with Next.js 14 using the App Router, React 19, TypeScript
 ### Component Patterns
 
 #### Server Components (Default)
+
 ```typescript
 // No 'use client' directive
 export default async function AnimalsPage() {
   // Can fetch data directly
   const animals = await getAnimals();
-  
+
   return (
     <div>
       {animals.map(animal => (
@@ -212,6 +231,7 @@ export default async function AnimalsPage() {
 ```
 
 #### Client Components
+
 ```typescript
 'use client';
 
@@ -219,33 +239,35 @@ import { useState } from 'react';
 
 export function InteractiveComponent() {
   const [state, setState] = useState();
-  
+
   return <div onClick={() => setState(...)}>...</div>;
 }
 ```
-
 
 ## State Management
 
 ### React Context
 
 #### AuthContext (`src/contexts/AuthContext.tsx`)
+
 Manages authentication state and user information.
 
 **Provided Values:**
+
 ```typescript
 {
-  user: User | null;           // Current user
-  loading: boolean;            // Loading state
+  user: User | null; // Current user
+  loading: boolean; // Loading state
   login: (email, password) => Promise<void>;
   register: (email, password, name) => Promise<void>;
   logout: () => Promise<void>;
-  updateProfile: (name) => Promise<void>;
-  checkRole: (requiredRole) => boolean;
+  updateProfile: name => Promise<void>;
+  checkRole: requiredRole => boolean;
 }
 ```
 
 **Usage:**
+
 ```typescript
 'use client';
 
@@ -253,19 +275,21 @@ import { useAuth } from '@/contexts/AuthContext';
 
 export function MyComponent() {
   const { user, login, logout } = useAuth();
-  
+
   if (!user) {
     return <button onClick={() => login(...)}>Login</button>;
   }
-  
+
   return <button onClick={logout}>Logout</button>;
 }
 ```
 
 #### NotificationContext (`src/contexts/NotificationContext.tsx`)
+
 Manages real-time notifications with Appwrite subscriptions.
 
 **Provided Values:**
+
 ```typescript
 {
   notifications: Notification[];
@@ -278,12 +302,14 @@ Manages real-time notifications with Appwrite subscriptions.
 ```
 
 **Real-time Features:**
+
 - Subscribes to Appwrite database changes
 - Automatically updates on new notifications
 - Updates unread count in real-time
 - Handles notification CRUD events
 
 **Usage:**
+
 ```typescript
 'use client';
 
@@ -291,7 +317,7 @@ import { useNotifications } from '@/contexts/NotificationContext';
 
 export function NotificationBell() {
   const { notifications, unreadCount } = useNotifications();
-  
+
   return (
     <div>
       <Badge>{unreadCount}</Badge>
@@ -306,9 +332,11 @@ export function NotificationBell() {
 ### Custom Hooks
 
 #### useRequireAuth (`src/hooks/useRequireAuth.ts`)
+
 Protects routes by requiring authentication and optionally a specific role.
 
 **Usage:**
+
 ```typescript
 'use client';
 
@@ -316,22 +344,25 @@ import { useRequireAuth } from '@/hooks/useRequireAuth';
 
 export default function ProtectedPage() {
   const { user, loading } = useRequireAuth('volunteer');
-  
+
   if (loading) return <Loading />;
-  
+
   return <div>Protected content for {user.name}</div>;
 }
 ```
 
 **Behavior:**
+
 - Redirects to `/login` if not authenticated
 - Redirects to `/unauthorized` if insufficient role
 - Shows loading state during check
 
 #### useTerritories (`src/hooks/useTerritories.ts`)
+
 Manages territory data fetching and state.
 
 **Usage:**
+
 ```typescript
 'use client';
 
@@ -339,10 +370,10 @@ import { useTerritories } from '@/hooks/useTerritories';
 
 export function TerritoryMap() {
   const { territories, loading, error } = useTerritories();
-  
+
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
-  
+
   return <Map territories={territories} />;
 }
 ```
@@ -354,6 +385,7 @@ export function TerritoryMap() {
 All forms use React Hook Form with Zod validation for type-safe form handling.
 
 **Example: Login Form**
+
 ```typescript
 'use client';
 
@@ -379,10 +411,10 @@ export function LoginForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input {...register('email')} />
       {errors.email && <p>{errors.email.message}</p>}
-      
+
       <Input {...register('password')} type="password" />
       {errors.password && <p>{errors.password.message}</p>}
-      
+
       <Button type="submit">Login</Button>
     </form>
   );
@@ -401,6 +433,7 @@ Located in `src/lib/validations/`, each domain has its own validation schema:
 - `territory.ts`: Territory validation
 
 **Example Schema:**
+
 ```typescript
 import { z } from 'zod';
 
@@ -422,6 +455,7 @@ export type AnimalProfileFormData = z.infer<typeof animalProfileSchema>;
 The project uses Tailwind CSS 4 with custom configuration.
 
 **Configuration** (`tailwind.config.ts`):
+
 - Custom color palette
 - Dark mode support
 - Custom spacing and sizing
@@ -429,6 +463,7 @@ The project uses Tailwind CSS 4 with custom configuration.
 - Animation utilities
 
 **Usage:**
+
 ```typescript
 <div className="flex items-center justify-between p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -445,6 +480,7 @@ The project uses Tailwind CSS 4 with custom configuration.
 **Location**: `src/app/globals.css`
 
 Features:
+
 - CSS custom properties for theming
 - Dark mode variables
 - Base styles
@@ -453,6 +489,7 @@ Features:
 ### Component Styling
 
 Uses Shadcn/ui components which are:
+
 - Fully customizable
 - Built on Radix UI primitives
 - Accessible by default
@@ -463,6 +500,7 @@ Uses Shadcn/ui components which are:
 ### App Router
 
 Next.js 14 App Router provides:
+
 - File-based routing
 - Nested layouts
 - Server components by default
@@ -472,34 +510,36 @@ Next.js 14 App Router provides:
 ### Route Protection
 
 **Middleware** (`src/middleware.ts`):
+
 ```typescript
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  
+
   // Check if route is protected
   const isProtectedRoute = protectedRoutes.some(route =>
     pathname.startsWith(route)
   );
-  
+
   if (!isProtectedRoute) {
     return NextResponse.next();
   }
-  
+
   // Check for session cookie
   const sessionCookie = request.cookies.get('a_session_...');
-  
+
   if (!sessionCookie) {
     // Redirect to login
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(loginUrl);
   }
-  
+
   return NextResponse.next();
 }
 ```
 
 **Protected Routes:**
+
 - `/dashboard/*`
 - `/volunteer/*`
 - `/admin/*`
@@ -507,30 +547,32 @@ export function middleware(request: NextRequest) {
 ### Navigation Components
 
 **Header Navigation:**
+
 - Responsive design (mobile/desktop)
 - Auth state aware
 - Role-based menu items
 - Notification bell with unread count
 
 **Example:**
+
 ```typescript
 export function Header() {
   const { user } = useAuth();
   const { unreadCount } = useNotifications();
-  
+
   return (
     <header>
       <nav>
         <Link href="/">Home</Link>
         <Link href="/animals">Animals</Link>
-        
+
         {user && (
           <>
             <Link href="/dashboard">Dashboard</Link>
             <NotificationBell count={unreadCount} />
           </>
         )}
-        
+
         {user?.role === 'admin' && (
           <Link href="/admin">Admin</Link>
         )}
@@ -545,6 +587,7 @@ export function Header() {
 ### React Compiler
 
 Enabled in `next.config.ts`:
+
 ```typescript
 const nextConfig: NextConfig = {
   reactCompiler: true,
@@ -552,6 +595,7 @@ const nextConfig: NextConfig = {
 ```
 
 Benefits:
+
 - Automatic memoization
 - Reduced re-renders
 - Better performance
@@ -559,6 +603,7 @@ Benefits:
 ### Image Optimization
 
 Use Next.js Image component for automatic optimization:
+
 ```typescript
 import Image from 'next/image';
 
@@ -574,6 +619,7 @@ import Image from 'next/image';
 ### Code Splitting
 
 Next.js automatically code-splits by route. For additional splitting:
+
 ```typescript
 import dynamic from 'next/dynamic';
 
@@ -586,6 +632,7 @@ const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
 ### Data Fetching Patterns
 
 **Server Components (Preferred):**
+
 ```typescript
 export default async function Page() {
   const data = await fetchData();
@@ -594,16 +641,17 @@ export default async function Page() {
 ```
 
 **Client Components:**
+
 ```typescript
 'use client';
 
 export function ClientComponent() {
   const [data, setData] = useState(null);
-  
+
   useEffect(() => {
     fetchData().then(setData);
   }, []);
-  
+
   return <div>{data}</div>;
 }
 ```
@@ -640,6 +688,7 @@ export function ClientComponent() {
 ### Error Boundaries
 
 Create error boundaries for graceful error handling:
+
 ```typescript
 'use client';
 
@@ -662,6 +711,7 @@ export default function Error({
 ### Form Errors
 
 Display validation errors inline:
+
 ```typescript
 {errors.email && (
   <p className="text-sm text-red-600">{errors.email.message}</p>
@@ -671,6 +721,7 @@ Display validation errors inline:
 ### API Errors
 
 Handle API errors with user-friendly messages:
+
 ```typescript
 try {
   await createAnimal(data);

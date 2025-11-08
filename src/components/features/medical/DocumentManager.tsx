@@ -11,7 +11,11 @@ interface DocumentManagerProps {
   onRemove: (url: string) => void;
 }
 
-export function DocumentManager({ documents, onFilesUploaded, onRemove }: DocumentManagerProps) {
+export function DocumentManager({
+  documents,
+  onFilesUploaded,
+  onRemove,
+}: DocumentManagerProps) {
   return (
     <div className="space-y-2">
       <FormLabel>Medical Documents & Photos</FormLabel>

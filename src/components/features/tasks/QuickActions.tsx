@@ -38,7 +38,10 @@ interface QuickActionsProps {
   currentUserId: string;
 }
 
-export const QuickActions = memo(function QuickActions({ onCreateTask, currentUserId }: QuickActionsProps) {
+export const QuickActions = memo(function QuickActions({
+  onCreateTask,
+  currentUserId,
+}: QuickActionsProps) {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -91,7 +94,10 @@ export const QuickActions = memo(function QuickActions({ onCreateTask, currentUs
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Task Type</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select task type" />
@@ -147,7 +153,10 @@ export const QuickActions = memo(function QuickActions({ onCreateTask, currentUs
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Priority</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select priority" />

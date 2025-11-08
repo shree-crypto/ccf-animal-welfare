@@ -11,10 +11,19 @@ export const animalPhotosSchema = z.object({
 });
 
 export const animalProfileSchema = z.object({
-  name: z.string().min(1, 'Name is required').max(100, 'Name must be less than 100 characters'),
+  name: z
+    .string()
+    .min(1, 'Name is required')
+    .max(100, 'Name must be less than 100 characters'),
   type: z.enum(['dog', 'cat'], { message: 'Type must be either dog or cat' }),
-  age: z.number().min(0, 'Age must be positive').max(30, 'Age must be less than 30 years'),
-  breed: z.string().max(100, 'Breed must be less than 100 characters').optional(),
+  age: z
+    .number()
+    .min(0, 'Age must be positive')
+    .max(30, 'Age must be less than 30 years'),
+  breed: z
+    .string()
+    .max(100, 'Breed must be less than 100 characters')
+    .optional(),
   location: animalLocationSchema,
   currentFeeder: z.string().optional(),
   medicalHistory: z.array(z.string()),

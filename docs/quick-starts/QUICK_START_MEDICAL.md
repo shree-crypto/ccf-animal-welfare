@@ -5,6 +5,7 @@ This guide will help you get started with the medical records management system.
 ## Overview
 
 The medical records system provides:
+
 - Digital health documentation for animals
 - Medical history timeline
 - File attachments (X-rays, reports, prescriptions)
@@ -37,6 +38,7 @@ Choose the animal from the dropdown list
 ### Step 3: Fill in Record Details
 
 **Required Fields:**
+
 - **Animal**: Select from dropdown
 - **Type**: Checkup, Vaccination, Treatment, Surgery, Emergency, or Other
 - **Date**: Date of medical event
@@ -44,6 +46,7 @@ Choose the animal from the dropdown list
 - **Diagnosis**: Medical diagnosis or reason for visit
 
 **Optional Fields:**
+
 - **Treatment**: Treatment provided
 - **Medications**: Prescribed medications with dosage
 - **Notes**: Additional observations or instructions
@@ -60,6 +63,7 @@ Choose the animal from the dropdown list
 ### Step 5: Set Priority
 
 Choose priority level:
+
 - **Low**: Routine checkups
 - **Medium**: Standard treatments
 - **High**: Serious conditions
@@ -81,6 +85,7 @@ Click "Create Record" to save the medical record
 ### Record Details
 
 Each record shows:
+
 - Date and time
 - Record type badge
 - Animal name and photo
@@ -94,16 +99,19 @@ Each record shows:
 ### Filtering Records
 
 **By Animal:**
+
 - Select animal from dropdown
 - View all records for that animal
 - See complete medical history
 
 **By Type:**
+
 - Filter by record type
 - Focus on specific medical events
 - Track vaccination schedules
 
 **By Date Range:**
+
 - Select start and end dates
 - View records within timeframe
 - Generate reports for specific periods
@@ -120,16 +128,19 @@ Each record shows:
 ### Alert Types
 
 **Urgent Medical Attention**
+
 - Animals with urgent priority records
 - Requires immediate action
 - Red alert banner
 
 **Follow-up Required**
+
 - Animals with upcoming follow-up dates
 - Within next 7 days
 - Yellow alert banner
 
 **Overdue Follow-ups**
+
 - Missed follow-up appointments
 - Requires rescheduling
 - Orange alert banner
@@ -153,12 +164,14 @@ Each record shows:
 ### File Types
 
 **Supported Formats:**
+
 - PDF documents
 - JPEG/JPG images
 - PNG images
 - Maximum 10MB per file
 
 **Common File Types:**
+
 - X-ray images
 - Lab reports
 - Prescriptions
@@ -183,31 +196,37 @@ Each record shows:
 ## Medical Record Types
 
 ### Checkup
+
 - Routine health examinations
 - Wellness visits
 - Regular monitoring
 
 ### Vaccination
+
 - Immunization records
 - Vaccine schedules
 - Booster shots
 
 ### Treatment
+
 - Medical treatments
 - Ongoing care
 - Medication administration
 
 ### Surgery
+
 - Surgical procedures
 - Pre/post-operative care
 - Recovery tracking
 
 ### Emergency
+
 - Urgent medical situations
 - Accidents or injuries
 - Critical care
 
 ### Other
+
 - Miscellaneous medical events
 - Special procedures
 - Unique situations
@@ -286,24 +305,28 @@ Each record shows:
 ## Troubleshooting
 
 ### "Failed to create record"
+
 - Check all required fields are filled
 - Verify animal is selected
 - Ensure date is valid
 - Check network connection
 
 ### File Upload Fails
+
 - Check file size (< 10MB)
 - Verify file format
 - Check storage permissions
 - Try uploading one file at a time
 
 ### Can't Find Animal
+
 - Ensure animal exists in database
 - Check spelling
 - Verify you have permissions
 - Contact admin if needed
 
 ### Notifications Not Received
+
 - Check notification preferences
 - Verify follow-up date is set
 - Ensure email is configured

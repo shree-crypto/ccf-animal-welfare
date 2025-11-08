@@ -1,58 +1,70 @@
-import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Montserrat } from "next/font/google";
-import "./globals.css";
-import "leaflet/dist/leaflet.css";
-import { AuthProvider } from "@/contexts/AuthContext";
-import { NotificationProvider } from "@/contexts/NotificationContext";
-import { ThemeProvider } from "@/contexts/ThemeContext";
-import { Header, Footer } from "@/components/layout";
-import { ErrorBoundary } from "@/components/ui/error-boundary";
-import { Toaster } from "sonner";
+import type { Metadata, Viewport } from 'next';
+import { Playfair_Display, Montserrat } from 'next/font/google';
+import './globals.css';
+import 'leaflet/dist/leaflet.css';
+import { AuthProvider } from '@/contexts/AuthContext';
+import { NotificationProvider } from '@/contexts/NotificationContext';
+import { ThemeProvider } from '@/contexts/ThemeContext';
+import { Header, Footer } from '@/components/layout';
+import { ErrorBoundary } from '@/components/ui/error-boundary';
+import { Toaster } from 'sonner';
 
 // Playfair Display for headlines - elegant, classic serif
 const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
+  variable: '--font-playfair',
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
 });
 
 // Montserrat for body text - clean, modern, friendly
 const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
+  variable: '--font-montserrat',
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "CCF Animal Welfare - Committee for Campus Fauna",
-    template: "%s | CCF Animal Welfare",
+    default: 'CCF Animal Welfare - Committee for Campus Fauna',
+    template: '%s | CCF Animal Welfare',
   },
-  description: "Comprehensive digital platform for campus animal care and volunteer coordination at IIT Roorkee. Join us in caring for campus animals with compassion and dedication.",
-  keywords: ["animal welfare", "IIT Roorkee", "campus animals", "volunteer", "animal care", "CCF", "Committee for Campus Fauna"],
-  authors: [{ name: "Committee for Campus Fauna" }],
-  creator: "CCF Development Team",
-  publisher: "Committee for Campus Fauna",
+  description:
+    'Comprehensive digital platform for campus animal care and volunteer coordination at IIT Roorkee. Join us in caring for campus animals with compassion and dedication.',
+  keywords: [
+    'animal welfare',
+    'IIT Roorkee',
+    'campus animals',
+    'volunteer',
+    'animal care',
+    'CCF',
+    'Committee for Campus Fauna',
+  ],
+  authors: [{ name: 'Committee for Campus Fauna' }],
+  creator: 'CCF Development Team',
+  publisher: 'Committee for Campus Fauna',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  ),
   openGraph: {
-    title: "CCF Animal Welfare - Committee for Campus Fauna",
-    description: "Comprehensive digital platform for campus animal care and volunteer coordination at IIT Roorkee",
-    url: "/",
-    siteName: "CCF Animal Welfare",
-    locale: "en_US",
-    type: "website",
+    title: 'CCF Animal Welfare - Committee for Campus Fauna',
+    description:
+      'Comprehensive digital platform for campus animal care and volunteer coordination at IIT Roorkee',
+    url: '/',
+    siteName: 'CCF Animal Welfare',
+    locale: 'en_US',
+    type: 'website',
   },
   twitter: {
-    card: "summary_large_image",
-    title: "CCF Animal Welfare - Committee for Campus Fauna",
-    description: "Caring for campus animals with compassion and dedication",
+    card: 'summary_large_image',
+    title: 'CCF Animal Welfare - Committee for Campus Fauna',
+    description: 'Caring for campus animals with compassion and dedication',
   },
   robots: {
     index: true,

@@ -11,12 +11,19 @@ interface BulkUploadDropzoneProps {
   disabled?: boolean;
 }
 
-export function BulkUploadDropzone({ file, onFileSelect, disabled }: BulkUploadDropzoneProps) {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    if (acceptedFiles.length > 0) {
-      onFileSelect(acceptedFiles[0]);
-    }
-  }, [onFileSelect]);
+export function BulkUploadDropzone({
+  file,
+  onFileSelect,
+  disabled,
+}: BulkUploadDropzoneProps) {
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      if (acceptedFiles.length > 0) {
+        onFileSelect(acceptedFiles[0]);
+      }
+    },
+    [onFileSelect]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -44,7 +51,9 @@ export function BulkUploadDropzone({ file, onFileSelect, disabled }: BulkUploadD
           <p className="text-lg font-medium">Drop the CSV file here...</p>
         ) : (
           <>
-            <p className="text-lg font-medium mb-2">Drag & drop CSV file here</p>
+            <p className="text-lg font-medium mb-2">
+              Drag & drop CSV file here
+            </p>
             <p className="text-sm text-gray-500">or click to select file</p>
           </>
         )}
@@ -61,11 +70,7 @@ export function BulkUploadDropzone({ file, onFileSelect, disabled }: BulkUploadD
               </p>
             </div>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => onFileSelect(null)}
-          >
+          <Button variant="ghost" size="sm" onClick={() => onFileSelect(null)}>
             <X className="h-4 w-4" />
           </Button>
         </div>

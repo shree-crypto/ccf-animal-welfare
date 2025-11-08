@@ -1,6 +1,6 @@
 /**
  * Theme Configuration Tests
- * 
+ *
  * Tests for theme metadata and utilities
  */
 

@@ -11,7 +11,8 @@ const events = [
   {
     id: '1',
     title: 'Monthly Vaccination Drive',
-    description: 'Join us for our monthly vaccination campaign. We\'ll be vaccinating animals across all territories. Volunteers needed for animal handling and documentation.',
+    description:
+      "Join us for our monthly vaccination campaign. We'll be vaccinating animals across all territories. Volunteers needed for animal handling and documentation.",
     date: new Date('2024-11-15T09:00:00'),
     endDate: new Date('2024-11-15T16:00:00'),
     location: 'Main Campus - Multiple Territories',
@@ -24,7 +25,8 @@ const events = [
   {
     id: '2',
     title: 'Volunteer Training Workshop',
-    description: 'Comprehensive training session for new volunteers covering animal handling, feeding protocols, safety procedures, and our digital management system.',
+    description:
+      'Comprehensive training session for new volunteers covering animal handling, feeding protocols, safety procedures, and our digital management system.',
     date: new Date('2024-11-20T14:00:00'),
     endDate: new Date('2024-11-20T17:00:00'),
     location: 'Student Activity Center, Room 201',
@@ -37,7 +39,8 @@ const events = [
   {
     id: '3',
     title: 'Weekend Feeding Marathon',
-    description: 'Special weekend feeding event covering all campus territories. Great opportunity for new volunteers to get hands-on experience with guidance from experienced team members.',
+    description:
+      'Special weekend feeding event covering all campus territories. Great opportunity for new volunteers to get hands-on experience with guidance from experienced team members.',
     date: new Date('2024-11-23T07:00:00'),
     endDate: new Date('2024-11-23T12:00:00'),
     location: 'All Campus Territories',
@@ -50,7 +53,8 @@ const events = [
   {
     id: '4',
     title: 'Animal Welfare Awareness Campaign',
-    description: 'Week-long awareness campaign with interactive sessions, poster exhibitions, and educational workshops for the campus community.',
+    description:
+      'Week-long awareness campaign with interactive sessions, poster exhibitions, and educational workshops for the campus community.',
     date: new Date('2024-12-01T10:00:00'),
     endDate: new Date('2024-12-07T18:00:00'),
     location: 'Central Library Lawn',
@@ -63,7 +67,8 @@ const events = [
   {
     id: '5',
     title: 'Fundraising Dinner',
-    description: 'Annual fundraising dinner to support our animal welfare activities. Includes dinner, entertainment, and silent auction. All proceeds go to animal care.',
+    description:
+      'Annual fundraising dinner to support our animal welfare activities. Includes dinner, entertainment, and silent auction. All proceeds go to animal care.',
     date: new Date('2024-12-10T18:00:00'),
     endDate: new Date('2024-12-10T22:00:00'),
     location: 'Campus Auditorium',
@@ -76,7 +81,8 @@ const events = [
   {
     id: '6',
     title: 'Territory Mapping Update',
-    description: 'Help us update our territory maps and conduct animal census across campus. Bring your smartphones for GPS tracking.',
+    description:
+      'Help us update our territory maps and conduct animal census across campus. Bring your smartphones for GPS tracking.',
     date: new Date('2024-12-15T08:00:00'),
     endDate: new Date('2024-12-15T14:00:00'),
     location: 'All Campus Areas',
@@ -105,11 +111,14 @@ export default function EventsPage({
 }) {
   const selectedType = searchParams.type || 'all';
 
-  const filteredEvents = selectedType === 'all'
-    ? events
-    : events.filter(event => event.type === selectedType);
+  const filteredEvents =
+    selectedType === 'all'
+      ? events
+      : events.filter(event => event.type === selectedType);
 
-  const upcomingEvents = filteredEvents.filter(event => event.status === 'upcoming');
+  const upcomingEvents = filteredEvents.filter(
+    event => event.status === 'upcoming'
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -124,7 +133,8 @@ export default function EventsPage({
               Events & Opportunities
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-              Join us for volunteer activities, training sessions, and community events.
+              Join us for volunteer activities, training sessions, and community
+              events.
             </p>
           </div>
         </div>
@@ -155,8 +165,12 @@ export default function EventsPage({
             </h2>
 
             {/* Filter */}
-            <Suspense fallback={<div className="h-12 bg-muted animate-pulse rounded-lg" />}>
-              <EventFilter 
+            <Suspense
+              fallback={
+                <div className="h-12 bg-muted animate-pulse rounded-lg" />
+              }
+            >
+              <EventFilter
                 eventTypes={eventTypes}
                 selectedType={selectedType}
               />
@@ -165,10 +179,7 @@ export default function EventsPage({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {upcomingEvents.map(event => (
-              <EventCard 
-                key={event.id}
-                event={event}
-              />
+              <EventCard key={event.id} event={event} />
             ))}
           </div>
 
@@ -189,7 +200,8 @@ export default function EventsPage({
             Stay Updated
           </h2>
           <p className="text-xl text-muted-foreground">
-            Register as a volunteer to receive notifications about upcoming events and opportunities.
+            Register as a volunteer to receive notifications about upcoming
+            events and opportunities.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg">

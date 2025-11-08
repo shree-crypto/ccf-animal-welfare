@@ -3,8 +3,15 @@ import { databases } from '@/lib/appwrite';
 import { DATABASE_ID, COLLECTIONS } from '@/lib/constants/database';
 import { Task, TaskDocument, TaskType, TaskPriority } from '@/types/task';
 import { createTaskSchema, updateTaskSchema } from '@/lib/validations/task';
-import { triggerTaskAssignedNotification, triggerTaskCompletedNotification } from '@/lib/notifications/triggers';
-import { normalizePagination, calculatePaginationMeta, QUERY_LIMITS } from './query-config';
+import {
+  triggerTaskAssignedNotification,
+  triggerTaskCompletedNotification,
+} from '@/lib/notifications/triggers';
+import {
+  normalizePagination,
+  calculatePaginationMeta,
+  QUERY_LIMITS,
+} from './query-config';
 
 // Helper to convert Appwrite document to Task
 const documentToTask = (doc: TaskDocument): Task => ({

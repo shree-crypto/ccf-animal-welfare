@@ -11,15 +11,17 @@ interface TerritoryHeatmapProps {
   blur?: number;
 }
 
-export function TerritoryHeatmap({
-  territories,
-}: TerritoryHeatmapProps) {
+export function TerritoryHeatmap({ territories }: TerritoryHeatmapProps) {
   const map = useMap();
 
   useEffect(() => {
     if (!map || territories.length === 0) return;
 
-    console.log('🗺️ Heatmap: Rendering circles for', territories.length, 'territories');
+    console.log(
+      '🗺️ Heatmap: Rendering circles for',
+      territories.length,
+      'territories'
+    );
   }, [map, territories]);
 
   // Get color based on pack size
@@ -38,10 +40,10 @@ export function TerritoryHeatmap({
 
   return (
     <>
-      {territories.map((territory) => {
+      {territories.map(territory => {
         // Calculate center of territory
-        const lats = territory.boundaries.map((b) => b[0]);
-        const lngs = territory.boundaries.map((b) => b[1]);
+        const lats = territory.boundaries.map(b => b[0]);
+        const lngs = territory.boundaries.map(b => b[1]);
         const centerLat = lats.reduce((a, b) => a + b, 0) / lats.length;
         const centerLng = lngs.reduce((a, b) => a + b, 0) / lngs.length;
 

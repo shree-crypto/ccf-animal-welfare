@@ -6,12 +6,14 @@ import { THEME_CONFIGS } from '@/types/theme';
 // Test component that uses the theme context
 function ThemeConsumer() {
   const { theme, config, setTheme } = useTheme();
-  
+
   return (
     <div>
       <div data-testid="current-theme">{theme}</div>
       <div data-testid="theme-name">{config.name}</div>
-      <div data-testid="gradients-enabled">{config.effects.gradients.toString()}</div>
+      <div data-testid="gradients-enabled">
+        {config.effects.gradients.toString()}
+      </div>
       <button onClick={() => setTheme('default')}>Switch to Default</button>
       <button onClick={() => setTheme('custom')}>Switch to Custom</button>
     </div>
@@ -40,7 +42,9 @@ describe('ThemeContext', () => {
       expect(screen.getByTestId('current-theme')).toHaveTextContent('custom');
     });
 
-    expect(screen.getByTestId('theme-name')).toHaveTextContent('CampusPaws Custom');
+    expect(screen.getByTestId('theme-name')).toHaveTextContent(
+      'CampusPaws Custom'
+    );
     expect(screen.getByTestId('gradients-enabled')).toHaveTextContent('true');
   });
 
@@ -95,7 +99,9 @@ describe('ThemeContext', () => {
     });
 
     const customConfig = THEME_CONFIGS.custom;
-    expect(screen.getByTestId('theme-name')).toHaveTextContent(customConfig.name);
+    expect(screen.getByTestId('theme-name')).toHaveTextContent(
+      customConfig.name
+    );
     expect(screen.getByTestId('gradients-enabled')).toHaveTextContent(
       customConfig.effects.gradients.toString()
     );

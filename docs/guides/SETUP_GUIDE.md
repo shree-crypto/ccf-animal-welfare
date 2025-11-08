@@ -15,6 +15,7 @@
 ### Prerequisites
 
 Ensure you have the following installed:
+
 - **Node.js**: Version 18 or higher
 - **npm**: Version 9 or higher
 - **Docker**: For running Appwrite locally
@@ -24,40 +25,45 @@ Ensure you have the following installed:
 ### Installation Steps
 
 1. **Clone the Repository**
+
    ```bash
    git clone <repository-url>
    cd ccf-animal-welfare
    ```
 
 2. **Install Dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set Up Environment Variables**
+
    ```bash
    cp .env.local.example .env.local
    ```
-   
+
    Edit `.env.local` with your configuration (see [Environment Configuration](#environment-configuration))
 
 4. **Start Appwrite**
+
    ```bash
    docker-compose up -d
    ```
-   
+
    Wait for Appwrite to start (may take 1-2 minutes)
-   
+
    Access Appwrite Console: `http://localhost`
 
 5. **Configure Appwrite**
    Follow the [Appwrite Configuration](#appwrite-configuration) section
 
 6. **Run Development Server**
+
    ```bash
    npm run dev
    ```
-   
+
    Open `http://localhost:3000` in your browser
 
 ## Appwrite Configuration
@@ -91,7 +97,7 @@ Ensure you have the following installed:
    - Copy the Database ID to `.env.local`
 
 2. **Create Collections**
-   
+
    Create the following collections with their attributes:
 
    **Animals Collection**
@@ -107,7 +113,7 @@ Ensure you have the following installed:
      - `photos` (string, required) - JSON object
      - `packId` (string, optional)
      - `status` (string, required, enum: ['healthy', 'needs_attention', 'under_treatment'])
-   
+
    **Territories Collection**
    - Collection ID: `territories`
    - Attributes:
@@ -118,7 +124,7 @@ Ensure you have the following installed:
      - `assignedVolunteers` (string, required) - JSON array
      - `feedingSchedule` (string, optional) - JSON object
      - `notes` (string, optional)
-   
+
    **Tasks Collection**
    - Collection ID: `tasks`
    - Attributes:
@@ -136,7 +142,7 @@ Ensure you have the following installed:
      - `completedAt` (string, optional)
      - `completedBy` (string, optional)
      - `notes` (string, optional)
-   
+
    **Medical Records Collection**
    - Collection ID: `medical-records`
    - Attributes:
@@ -152,7 +158,7 @@ Ensure you have the following installed:
      - `followUpDate` (string, optional)
      - `documents` (string, optional) - JSON array
      - `cost` (float, optional)
-   
+
    **Notifications Collection**
    - Collection ID: `notifications`
    - Attributes:
@@ -167,7 +173,7 @@ Ensure you have the following installed:
      - `readAt` (string, optional)
      - `actionUrl` (string, optional)
      - `expiresAt` (string, optional)
-   
+
    **Notification Preferences Collection**
    - Collection ID: `notification-preferences`
    - Attributes:
@@ -181,32 +187,33 @@ Ensure you have the following installed:
      - `dailyDigest` (boolean, required)
 
 3. **Create Indexes**
-   
+
    Run the index creation script to see all required indexes:
+
    ```bash
    npx tsx src/lib/setup/create-indexes.ts
    ```
-   
+
    Create indexes manually in Appwrite Console or use the generated CLI commands.
-   
+
    See `docs/QUERY_OPTIMIZATION.md` for detailed index information.
 
 4. **Set Collection Permissions**
-   
+
    For each collection, set permissions:
-   
+
    **Animals, Territories, Medical Records, Tasks:**
    - Read: `role:all` (public can read)
    - Create: `team:volunteer-team`, `team:admin-team`
    - Update: `team:volunteer-team`, `team:admin-team`
    - Delete: `team:admin-team`
-   
+
    **Notifications:**
    - Read: `user:[USER_ID]` (set dynamically per document)
    - Create: `team:volunteer-team`, `team:admin-team`
    - Update: `user:[USER_ID]`
    - Delete: `user:[USER_ID]`, `team:admin-team`
-   
+
    **Notification Preferences:**
    - Read: `user:[USER_ID]`
    - Create: `user:[USER_ID]`
@@ -216,9 +223,9 @@ Ensure you have the following installed:
 ### Storage Setup
 
 1. **Create Storage Buckets**
-   
+
    Navigate to Storage and create two buckets:
-   
+
    **Animal Photos Bucket**
    - Bucket ID: `animal-photos`
    - Name: `Animal Photos`
@@ -229,7 +236,7 @@ Ensure you have the following installed:
      - Create: `team:volunteer-team`, `team:admin-team`
      - Update: `team:volunteer-team`, `team:admin-team`
      - Delete: `team:admin-team`
-   
+
    **Medical Documents Bucket**
    - Bucket ID: `medical-documents`
    - Name: `Medical Documents`
@@ -248,13 +255,13 @@ Ensure you have the following installed:
    - Enable "Email/Password" method
 
 2. **Create Teams**
-   
+
    Navigate to Auth > Teams and create:
-   
+
    **Volunteer Team**
    - Team ID: `volunteer-team`
    - Name: `Volunteers`
-   
+
    **Admin Team**
    - Team ID: `admin-team`
    - Name: `Administrators`
@@ -263,7 +270,6 @@ Ensure you have the following installed:
    - Create user accounts
    - Add users to appropriate teams
    - Admins should be in both teams
-
 
 ## Environment Configuration
 
@@ -315,6 +321,7 @@ npm run dev
 The application will be available at `http://localhost:3000`
 
 Features in development mode:
+
 - Hot module replacement
 - Fast refresh
 - Detailed error messages
@@ -363,13 +370,14 @@ npm test
 ### Appwrite Production Setup
 
 1. **Deploy Appwrite**
-   
+
    Option 1: Self-hosted on AWS/DigitalOcean
+
    ```bash
    # Follow Appwrite installation guide
    # https://appwrite.io/docs/installation
    ```
-   
+
    Option 2: Appwrite Cloud
    - Sign up at https://cloud.appwrite.io
    - Create project
@@ -390,11 +398,13 @@ npm test
 #### Option 1: Vercel (Recommended)
 
 1. **Install Vercel CLI**
+
    ```bash
    npm install -g vercel
    ```
 
 2. **Deploy**
+
    ```bash
    vercel
    ```
@@ -412,41 +422,42 @@ npm test
 #### Option 2: Docker
 
 1. **Create Dockerfile**
+
    ```dockerfile
    FROM node:18-alpine AS base
-   
+
    # Install dependencies
    FROM base AS deps
    WORKDIR /app
    COPY package*.json ./
    RUN npm ci
-   
+
    # Build application
    FROM base AS builder
    WORKDIR /app
    COPY --from=deps /app/node_modules ./node_modules
    COPY . .
    RUN npm run build
-   
+
    # Production image
    FROM base AS runner
    WORKDIR /app
-   
+
    ENV NODE_ENV production
-   
+
    RUN addgroup --system --gid 1001 nodejs
    RUN adduser --system --uid 1001 nextjs
-   
+
    COPY --from=builder /app/public ./public
    COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
    COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-   
+
    USER nextjs
-   
+
    EXPOSE 3000
-   
+
    ENV PORT 3000
-   
+
    CMD ["node", "server.js"]
    ```
 
@@ -459,16 +470,19 @@ npm test
 #### Option 3: Traditional Server
 
 1. **Build Application**
+
    ```bash
    npm run build
    ```
 
 2. **Install PM2**
+
    ```bash
    npm install -g pm2
    ```
 
 3. **Start with PM2**
+
    ```bash
    pm2 start npm --name "ccf-website" -- start
    pm2 save
@@ -480,7 +494,7 @@ npm test
    server {
        listen 80;
        server_name your-domain.com;
-       
+
        location / {
            proxy_pass http://localhost:3000;
            proxy_http_version 1.1;
@@ -514,6 +528,7 @@ npm test
 **Error**: `fetch failed` or `ECONNREFUSED`
 
 **Solutions**:
+
 - Check if Appwrite is running: `docker-compose ps`
 - Verify endpoint in `.env.local`
 - Check firewall settings
@@ -524,6 +539,7 @@ npm test
 **Error**: `Invalid credentials` or `Session not found`
 
 **Solutions**:
+
 - Verify project ID matches
 - Check if email/password auth is enabled
 - Clear browser cookies
@@ -532,6 +548,7 @@ npm test
 #### 3. Database Queries Slow
 
 **Solutions**:
+
 - Verify indexes are created
 - Check query patterns match indexes
 - Review `docs/QUERY_OPTIMIZATION.md`
@@ -542,6 +559,7 @@ npm test
 **Error**: `File too large` or `Invalid file type`
 
 **Solutions**:
+
 - Check file size (max 10 MB)
 - Verify file type is allowed
 - Check bucket permissions
@@ -550,6 +568,7 @@ npm test
 #### 5. Real-time Not Working
 
 **Solutions**:
+
 - Check WebSocket connection
 - Verify collection permissions
 - Check browser console for errors
@@ -560,6 +579,7 @@ npm test
 **Error**: TypeScript or ESLint errors
 
 **Solutions**:
+
 ```bash
 # Type check
 npx tsc --noEmit
@@ -575,6 +595,7 @@ npm run build
 #### 7. Environment Variables Not Loading
 
 **Solutions**:
+
 - Verify `.env.local` exists
 - Check variable names start with `NEXT_PUBLIC_`
 - Restart development server
@@ -599,11 +620,13 @@ if (process.env.NODE_ENV === 'development') {
 ### Logs
 
 **Appwrite Logs**:
+
 ```bash
 docker-compose logs -f appwrite
 ```
 
 **Next.js Logs**:
+
 - Development: Check terminal
 - Production: Check PM2 logs or hosting platform logs
 
@@ -628,16 +651,19 @@ docker-compose logs -f appwrite
 ### Regular Tasks
 
 **Daily**:
+
 - Monitor error logs
 - Check notification delivery
 - Verify backups
 
 **Weekly**:
+
 - Review performance metrics
 - Check storage usage
 - Update content
 
 **Monthly**:
+
 - Update dependencies
 - Review security
 - Optimize database
@@ -646,6 +672,7 @@ docker-compose logs -f appwrite
 ### Database Maintenance
 
 **Cleanup Expired Notifications**:
+
 ```typescript
 // Run periodically
 import { cleanupExpiredNotifications } from '@/lib/db/notifications';
@@ -654,6 +681,7 @@ await cleanupExpiredNotifications();
 ```
 
 **Backup Database**:
+
 - Use Appwrite backup features
 - Export critical data regularly
 - Test restore procedures
@@ -661,6 +689,7 @@ await cleanupExpiredNotifications();
 ### Updates
 
 **Updating Dependencies**:
+
 ```bash
 # Check for updates
 npm outdated
@@ -673,6 +702,7 @@ npm install package@latest
 ```
 
 **Updating Appwrite**:
+
 ```bash
 # Pull latest image
 docker-compose pull
@@ -711,6 +741,7 @@ docker-compose up -d
 ## Support
 
 ### Documentation
+
 - Developer Guide: `docs/DEVELOPER_GUIDE.md`
 - Frontend Architecture: `docs/FRONTEND_ARCHITECTURE.md`
 - Backend Architecture: `docs/BACKEND_ARCHITECTURE.md`
@@ -719,12 +750,14 @@ docker-compose up -d
 - Query Optimization: `docs/QUERY_OPTIMIZATION.md`
 
 ### Resources
+
 - Next.js Documentation: https://nextjs.org/docs
 - Appwrite Documentation: https://appwrite.io/docs
 - React Documentation: https://react.dev
 - Tailwind CSS: https://tailwindcss.com/docs
 
 ### Getting Help
+
 - Check documentation first
 - Review error logs
 - Search GitHub issues

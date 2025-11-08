@@ -19,9 +19,11 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
     const fetchAnimals = async () => {
       setLoading(true);
       try {
-        const animalPromises = territory.animals.map((id) => getAnimalById(id));
+        const animalPromises = territory.animals.map(id => getAnimalById(id));
         const fetchedAnimals = await Promise.all(animalPromises);
-        setAnimals(fetchedAnimals.filter((a): a is AnimalProfile => a !== null));
+        setAnimals(
+          fetchedAnimals.filter((a): a is AnimalProfile => a !== null)
+        );
       } catch (error) {
         console.error('Error fetching animals:', error);
       } finally {
@@ -44,7 +46,9 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
     <div className="absolute top-4 right-4 w-80 bg-white rounded-lg shadow-xl z-[1000] max-h-[calc(100vh-2rem)] overflow-hidden flex flex-col">
       {/* Header */}
       <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-gradient-to-r from-green-50 to-blue-50">
-        <h3 className="text-lg font-semibold text-gray-900">{territory.name}</h3>
+        <h3 className="text-lg font-semibold text-gray-900">
+          {territory.name}
+        </h3>
         <button
           onClick={onClose}
           className="p-1 hover:bg-gray-100 rounded-full transition-colors"
@@ -63,7 +67,9 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
               <Users className="w-4 h-4" />
               <span className="text-xs font-medium">Pack Size</span>
             </div>
-            <p className="text-2xl font-bold text-blue-900">{territory.packSize}</p>
+            <p className="text-2xl font-bold text-blue-900">
+              {territory.packSize}
+            </p>
           </div>
 
           <div className="bg-green-50 p-3 rounded-lg">
@@ -71,7 +77,9 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
               <MapPin className="w-4 h-4" />
               <span className="text-xs font-medium">Animals</span>
             </div>
-            <p className="text-2xl font-bold text-green-900">{territory.animals.length}</p>
+            <p className="text-2xl font-bold text-green-900">
+              {territory.animals.length}
+            </p>
           </div>
         </div>
 
@@ -84,9 +92,11 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
         {/* Assigned Volunteers */}
         {territory.assignedVolunteers.length > 0 && (
           <div className="mb-4">
-            <h4 className="text-sm font-semibold text-gray-900 mb-2">Assigned Volunteers</h4>
+            <h4 className="text-sm font-semibold text-gray-900 mb-2">
+              Assigned Volunteers
+            </h4>
             <div className="space-y-1">
-              {territory.assignedVolunteers.map((volunteerId) => (
+              {territory.assignedVolunteers.map(volunteerId => (
                 <div
                   key={volunteerId}
                   className="text-sm text-gray-600 bg-gray-50 px-3 py-2 rounded"
@@ -100,16 +110,21 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
 
         {/* Animals List */}
         <div>
-          <h4 className="text-sm font-semibold text-gray-900 mb-2">Animals in Territory</h4>
+          <h4 className="text-sm font-semibold text-gray-900 mb-2">
+            Animals in Territory
+          </h4>
           {loading ? (
             <div className="space-y-2">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="bg-gray-100 h-16 rounded animate-pulse" />
+              {[1, 2, 3].map(i => (
+                <div
+                  key={i}
+                  className="bg-gray-100 h-16 rounded animate-pulse"
+                />
               ))}
             </div>
           ) : animals.length > 0 ? (
             <div className="space-y-2">
-              {animals.map((animal) => (
+              {animals.map(animal => (
                 <div
                   key={animal.id}
                   className="bg-gray-50 p-3 rounded-lg hover:bg-gray-100 transition-colors"
@@ -123,11 +138,16 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
                       />
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium text-gray-900 truncate">{animal.name}</p>
-                      <p className="text-xs text-gray-600">
-                        {animal.type} • {animal.age} {animal.age === 1 ? 'year' : 'years'}
+                      <p className="font-medium text-gray-900 truncate">
+                        {animal.name}
                       </p>
-                      <p className="text-xs text-gray-500 mt-1">{animal.location.area}</p>
+                      <p className="text-xs text-gray-600">
+                        {animal.type} • {animal.age}{' '}
+                        {animal.age === 1 ? 'year' : 'years'}
+                      </p>
+                      <p className="text-xs text-gray-500 mt-1">
+                        {animal.location.area}
+                      </p>
                     </div>
                     <div
                       className={`px-2 py-1 rounded text-xs font-medium ${
@@ -145,7 +165,9 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
               ))}
             </div>
           ) : (
-            <p className="text-sm text-gray-500 text-center py-4">No animals in this territory</p>
+            <p className="text-sm text-gray-500 text-center py-4">
+              No animals in this territory
+            </p>
           )}
         </div>
       </div>

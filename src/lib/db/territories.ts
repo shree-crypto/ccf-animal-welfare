@@ -2,13 +2,23 @@ import { ID, Query } from 'appwrite';
 import { databases } from '@/lib/appwrite';
 import { DATABASE_ID, COLLECTIONS } from '@/lib/constants/database';
 import { Territory, TerritoryDocument } from '@/types/territory';
-import { createTerritorySchema, updateTerritorySchema } from '@/lib/validations/territory';
-import { normalizePagination, calculatePaginationMeta, QUERY_LIMITS } from './query-config';
+import {
+  createTerritorySchema,
+  updateTerritorySchema,
+} from '@/lib/validations/territory';
+import {
+  normalizePagination,
+  calculatePaginationMeta,
+  QUERY_LIMITS,
+} from './query-config';
 import { mockTerritories } from '@/lib/mock-data/territories';
 
 // Check if we should use mock data
 const useMockData = () => {
-  return process.env.NODE_ENV === 'development' && process.env.NEXT_PUBLIC_USE_MOCK_DATA !== 'false';
+  return (
+    process.env.NODE_ENV === 'development' &&
+    process.env.NEXT_PUBLIC_USE_MOCK_DATA !== 'false'
+  );
 };
 
 // Helper to convert Appwrite document to Territory
@@ -23,7 +33,9 @@ const documentToTerritory = (doc: TerritoryDocument): Territory => ({
 });
 
 // Create a new territory
-export const createTerritory = async (data: Omit<Territory, 'id' | 'lastUpdated'>): Promise<Territory> => {
+export const createTerritory = async (
+  data: Omit<Territory, 'id' | 'lastUpdated'>
+): Promise<Territory> => {
   // Validate data
   const validatedData = createTerritorySchema.parse(data);
 
@@ -38,7 +50,9 @@ export const createTerritory = async (data: Omit<Territory, 'id' | 'lastUpdated'
 };
 
 // Get a territory by ID
-export const getTerritoryById = async (id: string): Promise<Territory | null> => {
+export const getTerritoryById = async (
+  id: string
+): Promise<Territory | null> => {
   // Use mock data in development
   if (useMockData()) {
     const territory = mockTerritories.find(t => t.id === id);
@@ -78,7 +92,11 @@ export const getTerritories = async (filters?: {
     const start = offset;
     const end = offset + limit;
     const paginatedTerritories = mockTerritories.slice(start, end);
-    const pagination = calculatePaginationMeta(mockTerritories.length, limit, offset);
+    const pagination = calculatePaginationMeta(
+      mockTerritories.length,
+      limit,
+      offset
+    );
 
     return {
       territories: paginatedTerritories,
