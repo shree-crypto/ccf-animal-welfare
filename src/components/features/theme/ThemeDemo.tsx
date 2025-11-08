@@ -72,7 +72,7 @@ export function ThemeDemo() {
       </Card>
 
       {/* Gradients (Custom Theme Only) */}
-      {config.features.gradients && (
+      {config.effects.gradients && (
         <Card>
           <CardHeader>
             <CardTitle>Gradient Effects</CardTitle>
@@ -128,7 +128,7 @@ export function ThemeDemo() {
       </Card>
 
       {/* Text Effects (Custom Theme Only) */}
-      {config.features.gradients && (
+      {config.effects.gradients && (
         <Card>
           <CardHeader>
             <CardTitle>Text Effects</CardTitle>
@@ -161,20 +161,20 @@ export function ThemeDemo() {
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span>Gradients</span>
-              <Badge variant={config.features.gradients ? 'default' : 'secondary'}>
-                {config.features.gradients ? 'Enabled' : 'Disabled'}
+              <Badge variant={config.effects.gradients ? 'default' : 'secondary'}>
+                {config.effects.gradients ? 'Enabled' : 'Disabled'}
               </Badge>
             </div>
             <div className="flex items-center justify-between">
               <span>Animations</span>
-              <Badge variant={config.features.animations ? 'default' : 'secondary'}>
-                {config.features.animations ? 'Enabled' : 'Disabled'}
+              <Badge variant={config.effects.animations ? 'default' : 'secondary'}>
+                {config.effects.animations ? 'Enabled' : 'Disabled'}
               </Badge>
             </div>
             <div className="flex items-center justify-between">
               <span>Aceternity Effects</span>
-              <Badge variant={config.features.aceternity ? 'default' : 'secondary'}>
-                {config.features.aceternity ? 'Enabled' : 'Disabled'}
+              <Badge variant={config.effects.aceternity ? 'default' : 'secondary'}>
+                {config.effects.aceternity ? 'Enabled' : 'Disabled'}
               </Badge>
             </div>
           </div>

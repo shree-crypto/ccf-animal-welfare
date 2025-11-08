@@ -4,8 +4,10 @@ import "./globals.css";
 import "leaflet/dist/leaflet.css";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { NotificationProvider } from "@/contexts/NotificationContext";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 import { Header, Footer } from "@/components/layout";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
+import { Toaster } from "sonner";
 
 // Playfair Display for headlines - elegant, classic serif
 const playfairDisplay = Playfair_Display({
@@ -109,13 +111,16 @@ export default function RootLayout({
           Skip to main content
         </a>
         <ErrorBoundary>
-          <AuthProvider>
-            <NotificationProvider>
-              <Header />
-              <main id="main-content">{children}</main>
-              <Footer />
-            </NotificationProvider>
-          </AuthProvider>
+          <ThemeProvider>
+            <AuthProvider>
+              <NotificationProvider>
+                <Header />
+                <main id="main-content">{children}</main>
+                <Footer />
+                <Toaster position="top-right" richColors />
+              </NotificationProvider>
+            </AuthProvider>
+          </ThemeProvider>
         </ErrorBoundary>
       </body>
     </html>
