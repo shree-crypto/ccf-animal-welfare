@@ -66,3 +66,22 @@ All images are from Unsplash and are free to use:
   - UI testing and development
   - Demo purposes
   - Component development
+
+
+### `impact.ts` (Phase 2)
+
+Contains mock data for the Live Impact Dashboard:
+- **Current Metrics**: Realistic impact metrics with trends
+  - Animals rescued: 247 total, 18 this month (↑12.5%)
+  - Active volunteers: 89 total, 12 this week (↑8.3%)
+  - Meals provided: 3456 total, 234 this week (stable)
+  - Successful adoptions: 156 total, 8 this month (↑14.2%)
+- **Recent Activities**: 8 sample activities (donations, adoptions, volunteers, rescues)
+- **Trend Data Generator**: Function to generate realistic historical trends
+- **Historical Metrics**: 7 days of historical data
+
+**Current Status**: The Impact Dashboard uses mock data by default. To switch to real backend:
+1. Set up Appwrite collections (see `docs/IMPACT_DASHBOARD_SETUP.md`)
+2. Change `USE_MOCK_DATA` to `false` in `src/hooks/useImpactMetrics.ts`
+
+**Simulated Real-Time Updates**: Mock implementation simulates new activities every 30 seconds to mimic Appwrite Realtime behavior.

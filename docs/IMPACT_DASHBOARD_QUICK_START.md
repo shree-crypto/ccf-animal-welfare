@@ -1,23 +1,45 @@
 # Impact Dashboard Quick Start Guide
 
+## Current Status: Using Mock Data
+
+The Impact Dashboard is currently configured to use **mock data** for development and testing. This allows you to see the dashboard in action without setting up the Appwrite backend.
+
 ## For Developers
 
-### 1. Setup Appwrite Collections
+### 1. Using Mock Data (Current Setup)
 
-Follow the detailed setup guide in `docs/IMPACT_DASHBOARD_SETUP.md` to create the required collections in Appwrite.
+The dashboard works out of the box with mock data. No additional setup required!
 
-**Quick CLI Setup:**
-```bash
-# See IMPACT_DASHBOARD_SETUP.md for complete CLI commands
+Just import and use the components:
+
+```tsx
+import { ImpactDashboardContainer } from '@/components/features/impact';
+
+<ImpactDashboardContainer />
 ```
 
-### 2. Add Environment Variables
+The mock data includes:
+- Realistic impact metrics with trends
+- Recent activities that update every 30 seconds
+- Historical trend data for visualizations
 
-Add to your `.env.local`:
-```env
-NEXT_PUBLIC_APPWRITE_COLLECTION_IMPACT_METRICS=impact-metrics
-NEXT_PUBLIC_APPWRITE_COLLECTION_RECENT_ACTIVITIES=recent-activities
-```
+### 2. Switching to Real Backend (Future)
+
+When you're ready to use the Appwrite backend:
+
+1. **Set up Appwrite Collections**
+   - Follow `docs/IMPACT_DASHBOARD_SETUP.md` for detailed instructions
+
+2. **Add Environment Variables**
+   ```env
+   NEXT_PUBLIC_APPWRITE_COLLECTION_IMPACT_METRICS=impact-metrics
+   NEXT_PUBLIC_APPWRITE_COLLECTION_RECENT_ACTIVITIES=recent-activities
+   ```
+
+3. **Enable Real Backend**
+   - Open `src/hooks/useImpactMetrics.ts`
+   - Change `USE_MOCK_DATA` from `true` to `false`
+   - Uncomment the Appwrite implementation code
 
 ### 3. Use the Dashboard
 

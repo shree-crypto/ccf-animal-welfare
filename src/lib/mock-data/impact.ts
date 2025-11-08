@@ -2,6 +2,13 @@
  * Mock Impact Dashboard Data
  * 
  * Mock data for development and testing of the Live Impact Dashboard
+ * 
+ * This data is currently used by default in useImpactMetrics hook
+ * until the Appwrite backend is fully configured.
+ * 
+ * To switch to real backend:
+ * 1. Set up Appwrite collections (see docs/IMPACT_DASHBOARD_SETUP.md)
+ * 2. Change USE_MOCK_DATA to false in src/hooks/useImpactMetrics.ts
  */
 
 import { ImpactMetrics, RecentActivity, MetricTrend } from '@/types/impact';
