@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Heart, Calendar, Award } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -185,7 +186,9 @@ export default function StoriesPage({
             </h2>
 
             {/* Category Filter */}
-            <CategoryFilter categories={categories} selectedCategory={selectedCategory} />
+            <Suspense fallback={<div className="h-12 bg-muted animate-pulse rounded-lg" />}>
+              <CategoryFilter categories={categories} selectedCategory={selectedCategory} />
+            </Suspense>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

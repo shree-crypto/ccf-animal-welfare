@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -154,10 +155,12 @@ export default function EventsPage({
             </h2>
 
             {/* Filter */}
-            <EventFilter 
-              eventTypes={eventTypes}
-              selectedType={selectedType}
-            />
+            <Suspense fallback={<div className="h-12 bg-muted animate-pulse rounded-lg" />}>
+              <EventFilter 
+                eventTypes={eventTypes}
+                selectedType={selectedType}
+              />
+            </Suspense>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
