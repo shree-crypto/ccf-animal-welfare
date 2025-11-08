@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -7,14 +7,20 @@ import { NotificationProvider } from "@/contexts/NotificationContext";
 import { Header, Footer } from "@/components/layout";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Playfair Display for headlines - elegant, classic serif
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Montserrat for body text - clean, modern, friendly
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -76,9 +82,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const theme = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (theme === 'dark' || (!theme && prefersDark)) {
+                  document.documentElement.classList.add('dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${playfairDisplay.variable} ${montserrat.variable} antialiased`}
       >
         {/* Skip to main content link for accessibility */}
         <a

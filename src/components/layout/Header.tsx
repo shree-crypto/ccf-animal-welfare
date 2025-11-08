@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import NotificationCenter from '@/components/features/notifications/NotificationCenter';
 import { useAuth } from '@/contexts/AuthContext';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 
 export function Header() {
   const pathname = usePathname();
@@ -77,6 +78,9 @@ export function Header() {
 
             {/* Auth Actions */}
             <div className="hidden md:flex items-center gap-2 ml-2">
+              {/* Theme Toggle */}
+              <ThemeToggle />
+              
               {user ? (
                 <>
                   {/* Notification Center */}
@@ -146,7 +150,13 @@ export function Header() {
               ))}
               
               {/* Mobile Auth Actions */}
-              <div className="border-t pt-2 mt-2">
+              <div className="border-t pt-2 mt-2 space-y-2">
+                {/* Theme Toggle for Mobile */}
+                <div className="flex items-center justify-between px-3 py-2">
+                  <span className="text-sm text-muted-foreground">Theme</span>
+                  <ThemeToggle />
+                </div>
+                
                 {user ? (
                   <>
                     <div className="px-3 py-2 text-sm text-muted-foreground">
