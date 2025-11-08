@@ -57,7 +57,7 @@ export default function TerritoriesPage() {
     <ErrorBoundary>
       <div className="fixed inset-0 flex flex-col">
         {/* Minimal Floating Title */}
-        <div className="absolute top-4 left-4 z-10 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg px-4 py-3">
+        <div className="absolute top-4 left-4 z-[60] bg-white/95 backdrop-blur-sm rounded-lg shadow-lg px-4 py-3">
           <div className="flex items-center gap-2">
             <MapPin className="w-5 h-5 text-gray-700" />
             <div>
@@ -68,7 +68,7 @@ export default function TerritoriesPage() {
         </div>
 
         {/* Floating Controls */}
-        <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
+        <div className="absolute top-4 right-4 z-[60] flex flex-col gap-2">
           {/* Heatmap Toggle */}
           <button
             onClick={() => setShowHeatmap(!showHeatmap)}
@@ -93,7 +93,7 @@ export default function TerritoriesPage() {
 
         {/* Floating Legend */}
         {showLegend && (
-          <div className="absolute bottom-4 left-4 z-10 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg p-4">
+          <div className="absolute bottom-4 left-4 z-[60] bg-white/95 backdrop-blur-sm rounded-lg shadow-lg p-4">
             <h3 className="text-xs font-semibold text-gray-900 mb-2">Pack Size</h3>
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-xs text-gray-600">
