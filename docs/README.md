@@ -98,6 +98,11 @@ Learn about specific features:
 - **[Impact Dashboard](./features/IMPACT_DASHBOARD.md)** - Live metrics and impact visualization
 - **[Mock Data Guide](./features/MOCK_DATA_COMPLETE_GUIDE.md)** - Working with mock data
 
+### Integration & Enhancement
+Explore potential integrations and improvements:
+- **[Integration Analysis](./INTEGRATION_ANALYSIS.md)** - Detailed analysis of open-source integration opportunities
+- **[Integration Recommendations](./INTEGRATION_RECOMMENDATIONS.md)** - Quick reference for recommended integrations
+
 ### Theme System
 Customize and work with themes:
 - **[Theme Switcher Guide](./themes/THEME_SWITCHER_GUIDE.md)** - Complete guide to using and customizing themes
