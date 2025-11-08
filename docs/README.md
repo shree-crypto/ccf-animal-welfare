@@ -102,6 +102,7 @@ Learn about specific features:
 Explore potential integrations and improvements:
 - **[Integration Analysis](./INTEGRATION_ANALYSIS.md)** - Detailed analysis of open-source integration opportunities
 - **[Integration Recommendations](./INTEGRATION_RECOMMENDATIONS.md)** - Quick reference for recommended integrations
+- **[Integration Visual Summary](./INTEGRATION_VISUAL_SUMMARY.md)** - Visual diagrams and flowcharts of integration architecture
 
 ### Theme System
 Customize and work with themes:
