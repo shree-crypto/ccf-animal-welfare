@@ -114,10 +114,12 @@ export default function RootLayout({
           <ThemeProvider>
             <AuthProvider>
               <NotificationProvider>
-                <Header />
-                <main id="main-content">{children}</main>
-                <Footer />
-                <Toaster position="top-right" richColors />
+                <>
+                  <Header />
+                  <main id="main-content">{children}</main>
+                  <Footer />
+                  <Toaster position="top-right" richColors />
+                </>
               </NotificationProvider>
             </AuthProvider>
           </ThemeProvider>
