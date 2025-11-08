@@ -52,12 +52,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     [theme, setTheme, config]
   );
 
-  // Prevent flash of unstyled content
-  if (!mounted) {
-    return null;
-  }
-
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+  // Render children even when not mounted to prevent React.Children.only errors
+  // The theme will be applied once mounted
+  return (
+    <ThemeContext.Provider value={value}>
+      {children}
+    </ThemeContext.Provider>
+  );
 }
 
 /**
