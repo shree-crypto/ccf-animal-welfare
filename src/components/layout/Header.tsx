@@ -147,9 +147,8 @@ export function Header() {
                   asChild
                   variant={isActive(link.href) ? 'default' : 'ghost'}
                   className="justify-start"
-                  onClick={() => setMobileMenuOpen(false)}
                 >
-                  <Link href={link.href}>{link.label}</Link>
+                  <Link href={link.href} onClick={() => setMobileMenuOpen(false)}>{link.label}</Link>
                 </Button>
               ))}
               
@@ -188,9 +187,8 @@ export function Header() {
                   <Button
                     asChild
                     className="w-full justify-start"
-                    onClick={() => setMobileMenuOpen(false)}
                   >
-                    <Link href="/login">Login</Link>
+                    <Link href="/login" onClick={() => setMobileMenuOpen(false)}>Login</Link>
                   </Button>
                 )}
               </div>

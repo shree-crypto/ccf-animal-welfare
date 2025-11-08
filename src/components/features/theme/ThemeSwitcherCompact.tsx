@@ -41,15 +41,11 @@ export function ThemeSwitcherCompact() {
 
   return (
     <Select value={theme} onValueChange={handleThemeChange}>
-      <SelectTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          aria-label={`Current theme: ${currentConfig.name}. Click to change theme.`}
-          className="h-9 w-9"
-        >
-          {getThemeIcon(theme)}
-        </Button>
+      <SelectTrigger
+        className="h-9 w-9 border-0 bg-transparent hover:bg-accent hover:text-accent-foreground focus:ring-0 focus:ring-offset-0 p-0 [&>svg:last-child]:hidden"
+        aria-label={`Current theme: ${currentConfig.name}. Click to change theme.`}
+      >
+        {getThemeIcon(theme)}
       </SelectTrigger>
       <SelectContent align="end">
         {Object.entries(THEME_CONFIGS).map(([key, config]) => (
