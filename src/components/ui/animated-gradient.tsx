@@ -1,7 +1,24 @@
 "use client";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/contexts/ThemeContext";
 
+/**
+ * AnimatedGradient - Aceternity UI component
+ * 
+ * Displays animated gradient orbs in the background.
+ * Only renders when custom theme is active (config.effects.aceternity === true).
+ * 
+ * @param className - Optional additional CSS classes
+ * @returns Animated gradient background or null if disabled
+ */
 export const AnimatedGradient = ({ className }: { className?: string }) => {
+  const { config } = useTheme();
+  
+  // Only show in custom theme
+  if (!config.effects.aceternity) {
+    return null;
+  }
+  
   return (
     <div className={cn("absolute inset-0 -z-10 overflow-hidden", className)}>
       <div 

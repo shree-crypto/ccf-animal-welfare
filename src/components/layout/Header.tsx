@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import NotificationCenter from '@/components/features/notifications/NotificationCenter';
 import { useAuth } from '@/contexts/AuthContext';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { ThemeSwitcherCompact } from '@/components/features/theme';
 
 export function Header() {
   const pathname = usePathname();
@@ -78,7 +79,10 @@ export function Header() {
 
             {/* Auth Actions */}
             <div className="hidden md:flex items-center gap-2 ml-2">
-              {/* Theme Toggle */}
+              {/* Theme Switcher */}
+              <ThemeSwitcherCompact />
+              
+              {/* Dark Mode Toggle */}
               <ThemeToggle />
               
               {user ? (
@@ -151,9 +155,15 @@ export function Header() {
               
               {/* Mobile Auth Actions */}
               <div className="border-t pt-2 mt-2 space-y-2">
-                {/* Theme Toggle for Mobile */}
+                {/* Theme Switcher for Mobile */}
                 <div className="flex items-center justify-between px-3 py-2">
-                  <span className="text-sm text-muted-foreground">Theme</span>
+                  <span className="text-sm text-muted-foreground">Theme Style</span>
+                  <ThemeSwitcherCompact />
+                </div>
+                
+                {/* Dark Mode Toggle for Mobile */}
+                <div className="flex items-center justify-between px-3 py-2">
+                  <span className="text-sm text-muted-foreground">Dark Mode</span>
                   <ThemeToggle />
                 </div>
                 

@@ -1,344 +1,237 @@
-# CCF Animal Welfare - Documentation
+# CampusPaws Documentation
 
-Welcome to the CCF Animal Welfare project documentation. This guide will help you understand, maintain, and extend the application.
+Welcome to the CampusPaws documentation! This guide will help you navigate through all available documentation.
 
-## Documentation Overview
+## 📁 Documentation Structure
+
+```
+docs/
+├── README.md                    # This file - Documentation index
+├── DOCUMENTATION_INDEX.md       # Detailed documentation index
+│
+├── architecture/                # System architecture documentation
+│   ├── BACKEND_ARCHITECTURE.md
+│   ├── FRONTEND_ARCHITECTURE.md
+│   └── DATABASE_SCHEMA.md
+│
+├── features/                    # Feature-specific documentation
+│   ├── IMPACT_DASHBOARD.md
+│   ├── IMPACT_DASHBOARD_SETUP.md
+│   ├── IMPACT_DASHBOARD_QUICK_START.md
+│   ├── IMPACT_DASHBOARD_MOCK_DATA.md
+│   ├── MOCK_DATA_COMPLETE_GUIDE.md
+│   ├── MOCK_DATA_STATUS.md
+│   ├── MOCK_DATA_SUMMARY.md
+│   └── MOCK_SETUP_COMPLETE.md
+│
+├── guides/                      # Developer guides and best practices
+│   ├── DEVELOPER_GUIDE.md
+│   ├── SETUP_GUIDE.md
+│   ├── CONVENTIONS.md
+│   ├── ACCESSIBILITY_GUIDELINES.md
+│   ├── QUERY_OPTIMIZATION.md
+│   ├── QUICK_REFERENCE.md
+│   ├── BUNDLE_ANALYSIS.md
+│   ├── CONTEXT_OPTIMIZATION.md
+│   ├── HOOKS_AUDIT.md
+│   ├── DEV_CREDENTIALS.md
+│   ├── TROUBLESHOOTING.md
+│   ├── DESIGN_SYSTEM_IMPLEMENTATION.md
+│   ├── TYPOGRAPHY_IMPLEMENTATION.md
+│   └── TYPOGRAPHY_SYSTEM_COMPLETE.md
+│
+├── quick-starts/                # Quick start guides for specific features
+│   ├── QUICK_START_AUTH.md
+│   ├── QUICK_START_ADMIN_ANIMALS.md
+│   ├── QUICK_START_MEDICAL.md
+│   ├── QUICK_START_TASKS.md
+│   ├── QUICK_START_NOTIFICATIONS.md
+│   ├── QUICK_START_TERRITORIES.md
+│   ├── QUICK_START_PUBLIC_PAGES.md
+│   └── QUICK_START_INDEXING.md
+│
+├── themes/                      # Theme system documentation
+│   ├── THEME_SWITCHER_GUIDE.md
+│   ├── THEME_CUSTOMIZATION_GUIDE.md
+│   ├── THEME_COMPARISON.md
+│   ├── THEME_CONFIGURATION_COMPLETE.md
+│   ├── THEME_CONTEXT_IMPLEMENTATION.md
+│   ├── THEME_SWITCHER_COMPONENT.md
+│   ├── THEME_COMPONENT_VARIANTS.md
+│   ├── THEME_COMPONENTS_UPDATE.md
+│   └── ACETERNITY_THEME_INTEGRATION.md
+│
+├── task-summaries/              # Implementation task summaries
+│   ├── TASK_*_IMPLEMENTATION_SUMMARY.md
+│   ├── TASK_*_CHECKLIST.md
+│   ├── TASK_*_COMPLETION_SUMMARY.md
+│   ├── FINAL_FIXES.md
+│   ├── FIXES_APPLIED.md
+│   ├── REFACTORING_SUMMARY.md
+│   ├── TASK_COMPLETION_SUMMARY.md
+│   └── RESTART_REQUIRED.md
+│
+├── GuideDocs/                   # Design and product guides
+│   └── DesignSystem.md
+│
+└── screenshots/                 # Screenshots for documentation
+    └── README.md
+```
+
+## 🚀 Quick Navigation
 
 ### For New Developers
-
 Start here to get up and running:
-
-1. **[Setup Guide](SETUP_GUIDE.md)** - Complete setup instructions for local development and production deployment
-2. **[Developer Guide](DEVELOPER_GUIDE.md)** - Project overview, technology stack, and architecture
-3. **[Conventions](CONVENTIONS.md)** - Code conventions and best practices
+- **[Setup Guide](./guides/SETUP_GUIDE.md)** - Complete setup instructions for local development and production
+- **[Developer Guide](./guides/DEVELOPER_GUIDE.md)** - Project overview, technology stack, and architecture
+- **[Conventions](./guides/CONVENTIONS.md)** - Code conventions and best practices to follow
+- **[Quick Reference](./guides/QUICK_REFERENCE.md)** - Common tasks and commands
 
 ### Architecture Documentation
-
-Deep dive into the application architecture:
-
-4. **[Frontend Architecture](FRONTEND_ARCHITECTURE.md)** - Pages, components, state management, and UI patterns
-5. **[Backend Architecture](BACKEND_ARCHITECTURE.md)** - Database operations, authentication, storage, and real-time features
-6. **[Database Schema](DATABASE_SCHEMA.md)** - Complete database schema with collections, indexes, and relationships
-
-### Specialized Guides
-
-7. **[Query Optimization](QUERY_OPTIMIZATION.md)** - Database indexing and query performance optimization
-8. **[Quick Reference](QUICK_REFERENCE.md)** - Code snippets and examples for common operations
-
-## Quick Start
-
-### I want to...
-
-**...set up the project locally**
-→ Follow [Setup Guide](SETUP_GUIDE.md) → Local Development Setup
-
-**...understand the project structure**
-→ Read [Developer Guide](DEVELOPER_GUIDE.md) → Project Structure
-
-**...add a new page**
-→ Read [Frontend Architecture](FRONTEND_ARCHITECTURE.md) → Page Structure
-
-**...add a new database collection**
-→ Read [Database Schema](DATABASE_SCHEMA.md) → Collections
-
-**...understand authentication**
-→ Read [Backend Architecture](BACKEND_ARCHITECTURE.md) → Authentication
-
-**...optimize a slow query**
-→ Read [Query Optimization](QUERY_OPTIMIZATION.md)
-
-**...follow code conventions**
-→ Read [Conventions](CONVENTIONS.md)
-
-**...deploy to production**
-→ Follow [Setup Guide](SETUP_GUIDE.md) → Production Deployment
-
-## Project Structure
-
-```
-ccf-animal-welfare/
-├── src/
-│   ├── app/              # Next.js pages (App Router)
-│   ├── components/       # React components
-│   ├── contexts/         # React Context providers
-│   ├── hooks/            # Custom React hooks
-│   ├── lib/              # Business logic and utilities
-│   ├── types/            # TypeScript type definitions
-│   └── test/             # Test files
-├── docs/                 # Documentation (you are here)
-├── public/               # Static assets
-└── [config files]        # Configuration files
-```
-
-## Technology Stack
-
-- **Frontend**: Next.js 14, React 19, TypeScript, Tailwind CSS
-- **Backend**: Appwrite (BaaS)
-- **UI Components**: Shadcn/ui (Radix UI)
-- **Forms**: React Hook Form + Zod
-- **Maps**: React Leaflet
-- **Testing**: Vitest
-
-## Key Features
-
-### Public Features
-- Animal gallery with filtering
-- Interactive territory maps
-- Success stories
-- Contact and donation pages
-
-### Volunteer Features
-- Dashboard with task overview
-- Task management and scheduling
-- Medical records access
-- Real-time notifications
-
-### Admin Features
-- Complete animal database management
-- Bulk operations
-- User management
-- System configuration
-
-## Common Tasks
-
-### Adding a New Feature
-
-1. **Plan the feature**
-   - Define requirements
-   - Design database schema
-   - Plan UI/UX
-
-2. **Create database operations**
-   - Add types in `src/types/`
-   - Create validation schema in `src/lib/validations/`
-   - Implement CRUD operations in `src/lib/db/`
-
-3. **Build the UI**
-   - Create page in `src/app/`
-   - Build components in `src/components/features/`
-   - Add forms with validation
-
-4. **Test**
-   - Write unit tests for validation
-   - Write integration tests for database operations
-   - Test UI manually
-
-5. **Document**
-   - Update relevant documentation
-   - Add comments to complex code
-   - Update README if needed
-
-### Modifying Existing Features
-
-1. **Understand current implementation**
-   - Read relevant documentation
-   - Review existing code
-   - Check database schema
-
-2. **Make changes**
-   - Update types if needed
-   - Modify validation schemas
-   - Update database operations
-   - Modify UI components
-
-3. **Test thoroughly**
-   - Run existing tests
-   - Add new tests if needed
-   - Manual testing
-
-4. **Update documentation**
-   - Update affected documentation
-   - Add migration notes if needed
-
-## Development Workflow
-
-### Daily Development
-
-```bash
-# Start Appwrite
-docker-compose up -d
-
-# Start development server
-npm run dev
-
-# In another terminal, run tests
-npm test -- --watch
-
-# Check code quality
-npm run lint
-npm run format:check
-```
-
-### Before Committing
-
-```bash
-# Format code
-npm run format
-
-# Fix linting issues
-npm run lint:fix
-
-# Run tests
-npm test
-
-# Type check
-npx tsc --noEmit
-
-# Build to verify
-npm run build
-```
-
-### Code Review Checklist
-
-- [ ] Code follows conventions
-- [ ] Types are properly defined
-- [ ] Validation schemas are updated
-- [ ] Database operations are optimized
-- [ ] UI is responsive and accessible
-- [ ] Error handling is implemented
-- [ ] Tests are added/updated
-- [ ] Documentation is updated
-
-## Troubleshooting
-
-### Common Issues
-
-**Build fails**
-→ Check [Setup Guide](SETUP_GUIDE.md) → Troubleshooting → Build Fails
-
-**Database queries slow**
-→ Check [Query Optimization](QUERY_OPTIMIZATION.md)
-
-**Authentication not working**
-→ Check [Setup Guide](SETUP_GUIDE.md) → Troubleshooting → Authentication
-
-**Real-time features not working**
-→ Check [Backend Architecture](BACKEND_ARCHITECTURE.md) → Real-time Features
-
-## Best Practices
-
-### Code Quality
-- Follow TypeScript strict mode
-- Use Zod for validation
-- Write meaningful comments
-- Keep functions small and focused
-
-### Performance
-- Use proper indexes for queries
-- Implement pagination
-- Optimize images
-- Use React Compiler
-
-### Security
-- Validate all inputs
-- Use proper permissions
-- Never expose secrets
-- Follow authentication best practices
-
-### Accessibility
-- Use semantic HTML
-- Provide ARIA labels
-- Ensure keyboard navigation
-- Test with screen readers
-
-## Contributing
-
-### Before Starting
-1. Read all documentation
-2. Set up local environment
-3. Understand the codebase
-4. Check existing issues
-
-### Development Process
-1. Create feature branch
-2. Make changes following conventions
-3. Write/update tests
-4. Update documentation
-5. Submit pull request
-
-### Pull Request Guidelines
-- Clear description of changes
-- Reference related issues
-- Include screenshots for UI changes
-- Ensure all tests pass
-- Update documentation
-
-## Resources
-
-### Internal Documentation
-- [Developer Guide](DEVELOPER_GUIDE.md)
-- [Frontend Architecture](FRONTEND_ARCHITECTURE.md)
-- [Backend Architecture](BACKEND_ARCHITECTURE.md)
-- [Database Schema](DATABASE_SCHEMA.md)
-- [Conventions](CONVENTIONS.md)
-- [Setup Guide](SETUP_GUIDE.md)
-- [Query Optimization](QUERY_OPTIMIZATION.md)
-
-### External Resources
-- [Next.js Documentation](https://nextjs.org/docs)
-- [React Documentation](https://react.dev)
-- [Appwrite Documentation](https://appwrite.io/docs)
-- [TypeScript Documentation](https://www.typescriptlang.org/docs)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Shadcn/ui Documentation](https://ui.shadcn.com)
-
-## Support
-
-### Getting Help
-1. Check documentation
-2. Review error logs
-3. Search existing issues
-4. Ask the development team
-
-### Reporting Issues
-- Provide clear description
-- Include error messages
-- Share reproduction steps
-- Attach screenshots if relevant
-
-## Maintenance
-
-### Regular Tasks
-- Update dependencies monthly
-- Review and optimize queries
-- Clean up expired data
-- Monitor performance
-- Review security
-
-### Long-term Maintenance
-- Keep documentation updated
-- Refactor as needed
-- Improve test coverage
-- Optimize performance
-- Enhance features
-
-## Version History
-
-### Current Version
-- Next.js 14 with App Router
-- React 19
-- TypeScript 5
-- Tailwind CSS 4
-- Appwrite 1.4+
-
-### Upgrade Notes
-When upgrading major dependencies:
-1. Review breaking changes
-2. Update code accordingly
-3. Test thoroughly
-4. Update documentation
-5. Communicate changes to team
-
-## License
-
-[Add license information here]
-
-## Contact
-
-[Add contact information here]
+Understand the system design:
+- **[Frontend Architecture](./architecture/FRONTEND_ARCHITECTURE.md)** - Pages, components, state management, and UI patterns
+- **[Backend Architecture](./architecture/BACKEND_ARCHITECTURE.md)** - Database operations, authentication, storage, and real-time features
+- **[Database Schema](./architecture/DATABASE_SCHEMA.md)** - Complete database schema with collections, indexes, and relationships
+
+### Feature Documentation
+Learn about specific features:
+- **[Impact Dashboard](./features/IMPACT_DASHBOARD.md)** - Live metrics and impact visualization
+- **[Mock Data Guide](./features/MOCK_DATA_COMPLETE_GUIDE.md)** - Working with mock data
+
+### Theme System
+Customize and work with themes:
+- **[Theme Switcher Guide](./themes/THEME_SWITCHER_GUIDE.md)** - Complete guide to using and customizing themes
+- **[Theme Customization](./themes/THEME_CUSTOMIZATION_GUIDE.md)** - Quick reference for theme customization
+- **[Theme Comparison](./themes/THEME_COMPARISON.md)** - Visual comparison of available themes
+
+### Quick Start Guides
+Jump straight into specific areas:
+- **[Authentication](./quick-starts/QUICK_START_AUTH.md)** - User authentication and role-based access
+- **[Admin Animals](./quick-starts/QUICK_START_ADMIN_ANIMALS.md)** - Animal database management
+- **[Medical Records](./quick-starts/QUICK_START_MEDICAL.md)** - Medical documentation system
+- **[Tasks](./quick-starts/QUICK_START_TASKS.md)** - Task management for volunteers
+- **[Notifications](./quick-starts/QUICK_START_NOTIFICATIONS.md)** - Real-time notification system
+- **[Territories](./quick-starts/QUICK_START_TERRITORIES.md)** - Territory mapping and visualization
+- **[Public Pages](./quick-starts/QUICK_START_PUBLIC_PAGES.md)** - Public-facing pages
+- **[Database Indexing](./quick-starts/QUICK_START_INDEXING.md)** - Creating and managing indexes
+
+### Optimization Guides
+Improve performance and code quality:
+- **[Query Optimization](./guides/QUERY_OPTIMIZATION.md)** - Database indexing and query performance
+- **[Bundle Analysis](./guides/BUNDLE_ANALYSIS.md)** - Analyzing and optimizing bundle size
+- **[Context Optimization](./guides/CONTEXT_OPTIMIZATION.md)** - Optimizing React context usage
+- **[Hooks Audit](./guides/HOOKS_AUDIT.md)** - Custom hooks best practices
+
+### Additional Guides
+- **[Dev Credentials](./guides/DEV_CREDENTIALS.md)** - Development credentials and access
+- **[Troubleshooting](./guides/TROUBLESHOOTING.md)** - Common issues and solutions
+- **[Design System Implementation](./guides/DESIGN_SYSTEM_IMPLEMENTATION.md)** - Design system setup
+- **[Typography Implementation](./guides/TYPOGRAPHY_IMPLEMENTATION.md)** - Typography system
+- **[Typography System Complete](./guides/TYPOGRAPHY_SYSTEM_COMPLETE.md)** - Typography completion guide
+
+## 📖 How to Use This Documentation
+
+### I'm a New Developer
+1. Start with [Setup Guide](./guides/SETUP_GUIDE.md) to get your environment ready
+2. Read [Developer Guide](./guides/DEVELOPER_GUIDE.md) to understand the project
+3. Review [Conventions](./guides/CONVENTIONS.md) to learn our coding standards
+4. Use [Quick Reference](./guides/QUICK_REFERENCE.md) for common tasks
+
+### I'm Working on a Specific Feature
+1. Check the relevant Quick Start guide in `quick-starts/`
+2. Review the architecture documentation in `architecture/`
+3. Refer to [Conventions](./guides/CONVENTIONS.md) for best practices
+4. Use [Database Schema](./architecture/DATABASE_SCHEMA.md) for data structure
+
+### I'm Working with Themes
+1. Read [Theme Switcher Guide](./themes/THEME_SWITCHER_GUIDE.md) for complete overview
+2. Use [Theme Customization Guide](./themes/THEME_CUSTOMIZATION_GUIDE.md) for quick reference
+3. Check [Theme Comparison](./themes/THEME_COMPARISON.md) for visual differences
+
+### I'm Optimizing Performance
+1. Read [Query Optimization](./guides/QUERY_OPTIMIZATION.md)
+2. Review [Backend Architecture](./architecture/BACKEND_ARCHITECTURE.md)
+3. Check [Database Schema](./architecture/DATABASE_SCHEMA.md) for indexes
+4. Use [Bundle Analysis](./guides/BUNDLE_ANALYSIS.md) for frontend optimization
+
+### I'm Setting Up Mock Data
+1. Read [Mock Data Complete Guide](./features/MOCK_DATA_COMPLETE_GUIDE.md)
+2. Check [Mock Data Status](./features/MOCK_DATA_STATUS.md) for current state
+3. Follow feature-specific mock data guides in `features/`
+
+## 🎯 Documentation by Role
+
+### Frontend Developer
+- [Frontend Architecture](./architecture/FRONTEND_ARCHITECTURE.md)
+- [Conventions](./guides/CONVENTIONS.md)
+- [Theme System](./themes/THEME_SWITCHER_GUIDE.md)
+- [Accessibility Guidelines](./guides/ACCESSIBILITY_GUIDELINES.md)
+
+### Backend Developer
+- [Backend Architecture](./architecture/BACKEND_ARCHITECTURE.md)
+- [Database Schema](./architecture/DATABASE_SCHEMA.md)
+- [Query Optimization](./guides/QUERY_OPTIMIZATION.md)
+
+### Full Stack Developer
+- [Developer Guide](./guides/DEVELOPER_GUIDE.md)
+- [Setup Guide](./guides/SETUP_GUIDE.md)
+- All Quick Start guides in `quick-starts/`
+
+### Designer
+- [Design System](./GuideDocs/DesignSystem.md)
+- [Theme Comparison](./themes/THEME_COMPARISON.md)
+- [Accessibility Guidelines](./guides/ACCESSIBILITY_GUIDELINES.md)
+
+## 📝 Contributing to Documentation
+
+When adding new documentation:
+1. Place it in the appropriate subfolder
+2. Follow the existing structure and naming conventions
+3. Update this README with a link to your document
+4. Include code examples where relevant
+5. Keep documentation up to date with code changes
+
+### Documentation Standards
+- Use Markdown format
+- Include code examples
+- Keep examples up to date
+- Use clear headings and structure
+- Link to related documentation
+- Include troubleshooting sections where relevant
+
+## 🔍 Finding Documentation
+
+### By Topic
+- **Architecture**: `architecture/`
+- **Features**: `features/`
+- **Guides**: `guides/`
+- **Quick Starts**: `quick-starts/`
+- **Themes**: `themes/`
+- **Task Summaries**: `task-summaries/`
+
+### By File Type
+- **Setup & Getting Started**: `guides/SETUP_GUIDE.md`, `guides/DEVELOPER_GUIDE.md`
+- **Architecture**: `architecture/` folder
+- **Feature Guides**: `features/` and `quick-starts/` folders
+- **Best Practices**: `guides/CONVENTIONS.md`, `guides/ACCESSIBILITY_GUIDELINES.md`
+- **Implementation Details**: `task-summaries/` folder
+
+## 🆘 Getting Help
+
+If you can't find what you're looking for:
+1. Check the [Quick Reference](./guides/QUICK_REFERENCE.md)
+2. Search through the documentation files
+3. Review the code comments in the relevant files
+4. Check [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md) for detailed index
+5. Ask the development team
+
+## 📚 Additional Resources
+
+- [Main Project README](../README.md)
+- [Steering Rules](../.kiro/steering/README.md)
+- [Spec Documentation](../.kiro/specs/)
 
 ---
 
-**Last Updated**: [Current Date]
-
-**Maintained By**: CCF Development Team
+**Last Updated**: November 2025  
+**Documentation Version**: 2.0.0

@@ -5,11 +5,14 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { LoginForm } from '@/components/features/auth/LoginForm';
 import { RegisterForm } from '@/components/features/auth/RegisterForm';
 import { AuthDebug } from '@/components/features/auth/AuthDebug';
+import { useTheme } from '@/contexts/ThemeContext';
+import { cn } from '@/lib/utils';
 
 function LoginContent() {
   const [showRegister, setShowRegister] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { config } = useTheme();
 
   const handleSuccess = () => {
     const redirect = searchParams.get('redirect') || '/dashboard';
@@ -21,19 +24,29 @@ function LoginContent() {
   const isDev = process.env.NODE_ENV === 'development';
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-900 dark:to-blue-900 px-4 py-8">
+    <div className={cn(
+      "flex items-center justify-center min-h-screen px-4 py-8",
+      config.effects.gradients
+        ? "bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-900 dark:to-blue-900"
+        : "bg-background"
+    )}>
       <div className="w-full max-w-md space-y-6">
         {isDev && (
-          <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg p-1 shadow-lg">
-            <div className="bg-white dark:bg-gray-900 rounded-lg p-6">
+          <div className={cn(
+            "rounded-lg p-1 shadow-lg",
+            config.effects.gradients
+              ? "bg-gradient-to-r from-blue-500 to-purple-500"
+              : "bg-primary"
+          )}>
+            <div className="bg-card rounded-lg p-6">
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-2xl">🔧</span>
-                <h3 className="font-bold text-lg text-gray-900 dark:text-white">
+                <h3 className="font-bold text-lg text-foreground">
                   Development Mode - Mock Login
                 </h3>
               </div>
               
-              <p className="text-gray-700 dark:text-gray-300 mb-4">
+              <p className="text-muted-foreground mb-4">
                 Use these test credentials to explore different user roles:
               </p>
               

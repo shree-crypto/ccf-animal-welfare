@@ -12,6 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { TrendingUp, TrendingDown, Minus, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface MetricCardProps {
   title: string;
@@ -30,6 +31,8 @@ export function MetricCard({
   loading = false,
   className,
 }: MetricCardProps) {
+  const { config } = useTheme();
+  
   const getTrendIcon = () => {
     switch (metric.trend) {
       case 'up':
@@ -109,8 +112,10 @@ export function MetricCard({
         </div>
       </CardContent>
 
-      {/* Decorative gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-50" />
+      {/* Decorative gradient - only in custom theme */}
+      {config.effects.gradients && (
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-50" />
+      )}
     </Card>
   );
 }

@@ -1,0 +1,343 @@
+/**
+ * Default Theme - Clean shadcn/ui Theme
+ * 
+ * This theme provides a minimal, clean design with:
+ * - Neutral color palette
+ * - Simple backgrounds without gradients
+ * - Standard shadcn/ui styling
+ * - No Aceternity effects
+ */
+
+[data-theme="default"] {
+  /* Base Colors - Neutral Palette */
+  --color-neutral-50: 250 250 250; /* #FAFAFA */
+  --color-neutral-100: 245 245 245; /* #F5F5F5 */
+  --color-neutral-200: 229 229 229; /* #E5E5E5 */
+  --color-neutral-300: 212 212 212; /* #D4D4D4 */
+  --color-neutral-400: 163 163 163; /* #A3A3A3 */
+  --color-neutral-500: 115 115 115; /* #737373 */
+  --color-neutral-600: 82 82 82; /* #525252 */
+  --color-neutral-700: 64 64 64; /* #404040 */
+  --color-neutral-800: 38 38 38; /* #262626 */
+  --color-neutral-900: 23 23 23; /* #171717 */
+  
+  /* Primary - Subtle Blue */
+  --color-primary-default: 59 130 246; /* #3B82F6 - Blue 500 */
+  --color-primary-light: 96 165 250; /* #60A5FA - Blue 400 */
+  --color-primary-dark: 37 99 235; /* #2563EB - Blue 600 */
+  
+  /* Secondary - Subtle Gray */
+  --color-secondary-default: 100 116 139; /* #64748B - Slate 500 */
+  --color-secondary-light: 148 163 184; /* #94A3B8 - Slate 400 */
+  --color-secondary-dark: 71 85 105; /* #475569 - Slate 600 */
+  
+  /* Accent - Minimal */
+  --color-accent-default: 99 102 241; /* #6366F1 - Indigo 500 */
+  --color-accent-light: 129 140 248; /* #818CF8 - Indigo 400 */
+  --color-accent-dark: 79 70 229; /* #4F46E5 - Indigo 600 */
+  
+  /* Status Colors - Standard */
+  --color-success-default: 34 197 94; /* #22C55E - Green 500 */
+  --color-warning-default: 234 179 8; /* #EAB308 - Yellow 500 */
+  --color-error-default: 239 68 68; /* #EF4444 - Red 500 */
+  --color-info-default: 59 130 246; /* #3B82F6 - Blue 500 */
+  
+  /* Background Colors */
+  --background: rgb(var(--color-neutral-50));
+  --foreground: rgb(var(--color-neutral-900));
+  
+  /* Card */
+  --card: rgb(255 255 255);
+  --card-foreground: rgb(var(--color-neutral-900));
+  
+  /* Popover */
+  --popover: rgb(255 255 255);
+  --popover-foreground: rgb(var(--color-neutral-900));
+  
+  /* Primary */
+  --primary: rgb(var(--color-primary-default));
+  --primary-foreground: rgb(255 255 255);
+  
+  /* Secondary */
+  --secondary: rgb(var(--color-secondary-default));
+  --secondary-foreground: rgb(255 255 255);
+  
+  /* Muted */
+  --muted: rgb(var(--color-neutral-100));
+  --muted-foreground: rgb(var(--color-neutral-500));
+  
+  /* Accent */
+  --accent: rgb(var(--color-accent-default));
+  --accent-foreground: rgb(255 255 255);
+  
+  /* Destructive */
+  --destructive: rgb(var(--color-error-default));
+  --destructive-foreground: rgb(255 255 255);
+  
+  /* Borders and Inputs */
+  --border: rgb(var(--color-neutral-300));
+  --input: rgb(var(--color-neutral-300));
+  --ring: rgb(var(--color-primary-default));
+  
+  /* Chart colors - Neutral palette */
+  --chart-1: rgb(var(--color-primary-default));
+  --chart-2: rgb(var(--color-success-default));
+  --chart-3: rgb(var(--color-accent-default));
+  --chart-4: rgb(168 85 247); /* Purple 500 */
+  --chart-5: rgb(236 72 153); /* Pink 500 */
+  
+  /* Sidebar */
+  --sidebar: rgb(var(--color-neutral-100));
+  --sidebar-foreground: rgb(var(--color-neutral-900));
+  --sidebar-primary: rgb(var(--color-primary-default));
+  --sidebar-primary-foreground: rgb(255 255 255);
+  --sidebar-accent: rgb(var(--color-accent-default));
+  --sidebar-accent-foreground: rgb(255 255 255);
+  --sidebar-border: rgb(var(--color-neutral-300));
+  --sidebar-ring: rgb(var(--color-primary-default));
+}
+
+/* Default Theme - Dark Mode */
+[data-theme="default"].dark {
+  /* Background Colors */
+  --background: rgb(var(--color-neutral-900));
+  --foreground: rgb(var(--color-neutral-100));
+  
+  /* Card */
+  --card: rgb(var(--color-neutral-800));
+  --card-foreground: rgb(var(--color-neutral-100));
+  
+  /* Popover */
+  --popover: rgb(var(--color-neutral-800));
+  --popover-foreground: rgb(var(--color-neutral-100));
+  
+  /* Primary - Lighter for dark mode */
+  --primary: rgb(var(--color-primary-light));
+  --primary-foreground: rgb(var(--color-neutral-900));
+  
+  /* Secondary */
+  --secondary: rgb(var(--color-secondary-light));
+  --secondary-foreground: rgb(var(--color-neutral-900));
+  
+  /* Muted */
+  --muted: rgb(var(--color-neutral-800));
+  --muted-foreground: rgb(var(--color-neutral-400));
+  
+  /* Accent */
+  --accent: rgb(var(--color-accent-light));
+  --accent-foreground: rgb(var(--color-neutral-900));
+  
+  /* Destructive */
+  --destructive: rgb(239 68 68);
+  --destructive-foreground: rgb(var(--color-neutral-100));
+  
+  /* Borders and Inputs */
+  --border: rgb(var(--color-neutral-700));
+  --input: rgb(var(--color-neutral-700));
+  --ring: rgb(var(--color-primary-light));
+  
+  /* Chart colors - Adjusted for dark mode */
+  --chart-1: rgb(var(--color-primary-light));
+  --chart-2: rgb(34 197 94);
+  --chart-3: rgb(var(--color-accent-light));
+  --chart-4: rgb(192 132 252); /* Lighter purple */
+  --chart-5: rgb(244 114 182); /* Lighter pink */
+  
+  /* Sidebar */
+  --sidebar: rgb(var(--color-neutral-800));
+  --sidebar-foreground: rgb(var(--color-neutral-100));
+  --sidebar-primary: rgb(var(--color-primary-light));
+  --sidebar-primary-foreground: rgb(var(--color-neutral-900));
+  --sidebar-accent: rgb(var(--color-accent-light));
+  --sidebar-accent-foreground: rgb(var(--color-neutral-900));
+  --sidebar-border: rgb(var(--color-neutral-700));
+  --sidebar-ring: rgb(var(--color-primary-light));
+}
+
+/* Default Theme - Remove Gradients */
+[data-theme="default"] .gradient-bg,
+[data-theme="default"] .gradient-text,
+[data-theme="default"] .gradient-border {
+  background: none;
+  background-image: none;
+  background-clip: unset;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+}
+
+/* Default Theme - Simple Buttons */
+[data-theme="default"] .btn-gradient {
+  background: rgb(var(--color-primary-default));
+  background-image: none;
+  transition: all 0.2s ease;
+}
+
+[data-theme="default"] .btn-gradient:hover:not(:disabled) {
+  background: rgb(var(--color-primary-dark));
+  transform: none;
+  box-shadow: none;
+}
+
+[data-theme="default"] .btn-gradient-secondary {
+  background: rgb(var(--color-secondary-default));
+  background-image: none;
+  transition: all 0.2s ease;
+}
+
+[data-theme="default"] .btn-gradient-secondary:hover:not(:disabled) {
+  background: rgb(var(--color-secondary-dark));
+  transform: none;
+  box-shadow: none;
+}
+
+[data-theme="default"] .btn-gradient-accent {
+  background: rgb(var(--color-accent-default));
+  background-image: none;
+  transition: all 0.2s ease;
+}
+
+[data-theme="default"] .btn-gradient-accent:hover:not(:disabled) {
+  background: rgb(var(--color-accent-dark));
+  transform: none;
+  box-shadow: none;
+}
+
+/* Default Theme - Simple Cards */
+[data-theme="default"] .card-gradient {
+  background: rgb(255 255 255);
+  background-image: none;
+  border: 1px solid rgb(var(--color-neutral-300));
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+[data-theme="default"] .card-gradient:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: none;
+  border-color: rgb(var(--color-neutral-400));
+}
+
+[data-theme="default"].dark .card-gradient {
+  background: rgb(var(--color-neutral-800));
+  border-color: rgb(var(--color-neutral-700));
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="default"].dark .card-gradient:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  border-color: rgb(var(--color-neutral-600));
+}
+
+/* Default Theme - Card Variants */
+[data-theme="default"] .card-elevated {
+  background: rgb(255 255 255);
+  border: 1px solid rgb(var(--color-neutral-300));
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="default"] .card-elevated:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="default"].dark .card-elevated {
+  background: rgb(var(--color-neutral-800));
+  border-color: rgb(var(--color-neutral-700));
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="default"].dark .card-elevated:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="default"] .card-outline {
+  background: transparent;
+  border: 2px solid rgb(var(--color-neutral-300));
+  background-image: none;
+}
+
+[data-theme="default"].dark .card-outline {
+  border-color: rgb(var(--color-neutral-700));
+}
+
+/* Default Theme - Badge Variants */
+[data-theme="default"] .badge-default {
+  background: rgb(var(--color-primary-default));
+  background-image: none;
+  box-shadow: none;
+}
+
+[data-theme="default"] .badge-default:hover {
+  background: rgb(var(--color-primary-dark));
+  transform: none;
+}
+
+[data-theme="default"] .badge-secondary {
+  background: rgb(var(--color-secondary-default));
+  background-image: none;
+  box-shadow: none;
+}
+
+[data-theme="default"] .badge-secondary:hover {
+  background: rgb(var(--color-secondary-dark));
+  transform: none;
+}
+
+[data-theme="default"] .badge-accent {
+  background: rgb(var(--color-accent-default));
+  background-image: none;
+  box-shadow: none;
+}
+
+[data-theme="default"] .badge-accent:hover {
+  background: rgb(var(--color-accent-dark));
+  transform: none;
+}
+
+[data-theme="default"] .badge-success {
+  background: rgb(var(--color-success-default));
+  background-image: none;
+  box-shadow: none;
+}
+
+[data-theme="default"] .badge-success:hover {
+  background: rgb(34 197 94);
+  transform: none;
+}
+
+[data-theme="default"] .badge-warning {
+  background: rgb(var(--color-warning-default));
+  background-image: none;
+  box-shadow: none;
+}
+
+[data-theme="default"] .badge-warning:hover {
+  background: rgb(202 138 4);
+  transform: none;
+}
+
+[data-theme="default"] .badge-destructive {
+  background: rgb(var(--color-error-default));
+  background-image: none;
+  box-shadow: none;
+}
+
+[data-theme="default"] .badge-destructive:hover {
+  background: rgb(220 38 38);
+  transform: none;
+}
+
+[data-theme="default"] .badge-outline {
+  border: 1px solid rgb(var(--color-neutral-300));
+  background: transparent;
+  background-image: none;
+}
+
+[data-theme="default"].dark .badge-outline {
+  border-color: rgb(var(--color-neutral-700));
+}
+
+/* Default Theme - Hide Aceternity Effects */
+[data-theme="default"] .aceternity-effect,
+[data-theme="default"] [data-aceternity="true"] {
+  display: none !important;
+}

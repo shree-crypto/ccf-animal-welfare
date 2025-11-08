@@ -11,6 +11,7 @@ A comprehensive digital platform for the Committee for Campus Fauna (CCF) at IIT
 - **Notification System**: Automated reminders and real-time updates for volunteers
 - **Admin Dashboard**: Comprehensive animal database management with bulk operations
 - **Public Information Pages**: Mission, contact, success stories, and volunteer recruitment
+- **Theme Switcher**: Toggle between vibrant custom theme and clean default theme with persistent preferences
 
 ## Tech Stack
 
@@ -82,6 +83,8 @@ Comprehensive documentation is available in the [docs](./docs) folder:
 
 ### Specialized Guides
 - **[Query Optimization](./docs/QUERY_OPTIMIZATION.md)** - Database indexing and query performance optimization
+- **[Theme Switcher Guide](./docs/THEME_SWITCHER_GUIDE.md)** - Complete guide to using and customizing themes
+- **[Theme Customization](./docs/THEME_CUSTOMIZATION_GUIDE.md)** - Quick reference for theme customization
 
 See [docs/README.md](./docs/README.md) for the complete documentation index and quick navigation guide.
 
@@ -109,6 +112,72 @@ ccf-animal-welfare/
 ├── public/               # Static assets
 └── docker-compose.yml    # Appwrite local setup
 ```
+
+## Theme Switcher
+
+CampusPaws includes a powerful theme switcher that allows users to toggle between two distinct visual experiences:
+
+### Available Themes
+
+#### 🎨 Custom Theme (Default)
+The vibrant CampusPaws branding theme featuring:
+- Colorful gradients and animations
+- Aceternity UI effects (sparkles, beams, animated gradients)
+- Rich visual design with custom color palette
+- Enhanced user engagement through dynamic effects
+
+#### 🎯 Default Theme
+A clean, minimal theme featuring:
+- Standard shadcn/ui styling
+- Neutral color palette
+- No decorative effects
+- Professional, distraction-free interface
+
+### Key Features
+
+- **Persistent Preferences**: Theme selection is saved in localStorage and persists across page reloads
+- **Seamless Switching**: Instant theme changes without page refresh
+- **Dark Mode Compatible**: Works alongside dark mode toggle
+- **Accessibility**: Both themes maintain WCAG 2.1 AA contrast ratios
+- **Performance Optimized**: Conditional loading of theme-specific assets
+
+### Usage
+
+The theme switcher is located in the header navigation. Simply click the dropdown to select your preferred theme.
+
+For developers:
+
+```tsx
+import { useTheme } from '@/contexts/ThemeContext';
+
+function MyComponent() {
+  const { theme, setTheme, config } = useTheme();
+  
+  // Switch theme
+  setTheme('default');
+  
+  // Check if effects are enabled
+  if (config.effects.gradients) {
+    // Render gradient background
+  }
+}
+```
+
+### Documentation
+
+- **[Complete Theme Guide](./docs/THEME_SWITCHER_GUIDE.md)** - Comprehensive guide covering usage, architecture, and customization
+- **[Quick Customization Reference](./docs/THEME_CUSTOMIZATION_GUIDE.md)** - Quick reference for common customizations
+
+### Theme Comparison
+
+| Feature | Custom Theme | Default Theme |
+|---------|-------------|---------------|
+| Gradients | ✅ Enabled | ❌ Disabled |
+| Animations | ✅ Enabled | ❌ Disabled |
+| Aceternity Effects | ✅ Enabled | ❌ Disabled |
+| Color Palette | Vibrant | Neutral |
+| Visual Style | Dynamic | Minimal |
+| Best For | Public engagement | Professional use |
 
 ## Development
 

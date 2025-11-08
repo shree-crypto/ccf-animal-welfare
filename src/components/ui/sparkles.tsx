@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface SparklesProps {
   className?: string;
@@ -17,7 +18,18 @@ interface SparklesProps {
   background?: string;
 }
 
+/**
+ * SparklesCore - Aceternity UI component
+ * 
+ * Displays animated sparkle particles in the background.
+ * Only renders when custom theme is active (config.effects.aceternity === true).
+ * 
+ * @param props - Sparkles configuration options
+ * @returns Animated sparkles or null if disabled
+ */
 export const SparklesCore = (props: SparklesProps) => {
+  const { config } = useTheme();
+  
   const {
     className = "",
     size = 1.2,
@@ -42,6 +54,11 @@ export const SparklesCore = (props: SparklesProps) => {
   }>>([]);
 
   useEffect(() => {
+    // Only generate particles if aceternity effects are enabled
+    if (!config.effects.aceternity) {
+      return;
+    }
+    
     const generateParticles = () => {
       const newParticles = [];
       for (let i = 0; i < density; i++) {
@@ -58,7 +75,12 @@ export const SparklesCore = (props: SparklesProps) => {
     };
 
     generateParticles();
-  }, [density, size, minSize, speed, minSpeed, opacity, minOpacity]);
+  }, [config.effects.aceternity, density, size, minSize, speed, minSpeed, opacity, minOpacity]);
+
+  // Only show in custom theme
+  if (!config.effects.aceternity) {
+    return null;
+  }
 
   if (particles.length === 0) {
     return <div className={className} style={{ background }} />;

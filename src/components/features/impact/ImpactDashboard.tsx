@@ -15,6 +15,7 @@ import { TrendChart } from './TrendChart';
 import { RecentActivity } from './RecentActivity';
 import { Heart, Users, Utensils, Home } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface ImpactDashboardProps {
   metrics?: ImpactMetrics | null;
@@ -31,6 +32,7 @@ export function ImpactDashboard({
   loading = false,
   className,
 }: ImpactDashboardProps) {
+  const { config } = useTheme();
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   useEffect(() => {
@@ -155,23 +157,33 @@ export function ImpactDashboard({
       />
 
       {/* Call to Action */}
-      <div className="text-center py-8 px-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 rounded-lg">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+      <div className={cn(
+        "text-center py-8 px-4 rounded-lg",
+        config.effects.gradients
+          ? "bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950"
+          : "bg-muted"
+      )}>
+        <h3 className="text-xl font-bold text-foreground mb-2">
           Be Part of the Change
         </h3>
-        <p className="text-gray-600 dark:text-gray-400 mb-4">
+        <p className="text-muted-foreground mb-4">
           Every contribution makes a difference in the lives of campus animals
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <a
             href="/donate"
-            className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+            className={cn(
+              "inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-white transition-colors",
+              config.effects.gradients
+                ? "bg-blue-600 hover:bg-blue-700"
+                : "bg-primary hover:bg-primary/90"
+            )}
           >
             Donate Now
           </a>
           <a
             href="/contact"
-            className="inline-flex items-center justify-center rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-6 py-3 text-sm font-semibold text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            className="inline-flex items-center justify-center rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground hover:bg-accent transition-colors"
           >
             Become a Volunteer
           </a>
