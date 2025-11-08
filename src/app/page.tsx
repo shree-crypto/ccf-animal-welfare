@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { AnimatedGradient } from "@/components/ui/animated-gradient";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import { ImpactDashboardContainer } from "@/components/features/impact";
 import { Heart, Users, MapPin, Sparkles, PawPrint, Calendar, DollarSign, BookOpen } from "lucide-react";
 
 export default function Home() {
@@ -129,6 +130,20 @@ export default function Home() {
               className="md:col-span-1 bg-gradient-to-br from-blue-100/80 to-cyan-100/80 dark:from-blue-900/20 dark:to-cyan-900/20 backdrop-blur-sm border-2 border-blue-200 dark:border-blue-800"
             />
           </BentoGrid>
+        </div>
+      </section>
+
+      {/* Impact Dashboard Section */}
+      <section className="py-20 px-4 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <ImpactDashboardContainer />
+          </motion.div>
         </div>
       </section>
 
