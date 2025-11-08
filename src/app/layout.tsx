@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Montserrat } from "next/font/google";
+// Temporarily disabled Google Fonts due to build environment network restrictions
+// This should be re-enabled when deploying to production with proper network access
+// import { Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -10,20 +12,20 @@ import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { Toaster } from "sonner";
 
 // Playfair Display for headlines - elegant, classic serif
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-});
+// const playfairDisplay = Playfair_Display({
+//   variable: "--font-playfair",
+//   subsets: ["latin"],
+//   weight: ["400", "700"],
+//   display: "swap",
+// });
 
 // Montserrat for body text - clean, modern, friendly
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
+// const montserrat = Montserrat({
+//   variable: "--font-montserrat",
+//   subsets: ["latin"],
+//   weight: ["400", "500", "600", "700"],
+//   display: "swap",
+// });
 
 export const metadata: Metadata = {
   title: {
@@ -101,7 +103,9 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${playfairDisplay.variable} ${montserrat.variable} antialiased`}
+        className="antialiased"
+        // Fonts temporarily disabled - restore this when Google Fonts are re-enabled:
+        // className={`${playfairDisplay.variable} ${montserrat.variable} antialiased`}
       >
         {/* Skip to main content link for accessibility */}
         <a
