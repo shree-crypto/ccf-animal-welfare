@@ -1,7 +1,12 @@
 import { UserRole, User } from '@/types/auth';
 
 // Create a mock user that matches the Appwrite User structure
-const createMockUser = (id: string, email: string, name: string, role: UserRole): User => {
+const createMockUser = (
+  id: string,
+  email: string,
+  name: string,
+  role: UserRole
+): User => {
   const now = new Date().toISOString();
   return {
     $id: id,
@@ -27,15 +32,30 @@ const createMockUser = (id: string, email: string, name: string, role: UserRole)
 const MOCK_USERS: Record<string, { password: string; user: User }> = {
   'admin@ccf.dev': {
     password: 'admin123',
-    user: createMockUser('mock-admin-id', 'admin@ccf.dev', 'Admin User', 'admin'),
+    user: createMockUser(
+      'mock-admin-id',
+      'admin@ccf.dev',
+      'Admin User',
+      'admin'
+    ),
   },
   'volunteer@ccf.dev': {
     password: 'volunteer123',
-    user: createMockUser('mock-volunteer-id', 'volunteer@ccf.dev', 'Volunteer User', 'volunteer'),
+    user: createMockUser(
+      'mock-volunteer-id',
+      'volunteer@ccf.dev',
+      'Volunteer User',
+      'volunteer'
+    ),
   },
   'user@ccf.dev': {
     password: 'user123',
-    user: createMockUser('mock-user-id', 'user@ccf.dev', 'Public User', 'public'),
+    user: createMockUser(
+      'mock-user-id',
+      'user@ccf.dev',
+      'Public User',
+      'public'
+    ),
   },
 };
 
@@ -58,12 +78,12 @@ export class MockAuthService {
     }
 
     const mockUser = MOCK_USERS[email];
-    
+
     // If email is not a mock user, throw a different error
     if (!mockUser) {
       throw new Error('Not a mock user');
     }
-    
+
     // If password is wrong, throw invalid credentials
     if (mockUser.password !== password) {
       throw new Error('Invalid credentials');
@@ -87,7 +107,12 @@ export class MockAuthService {
     }
 
     // For mock, just create a volunteer user
-    const newUser = createMockUser(`mock-${Date.now()}`, email, name, 'volunteer');
+    const newUser = createMockUser(
+      `mock-${Date.now()}`,
+      email,
+      name,
+      'volunteer'
+    );
 
     // Store session in localStorage
     if (typeof window !== 'undefined') {

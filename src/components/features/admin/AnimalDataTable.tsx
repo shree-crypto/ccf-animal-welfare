@@ -22,7 +22,12 @@ interface AnimalDataTableProps {
   isLoading?: boolean;
 }
 
-export function AnimalDataTable({ animals, onEdit, onDelete, isLoading }: AnimalDataTableProps) {
+export function AnimalDataTable({
+  animals,
+  onEdit,
+  onDelete,
+  isLoading,
+}: AnimalDataTableProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<string>('all');
@@ -31,27 +36,30 @@ export function AnimalDataTable({ animals, onEdit, onDelete, isLoading }: Animal
 
   // Filter and sort animals
   const filteredAnimals = useMemo(() => {
-    let filtered = animals.filter((animal) => {
-      const matchesSearch = animal.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    let filtered = animals.filter(animal => {
+      const matchesSearch =
+        animal.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         animal.location.area.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesType = typeFilter === 'all' || animal.type === typeFilter;
-      const matchesStatus = statusFilter === 'all' || animal.status === statusFilter;
-      
+      const matchesStatus =
+        statusFilter === 'all' || animal.status === statusFilter;
+
       return matchesSearch && matchesType && matchesStatus;
     });
 
     // Sort
     filtered.sort((a, b) => {
       let comparison = 0;
-      
+
       if (sortBy === 'name') {
         comparison = a.name.localeCompare(b.name);
       } else if (sortBy === 'age') {
         comparison = a.age - b.age;
       } else if (sortBy === 'createdAt') {
-        comparison = new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+        comparison =
+          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
       }
-      
+
       return sortOrder === 'asc' ? comparison : -comparison;
     });
 
@@ -64,7 +72,7 @@ export function AnimalDataTable({ animals, onEdit, onDelete, isLoading }: Animal
       needs_attention: 'secondary',
       under_treatment: 'destructive',
     };
-    
+
     return (
       <Badge variant={variants[status] || 'default'}>
         {status.replace('_', ' ')}
@@ -90,11 +98,11 @@ export function AnimalDataTable({ animals, onEdit, onDelete, isLoading }: Animal
           <Input
             placeholder="Search by name or location..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={e => setSearchTerm(e.target.value)}
             className="pl-10"
           />
         </div>
-        
+
         <Select value={typeFilter} onValueChange={setTypeFilter}>
           <SelectTrigger className="w-full md:w-[180px]">
             <SelectValue placeholder="Filter by type" />
@@ -141,7 +149,9 @@ export function AnimalDataTable({ animals, onEdit, onDelete, isLoading }: Animal
                     )}
                   </button>
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-medium">Type</th>
+                <th className="px-4 py-3 text-left text-sm font-medium">
+                  Type
+                </th>
                 <th className="px-4 py-3 text-left">
                   <button
                     onClick={() => toggleSort('age')}
@@ -153,27 +163,41 @@ export function AnimalDataTable({ animals, onEdit, onDelete, isLoading }: Animal
                     )}
                   </button>
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-medium">Location</th>
-                <th className="px-4 py-3 text-left text-sm font-medium">Status</th>
-                <th className="px-4 py-3 text-left text-sm font-medium">Feeder</th>
-                <th className="px-4 py-3 text-right text-sm font-medium">Actions</th>
+                <th className="px-4 py-3 text-left text-sm font-medium">
+                  Location
+                </th>
+                <th className="px-4 py-3 text-left text-sm font-medium">
+                  Status
+                </th>
+                <th className="px-4 py-3 text-left text-sm font-medium">
+                  Feeder
+                </th>
+                <th className="px-4 py-3 text-right text-sm font-medium">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y">
               {isLoading ? (
                 <tr>
-                  <td colSpan={7} className="px-4 py-8 text-center text-gray-500">
+                  <td
+                    colSpan={7}
+                    className="px-4 py-8 text-center text-gray-500"
+                  >
                     Loading animals...
                   </td>
                 </tr>
               ) : filteredAnimals.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-4 py-8 text-center text-gray-500">
+                  <td
+                    colSpan={7}
+                    className="px-4 py-8 text-center text-gray-500"
+                  >
                     No animals found
                   </td>
                 </tr>
               ) : (
-                filteredAnimals.map((animal) => (
+                filteredAnimals.map(animal => (
                   <tr key={animal.id} className="hover:bg-gray-50">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
@@ -190,7 +214,9 @@ export function AnimalDataTable({ animals, onEdit, onDelete, isLoading }: Animal
                     <td className="px-4 py-3 capitalize">{animal.type}</td>
                     <td className="px-4 py-3">{animal.age} yrs</td>
                     <td className="px-4 py-3">{animal.location.area}</td>
-                    <td className="px-4 py-3">{getStatusBadge(animal.status)}</td>
+                    <td className="px-4 py-3">
+                      {getStatusBadge(animal.status)}
+                    </td>
                     <td className="px-4 py-3">{animal.currentFeeder || '-'}</td>
                     <td className="px-4 py-3">
                       <div className="flex justify-end gap-2">
@@ -214,7 +240,11 @@ export function AnimalDataTable({ animals, onEdit, onDelete, isLoading }: Animal
                           size="sm"
                           variant="ghost"
                           onClick={() => {
-                            if (confirm(`Are you sure you want to delete ${animal.name}?`)) {
+                            if (
+                              confirm(
+                                `Are you sure you want to delete ${animal.name}?`
+                              )
+                            ) {
                               onDelete(animal.id);
                             }
                           }}

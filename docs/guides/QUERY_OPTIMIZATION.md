@@ -11,6 +11,7 @@ The application uses Appwrite as the backend database with carefully designed in
 ### 1. Pagination
 
 All list queries now include proper pagination with:
+
 - **Default limit**: 25 items
 - **Maximum limit**: 100 items per query
 - **Offset-based pagination**: For navigating through large datasets
@@ -19,6 +20,7 @@ All list queries now include proper pagination with:
 ### 2. Query Limits
 
 Different query types have appropriate limits:
+
 - Search results: 50 items
 - Dashboard items: 10 items
 - Notification batches: 20 items
@@ -30,6 +32,7 @@ Different query types have appropriate limits:
 ### 3. Compound Indexes
 
 Indexes are designed to match common query patterns:
+
 - Filters are applied in the order that matches index definitions
 - Equality filters come before range filters
 - Ordering matches index order for optimal performance
@@ -37,6 +40,7 @@ Indexes are designed to match common query patterns:
 ### 4. Query Result Structure
 
 All query functions now return a consistent structure:
+
 ```typescript
 {
   items: T[],           // The actual data
@@ -56,52 +60,52 @@ All query functions now return a consistent structure:
 
 ### Animals Collection
 
-| Index Name | Type | Attributes | Purpose |
-|------------|------|------------|---------|
-| type_status | Key | type (ASC), status (ASC) | Filter by animal type and status |
-| packId | Key | packId (ASC) | Filter by pack |
-| status_createdAt | Key | status (ASC), $createdAt (DESC) | Medical alerts, sorted by date |
-| name_fulltext | Fulltext | name | Text search on animal names |
+| Index Name       | Type     | Attributes                      | Purpose                          |
+| ---------------- | -------- | ------------------------------- | -------------------------------- |
+| type_status      | Key      | type (ASC), status (ASC)        | Filter by animal type and status |
+| packId           | Key      | packId (ASC)                    | Filter by pack                   |
+| status_createdAt | Key      | status (ASC), $createdAt (DESC) | Medical alerts, sorted by date   |
+| name_fulltext    | Fulltext | name                            | Text search on animal names      |
 
 ### Tasks Collection
 
-| Index Name | Type | Attributes | Purpose |
-|------------|------|------------|---------|
-| assignedTo_completed_scheduledDate | Key | assignedTo (ASC), completed (ASC), scheduledDate (ASC) | Volunteer task queries |
-| type_priority_scheduledDate | Key | type (ASC), priority (DESC), scheduledDate (ASC) | Task management by type and priority |
-| animalId_completed | Key | animalId (ASC), completed (ASC) | Tasks for specific animals |
-| territoryId_scheduledDate | Key | territoryId (ASC), scheduledDate (ASC) | Territory task management |
-| completed_scheduledDate | Key | completed (ASC), scheduledDate (ASC) | Overdue task detection |
+| Index Name                         | Type | Attributes                                             | Purpose                              |
+| ---------------------------------- | ---- | ------------------------------------------------------ | ------------------------------------ |
+| assignedTo_completed_scheduledDate | Key  | assignedTo (ASC), completed (ASC), scheduledDate (ASC) | Volunteer task queries               |
+| type_priority_scheduledDate        | Key  | type (ASC), priority (DESC), scheduledDate (ASC)       | Task management by type and priority |
+| animalId_completed                 | Key  | animalId (ASC), completed (ASC)                        | Tasks for specific animals           |
+| territoryId_scheduledDate          | Key  | territoryId (ASC), scheduledDate (ASC)                 | Territory task management            |
+| completed_scheduledDate            | Key  | completed (ASC), scheduledDate (ASC)                   | Overdue task detection               |
 
 ### Medical Records Collection
 
-| Index Name | Type | Attributes | Purpose |
-|------------|------|------------|---------|
-| animalId_date | Key | animalId (ASC), date (DESC) | Medical history for animals |
-| type_date | Key | type (ASC), date (DESC) | Filter by record type |
-| followUpRequired_followUpDate | Key | followUpRequired (ASC), followUpDate (ASC) | Follow-up reminders |
-| animalId_type_date | Key | animalId (ASC), type (ASC), date (DESC) | Specific record types for animals |
+| Index Name                    | Type | Attributes                                 | Purpose                           |
+| ----------------------------- | ---- | ------------------------------------------ | --------------------------------- |
+| animalId_date                 | Key  | animalId (ASC), date (DESC)                | Medical history for animals       |
+| type_date                     | Key  | type (ASC), date (DESC)                    | Filter by record type             |
+| followUpRequired_followUpDate | Key  | followUpRequired (ASC), followUpDate (ASC) | Follow-up reminders               |
+| animalId_type_date            | Key  | animalId (ASC), type (ASC), date (DESC)    | Specific record types for animals |
 
 ### Notifications Collection
 
-| Index Name | Type | Attributes | Purpose |
-|------------|------|------------|---------|
-| recipientId_read_createdAt | Key | recipientId (ASC), read (ASC), $createdAt (DESC) | User notifications with read status |
-| recipientId_type_createdAt | Key | recipientId (ASC), type (ASC), $createdAt (DESC) | Filter notifications by type |
-| recipientId_priority_read | Key | recipientId (ASC), priority (DESC), read (ASC) | High-priority unread notifications |
-| expiresAt | Key | expiresAt (ASC) | Cleanup expired notifications |
+| Index Name                 | Type | Attributes                                       | Purpose                             |
+| -------------------------- | ---- | ------------------------------------------------ | ----------------------------------- |
+| recipientId_read_createdAt | Key  | recipientId (ASC), read (ASC), $createdAt (DESC) | User notifications with read status |
+| recipientId_type_createdAt | Key  | recipientId (ASC), type (ASC), $createdAt (DESC) | Filter notifications by type        |
+| recipientId_priority_read  | Key  | recipientId (ASC), priority (DESC), read (ASC)   | High-priority unread notifications  |
+| expiresAt                  | Key  | expiresAt (ASC)                                  | Cleanup expired notifications       |
 
 ### Territories Collection
 
-| Index Name | Type | Attributes | Purpose |
-|------------|------|------------|---------|
-| assignedVolunteers | Key | assignedVolunteers (ASC) | Territories by volunteer |
-| packSize_updatedAt | Key | packSize (DESC), $updatedAt (DESC) | Territory heatmap visualization |
+| Index Name         | Type | Attributes                         | Purpose                         |
+| ------------------ | ---- | ---------------------------------- | ------------------------------- |
+| assignedVolunteers | Key  | assignedVolunteers (ASC)           | Territories by volunteer        |
+| packSize_updatedAt | Key  | packSize (DESC), $updatedAt (DESC) | Territory heatmap visualization |
 
 ### Notification Preferences Collection
 
-| Index Name | Type | Attributes | Purpose |
-|------------|------|------------|---------|
+| Index Name    | Type   | Attributes   | Purpose                        |
+| ------------- | ------ | ------------ | ------------------------------ |
 | userId_unique | Unique | userId (ASC) | One preference record per user |
 
 ## Setting Up Indexes
@@ -115,6 +119,7 @@ npx tsx src/lib/setup/create-indexes.ts
 ```
 
 This will display:
+
 - All index configurations for each collection
 - Appwrite CLI commands for automated creation
 - Instructions for manual creation
@@ -137,6 +142,7 @@ Choose one of these methods:
 3. Copy and run the CLI commands from the script output
 
 Example:
+
 ```bash
 appwrite databases createIndex \
   --databaseId "ccf-database" \
@@ -156,7 +162,7 @@ appwrite databases createIndex \
 const result = await getAnimals({
   type: 'dog',
   limit: 25,
-  offset: 0
+  offset: 0,
 });
 
 // Bad - fetches all records
@@ -170,14 +176,14 @@ const result = await getAnimals({ type: 'dog' });
 const tasks = await getTasks({
   assignedTo: userId,
   completed: false,
-  startDate: '2024-01-01'
+  startDate: '2024-01-01',
 });
 
 // Less optimal - doesn't match index order
 const tasks = await getTasks({
   completed: false,
   type: 'feeding',
-  assignedTo: userId
+  assignedTo: userId,
 });
 ```
 
@@ -186,12 +192,12 @@ const tasks = await getTasks({
 ```typescript
 // Good - uses appropriate limit for use case
 const dashboardAnimals = await getAnimalsNeedingAttention({
-  limit: QUERY_LIMITS.DASHBOARD_ITEMS // 10 items
+  limit: QUERY_LIMITS.DASHBOARD_ITEMS, // 10 items
 });
 
 // Bad - fetches too many items for dashboard
 const dashboardAnimals = await getAnimalsNeedingAttention({
-  limit: 100
+  limit: 100,
 });
 ```
 
@@ -201,7 +207,9 @@ const dashboardAnimals = await getAnimalsNeedingAttention({
 const result = await getAnimals({ limit: 25, offset: 0 });
 
 console.log(`Showing ${result.animals.length} of ${result.total} animals`);
-console.log(`Page ${result.pagination.currentPage} of ${result.pagination.totalPages}`);
+console.log(
+  `Page ${result.pagination.currentPage} of ${result.pagination.totalPages}`
+);
 
 if (result.pagination.hasMore) {
   // Load next page

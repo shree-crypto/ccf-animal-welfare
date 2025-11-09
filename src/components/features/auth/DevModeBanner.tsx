@@ -9,7 +9,10 @@ interface DevModeBannerProps {
   showCredentials: boolean;
 }
 
-export function DevModeBanner({ onToggleCredentials, showCredentials }: DevModeBannerProps) {
+export function DevModeBanner({
+  onToggleCredentials,
+  showCredentials,
+}: DevModeBannerProps) {
   const [isVisible, setIsVisible] = useState(true);
 
   if (!isVisible) {
@@ -26,7 +29,7 @@ export function DevModeBanner({ onToggleCredentials, showCredentials }: DevModeB
   }
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 text-white shadow-lg">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-yellow-400 text-white shadow-lg">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 flex-1">
@@ -34,7 +37,9 @@ export function DevModeBanner({ onToggleCredentials, showCredentials }: DevModeB
               <AlertTriangle className="h-5 w-5" />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-bold text-sm sm:text-base">Development Mode</h3>
+              <h3 className="font-bold text-sm sm:text-base">
+                Development Mode
+              </h3>
               <p className="text-xs sm:text-sm text-white/90 mt-0.5">
                 Using mock authentication. Credentials are for testing only.
               </p>
@@ -45,12 +50,14 @@ export function DevModeBanner({ onToggleCredentials, showCredentials }: DevModeB
             <button
               onClick={() => onToggleCredentials(!showCredentials)}
               className={cn(
-                "px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-colors flex items-center gap-2",
+                'px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-colors flex items-center gap-2',
                 showCredentials
-                  ? "bg-white/20 hover:bg-white/30"
-                  : "bg-white/10 hover:bg-white/20"
+                  ? 'bg-white/20 hover:bg-white/30'
+                  : 'bg-white/10 hover:bg-white/20'
               )}
-              aria-label={showCredentials ? "Hide credentials" : "Show credentials"}
+              aria-label={
+                showCredentials ? 'Hide credentials' : 'Show credentials'
+              }
             >
               {showCredentials ? (
                 <>

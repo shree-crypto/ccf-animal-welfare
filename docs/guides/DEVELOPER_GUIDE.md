@@ -38,6 +38,7 @@ The CCF Animal Welfare Website is a comprehensive digital platform for the Commi
 ## Technology Stack
 
 ### Frontend
+
 - **Framework**: Next.js 14 with App Router
 - **Language**: TypeScript (strict mode)
 - **UI Library**: React 19
@@ -48,12 +49,14 @@ The CCF Animal Welfare Website is a comprehensive digital platform for the Commi
 - **Animations**: Framer Motion
 
 ### Backend
+
 - **BaaS**: Appwrite (self-hosted on AWS)
 - **Database**: Appwrite Database with real-time subscriptions
 - **Storage**: AWS S3 via Appwrite Storage
 - **Auth**: Appwrite Authentication with team-based roles
 
 ### Development Tools
+
 - **Linting**: ESLint with Next.js and TypeScript configs
 - **Formatting**: Prettier
 - **Type Checking**: TypeScript 5
@@ -145,28 +148,34 @@ ccf-animal-welfare/
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd ccf-animal-welfare
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables**
+
    ```bash
    cp .env.local.example .env.local
    ```
+
    Edit `.env.local` with your Appwrite configuration.
 
 4. **Start local Appwrite instance**
+
    ```bash
    docker-compose up -d
    ```
 
 5. **Run the development server**
+
    ```bash
    npm run dev
    ```
@@ -230,8 +239,6 @@ Appwrite Backend (Database, Storage, Auth)
 6. **Validation Layer**: Zod schemas for type-safe validation
 7. **Type Safety**: Comprehensive TypeScript types in `types/`
 
-
-
 ## Frontend Documentation
 
 For detailed frontend architecture, see [Frontend Architecture](FRONTEND_ARCHITECTURE.md).
@@ -239,18 +246,21 @@ For detailed frontend architecture, see [Frontend Architecture](FRONTEND_ARCHITE
 ### Key Frontend Concepts
 
 **Server Components (Default)**
+
 - Render on the server
 - Can fetch data directly
 - Better performance
 - No client-side JavaScript
 
 **Client Components**
+
 - Marked with `'use client'`
 - Interactive features
 - Use React hooks
 - Access browser APIs
 
 **Hybrid Approach**
+
 - Use server components by default
 - Add client components only when needed
 - Compose server and client components
@@ -262,18 +272,21 @@ For detailed backend architecture, see [Backend Architecture](BACKEND_ARCHITECTU
 ### Key Backend Concepts
 
 **Appwrite as BaaS**
+
 - Database with real-time subscriptions
 - Authentication and authorization
 - File storage
 - Teams and permissions
 
 **Database Layer**
+
 - Abstraction over Appwrite SDK
 - Validation with Zod
 - Optimized queries with indexes
 - Pagination support
 
 **Real-time Features**
+
 - WebSocket subscriptions
 - Automatic UI updates
 - Event-driven architecture
@@ -331,8 +344,11 @@ All database operations follow this pattern:
 4. **Handle Errors**: Try-catch with appropriate error handling
 
 Example:
+
 ```typescript
-export const createAnimal = async (data: CreateAnimalInput): Promise<AnimalProfile> => {
+export const createAnimal = async (
+  data: CreateAnimalInput
+): Promise<AnimalProfile> => {
   // 1. Validate
   const validatedData = createAnimalSchema.parse(data);
 
@@ -375,16 +391,19 @@ src/
 ### Test Types
 
 **Unit Tests**
+
 - Test individual functions
 - Mock external dependencies
 - Fast execution
 
 **Integration Tests**
+
 - Test Appwrite integration
 - Require running Appwrite instance
 - Test database operations
 
 **End-to-End Tests**
+
 - Test complete user workflows
 - Require running application
 - Test UI and backend together
@@ -408,6 +427,7 @@ npm test -- --coverage
 ### Writing Tests
 
 Example unit test:
+
 ```typescript
 import { describe, it, expect } from 'vitest';
 import { animalProfileSchema } from '../animal';
@@ -420,7 +440,7 @@ describe('Animal Validation', () => {
       age: 3,
       // ...
     };
-    
+
     expect(() => animalProfileSchema.parse(data)).not.toThrow();
   });
 
@@ -430,7 +450,7 @@ describe('Animal Validation', () => {
       type: 'bird', // Invalid
       age: 3,
     };
-    
+
     expect(() => animalProfileSchema.parse(data)).toThrow();
   });
 });
@@ -482,6 +502,7 @@ For detailed deployment instructions, see [Setup Guide](SETUP_GUIDE.md) → Prod
 ### Development Workflow
 
 1. **Create Branch**
+
    ```bash
    git checkout -b feature/your-feature-name
    ```
@@ -492,6 +513,7 @@ For detailed deployment instructions, see [Setup Guide](SETUP_GUIDE.md) → Prod
    - Update documentation
 
 3. **Test Changes**
+
    ```bash
    npm run lint
    npm run format
@@ -500,6 +522,7 @@ For detailed deployment instructions, see [Setup Guide](SETUP_GUIDE.md) → Prod
    ```
 
 4. **Commit Changes**
+
    ```bash
    git add .
    git commit -m "feat: add your feature"
@@ -521,6 +544,7 @@ For detailed deployment instructions, see [Setup Guide](SETUP_GUIDE.md) → Prod
 ```
 
 Types:
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -530,6 +554,7 @@ Types:
 - `chore`: Maintenance tasks
 
 Examples:
+
 ```
 feat: add animal search functionality
 fix: correct pagination calculation in animal list
@@ -558,17 +583,20 @@ refactor: simplify query building logic
 ### Regular Maintenance Tasks
 
 **Daily**
+
 - Monitor error logs
 - Check application performance
 - Verify backups
 
 **Weekly**
+
 - Review and merge PRs
 - Update dependencies (patch versions)
 - Check storage usage
 - Review analytics
 
 **Monthly**
+
 - Update dependencies (minor versions)
 - Review and optimize queries
 - Clean up expired data
@@ -576,6 +604,7 @@ refactor: simplify query building logic
 - Performance optimization
 
 **Quarterly**
+
 - Major dependency updates
 - Architecture review
 - Documentation update
@@ -584,18 +613,21 @@ refactor: simplify query building logic
 ### Monitoring
 
 **Application Monitoring**
+
 - Error tracking (Sentry, etc.)
 - Performance monitoring
 - User analytics
 - Uptime monitoring
 
 **Infrastructure Monitoring**
+
 - Server resources
 - Database performance
 - Storage usage
 - Network traffic
 
 **Appwrite Monitoring**
+
 - Database queries
 - Storage usage
 - API usage
@@ -604,17 +636,20 @@ refactor: simplify query building logic
 ### Backup Strategy
 
 **Database Backups**
+
 - Daily automated backups
 - Weekly full backups
 - Monthly archives
 - Test restore procedures
 
 **Storage Backups**
+
 - Backup file storage
 - Verify file integrity
 - Test restore procedures
 
 **Code Backups**
+
 - Git repository
 - Multiple remotes
 - Tagged releases
@@ -634,17 +669,20 @@ For detailed troubleshooting, see [Setup Guide](SETUP_GUIDE.md) → Troubleshoot
 ### Debug Tools
 
 **Browser DevTools**
+
 - Console for errors
 - Network tab for API calls
 - React DevTools for component inspection
 
 **Appwrite Console**
+
 - Database queries
 - Storage files
 - User sessions
 - Logs
 
 **Next.js DevTools**
+
 - Server logs
 - Build output
 - Error messages
@@ -652,6 +690,7 @@ For detailed troubleshooting, see [Setup Guide](SETUP_GUIDE.md) → Troubleshoot
 ## Resources
 
 ### Documentation
+
 - [Frontend Architecture](FRONTEND_ARCHITECTURE.md)
 - [Backend Architecture](BACKEND_ARCHITECTURE.md)
 - [Database Schema](DATABASE_SCHEMA.md)
@@ -661,6 +700,7 @@ For detailed troubleshooting, see [Setup Guide](SETUP_GUIDE.md) → Troubleshoot
 - [Quick Reference](QUICK_REFERENCE.md)
 
 ### External Resources
+
 - [Next.js Documentation](https://nextjs.org/docs)
 - [React Documentation](https://react.dev)
 - [Appwrite Documentation](https://appwrite.io/docs)
@@ -671,6 +711,7 @@ For detailed troubleshooting, see [Setup Guide](SETUP_GUIDE.md) → Troubleshoot
 - [React Hook Form](https://react-hook-form.com)
 
 ### Community
+
 - GitHub Issues
 - Development Team
 - CCF Community

@@ -1,7 +1,11 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { ID, Permission, Role, Query } from 'appwrite';
 import { databases, storage, account } from '@/lib/appwrite';
-import { DATABASE_ID, COLLECTIONS, STORAGE_BUCKETS } from '@/lib/constants/database';
+import {
+  DATABASE_ID,
+  COLLECTIONS,
+  STORAGE_BUCKETS,
+} from '@/lib/constants/database';
 import type { AnimalProfile } from '@/types/animal';
 
 // Test data
@@ -12,7 +16,7 @@ const testAnimalData = {
   breed: 'Labrador',
   location: {
     area: 'Test Area',
-    coordinates: [29.8543, 77.8880] as [number, number],
+    coordinates: [29.8543, 77.888] as [number, number],
   },
   currentFeeder: 'Test Volunteer',
   medicalHistory: [],
@@ -159,11 +163,7 @@ describe('Appwrite Task CRUD Operations', () => {
   });
 
   it('should delete a task document', async () => {
-    await databases.deleteDocument(
-      DATABASE_ID,
-      COLLECTIONS.TASKS,
-      testTaskId
-    );
+    await databases.deleteDocument(DATABASE_ID, COLLECTIONS.TASKS, testTaskId);
 
     await expect(
       databases.getDocument(DATABASE_ID, COLLECTIONS.TASKS, testTaskId)
@@ -213,7 +213,9 @@ describe('Appwrite Medical Record CRUD Operations', () => {
       testMedicalRecordId,
       {
         followUpRequired: true,
-        followUpDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+        followUpDate: new Date(
+          Date.now() + 7 * 24 * 60 * 60 * 1000
+        ).toISOString(),
       }
     );
 
@@ -230,7 +232,11 @@ describe('Appwrite Medical Record CRUD Operations', () => {
     );
 
     await expect(
-      databases.getDocument(DATABASE_ID, COLLECTIONS.MEDICAL_RECORDS, testMedicalRecordId)
+      databases.getDocument(
+        DATABASE_ID,
+        COLLECTIONS.MEDICAL_RECORDS,
+        testMedicalRecordId
+      )
     ).rejects.toThrow();
   });
 });
@@ -374,7 +380,11 @@ describe('Appwrite Permission Tests', () => {
     expect(response.$permissions.length).toBeGreaterThan(0);
 
     // Cleanup
-    await databases.deleteDocument(DATABASE_ID, COLLECTIONS.TASKS, response.$id);
+    await databases.deleteDocument(
+      DATABASE_ID,
+      COLLECTIONS.TASKS,
+      response.$id
+    );
   });
 
   it('should update document permissions', async () => {

@@ -212,7 +212,7 @@ export const generateDailyDigestEmail = (
 ): EmailTemplate => {
   const tasksHtml = upcomingTasks
     .map(
-      (task) => `
+      task => `
     <li>
       <strong>${task.title}</strong> - ${new Date(task.scheduledDate).toLocaleDateString()}
     </li>
@@ -222,7 +222,7 @@ export const generateDailyDigestEmail = (
 
   const alertsHtml = recentAlerts
     .map(
-      (alert) => `
+      alert => `
     <li>
       <strong>${alert.animalName}:</strong> ${alert.message}
     </li>
@@ -301,7 +301,7 @@ ${
   upcomingTasks.length > 0
     ? `
 Upcoming Tasks (${upcomingTasks.length}):
-${upcomingTasks.map((task) => `- ${task.title} - ${new Date(task.scheduledDate).toLocaleDateString()}`).join('\n')}
+${upcomingTasks.map(task => `- ${task.title} - ${new Date(task.scheduledDate).toLocaleDateString()}`).join('\n')}
 `
     : ''
 }
@@ -310,7 +310,7 @@ ${
   recentAlerts.length > 0
     ? `
 Recent Alerts (${recentAlerts.length}):
-${recentAlerts.map((alert) => `- ${alert.animalName}: ${alert.message}`).join('\n')}
+${recentAlerts.map(alert => `- ${alert.animalName}: ${alert.message}`).join('\n')}
 `
     : ''
 }

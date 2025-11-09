@@ -48,13 +48,11 @@ import { useTheme } from '@/contexts/ThemeContext';
 
 function MyComponent() {
   const { theme, setTheme, config } = useTheme();
-  
+
   return (
     <div>
       <p>Current theme: {theme}</p>
-      <button onClick={() => setTheme('default')}>
-        Switch to Default
-      </button>
+      <button onClick={() => setTheme('default')}>Switch to Default</button>
     </div>
   );
 }
@@ -68,12 +66,12 @@ import { AnimatedGradient } from '@/components/ui/animated-gradient';
 
 function Hero() {
   const { config } = useTheme();
-  
+
   return (
     <div className="relative">
       {/* Only show in custom theme */}
       {config.effects.aceternity && <AnimatedGradient />}
-      
+
       <h1>Welcome to CampusPaws</h1>
     </div>
   );
@@ -88,13 +86,16 @@ import { cn } from '@/lib/utils';
 
 function Card({ children }) {
   const { theme } = useTheme();
-  
+
   return (
-    <div className={cn(
-      'rounded-lg p-6',
-      theme === 'custom' && 'bg-gradient-to-br from-primary/10 to-secondary/10',
-      theme === 'default' && 'bg-card border'
-    )}>
+    <div
+      className={cn(
+        'rounded-lg p-6',
+        theme === 'custom' &&
+          'bg-gradient-to-br from-primary/10 to-secondary/10',
+        theme === 'default' && 'bg-card border'
+      )}
+    >
       {children}
     </div>
   );
@@ -187,12 +188,13 @@ export const THEME_CONFIGS: Record<ThemeVariant, ThemeConfig> = {
 Each theme defines CSS variables in its own file:
 
 **Custom Theme** (`src/styles/themes/custom.css`):
+
 ```css
 [data-theme='custom'] {
   --primary: 210 100% 60%;
   --secondary: 100 40% 53%;
   --accent: 20 100% 48%;
-  
+
   /* Gradient definitions */
   --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
@@ -200,12 +202,13 @@ Each theme defines CSS variables in its own file:
 ```
 
 **Default Theme** (`src/styles/themes/default.css`):
+
 ```css
 [data-theme='default'] {
   --primary: 222.2 47.4% 11.2%;
   --secondary: 210 40% 96.1%;
   --accent: 210 40% 96.1%;
-  
+
   /* No gradients */
 }
 ```
@@ -223,6 +226,7 @@ interface ThemeContextType {
 ```
 
 **Features:**
+
 - Persists theme preference in localStorage
 - Applies `data-theme` attribute to document root
 - Provides theme configuration
@@ -268,21 +272,21 @@ Create `src/styles/themes/high-contrast.css`:
   /* Colors */
   --background: 0 0% 100%;
   --foreground: 0 0% 0%;
-  
+
   --primary: 0 0% 0%;
   --primary-foreground: 0 0% 100%;
-  
+
   --secondary: 0 0% 100%;
   --secondary-foreground: 0 0% 0%;
-  
+
   --accent: 60 100% 50%;
   --accent-foreground: 0 0% 0%;
-  
+
   /* High contrast borders */
   --border: 0 0% 0%;
   --input: 0 0% 0%;
   --ring: 0 0% 0%;
-  
+
   /* No shadows for clarity */
   --shadow: none;
 }
@@ -335,7 +339,7 @@ Edit the CSS variables in the theme file:
 [data-theme='custom'] {
   /* Change primary color */
   --primary: 210 100% 60%; /* Blue */
-  
+
   /* Change to green */
   --primary: 142 76% 36%; /* Green */
 }
@@ -348,16 +352,18 @@ Define gradient variables:
 ```css
 [data-theme='custom'] {
   --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-card: linear-gradient(to bottom right, var(--primary), var(--secondary));
+  --gradient-card: linear-gradient(
+    to bottom right,
+    var(--primary),
+    var(--secondary)
+  );
 }
 ```
 
 Use in components:
 
 ```tsx
-<div className="bg-[var(--gradient-hero)]">
-  Hero content
-</div>
+<div className="bg-[var(--gradient-hero)]">Hero content</div>
 ```
 
 ### Customizing Effects
@@ -379,17 +385,14 @@ Create theme-specific component variants:
 ```tsx
 import { cva } from 'class-variance-authority';
 
-const buttonVariants = cva(
-  'base-button-styles',
-  {
-    variants: {
-      theme: {
-        custom: 'bg-gradient-to-r from-primary to-secondary',
-        default: 'bg-primary text-primary-foreground',
-      },
+const buttonVariants = cva('base-button-styles', {
+  variants: {
+    theme: {
+      custom: 'bg-gradient-to-r from-primary to-secondary',
+      default: 'bg-primary text-primary-foreground',
     },
-  }
-);
+  },
+});
 ```
 
 ---
@@ -403,21 +406,17 @@ import { useTheme } from '@/contexts/ThemeContext';
 
 function MyComponent() {
   const { config } = useTheme();
-  
+
   return (
     <div>
       {/* Always rendered */}
       <h1>Title</h1>
-      
+
       {/* Only in custom theme */}
-      {config.effects.aceternity && (
-        <AnimatedGradient />
-      )}
-      
+      {config.effects.aceternity && <AnimatedGradient />}
+
       {/* Only in default theme */}
-      {!config.effects.gradients && (
-        <SimpleBorder />
-      )}
+      {!config.effects.gradients && <SimpleBorder />}
     </div>
   );
 }
@@ -431,22 +430,24 @@ import { cn } from '@/lib/utils';
 
 function Card({ children }) {
   const { theme } = useTheme();
-  
+
   return (
-    <div className={cn(
-      // Base styles (always applied)
-      'rounded-lg p-6',
-      
-      // Theme-specific styles
-      theme === 'custom' && [
-        'bg-gradient-to-br from-primary/10 to-secondary/10',
-        'shadow-lg hover:shadow-xl transition-shadow',
-      ],
-      theme === 'default' && [
-        'bg-card border border-border',
-        'hover:border-primary/50 transition-colors',
-      ]
-    )}>
+    <div
+      className={cn(
+        // Base styles (always applied)
+        'rounded-lg p-6',
+
+        // Theme-specific styles
+        theme === 'custom' && [
+          'bg-gradient-to-br from-primary/10 to-secondary/10',
+          'shadow-lg hover:shadow-xl transition-shadow',
+        ],
+        theme === 'default' && [
+          'bg-card border border-border',
+          'hover:border-primary/50 transition-colors',
+        ]
+      )}
+    >
       {children}
     </div>
   );
@@ -465,7 +466,7 @@ function Button({ variant = 'default' }) {
     custom: 'bg-gradient-to-r from-primary to-secondary',
     default: 'bg-primary',
   });
-  
+
   return <button className={classes}>Click me</button>;
 }
 ```
@@ -477,11 +478,13 @@ function Button({ variant = 'default' }) {
 ### 1. Always Use Theme Context
 
 ❌ **Don't** hardcode theme checks:
+
 ```tsx
 const theme = localStorage.getItem('campuspaws-theme');
 ```
 
 ✅ **Do** use the theme hook:
+
 ```tsx
 const { theme, config } = useTheme();
 ```
@@ -489,23 +492,29 @@ const { theme, config } = useTheme();
 ### 2. Provide Fallbacks
 
 ❌ **Don't** assume effects are always available:
+
 ```tsx
 <AnimatedGradient />
 ```
 
 ✅ **Do** check configuration:
+
 ```tsx
-{config.effects.aceternity && <AnimatedGradient />}
+{
+  config.effects.aceternity && <AnimatedGradient />;
+}
 ```
 
 ### 3. Use CSS Variables
 
 ❌ **Don't** hardcode colors:
+
 ```tsx
 <div style={{ background: '#336DF5' }}>
 ```
 
 ✅ **Do** use CSS variables:
+
 ```tsx
 <div className="bg-primary">
 ```
@@ -524,7 +533,7 @@ describe('MyComponent', () => {
       </ThemeProvider>
     );
   });
-  
+
   it('renders correctly in default theme', () => {
     localStorage.setItem('campuspaws-theme', 'default');
     render(
@@ -542,9 +551,7 @@ Use memoization for expensive theme-dependent calculations:
 
 ```tsx
 const themeStyles = useMemo(() => {
-  return theme === 'custom'
-    ? computeExpensiveGradient()
-    : 'bg-primary';
+  return theme === 'custom' ? computeExpensiveGradient() : 'bg-primary';
 }, [theme]);
 ```
 
@@ -554,12 +561,13 @@ Ensure sufficient contrast in all themes:
 
 ```css
 /* Check contrast ratios */
---foreground: 0 0% 0%;      /* Black text */
---background: 0 0% 100%;    /* White background */
+--foreground: 0 0% 0%; /* Black text */
+--background: 0 0% 100%; /* White background */
 /* Contrast ratio: 21:1 (Excellent) */
 ```
 
 Use tools like:
+
 - Chrome DevTools Lighthouse
 - WAVE browser extension
 - axe DevTools
@@ -573,6 +581,7 @@ Use tools like:
 **Problem**: Theme resets on page reload
 
 **Solution**: Check localStorage is working:
+
 ```tsx
 // In browser console
 localStorage.getItem('campuspaws-theme');
@@ -598,24 +607,30 @@ If still occurring, check that ThemeProvider is high in component tree.
 
 **Problem**: Theme-specific styles not working
 
-**Solution**: 
+**Solution**:
+
 1. Check `data-theme` attribute on `<html>`:
+
    ```tsx
    document.documentElement.getAttribute('data-theme');
    ```
 
 2. Verify CSS is imported in `globals.css`:
+
    ```css
    @import './themes/index.css';
    ```
 
 3. Check CSS selector specificity:
+
    ```css
    /* More specific */
-   [data-theme='custom'] .my-class { }
-   
+   [data-theme='custom'] .my-class {
+   }
+
    /* Less specific */
-   .my-class { }
+   .my-class {
+   }
    ```
 
 ### Theme Hook Error
@@ -632,9 +647,7 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <body>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
@@ -653,15 +666,19 @@ export default function RootLayout({ children }) {
 ```
 
 CSS:
+
 ```css
 /* Theme-specific */
-[data-theme='custom'] { }
+[data-theme='custom'] {
+}
 
 /* Dark mode */
-.dark { }
+.dark {
+}
 
 /* Both */
-[data-theme='custom'].dark { }
+[data-theme='custom'].dark {
+}
 ```
 
 ---
@@ -677,6 +694,7 @@ CSS:
 ## Support
 
 For questions or issues:
+
 1. Check this documentation
 2. Review existing theme implementations
 3. Check the [Troubleshooting](#troubleshooting) section

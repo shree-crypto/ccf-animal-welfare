@@ -1,6 +1,6 @@
 /**
  * Theme Utility Functions
- * 
+ *
  * Helper functions for working with themes in CampusPaws.
  * These utilities make it easier to apply theme-specific styles
  * and build theme-aware className strings.
@@ -20,13 +20,13 @@ export function cn(...inputs: ClassValue[]) {
 
 /**
  * Apply theme-specific classes based on the current theme
- * 
+ *
  * @param theme - Current theme variant
  * @param customClasses - Classes to apply when theme is 'custom'
  * @param defaultClasses - Classes to apply when theme is 'default'
  * @param baseClasses - Classes to apply regardless of theme
  * @returns Combined className string
- * 
+ *
  * @example
  * const className = themeClasses(
  *   theme,
@@ -41,19 +41,16 @@ export function themeClasses(
   defaultClasses: string = '',
   baseClasses: string = ''
 ): string {
-  return cn(
-    baseClasses,
-    theme === 'custom' ? customClasses : defaultClasses
-  );
+  return cn(baseClasses, theme === 'custom' ? customClasses : defaultClasses);
 }
 
 /**
  * Build a theme-aware className string with conditional classes
- * 
+ *
  * @param theme - Current theme variant
  * @param options - Object with base, custom, and default class options
  * @returns Combined className string
- * 
+ *
  * @example
  * const className = buildThemeClass(theme, {
  *   base: 'px-4 py-2 rounded',
@@ -75,11 +72,11 @@ export function buildThemeClass(
 
 /**
  * Check if a specific theme is active
- * 
+ *
  * @param currentTheme - Current theme variant
  * @param targetTheme - Theme to check against
  * @returns True if the target theme is active
- * 
+ *
  * @example
  * if (isThemeActive(theme, 'custom')) {
  *   // Render custom theme features
@@ -94,12 +91,12 @@ export function isThemeActive(
 
 /**
  * Get theme-specific value
- * 
+ *
  * @param theme - Current theme variant
  * @param customValue - Value to return for custom theme
  * @param defaultValue - Value to return for default theme
  * @returns Theme-specific value
- * 
+ *
  * @example
  * const buttonText = getThemeValue(
  *   theme,
@@ -117,12 +114,12 @@ export function getThemeValue<T>(
 
 /**
  * Apply theme classes to a button component
- * 
+ *
  * @param theme - Current theme variant
  * @param variant - Button variant (primary, secondary, accent)
  * @param baseClasses - Additional base classes
  * @returns Combined className string
- * 
+ *
  * @example
  * const className = themeButton(theme, 'primary', 'px-6 py-3');
  */
@@ -144,19 +141,16 @@ export function themeButton(
     },
   };
 
-  return cn(
-    baseClasses,
-    variantClasses[theme][variant]
-  );
+  return cn(baseClasses, variantClasses[theme][variant]);
 }
 
 /**
  * Apply theme classes to a card component
- * 
+ *
  * @param theme - Current theme variant
  * @param baseClasses - Additional base classes
  * @returns Combined className string
- * 
+ *
  * @example
  * const className = themeCard(theme, 'p-6 rounded-lg');
  */
@@ -172,12 +166,12 @@ export function themeCard(
 
 /**
  * Apply theme classes to text with gradient effect
- * 
+ *
  * @param theme - Current theme variant
  * @param variant - Gradient variant (primary, accent)
  * @param baseClasses - Additional base classes
  * @returns Combined className string
- * 
+ *
  * @example
  * const className = themeText(theme, 'accent', 'text-4xl font-bold');
  */
@@ -201,12 +195,12 @@ export function themeText(
 
 /**
  * Apply theme classes to a background element
- * 
+ *
  * @param theme - Current theme variant
  * @param variant - Background variant (hero, primary, secondary)
  * @param baseClasses - Additional base classes
  * @returns Combined className string
- * 
+ *
  * @example
  * const className = themeBackground(theme, 'hero', 'min-h-screen');
  */
@@ -234,10 +228,10 @@ export function themeBackground(
 
 /**
  * Check if Aceternity effects should be shown
- * 
+ *
  * @param theme - Current theme variant
  * @returns True if Aceternity effects should be shown
- * 
+ *
  * @example
  * {shouldShowAceternity(theme) && <AnimatedGradient />}
  */
@@ -247,10 +241,10 @@ export function shouldShowAceternity(theme: ThemeVariant): boolean {
 
 /**
  * Check if gradients should be used
- * 
+ *
  * @param theme - Current theme variant
  * @returns True if gradients should be used
- * 
+ *
  * @example
  * {shouldUseGradients(theme) && <div className="gradient-bg" />}
  */
@@ -260,10 +254,10 @@ export function shouldUseGradients(theme: ThemeVariant): boolean {
 
 /**
  * Get data attribute for Aceternity components
- * 
+ *
  * @param theme - Current theme variant
  * @returns Object with data-aceternity attribute
- * 
+ *
  * @example
  * <div {...getAceternityProps(theme)}>
  *   <AnimatedGradient />
@@ -279,14 +273,14 @@ export function getAceternityProps(theme: ThemeVariant): {
 
 /**
  * Apply conditional theme classes based on a condition
- * 
+ *
  * @param theme - Current theme variant
  * @param condition - Condition to check
  * @param customClasses - Classes to apply when condition is true and theme is custom
  * @param defaultClasses - Classes to apply when condition is true and theme is default
  * @param baseClasses - Classes to apply regardless of condition
  * @returns Combined className string
- * 
+ *
  * @example
  * const className = conditionalThemeClasses(
  *   theme,

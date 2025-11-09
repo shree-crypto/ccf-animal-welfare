@@ -5,9 +5,11 @@ This directory contains the public-facing animal gallery interface components fo
 ## Components
 
 ### AnimalCard
+
 A beautiful, animated card component that displays animal summary information with hover effects.
 
 **Features:**
+
 - Profile image with fallback
 - Animal name, breed/type, and age
 - Location and current feeder information
@@ -16,27 +18,33 @@ A beautiful, animated card component that displays animal summary information wi
 - Responsive design
 
 ### AnimalGrid
+
 A responsive grid layout for displaying multiple animal cards.
 
 **Features:**
+
 - Responsive masonry-style grid (1 column mobile, 2 tablet, 3 desktop)
 - Staggered animation on load
 - Empty state handling
 - Optimized for performance
 
 ### FilterBar
+
 An interactive filter and search interface for the animal gallery.
 
 **Features:**
+
 - Real-time search by animal name, breed, or location
 - Filter by animal type (all, dogs, cats)
 - Animated filter buttons
 - Mobile-responsive design
 
 ### PhotoCarousel
+
 An advanced photo carousel with fullscreen support for animal detail pages.
 
 **Features:**
+
 - Smooth transitions between photos
 - Thumbnail navigation strip
 - Fullscreen modal view
@@ -48,9 +56,11 @@ An advanced photo carousel with fullscreen support for animal detail pages.
 ## Pages
 
 ### /animals
+
 Main animal gallery page with filtering and search functionality.
 
 **Features:**
+
 - Hero section with call-to-action
 - Search and filter controls
 - Responsive animal grid
@@ -58,9 +68,11 @@ Main animal gallery page with filtering and search functionality.
 - Results counter
 
 ### /animals/[id]
+
 Detailed animal profile page with comprehensive information.
 
 **Features:**
+
 - Photo carousel with all animal images
 - Detailed animal information card
 - Medical history summary
@@ -95,6 +107,7 @@ import { AnimalCard, AnimalGrid, FilterBar, PhotoCarousel } from '@/components/f
 ## Styling
 
 All components use:
+
 - Tailwind CSS for styling
 - Framer Motion for animations
 - Shadcn/ui base components

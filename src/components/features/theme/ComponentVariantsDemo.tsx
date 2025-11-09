@@ -1,13 +1,19 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useTheme } from '@/contexts/ThemeContext';
 
 /**
  * ComponentVariantsDemo
- * 
+ *
  * Demonstrates all theme variants for Button, Card, and Badge components.
  * Shows how components adapt between custom and default themes.
  */
@@ -23,7 +29,7 @@ export function ComponentVariantsDemo() {
           Current theme: <span className="font-semibold">{theme}</span>
         </p>
         <p className="text-sm text-muted-foreground">
-          {theme === 'custom' 
+          {theme === 'custom'
             ? 'Custom theme shows gradients, shadows, and vibrant colors'
             : 'Default theme shows clean, minimal styling'}
         </p>
@@ -40,7 +46,9 @@ export function ComponentVariantsDemo() {
         <CardContent className="space-y-6">
           {/* Default Buttons */}
           <div className="space-y-2">
-            <h3 className="text-sm font-semibold text-muted-foreground">Default Variant</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground">
+              Default Variant
+            </h3>
             <div className="flex flex-wrap gap-2">
               <Button size="sm">Small</Button>
               <Button>Default</Button>
@@ -51,29 +59,47 @@ export function ComponentVariantsDemo() {
 
           {/* Secondary Buttons */}
           <div className="space-y-2">
-            <h3 className="text-sm font-semibold text-muted-foreground">Secondary Variant</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground">
+              Secondary Variant
+            </h3>
             <div className="flex flex-wrap gap-2">
-              <Button variant="secondary" size="sm">Small</Button>
+              <Button variant="secondary" size="sm">
+                Small
+              </Button>
               <Button variant="secondary">Default</Button>
-              <Button variant="secondary" size="lg">Large</Button>
-              <Button variant="secondary" disabled>Disabled</Button>
+              <Button variant="secondary" size="lg">
+                Large
+              </Button>
+              <Button variant="secondary" disabled>
+                Disabled
+              </Button>
             </div>
           </div>
 
           {/* Accent Buttons */}
           <div className="space-y-2">
-            <h3 className="text-sm font-semibold text-muted-foreground">Accent Variant</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground">
+              Accent Variant
+            </h3>
             <div className="flex flex-wrap gap-2">
-              <Button variant="accent" size="sm">Small</Button>
+              <Button variant="accent" size="sm">
+                Small
+              </Button>
               <Button variant="accent">Default</Button>
-              <Button variant="accent" size="lg">Large</Button>
-              <Button variant="accent" disabled>Disabled</Button>
+              <Button variant="accent" size="lg">
+                Large
+              </Button>
+              <Button variant="accent" disabled>
+                Disabled
+              </Button>
             </div>
           </div>
 
           {/* Other Variants */}
           <div className="space-y-2">
-            <h3 className="text-sm font-semibold text-muted-foreground">Other Variants</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground">
+              Other Variants
+            </h3>
             <div className="flex flex-wrap gap-2">
               <Button variant="destructive">Destructive</Button>
               <Button variant="outline">Outline</Button>
@@ -87,18 +113,20 @@ export function ComponentVariantsDemo() {
       {/* Card Variants */}
       <div className="space-y-4">
         <h2 className="text-2xl font-bold">Card Variants</h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Default Card */}
           <Card>
             <CardHeader>
               <CardTitle>Default Card</CardTitle>
-              <CardDescription>Standard card with theme-aware styling</CardDescription>
+              <CardDescription>
+                Standard card with theme-aware styling
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                This card uses the default variant. In custom theme, it has gradients and shadows.
-                In default theme, it has simple borders.
+                This card uses the default variant. In custom theme, it has
+                gradients and shadows. In default theme, it has simple borders.
               </p>
             </CardContent>
           </Card>
@@ -111,7 +139,8 @@ export function ComponentVariantsDemo() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                This card has a more prominent shadow effect to stand out from the page.
+                This card has a more prominent shadow effect to stand out from
+                the page.
               </p>
             </CardContent>
           </Card>
@@ -155,7 +184,9 @@ export function ComponentVariantsDemo() {
         <CardContent className="space-y-6">
           {/* Status Badges */}
           <div className="space-y-2">
-            <h3 className="text-sm font-semibold text-muted-foreground">Status Badges</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground">
+              Status Badges
+            </h3>
             <div className="flex flex-wrap gap-2">
               <Badge>Default</Badge>
               <Badge variant="secondary">Secondary</Badge>
@@ -169,7 +200,9 @@ export function ComponentVariantsDemo() {
 
           {/* Use Cases */}
           <div className="space-y-2">
-            <h3 className="text-sm font-semibold text-muted-foreground">Use Cases</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground">
+              Use Cases
+            </h3>
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <span className="text-sm">Animal Status:</span>
@@ -206,16 +239,18 @@ export function ComponentVariantsDemo() {
           <div className="flex items-center justify-between">
             <div className="space-y-1">
               <h3 className="font-semibold">Max - Golden Retriever</h3>
-              <p className="text-sm text-muted-foreground">3 years old • Territory A</p>
+              <p className="text-sm text-muted-foreground">
+                3 years old • Territory A
+              </p>
             </div>
             <Badge variant="success">Healthy</Badge>
           </div>
-          
+
           <p className="text-sm">
-            Max is a friendly golden retriever who loves to play fetch. He's been with us for 2 years
-            and is looking for a loving home.
+            Max is a friendly golden retriever who loves to play fetch. He's
+            been with us for 2 years and is looking for a loving home.
           </p>
-          
+
           <div className="flex gap-2">
             <Button variant="accent">Adopt Me</Button>
             <Button variant="secondary">Learn More</Button>

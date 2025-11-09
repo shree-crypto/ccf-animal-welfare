@@ -1,13 +1,17 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { ID, Permission, Role } from 'appwrite';
 import { databases, storage } from '@/lib/appwrite';
-import { DATABASE_ID, COLLECTIONS, STORAGE_BUCKETS } from '@/lib/constants/database';
+import {
+  DATABASE_ID,
+  COLLECTIONS,
+  STORAGE_BUCKETS,
+} from '@/lib/constants/database';
 import type { AnimalProfile } from '@/types/animal';
 import type { MedicalRecord } from '@/types/medical';
 
 /**
  * End-to-End Admin Workflow Tests
- * 
+ *
  * Tests complete admin workflows for animal database management
  * Requirements: 6.1-6.5 (Admin Management), 4.1-4.5 (Medical Records)
  */
@@ -40,7 +44,7 @@ describe('E2E: Admin Medical Records Management', () => {
         type: 'dog',
         age: 4,
         breed: 'Beagle',
-        location: { area: 'Medical Test Area', coordinates: [29.8543, 77.8880] },
+        location: { area: 'Medical Test Area', coordinates: [29.8543, 77.888] },
         currentFeeder: 'Test Volunteer',
         medicalHistory: [],
         photos: { profile: '', gallery: [] },
@@ -56,7 +60,11 @@ describe('E2E: Admin Medical Records Management', () => {
     // Cleanup
     for (const id of testData.medicalRecordIds) {
       try {
-        await databases.deleteDocument(DATABASE_ID, COLLECTIONS.MEDICAL_RECORDS, id);
+        await databases.deleteDocument(
+          DATABASE_ID,
+          COLLECTIONS.MEDICAL_RECORDS,
+          id
+        );
       } catch (error) {
         // Ignore cleanup errors
       }
@@ -113,8 +121,11 @@ describe('E2E: Admin Medical Records Management', () => {
     const recordId = testData.medicalRecordIds[0];
     const updates = {
       followUpRequired: true,
-      followUpDate: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
-      description: 'Routine health checkup - follow-up needed for minor skin condition',
+      followUpDate: new Date(
+        Date.now() + 14 * 24 * 60 * 60 * 1000
+      ).toISOString(),
+      description:
+        'Routine health checkup - follow-up needed for minor skin condition',
     };
 
     const response = await databases.updateDocument(
@@ -190,7 +201,10 @@ describe('E2E: Admin Medical Records Management', () => {
 
     const animalRecords = allRecords.documents
       .filter((record: any) => record.animalId === testAnimalId)
-      .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      .sort(
+        (a: any, b: any) =>
+          new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
 
     expect(animalRecords.length).toBeGreaterThanOrEqual(3);
 
@@ -204,7 +218,9 @@ describe('E2E: Admin Medical Records Management', () => {
 
   it('should upload medical documents (Req 4.4)', async () => {
     // Upload medical document
-    const docBlob = new Blob(['Medical report content'], { type: 'application/pdf' });
+    const docBlob = new Blob(['Medical report content'], {
+      type: 'application/pdf',
+    });
     const docFile = new File([docBlob], 'medical-report.pdf', {
       type: 'application/pdf',
     });
@@ -239,7 +255,9 @@ describe('E2E: Admin Medical Records Management', () => {
 
   it('should upload medical photos (Req 4.4)', async () => {
     // Upload medical photo
-    const photoBlob = new Blob(['Medical photo content'], { type: 'image/jpeg' });
+    const photoBlob = new Blob(['Medical photo content'], {
+      type: 'image/jpeg',
+    });
     const photoFile = new File([photoBlob], 'wound-photo.jpg', {
       type: 'image/jpeg',
     });
@@ -276,12 +294,16 @@ describe('E2E: Admin Medical Records Management', () => {
     );
 
     const animalsNeedingCare = allAnimals.documents.filter(
-      (animal: any) => animal.status === 'needs_attention' || animal.status === 'under_treatment'
+      (animal: any) =>
+        animal.status === 'needs_attention' ||
+        animal.status === 'under_treatment'
     );
 
     expect(animalsNeedingCare.length).toBeGreaterThan(0);
-    
-    const testAnimal = animalsNeedingCare.find((a: any) => a.$id === testAnimalId);
+
+    const testAnimal = animalsNeedingCare.find(
+      (a: any) => a.$id === testAnimalId
+    );
     expect(testAnimal).toBeDefined();
     expect(testAnimal?.status).toBe('needs_attention');
   });
@@ -297,7 +319,7 @@ describe('E2E: Admin Medical Records Management', () => {
     );
 
     expect(recordsNeedingFollowUp.length).toBeGreaterThan(0);
-    
+
     const testRecord = recordsNeedingFollowUp.find(
       (r: any) => r.animalId === testAnimalId
     );
@@ -332,7 +354,10 @@ describe('E2E: Admin Bulk Operations Workflow', () => {
         name: 'Bulk Update Dog 1',
         type: 'dog' as const,
         age: 2,
-        location: { area: 'Bulk Area', coordinates: [29.8543, 77.8880] as [number, number] },
+        location: {
+          area: 'Bulk Area',
+          coordinates: [29.8543, 77.888] as [number, number],
+        },
         medicalHistory: [],
         photos: { profile: '', gallery: [] },
         status: 'healthy' as const,
@@ -341,7 +366,10 @@ describe('E2E: Admin Bulk Operations Workflow', () => {
         name: 'Bulk Update Dog 2',
         type: 'dog' as const,
         age: 3,
-        location: { area: 'Bulk Area', coordinates: [29.8550, 77.8890] as [number, number] },
+        location: {
+          area: 'Bulk Area',
+          coordinates: [29.855, 77.889] as [number, number],
+        },
         medicalHistory: [],
         photos: { profile: '', gallery: [] },
         status: 'healthy' as const,
@@ -364,12 +392,9 @@ describe('E2E: Admin Bulk Operations Workflow', () => {
 
     // Bulk update status
     for (const id of createdIds) {
-      await databases.updateDocument(
-        DATABASE_ID,
-        COLLECTIONS.ANIMALS,
-        id,
-        { status: 'under_treatment' }
-      );
+      await databases.updateDocument(DATABASE_ID, COLLECTIONS.ANIMALS, id, {
+        status: 'under_treatment',
+      });
     }
 
     // Verify updates
@@ -424,7 +449,10 @@ describe('E2E: Admin Bulk Operations Workflow', () => {
       name: 'Validation Test Dog',
       type: 'dog' as const,
       age: 5,
-      location: { area: 'Test Area', coordinates: [29.8543, 77.8880] as [number, number] },
+      location: {
+        area: 'Test Area',
+        coordinates: [29.8543, 77.888] as [number, number],
+      },
       medicalHistory: [],
       photos: { profile: '', gallery: [] },
       status: 'healthy' as const,
@@ -475,7 +503,7 @@ describe('E2E: Admin Bulk Operations Workflow', () => {
   it('should search animals by breed (Req 6.5)', async () => {
     // Create animals with specific breeds
     const breedsToTest = ['Labrador', 'Golden Retriever', 'Beagle'];
-    
+
     for (const breed of breedsToTest) {
       const animal = await databases.createDocument(
         DATABASE_ID,
@@ -486,7 +514,7 @@ describe('E2E: Admin Bulk Operations Workflow', () => {
           type: 'dog',
           age: 3,
           breed: breed,
-          location: { area: 'Test Area', coordinates: [29.8543, 77.8880] },
+          location: { area: 'Test Area', coordinates: [29.8543, 77.888] },
           medicalHistory: [],
           photos: { profile: '', gallery: [] },
           status: 'healthy',
@@ -503,7 +531,8 @@ describe('E2E: Admin Bulk Operations Workflow', () => {
     );
 
     const labradors = allAnimals.documents.filter(
-      (animal: any) => animal.breed && animal.breed.toLowerCase().includes('labrador')
+      (animal: any) =>
+        animal.breed && animal.breed.toLowerCase().includes('labrador')
     );
 
     expect(labradors.length).toBeGreaterThan(0);
@@ -521,9 +550,7 @@ describe('E2E: Admin Bulk Operations Workflow', () => {
     // Filter: dogs, healthy status, age > 2
     const filtered = allAnimals.documents.filter(
       (animal: any) =>
-        animal.type === 'dog' &&
-        animal.status === 'healthy' &&
-        animal.age > 2
+        animal.type === 'dog' && animal.status === 'healthy' && animal.age > 2
     );
 
     expect(filtered.length).toBeGreaterThan(0);

@@ -1,6 +1,6 @@
 /**
  * Theme Configuration Index
- * 
+ *
  * This file exports theme metadata and utilities for the CampusPaws theme system.
  * The actual CSS variables are defined in default.css and custom.css.
  */
@@ -25,7 +25,8 @@ export const themes: Record<ThemeVariant, ThemeMetadata> = {
   default: {
     id: 'default',
     name: 'Clean Default',
-    description: 'Minimal shadcn/ui theme with neutral colors and simple styling',
+    description:
+      'Minimal shadcn/ui theme with neutral colors and simple styling',
     features: {
       gradients: false,
       animations: false,
@@ -35,7 +36,8 @@ export const themes: Record<ThemeVariant, ThemeMetadata> = {
   custom: {
     id: 'custom',
     name: 'CampusPaws',
-    description: 'Full CampusPaws branding with gradients and Aceternity effects',
+    description:
+      'Full CampusPaws branding with gradients and Aceternity effects',
     features: {
       gradients: true,
       animations: true,

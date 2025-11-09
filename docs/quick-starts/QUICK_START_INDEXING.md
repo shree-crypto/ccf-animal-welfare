@@ -16,6 +16,7 @@ npx tsx src/lib/setup/create-indexes.ts
 ## Why Do I Need Indexes?
 
 Without indexes, queries slow down as your database grows. With proper indexes:
+
 - Queries run 10-100x faster
 - Consistent performance regardless of data size
 - Better user experience
@@ -23,6 +24,7 @@ Without indexes, queries slow down as your database grows. With proper indexes:
 ## What Indexes Are Needed?
 
 20 indexes across 6 collections:
+
 - **Animals**: 4 indexes (type/status filtering, pack queries, name search)
 - **Tasks**: 5 indexes (volunteer queries, priority sorting, date ranges)
 - **Medical Records**: 4 indexes (animal history, follow-ups, type filtering)
@@ -72,19 +74,23 @@ console.log(`Query took ${endTime - startTime}ms`);
 ## Common Issues
 
 ### "Query is slow even with indexes"
+
 - Check filter order matches index order
 - Verify index was created successfully in Console
 - Ensure you're using the optimized query functions
 
 ### "Index creation failed"
+
 - Verify collection exists
 - Check attribute names match exactly
 - Ensure you have admin permissions
 
 ### "Breaking changes in my code"
+
 Query functions now return `{ items, total, pagination }` instead of just an array.
 
 **Fix:**
+
 ```typescript
 // Old
 const animals = await getAnimals({ type: 'dog' });
@@ -101,10 +107,10 @@ const { animals } = await getAnimals({ type: 'dog' });
 
 ## Performance Targets
 
-| Query Type | Target Time |
-|------------|-------------|
-| Simple (1-2 filters) | < 100ms |
-| Complex (3+ filters) | < 300ms |
-| Full-text search | < 500ms |
+| Query Type           | Target Time |
+| -------------------- | ----------- |
+| Simple (1-2 filters) | < 100ms     |
+| Complex (3+ filters) | < 300ms     |
+| Full-text search     | < 500ms     |
 
 If queries exceed these targets, check your indexes!

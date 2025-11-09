@@ -1,11 +1,11 @@
 export function getEventTypeColor(type: string): string {
   const colors: Record<string, string> = {
-    feeding: 'bg-green-500/10 text-green-700 dark:text-green-400 border-green-500/20',
-    medical: 'bg-red-500/10 text-red-700 dark:text-red-400 border-red-500/20',
-    training: 'bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/20',
-    fundraiser: 'bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/20',
-    awareness: 'bg-orange-500/10 text-orange-700 dark:text-orange-400 border-orange-500/20',
-    other: 'bg-gray-500/10 text-gray-700 dark:text-gray-400 border-gray-500/20',
+    feeding: 'bg-green-200/60 text-green-800 dark:text-green-300 border-green-300/40',
+    medical: 'bg-red-200/60 text-red-800 dark:text-red-300 border-red-300/40',
+    training: 'bg-blue-200/60 text-blue-800 dark:text-blue-300 border-blue-300/40',
+    fundraiser: 'bg-purple-200/60 text-purple-800 dark:text-purple-300 border-purple-300/40',
+    awareness: 'bg-orange-200/60 text-orange-800 dark:text-orange-300 border-orange-300/40',
+    other: 'bg-gray-200/60 text-gray-800 dark:text-gray-300 border-gray-300/40',
   };
   return colors[type] || colors.other;
 }

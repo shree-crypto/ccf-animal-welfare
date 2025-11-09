@@ -1,14 +1,30 @@
 import { ID, Query } from 'appwrite';
 import { databases } from '@/lib/appwrite';
 import { DATABASE_ID, COLLECTIONS } from '@/lib/constants/database';
-import { MedicalRecord, MedicalRecordDocument, MedicalRecordType } from '@/types/medical';
-import { createMedicalRecordSchema, updateMedicalRecordSchema } from '@/lib/validations/medical';
-import { triggerMedicalAlertNotification, triggerMedicalFollowupNotification } from '@/lib/notifications/triggers';
+import {
+  MedicalRecord,
+  MedicalRecordDocument,
+  MedicalRecordType,
+} from '@/types/medical';
+import {
+  createMedicalRecordSchema,
+  updateMedicalRecordSchema,
+} from '@/lib/validations/medical';
+import {
+  triggerMedicalAlertNotification,
+  triggerMedicalFollowupNotification,
+} from '@/lib/notifications/triggers';
 import { getAnimalById } from './animals';
-import { normalizePagination, calculatePaginationMeta, QUERY_LIMITS } from './query-config';
+import {
+  normalizePagination,
+  calculatePaginationMeta,
+  QUERY_LIMITS,
+} from './query-config';
 
 // Helper to convert Appwrite document to MedicalRecord
-const documentToMedicalRecord = (doc: MedicalRecordDocument): MedicalRecord => ({
+const documentToMedicalRecord = (
+  doc: MedicalRecordDocument
+): MedicalRecord => ({
   id: doc.$id,
   animalId: doc.animalId,
   date: doc.date,
@@ -43,11 +59,19 @@ export const createMedicalRecord = async (
     options?.sendNotification !== false &&
     (medicalRecord.type === 'emergency' || medicalRecord.type === 'treatment');
 
-  if (shouldNotify && options?.notifyUserIds && options.notifyUserIds.length > 0) {
+  if (
+    shouldNotify &&
+    options?.notifyUserIds &&
+    options.notifyUserIds.length > 0
+  ) {
     try {
       const animal = await getAnimalById(medicalRecord.animalId);
       if (animal) {
-        await triggerMedicalAlertNotification(animal, medicalRecord, options.notifyUserIds);
+        await triggerMedicalAlertNotification(
+          animal,
+          medicalRecord,
+          options.notifyUserIds
+        );
       }
     } catch (error) {
       console.error('Failed to send medical alert notification:', error);
@@ -56,12 +80,20 @@ export const createMedicalRecord = async (
   }
 
   // Send follow-up notification if required
-  if (medicalRecord.followUpRequired && options?.notifyUserIds && options.notifyUserIds.length > 0) {
+  if (
+    medicalRecord.followUpRequired &&
+    options?.notifyUserIds &&
+    options.notifyUserIds.length > 0
+  ) {
     try {
       const animal = await getAnimalById(medicalRecord.animalId);
       if (animal) {
         // Send to first user in the list (typically the assigned caretaker)
-        await triggerMedicalFollowupNotification(animal, medicalRecord, options.notifyUserIds[0]);
+        await triggerMedicalFollowupNotification(
+          animal,
+          medicalRecord,
+          options.notifyUserIds[0]
+        );
       }
     } catch (error) {
       console.error('Failed to send medical follow-up notification:', error);
@@ -72,7 +104,9 @@ export const createMedicalRecord = async (
 };
 
 // Get a medical record by ID
-export const getMedicalRecordById = async (id: string): Promise<MedicalRecord | null> => {
+export const getMedicalRecordById = async (
+  id: string
+): Promise<MedicalRecord | null> => {
   try {
     const document = await databases.getDocument<MedicalRecordDocument>(
       DATABASE_ID,

@@ -24,11 +24,11 @@ export function PhotoCarousel({ photos, animalName }: PhotoCarouselProps) {
   }
 
   const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? photos.length - 1 : prev - 1));
+    setCurrentIndex(prev => (prev === 0 ? photos.length - 1 : prev - 1));
   };
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev === photos.length - 1 ? 0 : prev + 1));
+    setCurrentIndex(prev => (prev === photos.length - 1 ? 0 : prev + 1));
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -157,7 +157,7 @@ export function PhotoCarousel({ photos, animalName }: PhotoCarouselProps) {
                   variant="ghost"
                   size="icon"
                   className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20"
-                  onClick={(e) => {
+                  onClick={e => {
                     e.stopPropagation();
                     goToPrevious();
                   }}
@@ -168,7 +168,7 @@ export function PhotoCarousel({ photos, animalName }: PhotoCarouselProps) {
                   variant="ghost"
                   size="icon"
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20"
-                  onClick={(e) => {
+                  onClick={e => {
                     e.stopPropagation();
                     goToNext();
                   }}

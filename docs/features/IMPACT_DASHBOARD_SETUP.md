@@ -10,21 +10,22 @@ This guide explains how to set up the Appwrite collections required for the Live
 
 **Attributes**:
 
-| Attribute | Type | Size | Required | Array | Default |
-|-----------|------|------|----------|-------|---------|
-| animalsRescued | JSON | - | Yes | No | - |
-| volunteersActive | JSON | - | Yes | No | - |
-| mealsProvided | JSON | - | Yes | No | - |
-| successfulAdoptions | JSON | - | Yes | No | - |
-| lastUpdated | DateTime | - | Yes | No | now() |
+| Attribute           | Type     | Size | Required | Array | Default |
+| ------------------- | -------- | ---- | -------- | ----- | ------- |
+| animalsRescued      | JSON     | -    | Yes      | No    | -       |
+| volunteersActive    | JSON     | -    | Yes      | No    | -       |
+| mealsProvided       | JSON     | -    | Yes      | No    | -       |
+| successfulAdoptions | JSON     | -    | Yes      | No    | -       |
+| lastUpdated         | DateTime | -    | Yes      | No    | now()   |
 
 **Indexes**:
 
-| Key | Type | Attributes | Orders |
-|-----|------|------------|--------|
-| createdAt_desc | key | $createdAt | DESC |
+| Key            | Type | Attributes | Orders |
+| -------------- | ---- | ---------- | ------ |
+| createdAt_desc | key  | $createdAt | DESC   |
 
 **Permissions**:
+
 - Read: Any (public can view metrics)
 - Create: Team:admins
 - Update: Team:admins
@@ -36,23 +37,24 @@ This guide explains how to set up the Appwrite collections required for the Live
 
 **Attributes**:
 
-| Attribute | Type | Size | Required | Array | Default |
-|-----------|------|------|----------|-------|---------|
-| type | String (enum) | 20 | Yes | No | - |
-| displayName | String | 50 | Yes | No | - |
-| timestamp | DateTime | - | Yes | No | now() |
-| message | String | 200 | No | No | - |
+| Attribute   | Type          | Size | Required | Array | Default |
+| ----------- | ------------- | ---- | -------- | ----- | ------- |
+| type        | String (enum) | 20   | Yes      | No    | -       |
+| displayName | String        | 50   | Yes      | No    | -       |
+| timestamp   | DateTime      | -    | Yes      | No    | now()   |
+| message     | String        | 200  | No       | No    | -       |
 
 **Enum values for `type`**: donation, adoption, volunteer, rescue
 
 **Indexes**:
 
-| Key | Type | Attributes | Orders |
-|-----|------|------------|--------|
-| timestamp_desc | key | timestamp | DESC |
-| type_timestamp | key | type, timestamp | ASC, DESC |
+| Key            | Type | Attributes      | Orders    |
+| -------------- | ---- | --------------- | --------- |
+| timestamp_desc | key  | timestamp       | DESC      |
+| type_timestamp | key  | type, timestamp | ASC, DESC |
 
 **Permissions**:
+
 - Read: Any (public can view activities)
 - Create: Team:volunteers, Team:admins
 - Update: Team:admins
@@ -230,7 +232,7 @@ await createImpactMetrics({
 The dashboard uses Appwrite Realtime to automatically update metrics. The subscription channel is:
 
 ```typescript
-`databases.${DATABASE_ID}.collections.${COLLECTIONS.IMPACT_METRICS}.documents`
+`databases.${DATABASE_ID}.collections.${COLLECTIONS.IMPACT_METRICS}.documents`;
 ```
 
 Ensure your Appwrite instance has Realtime enabled and properly configured.
@@ -242,16 +244,19 @@ Use the mock data provided in `src/lib/mock-data/impact.ts` for development and 
 ## Troubleshooting
 
 ### Metrics not updating
+
 - Check Appwrite Realtime is enabled
 - Verify collection permissions
 - Check browser console for errors
 
 ### Activities not showing
+
 - Verify recent-activities collection exists
 - Check permissions allow public read
 - Ensure activities are being created with proper timestamps
 
 ### Performance issues
+
 - Ensure indexes are created
 - Check query limits in `query-config.ts`
 - Consider implementing caching for frequently accessed metrics

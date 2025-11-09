@@ -12,10 +12,10 @@ Edit `src/styles/themes/custom.css` or `default.css`:
 [data-theme='custom'] {
   /* Primary color (main brand color) */
   --primary: 210 100% 60%;
-  
+
   /* Secondary color (accents, highlights) */
   --secondary: 100 40% 53%;
-  
+
   /* Accent color (CTAs, important actions) */
   --accent: 20 100% 48%;
 }
@@ -33,9 +33,7 @@ Edit `src/styles/themes/custom.css` or `default.css`:
 Use in components:
 
 ```tsx
-<div className="bg-[var(--gradient-hero)]">
-  Content
-</div>
+<div className="bg-[var(--gradient-hero)]">Content</div>
 ```
 
 ### Create Theme-Aware Component
@@ -46,13 +44,15 @@ import { cn } from '@/lib/utils';
 
 export function MyComponent() {
   const { theme } = useTheme();
-  
+
   return (
-    <div className={cn(
-      'base-styles',
-      theme === 'custom' && 'custom-styles',
-      theme === 'default' && 'default-styles'
-    )}>
+    <div
+      className={cn(
+        'base-styles',
+        theme === 'custom' && 'custom-styles',
+        theme === 'default' && 'default-styles'
+      )}
+    >
       Content
     </div>
   );
@@ -67,12 +67,12 @@ import { AnimatedGradient } from '@/components/ui/animated-gradient';
 
 export function Hero() {
   const { config } = useTheme();
-  
+
   return (
     <div className="relative">
       {/* Only show in custom theme */}
       {config.effects.aceternity && <AnimatedGradient />}
-      
+
       <h1>Hero Title</h1>
     </div>
   );
@@ -94,15 +94,18 @@ CampusPaws uses HSL (Hue, Saturation, Lightness) for colors:
 ```
 
 **Hue** (0-360): Color wheel position
+
 - 0/360: Red
 - 120: Green
 - 240: Blue
 
 **Saturation** (0-100%): Color intensity
+
 - 0%: Gray
 - 100%: Full color
 
 **Lightness** (0-100%): Brightness
+
 - 0%: Black
 - 50%: Pure color
 - 100%: White
@@ -159,19 +162,21 @@ CampusPaws uses HSL (Hue, Saturation, Lightness) for colors:
   /* Hero gradients */
   --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --gradient-hero-alt: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  
+
   /* Card gradients */
-  --gradient-card: linear-gradient(to bottom right, 
-    hsl(var(--primary) / 0.1), 
+  --gradient-card: linear-gradient(
+    to bottom right,
+    hsl(var(--primary) / 0.1),
     hsl(var(--secondary) / 0.1)
   );
-  
+
   /* Button gradients */
-  --gradient-button: linear-gradient(to right, 
-    hsl(var(--primary)), 
+  --gradient-button: linear-gradient(
+    to right,
+    hsl(var(--primary)),
     hsl(var(--secondary))
   );
-  
+
   /* Accent gradients */
   --gradient-accent: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
 }
@@ -201,7 +206,7 @@ import { cn } from '@/lib/utils';
 
 export function ThemedButton({ children, ...props }) {
   const { theme } = useTheme();
-  
+
   return (
     <Button
       className={cn(
@@ -225,7 +230,7 @@ import { cn } from '@/lib/utils';
 
 export function ThemedCard({ children, className, ...props }) {
   const { theme } = useTheme();
-  
+
   return (
     <Card
       className={cn(
@@ -257,17 +262,17 @@ import { cn } from '@/lib/utils';
 
 export function ThemedBadge({ children, variant = 'default', ...props }) {
   const { theme } = useTheme();
-  
+
   return (
     <Badge
       className={cn(
-        theme === 'custom' && variant === 'default' && [
-          'bg-gradient-to-r from-primary/80 to-secondary/80',
-          'text-white',
-        ],
-        theme === 'default' && variant === 'default' && [
-          'bg-secondary text-secondary-foreground',
-        ]
+        theme === 'custom' &&
+          variant === 'default' && [
+            'bg-gradient-to-r from-primary/80 to-secondary/80',
+            'text-white',
+          ],
+        theme === 'default' &&
+          variant === 'default' && ['bg-secondary text-secondary-foreground']
       )}
       {...props}
     >
@@ -289,22 +294,26 @@ export const THEME_CONFIGS: Record<ThemeVariant, ThemeConfig> = {
     variant: 'custom',
     name: 'CampusPaws Custom',
     description: 'Vibrant theme with gradients and animations',
-    colors: { /* ... */ },
+    colors: {
+      /* ... */
+    },
     effects: {
-      gradients: true,      // Enable gradients
-      animations: true,     // Enable animations
-      aceternity: true,     // Enable Aceternity components
+      gradients: true, // Enable gradients
+      animations: true, // Enable animations
+      aceternity: true, // Enable Aceternity components
     },
   },
   default: {
     variant: 'default',
     name: 'Clean Default',
     description: 'Minimal shadcn/ui theme',
-    colors: { /* ... */ },
+    colors: {
+      /* ... */
+    },
     effects: {
-      gradients: false,     // Disable gradients
-      animations: false,    // Disable animations
-      aceternity: false,    // Disable Aceternity components
+      gradients: false, // Disable gradients
+      animations: false, // Disable animations
+      aceternity: false, // Disable Aceternity components
     },
   },
 };
@@ -320,7 +329,7 @@ import { Sparkles } from '@/components/ui/sparkles';
 
 export function Hero() {
   const { config } = useTheme();
-  
+
   return (
     <div className="relative">
       {/* Aceternity effects - only in custom theme */}
@@ -331,12 +340,14 @@ export function Hero() {
           <Sparkles />
         </>
       )}
-      
+
       {/* Gradient background - only if enabled */}
-      <div className={cn(
-        'hero-content',
-        config.effects.gradients && 'bg-[var(--gradient-hero)]'
-      )}>
+      <div
+        className={cn(
+          'hero-content',
+          config.effects.gradients && 'bg-[var(--gradient-hero)]'
+        )}
+      >
         <h1>Hero Title</h1>
       </div>
     </div>
@@ -362,7 +373,7 @@ function MyComponent() {
     custom: 'bg-gradient-to-r from-primary to-secondary',
     default: 'bg-primary',
   });
-  
+
   return <div className={themeClasses}>Content</div>;
 }
 ```
@@ -408,7 +419,7 @@ describe('MyComponent', () => {
     );
     // Assertions
   });
-  
+
   it('renders in default theme', () => {
     localStorage.setItem('campuspaws-theme', 'default');
     render(
@@ -447,10 +458,10 @@ describe('MyComponent', () => {
 [data-theme='custom'] {
   /* More rounded */
   --radius: 1rem;
-  
+
   /* Less rounded */
   --radius: 0.25rem;
-  
+
   /* No rounding */
   --radius: 0;
 }
@@ -464,7 +475,7 @@ describe('MyComponent', () => {
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-  
+
   /* No shadows */
   --shadow-sm: none;
   --shadow: none;
@@ -489,13 +500,13 @@ Ensure sufficient contrast (WCAG AA: 4.5:1 for normal text):
 
 ```css
 /* Good contrast */
---foreground: 0 0% 0%;      /* Black */
---background: 0 0% 100%;    /* White */
+--foreground: 0 0% 0%; /* Black */
+--background: 0 0% 100%; /* White */
 /* Ratio: 21:1 */
 
 /* Poor contrast */
---foreground: 0 0% 60%;     /* Gray */
---background: 0 0% 70%;     /* Light gray */
+--foreground: 0 0% 60%; /* Gray */
+--background: 0 0% 70%; /* Light gray */
 /* Ratio: 1.5:1 - Too low! */
 ```
 
@@ -517,6 +528,7 @@ Ensure sufficient contrast (WCAG AA: 4.5:1 for normal text):
 ---
 
 **Quick Tips:**
+
 - Use CSS variables for colors
 - Test both themes
 - Check accessibility

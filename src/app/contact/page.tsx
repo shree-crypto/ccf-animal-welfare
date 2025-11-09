@@ -16,7 +16,8 @@ export default function ContactPage() {
               Get Involved
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-              Join our community of dedicated volunteers making a real difference in the lives of campus animals.
+              Join our community of dedicated volunteers making a real
+              difference in the lives of campus animals.
             </p>
           </div>
         </div>
@@ -33,7 +34,8 @@ export default function ContactPage() {
                   Contact Us
                 </h2>
                 <p className="text-lg text-muted-foreground mb-8">
-                  Have questions or want to learn more about our work? We'd love to hear from you!
+                  Have questions or want to learn more about our work? We'd love
+                  to hear from you!
                 </p>
               </div>
 
@@ -44,8 +46,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Email</h3>
-                    <a 
-                      href="mailto:ccf@iitr.ac.in" 
+                    <a
+                      href="mailto:ccf@iitr.ac.in"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
                       ccf@iitr.ac.in
@@ -59,8 +61,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Phone</h3>
-                    <a 
-                      href="tel:+911332285311" 
+                    <a
+                      href="tel:+911332285311"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
                       +91 133 228 5311
@@ -75,8 +77,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Location</h3>
                     <p className="text-muted-foreground">
-                      IIT Roorkee Campus<br />
-                      Roorkee, Uttarakhand 247667<br />
+                      IIT Roorkee Campus
+                      <br />
+                      Roorkee, Uttarakhand 247667
+                      <br />
                       India
                     </p>
                   </div>
@@ -89,8 +93,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Office Hours</h3>
                     <p className="text-muted-foreground">
-                      Monday - Friday: 9:00 AM - 6:00 PM<br />
-                      Saturday: 10:00 AM - 4:00 PM<br />
+                      Monday - Friday: 9:00 AM - 6:00 PM
+                      <br />
+                      Saturday: 10:00 AM - 4:00 PM
+                      <br />
                       Sunday: Closed
                     </p>
                   </div>
@@ -108,7 +114,8 @@ export default function ContactPage() {
                   Become a Volunteer
                 </h2>
                 <p className="text-lg text-muted-foreground mb-6">
-                  Join our team of passionate volunteers and make a tangible impact on animal welfare at IIT Roorkee.
+                  Join our team of passionate volunteers and make a tangible
+                  impact on animal welfare at IIT Roorkee.
                 </p>
 
                 <div className="space-y-4 mb-8">
@@ -116,23 +123,35 @@ export default function ContactPage() {
                   <ul className="space-y-3 text-muted-foreground">
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1 flex-shrink-0">✓</span>
-                      <span>Participate in daily feeding schedules across campus territories</span>
+                      <span>
+                        Participate in daily feeding schedules across campus
+                        territories
+                      </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1 flex-shrink-0">✓</span>
-                      <span>Assist with medical care coordination and veterinary visits</span>
+                      <span>
+                        Assist with medical care coordination and veterinary
+                        visits
+                      </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1 flex-shrink-0">✓</span>
-                      <span>Help maintain animal profiles and medical records</span>
+                      <span>
+                        Help maintain animal profiles and medical records
+                      </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1 flex-shrink-0">✓</span>
-                      <span>Organize awareness campaigns and community events</span>
+                      <span>
+                        Organize awareness campaigns and community events
+                      </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1 flex-shrink-0">✓</span>
-                      <span>Monitor animal territories and report concerns</span>
+                      <span>
+                        Monitor animal territories and report concerns
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -142,7 +161,9 @@ export default function ContactPage() {
                   <ul className="space-y-3 text-muted-foreground">
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1 flex-shrink-0">•</span>
-                      <span>Current student or staff member at IIT Roorkee</span>
+                      <span>
+                        Current student or staff member at IIT Roorkee
+                      </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1 flex-shrink-0">•</span>
@@ -169,11 +190,14 @@ export default function ContactPage() {
               </div>
 
               <div className="bg-muted/50 rounded-xl p-6 border border-border">
-                <h3 className="text-xl font-semibold mb-3">Training & Support</h3>
+                <h3 className="text-xl font-semibold mb-3">
+                  Training & Support
+                </h3>
                 <p className="text-muted-foreground">
-                  All new volunteers receive comprehensive training on animal handling, feeding 
-                  protocols, safety procedures, and our digital management system. You'll be paired 
-                  with experienced volunteers for your first few assignments.
+                  All new volunteers receive comprehensive training on animal
+                  handling, feeding protocols, safety procedures, and our
+                  digital management system. You'll be paired with experienced
+                  volunteers for your first few assignments.
                 </p>
               </div>
             </div>
@@ -189,7 +213,8 @@ export default function ContactPage() {
               Other Ways to Help
             </h2>
             <p className="text-xl text-muted-foreground">
-              Can't volunteer regularly? There are still many ways to support our mission.
+              Can't volunteer regularly? There are still many ways to support
+              our mission.
             </p>
           </div>
 
@@ -197,7 +222,8 @@ export default function ContactPage() {
             <div className="bg-background rounded-xl p-8 shadow-lg border border-border text-center">
               <h3 className="text-2xl font-semibold mb-4">Donate</h3>
               <p className="text-muted-foreground mb-6">
-                Financial contributions help us provide food, medical care, and supplies for campus animals.
+                Financial contributions help us provide food, medical care, and
+                supplies for campus animals.
               </p>
               <Button asChild variant="outline">
                 <Link href="/donate">Learn More</Link>
@@ -207,7 +233,8 @@ export default function ContactPage() {
             <div className="bg-background rounded-xl p-8 shadow-lg border border-border text-center">
               <h3 className="text-2xl font-semibold mb-4">Spread Awareness</h3>
               <p className="text-muted-foreground mb-6">
-                Share our mission on social media and help educate others about animal welfare.
+                Share our mission on social media and help educate others about
+                animal welfare.
               </p>
               <Button asChild variant="outline">
                 <Link href="/about">Our Mission</Link>
@@ -217,7 +244,8 @@ export default function ContactPage() {
             <div className="bg-background rounded-xl p-8 shadow-lg border border-border text-center">
               <h3 className="text-2xl font-semibold mb-4">Attend Events</h3>
               <p className="text-muted-foreground mb-6">
-                Join our awareness campaigns, fundraisers, and community events throughout the year.
+                Join our awareness campaigns, fundraisers, and community events
+                throughout the year.
               </p>
               <Button asChild variant="outline">
                 <Link href="/events">View Events</Link>
@@ -236,34 +264,46 @@ export default function ContactPage() {
 
           <div className="space-y-6">
             <div className="bg-muted/50 rounded-xl p-6 border border-border">
-              <h3 className="text-xl font-semibold mb-3">Do I need prior experience with animals?</h3>
+              <h3 className="text-xl font-semibold mb-3">
+                Do I need prior experience with animals?
+              </h3>
               <p className="text-muted-foreground">
-                No prior experience is necessary! We provide comprehensive training for all new volunteers. 
-                What matters most is your genuine care for animals and willingness to learn.
+                No prior experience is necessary! We provide comprehensive
+                training for all new volunteers. What matters most is your
+                genuine care for animals and willingness to learn.
               </p>
             </div>
 
             <div className="bg-muted/50 rounded-xl p-6 border border-border">
-              <h3 className="text-xl font-semibold mb-3">How much time do I need to commit?</h3>
+              <h3 className="text-xl font-semibold mb-3">
+                How much time do I need to commit?
+              </h3>
               <p className="text-muted-foreground">
-                We ask for a minimum commitment of 3-4 hours per week, but you can choose shifts that 
-                fit your schedule. Flexibility is important to us, and we understand academic priorities.
+                We ask for a minimum commitment of 3-4 hours per week, but you
+                can choose shifts that fit your schedule. Flexibility is
+                important to us, and we understand academic priorities.
               </p>
             </div>
 
             <div className="bg-muted/50 rounded-xl p-6 border border-border">
-              <h3 className="text-xl font-semibold mb-3">Is volunteering safe?</h3>
+              <h3 className="text-xl font-semibold mb-3">
+                Is volunteering safe?
+              </h3>
               <p className="text-muted-foreground">
-                Yes! We prioritize volunteer safety through proper training, safety protocols, and 
-                supervision. You'll learn how to interact with animals safely and when to seek help.
+                Yes! We prioritize volunteer safety through proper training,
+                safety protocols, and supervision. You'll learn how to interact
+                with animals safely and when to seek help.
               </p>
             </div>
 
             <div className="bg-muted/50 rounded-xl p-6 border border-border">
-              <h3 className="text-xl font-semibold mb-3">Can I volunteer for specific activities only?</h3>
+              <h3 className="text-xl font-semibold mb-3">
+                Can I volunteer for specific activities only?
+              </h3>
               <p className="text-muted-foreground">
-                Absolutely! Some volunteers prefer feeding duties, others enjoy medical coordination, 
-                and some focus on awareness campaigns. We'll work with your interests and strengths.
+                Absolutely! Some volunteers prefer feeding duties, others enjoy
+                medical coordination, and some focus on awareness campaigns.
+                We'll work with your interests and strengths.
               </p>
             </div>
           </div>
