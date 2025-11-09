@@ -33,6 +33,10 @@ See `IMPLEMENTATION_PROGRESS.md` for details.
 - **Emergency Alert System**: Quick response system for urgent situations with priority levels and real-time notifications
 - **QR Code Animal Profiles**: Generate scannable QR codes for instant access to animal information
 - **Community Reporting Portal**: Allow public to report sightings, concerns, or issues with campus animals
+- **AI-Powered Features** 🤖: Machine learning capabilities for enhanced animal care
+  - **Breed Classification**: Automatic dog breed identification using TensorFlow.js
+  - **Photo Quality Assessment**: Real-time feedback on photo quality and composition
+  - **Client-Side Processing**: All AI runs in-browser for privacy and speed
 
 ## Tech Stack
 
@@ -43,6 +47,7 @@ See `IMPLEMENTATION_PROGRESS.md` for details.
 - **Storage**: AWS S3 via Appwrite Storage
 - **Maps**: React Leaflet with OpenStreetMap
 - **Forms**: React Hook Form with Zod validation
+- **AI/ML**: TensorFlow.js with MobileNet and COCO-SSD models
 
 ## Getting Started
 
@@ -116,6 +121,7 @@ Comprehensive documentation is available in the [docs](./docs) folder:
 - **[Query Optimization](./docs/QUERY_OPTIMIZATION.md)** - Database indexing and query performance optimization
 - **[Theme Switcher Guide](./docs/THEME_SWITCHER_GUIDE.md)** - Complete guide to using and customizing themes
 - **[Theme Customization](./docs/THEME_CUSTOMIZATION_GUIDE.md)** - Quick reference for theme customization
+- **[ML Features Guide](./docs/ML_FEATURES.md)** - AI-powered breed classification and photo quality assessment
 
 See [docs/README.md](./docs/README.md) for the complete documentation index and quick navigation guide.
 
