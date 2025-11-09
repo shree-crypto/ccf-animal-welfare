@@ -42,7 +42,9 @@ export function ThemeSwitcherCompact() {
   return (
     <Select value={theme} onValueChange={handleThemeChange}>
       <SelectTrigger className="h-9 w-9 p-0 border-0 bg-transparent hover:bg-accent">
-        <span className="sr-only">Current theme: {currentConfig.name}. Click to change theme.</span>
+        <span className="sr-only">
+          Current theme: {currentConfig.name}. Click to change theme.
+        </span>
         {getThemeIcon(theme)}
       </SelectTrigger>
       <SelectContent align="end">

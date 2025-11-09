@@ -6,7 +6,10 @@ export { AnimalQRCode } from './animals/AnimalQRCode';
 export { VolunteerImpactDashboard } from './volunteers/VolunteerImpactDashboard';
 
 // Emergency features
-export { EmergencyAlertCard, NewEmergencyAlertForm } from './emergency/EmergencyAlertCard';
+export {
+  EmergencyAlertCard,
+  NewEmergencyAlertForm,
+} from './emergency/EmergencyAlertCard';
 
 // Community features
 export { CommunityReportForm } from './community/CommunityReportForm';

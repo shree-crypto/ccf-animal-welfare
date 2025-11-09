@@ -64,8 +64,12 @@ export default function TerritoriesPage() {
           <div className="flex items-center gap-2">
             <MapPin className="w-5 h-5 text-gray-700" />
             <div>
-              <h1 className="text-sm font-semibold text-gray-900">Territory Map</h1>
-              <p className="text-xs text-gray-600">{territories.length} territories</p>
+              <h1 className="text-sm font-semibold text-gray-900">
+                Territory Map
+              </h1>
+              <p className="text-xs text-gray-600">
+                {territories.length} territories
+              </p>
             </div>
           </div>
         </div>
@@ -97,7 +101,9 @@ export default function TerritoriesPage() {
         {/* Floating Legend */}
         {showLegend && (
           <div className="absolute bottom-4 left-4 z-[60] bg-white/95 backdrop-blur-sm rounded-lg shadow-lg p-4">
-            <h3 className="text-xs font-semibold text-gray-900 mb-2">Pack Size</h3>
+            <h3 className="text-xs font-semibold text-gray-900 mb-2">
+              Pack Size
+            </h3>
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-xs text-gray-600">
                 <div className="w-3 h-3 rounded bg-gray-400"></div>
@@ -126,7 +132,10 @@ export default function TerritoriesPage() {
         {/* Full-screen Map */}
         <div className="flex-1 w-full">
           {territories.length > 0 ? (
-            <InteractiveMap territories={territories} showHeatmap={showHeatmap} />
+            <InteractiveMap
+              territories={territories}
+              showHeatmap={showHeatmap}
+            />
           ) : (
             <div className="h-full flex items-center justify-center bg-gray-50">
               <div className="text-center">

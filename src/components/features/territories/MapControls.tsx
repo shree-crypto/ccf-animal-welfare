@@ -20,7 +20,10 @@ export function MapControls() {
   };
 
   return (
-    <div className="leaflet-top leaflet-left" style={{ top: '80px', left: '16px' }}>
+    <div
+      className="leaflet-top leaflet-left"
+      style={{ top: '80px', left: '16px' }}
+    >
       <div className="flex flex-col gap-2">
         {/* Zoom In */}
         <button

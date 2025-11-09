@@ -168,12 +168,14 @@ export function ImpactDashboard({
       />
 
       {/* Call to Action */}
-      <div className={cn(
-        "text-center py-8 px-4 rounded-lg",
-        config.effects.gradients
-          ? "bg-blue-50/50 dark:bg-blue-950/30"
-          : "bg-muted"
-      )}>
+      <div
+        className={cn(
+          'text-center py-8 px-4 rounded-lg',
+          config.effects.gradients
+            ? 'bg-blue-50/50 dark:bg-blue-950/30'
+            : 'bg-muted'
+        )}
+      >
         <h3 className="text-xl font-bold text-foreground mb-2">
           Be Part of the Change
         </h3>

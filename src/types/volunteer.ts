@@ -1,6 +1,6 @@
 import { Models } from 'appwrite';
 
-export type VolunteerSkill = 
+export type VolunteerSkill =
   | 'animal_handling'
   | 'medical_assistance'
   | 'photography'
@@ -10,7 +10,7 @@ export type VolunteerSkill =
   | 'training'
   | 'grooming';
 
-export type BadgeType = 
+export type BadgeType =
   | 'first_task'
   | 'week_streak'
   | 'month_streak'
@@ -55,13 +55,17 @@ export interface Badge {
 }
 
 // Appwrite document types
-export interface VolunteerHoursDocument extends Models.Document, Omit<VolunteerHours, 'id'> {
+export interface VolunteerHoursDocument
+  extends Models.Document,
+    Omit<VolunteerHours, 'id'> {
   $id: string;
   $createdAt: string;
   $updatedAt: string;
 }
 
-export interface VolunteerStatsDocument extends Models.Document, Omit<VolunteerStats, 'id'> {
+export interface VolunteerStatsDocument
+  extends Models.Document,
+    Omit<VolunteerStats, 'id'> {
   $id: string;
   $createdAt: string;
   $updatedAt: string;

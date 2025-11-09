@@ -7,7 +7,10 @@ import { AnimalProfile } from '@/types/animal';
 import { getAnimalById } from '@/lib/db/animals';
 import { createMedicalRecord } from '@/lib/db/medical';
 import { PhotoCarousel } from '@/components/features/animals/PhotoCarousel';
-import { MedicalHistoryTimeline, MedicalRecordForm } from '@/components/features/medical';
+import {
+  MedicalHistoryTimeline,
+  MedicalRecordForm,
+} from '@/components/features/medical';
 import { BehaviorTracker } from '@/components/features/animals/BehaviorTracker';
 import { AnimalQRCode } from '@/components/features/animals/AnimalQRCode';
 import { MedicalRecordFormData } from '@/lib/validations/medical';
@@ -78,7 +81,7 @@ export default function AnimalDetailPage() {
       // TODO: Replace with actual API call to update animal behavior
       console.log('Saving behavior:', behavior);
       toast.success('Behavior profile updated successfully');
-      
+
       // Update local state
       if (animal) {
         setAnimal({ ...animal, behavior });
@@ -330,7 +333,9 @@ export default function AnimalDetailPage() {
                 <div className="flex gap-2">
                   <AnimalQRCode animalId={animal.id} animalName={animal.name} />
                   <p className="text-sm text-muted-foreground flex-1">
-                    Generate a QR code for {animal.name}&apos;s profile that can be printed and attached to physical tags or feeding stations.
+                    Generate a QR code for {animal.name}&apos;s profile that can
+                    be printed and attached to physical tags or feeding
+                    stations.
                   </p>
                 </div>
               </CardContent>

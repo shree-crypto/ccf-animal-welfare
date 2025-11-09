@@ -70,7 +70,7 @@ export function Header() {
           {/* Desktop Navigation */}
           <div className="flex items-center gap-2">
             <nav className="hidden md:flex items-center gap-1">
-              {navLinks.map((link) => (
+              {navLinks.map(link => (
                 <LinkButton
                   key={link.href}
                   href={link.href}
@@ -146,7 +146,7 @@ export function Header() {
             className="md:hidden border-t"
           >
             <nav className="flex flex-col p-4 gap-2">
-              {navLinks.map((link) => (
+              {navLinks.map(link => (
                 <LinkButton
                   key={link.href}
                   href={link.href}

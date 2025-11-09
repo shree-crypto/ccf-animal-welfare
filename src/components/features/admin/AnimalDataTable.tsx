@@ -36,7 +36,7 @@ export function AnimalDataTable({
 
   // Filter and sort animals
   const filteredAnimals = useMemo(() => {
-    let filtered = animals.filter(animal => {
+    const filtered = animals.filter(animal => {
       const matchesSearch =
         animal.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         animal.location.area.toLowerCase().includes(searchTerm.toLowerCase());
@@ -220,12 +220,11 @@ export function AnimalDataTable({
                     <td className="px-4 py-3">{animal.currentFeeder || '-'}</td>
                     <td className="px-4 py-3">
                       <div className="flex justify-end gap-2">
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          asChild
-                        >
-                          <Link href={`/animals/${animal.id}`} className="flex items-center">
+                        <Button size="sm" variant="ghost" asChild>
+                          <Link
+                            href={`/animals/${animal.id}`}
+                            className="flex items-center"
+                          >
                             <Eye className="h-4 w-4" />
                           </Link>
                         </Button>

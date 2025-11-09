@@ -46,7 +46,9 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
     <div className="absolute top-20 right-4 w-72 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl z-[1000] max-h-[calc(100vh-8rem)] overflow-hidden flex flex-col">
       {/* Header */}
       <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-blue-50/50">
-        <h3 className="text-lg font-semibold text-gray-900">{territory.name}</h3>
+        <h3 className="text-lg font-semibold text-gray-900">
+          {territory.name}
+        </h3>
         <button
           onClick={onClose}
           className="p-1 hover:bg-gray-100 rounded-full transition-colors"
@@ -65,7 +67,9 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
               <Users className="w-3 h-3" />
               <span className="text-xs">Pack Size</span>
             </div>
-            <p className="text-lg font-bold text-gray-900">{territory.packSize}</p>
+            <p className="text-lg font-bold text-gray-900">
+              {territory.packSize}
+            </p>
           </div>
 
           <div className="bg-gray-50 p-2 rounded">
@@ -73,7 +77,9 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
               <MapPin className="w-3 h-3" />
               <span className="text-xs">Animals</span>
             </div>
-            <p className="text-lg font-bold text-gray-900">{territory.animals.length}</p>
+            <p className="text-lg font-bold text-gray-900">
+              {territory.animals.length}
+            </p>
           </div>
         </div>
 
@@ -86,7 +92,9 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
         {/* Assigned Volunteers */}
         {territory.assignedVolunteers.length > 0 && (
           <div className="mb-3">
-            <h4 className="text-xs font-semibold text-gray-900 mb-1">Volunteers</h4>
+            <h4 className="text-xs font-semibold text-gray-900 mb-1">
+              Volunteers
+            </h4>
             <div className="space-y-1">
               {territory.assignedVolunteers.map(volunteerId => (
                 <div
@@ -105,13 +113,16 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
           <h4 className="text-xs font-semibold text-gray-900 mb-1">Animals</h4>
           {loading ? (
             <div className="space-y-1">
-              {[1, 2].map((i) => (
-                <div key={i} className="bg-gray-100 h-12 rounded animate-pulse" />
+              {[1, 2].map(i => (
+                <div
+                  key={i}
+                  className="bg-gray-100 h-12 rounded animate-pulse"
+                />
               ))}
             </div>
           ) : animals.length > 0 ? (
             <div className="space-y-1">
-              {animals.map((animal) => (
+              {animals.map(animal => (
                 <div
                   key={animal.id}
                   className="bg-gray-50 p-2 rounded hover:bg-gray-100 transition-colors"
@@ -125,7 +136,9 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
                       />
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs font-medium text-gray-900 truncate">{animal.name}</p>
+                      <p className="text-xs font-medium text-gray-900 truncate">
+                        {animal.name}
+                      </p>
                       <p className="text-xs text-gray-600">
                         {animal.type} • {animal.age}y
                       </p>

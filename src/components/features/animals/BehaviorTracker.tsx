@@ -24,7 +24,11 @@ interface BehaviorTrackerProps {
   readOnly?: boolean;
 }
 
-const temperamentOptions: { value: TemperamentLevel; label: string; color: string }[] = [
+const temperamentOptions: {
+  value: TemperamentLevel;
+  label: string;
+  color: string;
+}[] = [
   { value: 'very_friendly', label: 'Very Friendly', color: 'bg-green-500' },
   { value: 'friendly', label: 'Friendly', color: 'bg-green-400' },
   { value: 'neutral', label: 'Neutral', color: 'bg-yellow-500' },
@@ -41,7 +45,12 @@ const energyOptions: { value: EnergyLevel; label: string }[] = [
   { value: 'very_low', label: 'Very Low' },
 ];
 
-export function BehaviorTracker({ animalId, initialBehavior, onSave, readOnly = false }: BehaviorTrackerProps) {
+export function BehaviorTracker({
+  animalId,
+  initialBehavior,
+  onSave,
+  readOnly = false,
+}: BehaviorTrackerProps) {
   const [behavior, setBehavior] = useState<BehaviorProfile>(
     initialBehavior || {
       temperament: 'neutral',
@@ -73,7 +82,9 @@ export function BehaviorTracker({ animalId, initialBehavior, onSave, readOnly = 
     }
   };
 
-  const currentTemperament = temperamentOptions.find((t) => t.value === behavior.temperament);
+  const currentTemperament = temperamentOptions.find(
+    t => t.value === behavior.temperament
+  );
 
   if (readOnly && !initialBehavior) {
     return null;
@@ -87,7 +98,11 @@ export function BehaviorTracker({ animalId, initialBehavior, onSave, readOnly = 
           <h3 className="text-lg font-semibold">Behavior & Temperament</h3>
         </div>
         {!readOnly && !isEditing && (
-          <Button variant="outline" size="sm" onClick={() => setIsEditing(true)}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setIsEditing(true)}
+          >
             Edit
           </Button>
         )}
@@ -107,7 +122,7 @@ export function BehaviorTracker({ animalId, initialBehavior, onSave, readOnly = 
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {temperamentOptions.map((option) => (
+                {temperamentOptions.map(option => (
                   <SelectItem key={option.value} value={option.value}>
                     <div className="flex items-center gap-2">
                       <div className={`w-3 h-3 rounded-full ${option.color}`} />
@@ -131,7 +146,7 @@ export function BehaviorTracker({ animalId, initialBehavior, onSave, readOnly = 
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {energyOptions.map((option) => (
+                {energyOptions.map(option => (
                   <SelectItem key={option.value} value={option.value}>
                     {option.label}
                   </SelectItem>
@@ -146,11 +161,14 @@ export function BehaviorTracker({ animalId, initialBehavior, onSave, readOnly = 
               <Checkbox
                 id="goodWithDogs"
                 checked={behavior.goodWithDogs}
-                onCheckedChange={(checked) =>
+                onCheckedChange={checked =>
                   setBehavior({ ...behavior, goodWithDogs: checked as boolean })
                 }
               />
-              <label htmlFor="goodWithDogs" className="flex items-center gap-1 cursor-pointer">
+              <label
+                htmlFor="goodWithDogs"
+                className="flex items-center gap-1 cursor-pointer"
+              >
                 <Dog className="h-4 w-4" />
                 Dogs
               </label>
@@ -160,11 +178,14 @@ export function BehaviorTracker({ animalId, initialBehavior, onSave, readOnly = 
               <Checkbox
                 id="goodWithCats"
                 checked={behavior.goodWithCats}
-                onCheckedChange={(checked) =>
+                onCheckedChange={checked =>
                   setBehavior({ ...behavior, goodWithCats: checked as boolean })
                 }
               />
-              <label htmlFor="goodWithCats" className="flex items-center gap-1 cursor-pointer">
+              <label
+                htmlFor="goodWithCats"
+                className="flex items-center gap-1 cursor-pointer"
+              >
                 <Cat className="h-4 w-4" />
                 Cats
               </label>
@@ -174,11 +195,17 @@ export function BehaviorTracker({ animalId, initialBehavior, onSave, readOnly = 
               <Checkbox
                 id="goodWithPeople"
                 checked={behavior.goodWithPeople}
-                onCheckedChange={(checked) =>
-                  setBehavior({ ...behavior, goodWithPeople: checked as boolean })
+                onCheckedChange={checked =>
+                  setBehavior({
+                    ...behavior,
+                    goodWithPeople: checked as boolean,
+                  })
                 }
               />
-              <label htmlFor="goodWithPeople" className="flex items-center gap-1 cursor-pointer">
+              <label
+                htmlFor="goodWithPeople"
+                className="flex items-center gap-1 cursor-pointer"
+              >
                 <Users className="h-4 w-4" />
                 People
               </label>
@@ -188,11 +215,17 @@ export function BehaviorTracker({ animalId, initialBehavior, onSave, readOnly = 
               <Checkbox
                 id="goodWithChildren"
                 checked={behavior.goodWithChildren}
-                onCheckedChange={(checked) =>
-                  setBehavior({ ...behavior, goodWithChildren: checked as boolean })
+                onCheckedChange={checked =>
+                  setBehavior({
+                    ...behavior,
+                    goodWithChildren: checked as boolean,
+                  })
                 }
               />
-              <label htmlFor="goodWithChildren" className="flex items-center gap-1 cursor-pointer">
+              <label
+                htmlFor="goodWithChildren"
+                className="flex items-center gap-1 cursor-pointer"
+              >
                 <Baby className="h-4 w-4" />
                 Children
               </label>
@@ -204,7 +237,9 @@ export function BehaviorTracker({ animalId, initialBehavior, onSave, readOnly = 
             <Textarea
               placeholder="Any special needs or requirements..."
               value={behavior.specialNeeds || ''}
-              onChange={(e) => setBehavior({ ...behavior, specialNeeds: e.target.value })}
+              onChange={e =>
+                setBehavior({ ...behavior, specialNeeds: e.target.value })
+              }
               rows={2}
             />
           </div>
@@ -214,7 +249,9 @@ export function BehaviorTracker({ animalId, initialBehavior, onSave, readOnly = 
             <Textarea
               placeholder="Additional behavioral observations..."
               value={behavior.behavioralNotes || ''}
-              onChange={(e) => setBehavior({ ...behavior, behavioralNotes: e.target.value })}
+              onChange={e =>
+                setBehavior({ ...behavior, behavioralNotes: e.target.value })
+              }
               rows={3}
             />
           </div>
@@ -240,13 +277,18 @@ export function BehaviorTracker({ animalId, initialBehavior, onSave, readOnly = 
       ) : (
         <div className="space-y-4">
           <div className="flex items-center gap-2">
-            <div className={`w-4 h-4 rounded-full ${currentTemperament?.color}`} />
+            <div
+              className={`w-4 h-4 rounded-full ${currentTemperament?.color}`}
+            />
             <span className="font-medium">{currentTemperament?.label}</span>
           </div>
 
           <div className="flex items-center gap-2">
             <Zap className="h-4 w-4 text-yellow-500" />
-            <span>Energy: {energyOptions.find((e) => e.value === behavior.energyLevel)?.label}</span>
+            <span>
+              Energy:{' '}
+              {energyOptions.find(e => e.value === behavior.energyLevel)?.label}
+            </span>
           </div>
 
           <div className="flex flex-wrap gap-2">
@@ -281,8 +323,12 @@ export function BehaviorTracker({ animalId, initialBehavior, onSave, readOnly = 
               <div className="flex items-start gap-2">
                 <AlertCircle className="h-4 w-4 text-yellow-600 mt-0.5" />
                 <div>
-                  <p className="font-medium text-sm text-yellow-800 dark:text-yellow-200">Special Needs</p>
-                  <p className="text-sm text-yellow-700 dark:text-yellow-300">{behavior.specialNeeds}</p>
+                  <p className="font-medium text-sm text-yellow-800 dark:text-yellow-200">
+                    Special Needs
+                  </p>
+                  <p className="text-sm text-yellow-700 dark:text-yellow-300">
+                    {behavior.specialNeeds}
+                  </p>
                 </div>
               </div>
             </div>
@@ -290,7 +336,9 @@ export function BehaviorTracker({ animalId, initialBehavior, onSave, readOnly = 
 
           {behavior.behavioralNotes && (
             <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-md">
-              <p className="text-sm text-gray-600 dark:text-gray-400">{behavior.behavioralNotes}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                {behavior.behavioralNotes}
+              </p>
             </div>
           )}
 

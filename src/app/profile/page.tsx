@@ -6,7 +6,7 @@ import { ProfileForm } from '@/components/features/auth/ProfileForm';
 import { VolunteerImpactDashboard } from '@/components/features/volunteers/VolunteerImpactDashboard';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useRouter } from 'next/navigation';
 import { VolunteerStats } from '@/types/volunteer';
@@ -20,7 +20,7 @@ export default function ProfilePage() {
   useEffect(() => {
     const fetchVolunteerStats = async () => {
       if (!user) return;
-      
+
       try {
         // TODO: Replace with actual API call
         // Mock data for demonstration
@@ -35,7 +35,7 @@ export default function ProfilePage() {
           skills: ['animal_handling', 'medical_assistance'],
           preferredTaskTypes: ['feeding', 'medical'],
         };
-        
+
         setStats(mockStats);
       } catch (error) {
         console.error('Error fetching volunteer stats:', error);
@@ -80,7 +80,9 @@ export default function ProfilePage() {
                 {loading ? (
                   <Card>
                     <CardContent className="p-8 text-center">
-                      <p className="text-muted-foreground">Loading your impact data...</p>
+                      <p className="text-muted-foreground">
+                        Loading your impact data...
+                      </p>
                     </CardContent>
                   </Card>
                 ) : stats ? (
@@ -92,7 +94,8 @@ export default function ProfilePage() {
                   <Card>
                     <CardContent className="p-8 text-center">
                       <p className="text-muted-foreground">
-                        No volunteer data available yet. Complete some tasks to start tracking your impact!
+                        No volunteer data available yet. Complete some tasks to
+                        start tracking your impact!
                       </p>
                     </CardContent>
                   </Card>
