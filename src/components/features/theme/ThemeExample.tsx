@@ -1,7 +1,13 @@
 'use client';
 
 import { useTheme } from '@/contexts/ThemeContext';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 
 /**
  * Example component demonstrating theme context usage
@@ -14,9 +20,7 @@ export function ThemeExample() {
     <Card>
       <CardHeader>
         <CardTitle>Theme Context Example</CardTitle>
-        <CardDescription>
-          Current theme: {config.name}
-        </CardDescription>
+        <CardDescription>Current theme: {config.name}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div>

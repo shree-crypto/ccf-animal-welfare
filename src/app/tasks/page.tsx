@@ -4,11 +4,17 @@ import { useEffect, useState, useCallback } from 'react';
 import { ProtectedRoute } from '@/components/features/auth/ProtectedRoute';
 import { useAuth } from '@/contexts/AuthContext';
 import { Task } from '@/types/task';
-import { getTasks, createTask, updateTask, deleteTask, completeTask } from '@/lib/db/tasks';
+import {
+  getTasks,
+  createTask,
+  updateTask,
+  deleteTask,
+  completeTask,
+} from '@/lib/db/tasks';
 import { TaskCard } from '@/components/features/tasks/TaskCard';
 import { TaskCalendar } from '@/components/features/tasks/TaskCalendar';
 import { QuickActions } from '@/components/features/tasks/QuickActions';
-import { CreateTaskFormData } from '@/lib/validations/task';
+import { CreateTaskFormData, CreateTaskInput } from '@/lib/validations/task';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -23,7 +29,7 @@ export default function TasksPage() {
   const [filter, setFilter] = useState<'all' | 'pending' | 'completed'>('all');
 
   // Memoize event handlers to prevent unnecessary re-renders
-  const handleCreateTask = useCallback(async (data: CreateTaskFormData) => {
+  const handleCreateTask = useCallback(async (data: CreateTaskInput) => {
     try {
       await createTask(data);
       await loadTasks();
@@ -79,15 +85,17 @@ export default function TasksPage() {
     // Subscribe to real-time updates using Appwrite Realtime
     const databaseId = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID;
     const collectionId = process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_TASKS;
-    
+
     if (!databaseId || !collectionId) {
-      console.warn('Database or collection ID not configured for real-time updates');
+      console.warn(
+        'Database or collection ID not configured for real-time updates'
+      );
       return () => {};
     }
 
     const unsubscribe = client.subscribe(
       `databases.${databaseId}.collections.${collectionId}.documents`,
-      (response) => {
+      response => {
         // Reload tasks when changes occur
         loadTasks();
       }
@@ -122,91 +130,93 @@ export default function TasksPage() {
       <ErrorBoundary>
         <div className="min-h-screen bg-gray-50">
           <div className="container mx-auto px-4 py-8">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Task Management</h1>
-              <p className="text-gray-600 mt-2">
-                Manage your feeding schedules and volunteer tasks
-              </p>
-            </div>
-            <QuickActions
-              onCreateTask={handleCreateTask}
-              currentUserId={user?.$id || ''}
-            />
-          </div>
-
-          <Tabs defaultValue="list" className="space-y-6">
-            <TabsList>
-              <TabsTrigger value="list" className="gap-2">
-                <ListTodo className="h-4 w-4" />
-                Task List
-              </TabsTrigger>
-              <TabsTrigger value="calendar" className="gap-2">
-                <CalendarIcon className="h-4 w-4" />
-                Calendar View
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="list" className="space-y-6">
-              <div className="flex gap-2">
-                <Button
-                  variant={filter === 'all' ? 'default' : 'outline'}
-                  onClick={() => setFilter('all')}
-                  className="gap-2"
-                >
-                  All Tasks
-                  <Badge variant="secondary">{tasks.length}</Badge>
-                </Button>
-                <Button
-                  variant={filter === 'pending' ? 'default' : 'outline'}
-                  onClick={() => setFilter('pending')}
-                  className="gap-2"
-                >
-                  Pending
-                  <Badge variant="secondary">{pendingCount}</Badge>
-                </Button>
-                <Button
-                  variant={filter === 'completed' ? 'default' : 'outline'}
-                  onClick={() => setFilter('completed')}
-                  className="gap-2"
-                >
-                  Completed
-                  <Badge variant="secondary">{completedCount}</Badge>
-                </Button>
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900">
+                  Task Management
+                </h1>
+                <p className="text-gray-600 mt-2">
+                  Manage your feeding schedules and volunteer tasks
+                </p>
               </div>
+              <QuickActions
+                onCreateTask={handleCreateTask}
+                currentUserId={user?.$id || ''}
+              />
+            </div>
 
-              {filteredTasks.length > 0 ? (
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {filteredTasks.map(task => (
-                    <TaskCard
-                      key={task.id}
-                      task={task}
-                      onComplete={handleCompleteTask}
-                      onDelete={handleDeleteTask}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-12">
-                  <ListTodo className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">
-                    No tasks found
-                  </h3>
-                  <p className="text-gray-600">
-                    {filter === 'all'
-                      ? 'Create your first task to get started'
-                      : `No ${filter} tasks at the moment`}
-                  </p>
-                </div>
-              )}
-            </TabsContent>
+            <Tabs defaultValue="list" className="space-y-6">
+              <TabsList>
+                <TabsTrigger value="list" className="gap-2">
+                  <ListTodo className="h-4 w-4" />
+                  Task List
+                </TabsTrigger>
+                <TabsTrigger value="calendar" className="gap-2">
+                  <CalendarIcon className="h-4 w-4" />
+                  Calendar View
+                </TabsTrigger>
+              </TabsList>
 
-            <TabsContent value="calendar">
-              <TaskCalendar tasks={tasks} />
-            </TabsContent>
-          </Tabs>
+              <TabsContent value="list" className="space-y-6">
+                <div className="flex gap-2">
+                  <Button
+                    variant={filter === 'all' ? 'default' : 'outline'}
+                    onClick={() => setFilter('all')}
+                    className="gap-2"
+                  >
+                    All Tasks
+                    <Badge variant="secondary">{tasks.length}</Badge>
+                  </Button>
+                  <Button
+                    variant={filter === 'pending' ? 'default' : 'outline'}
+                    onClick={() => setFilter('pending')}
+                    className="gap-2"
+                  >
+                    Pending
+                    <Badge variant="secondary">{pendingCount}</Badge>
+                  </Button>
+                  <Button
+                    variant={filter === 'completed' ? 'default' : 'outline'}
+                    onClick={() => setFilter('completed')}
+                    className="gap-2"
+                  >
+                    Completed
+                    <Badge variant="secondary">{completedCount}</Badge>
+                  </Button>
+                </div>
+
+                {filteredTasks.length > 0 ? (
+                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    {filteredTasks.map(task => (
+                      <TaskCard
+                        key={task.id}
+                        task={task}
+                        onComplete={handleCompleteTask}
+                        onDelete={handleDeleteTask}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-12">
+                    <ListTodo className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">
+                      No tasks found
+                    </h3>
+                    <p className="text-gray-600">
+                      {filter === 'all'
+                        ? 'Create your first task to get started'
+                        : `No ${filter} tasks at the moment`}
+                    </p>
+                  </div>
+                )}
+              </TabsContent>
+
+              <TabsContent value="calendar">
+                <TaskCalendar tasks={tasks} />
+              </TabsContent>
+            </Tabs>
+          </div>
         </div>
-      </div>
       </ErrorBoundary>
     </ProtectedRoute>
   );

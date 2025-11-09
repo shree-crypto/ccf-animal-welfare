@@ -33,7 +33,7 @@ const animal = await createAnimal({
   breed: 'Golden Retriever',
   location: {
     area: 'Main Campus',
-    coordinates: [29.8543, 77.8880],
+    coordinates: [29.8543, 77.888],
   },
   medicalHistory: [],
   photos: {
@@ -72,9 +72,9 @@ import {
 const territory = await createTerritory({
   name: 'North Campus',
   boundaries: [
-    [29.8543, 77.8880],
-    [29.8553, 77.8890],
-    [29.8563, 77.8870],
+    [29.8543, 77.888],
+    [29.8553, 77.889],
+    [29.8563, 77.887],
   ],
   packSize: 5,
   animals: ['animal-id-1', 'animal-id-2'],
@@ -171,7 +171,7 @@ import {
 } from '@/lib/storage';
 
 // Upload an animal photo
-const photo = await uploadAnimalPhoto(file, (progress) => {
+const photo = await uploadAnimalPhoto(file, progress => {
   console.log(`Upload progress: ${progress.$id}`);
 });
 

@@ -1,9 +1,9 @@
 /**
  * TrendChart Component
- * 
+ *
  * Displays historical trend data for metrics
  * Requirements: 3.4
- * 
+ *
  * Note: This component uses Recharts for visualization.
  * Install with: npm install recharts
  */
@@ -22,7 +22,12 @@ interface TrendChartProps {
   className?: string;
 }
 
-export function TrendChart({ trend, title, loading = false, className }: TrendChartProps) {
+export function TrendChart({
+  trend,
+  title,
+  loading = false,
+  className,
+}: TrendChartProps) {
   if (loading) {
     return (
       <Card className={cn('w-full', className)}>
@@ -43,11 +48,13 @@ export function TrendChart({ trend, title, loading = false, className }: TrendCh
   const minValue = Math.min(...trend.data.map(d => d.value));
   const range = maxValue - minValue || 1;
 
-  const points = trend.data.map((point, index) => {
-    const x = (index / (trend.data.length - 1)) * 100;
-    const y = 100 - ((point.value - minValue) / range) * 100;
-    return `${x},${y}`;
-  }).join(' ');
+  const points = trend.data
+    .map((point, index) => {
+      const x = (index / (trend.data.length - 1)) * 100;
+      const y = 100 - ((point.value - minValue) / range) * 100;
+      return `${x},${y}`;
+    })
+    .join(' ');
 
   return (
     <Card className={cn('w-full', className)}>
@@ -120,7 +127,13 @@ export function TrendChart({ trend, title, loading = false, className }: TrendCh
                 <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.8" />
                 <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.1" />
               </linearGradient>
-              <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="lineGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
                 <stop offset="0%" stopColor="#3B82F6" />
                 <stop offset="50%" stopColor="#8B5CF6" />
                 <stop offset="100%" stopColor="#EC4899" />
@@ -131,7 +144,9 @@ export function TrendChart({ trend, title, loading = false, className }: TrendCh
           {/* Value labels */}
           <div className="absolute left-0 top-0 flex h-full flex-col justify-between py-2 text-xs text-gray-600 dark:text-gray-400">
             <span>{maxValue.toLocaleString()}</span>
-            <span>{Math.round((maxValue + minValue) / 2).toLocaleString()}</span>
+            <span>
+              {Math.round((maxValue + minValue) / 2).toLocaleString()}
+            </span>
             <span>{minValue.toLocaleString()}</span>
           </div>
         </div>
@@ -148,7 +163,7 @@ export function TrendChart({ trend, title, loading = false, className }: TrendCh
 
 /**
  * TrendChart with Recharts (Enhanced Version)
- * 
+ *
  * Uncomment and use this version after installing Recharts:
  * npm install recharts
  */

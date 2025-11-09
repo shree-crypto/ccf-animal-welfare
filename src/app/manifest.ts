@@ -4,7 +4,8 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'CCF Animal Welfare - Committee for Campus Fauna',
     short_name: 'CCF Animal Welfare',
-    description: 'Comprehensive digital platform for campus animal care and volunteer coordination at IIT Roorkee',
+    description:
+      'Comprehensive digital platform for campus animal care and volunteer coordination at IIT Roorkee',
     start_url: '/',
     display: 'standalone',
     background_color: '#fdf2f8',

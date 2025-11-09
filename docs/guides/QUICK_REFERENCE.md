@@ -27,7 +27,7 @@ const newAnimal = await createAnimal({
   breed: 'Golden Retriever',
   location: {
     area: 'Main Campus',
-    coordinates: [29.8543, 77.8880],
+    coordinates: [29.8543, 77.888],
   },
   currentFeeder: 'John Doe',
   medicalHistory: [],
@@ -203,7 +203,7 @@ import { uploadAnimalPhoto } from '@/lib/storage';
 
 const handleUpload = async (file: File) => {
   try {
-    const fileInfo = await uploadAnimalPhoto(file, (progress) => {
+    const fileInfo = await uploadAnimalPhoto(file, progress => {
       console.log(`Upload progress: ${progress.progress}%`);
     });
 
@@ -332,7 +332,7 @@ try {
   // Data is valid
 } catch (error) {
   if (error instanceof z.ZodError) {
-    error.errors.forEach((err) => {
+    error.errors.forEach(err => {
       console.error(`${err.path}: ${err.message}`);
     });
   }
@@ -749,7 +749,7 @@ export function PaginatedList() {
   return (
     <div>
       {/* Display data */}
-      
+
       <div className="flex gap-2">
         <button
           onClick={() => setPage(page - 1)}

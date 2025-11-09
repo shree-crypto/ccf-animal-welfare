@@ -1,7 +1,19 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState, useCallback, useMemo } from 'react';
-import { ThemeVariant, ThemeConfig, ThemeContextType, THEME_CONFIGS } from '@/types/theme';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+} from 'react';
+import {
+  ThemeVariant,
+  ThemeConfig,
+  ThemeContextType,
+  THEME_CONFIGS,
+} from '@/types/theme';
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
@@ -9,7 +21,7 @@ const THEME_STORAGE_KEY = 'campuspaws-theme';
 
 /**
  * ThemeProvider manages theme state and persistence.
- * 
+ *
  * Features:
  * - Persists theme preference in localStorage
  * - Applies theme to document root via data-theme attribute
@@ -22,9 +34,17 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   // Load theme from localStorage on mount
   useEffect(() => {
-    const storedTheme = localStorage.getItem(THEME_STORAGE_KEY) as ThemeVariant | null;
-    if (storedTheme && (storedTheme === 'custom' || storedTheme === 'default')) {
+    const storedTheme = localStorage.getItem(
+      THEME_STORAGE_KEY
+    ) as ThemeVariant | null;
+    if (
+      storedTheme &&
+      (storedTheme === 'custom' || storedTheme === 'default')
+    ) {
       setThemeState(storedTheme);
+    } else {
+      // If no stored theme, save the default to localStorage
+      localStorage.setItem(THEME_STORAGE_KEY, 'custom');
     }
     setMounted(true);
   }, []);
@@ -55,24 +75,22 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   // Render children even when not mounted to prevent React.Children.only errors
   // The theme will be applied once mounted
   return (
-    <ThemeContext.Provider value={value}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 }
 
 /**
  * Hook to access theme context
- * 
+ *
  * @throws Error if used outside ThemeProvider
  * @returns ThemeContextType with current theme, setTheme function, and config
- * 
+ *
  * @example
  * const { theme, setTheme, config } = useTheme();
- * 
+ *
  * // Switch theme
  * setTheme('default');
- * 
+ *
  * // Check if gradients are enabled
  * if (config.effects.gradients) {
  *   // Render gradient background

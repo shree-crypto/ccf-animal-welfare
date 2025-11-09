@@ -2,7 +2,7 @@ import { ComponentVariantsDemo } from '@/components/features/theme/ComponentVari
 
 /**
  * Theme Demo Page
- * 
+ *
  * Showcases all theme component variants.
  * Navigate to /theme-demo to view this page.
  */

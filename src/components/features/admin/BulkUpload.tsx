@@ -5,7 +5,13 @@ import { AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { createAnimal } from '@/lib/db/animals';
 import { AnimalProfileFormData } from '@/lib/validations/animal';
 import { BulkUploadDropzone } from './BulkUploadDropzone';
@@ -33,7 +39,11 @@ export function BulkUpload({ onComplete, onCancel }: BulkUploadProps) {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [results, setResults] = useState<{ success: number; failed: number; errors: string[] }>({
+  const [results, setResults] = useState<{
+    success: number;
+    failed: number;
+    errors: string[];
+  }>({
     success: 0,
     failed: 0,
     errors: [],
@@ -43,17 +53,17 @@ export function BulkUpload({ onComplete, onCancel }: BulkUploadProps) {
   const parseCSV = (text: string): ParsedAnimal[] => {
     const lines = text.split('\n').filter(line => line.trim());
     const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
-    
+
     const animals: ParsedAnimal[] = [];
-    
+
     for (let i = 1; i < lines.length; i++) {
       const values = lines[i].split(',').map(v => v.trim());
       const animal: any = {};
-      
+
       headers.forEach((header, index) => {
         animal[header] = values[index];
       });
-      
+
       // Map CSV fields to animal structure
       animals.push({
         name: animal.name || animal.animal_name,
@@ -62,13 +72,17 @@ export function BulkUpload({ onComplete, onCancel }: BulkUploadProps) {
         breed: animal.breed || undefined,
         area: animal.area || animal.location,
         latitude: parseFloat(animal.latitude || animal.lat) || 29.8543,
-        longitude: parseFloat(animal.longitude || animal.lng || animal.lon) || 77.8880,
+        longitude:
+          parseFloat(animal.longitude || animal.lng || animal.lon) || 77.888,
         currentFeeder: animal.feeder || animal.current_feeder || undefined,
-        status: (animal.status || 'healthy') as 'healthy' | 'needs_attention' | 'under_treatment',
+        status: (animal.status || 'healthy') as
+          | 'healthy'
+          | 'needs_attention'
+          | 'under_treatment',
         packId: animal.pack_id || animal.packid || undefined,
       });
     }
-    
+
     return animals;
   };
 
@@ -89,11 +103,11 @@ export function BulkUpload({ onComplete, onCancel }: BulkUploadProps) {
     try {
       const text = await file.text();
       const animals = parseCSV(text);
-      
+
       for (let i = 0; i < animals.length; i++) {
         try {
           const animal = animals[i];
-          
+
           // Create animal data
           const animalData: AnimalProfileFormData = {
             name: animal.name,
@@ -118,16 +132,20 @@ export function BulkUpload({ onComplete, onCancel }: BulkUploadProps) {
           successCount++;
         } catch (error) {
           failedCount++;
-          errors.push(`Row ${i + 2}: ${error instanceof Error ? error.message : 'Unknown error'}`);
+          errors.push(
+            `Row ${i + 2}: ${error instanceof Error ? error.message : 'Unknown error'}`
+          );
         }
-        
+
         setProgress(((i + 1) / animals.length) * 100);
       }
 
       setResults({ success: successCount, failed: failedCount, errors });
       setShowResults(true);
     } catch (error) {
-      errors.push(`Failed to parse CSV: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      errors.push(
+        `Failed to parse CSV: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
       setResults({ success: 0, failed: 0, errors });
       setShowResults(true);
     } finally {
@@ -158,13 +176,15 @@ export function BulkUpload({ onComplete, onCancel }: BulkUploadProps) {
             <div className="space-y-2">
               <p className="font-medium">CSV Format Requirements:</p>
               <p className="text-sm">
-                Required columns: name, type, age, area, latitude, longitude, status
+                Required columns: name, type, age, area, latitude, longitude,
+                status
               </p>
               <p className="text-sm">
                 Optional columns: breed, feeder, pack_id
               </p>
               <p className="text-sm">
-                Example: name,type,age,breed,area,latitude,longitude,status,feeder
+                Example:
+                name,type,age,breed,area,latitude,longitude,status,feeder
               </p>
             </div>
           </AlertDescription>
@@ -211,9 +231,7 @@ export function BulkUpload({ onComplete, onCancel }: BulkUploadProps) {
               {uploading ? 'Processing...' : 'Upload Animals'}
             </Button>
           ) : (
-            <Button onClick={handleComplete}>
-              Done
-            </Button>
+            <Button onClick={handleComplete}>Done</Button>
           )}
         </div>
       </CardContent>

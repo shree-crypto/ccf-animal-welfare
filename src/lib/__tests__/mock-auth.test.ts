@@ -36,7 +36,7 @@ describe('MockAuthService', () => {
   describe('login', () => {
     it('should successfully login with admin credentials', async () => {
       const user = await mockAuthService.login('admin@ccf.dev', 'admin123');
-      
+
       expect(user).toBeDefined();
       expect(user.email).toBe('admin@ccf.dev');
       expect(user.name).toBe('Admin User');
@@ -45,8 +45,11 @@ describe('MockAuthService', () => {
     });
 
     it('should successfully login with volunteer credentials', async () => {
-      const user = await mockAuthService.login('volunteer@ccf.dev', 'volunteer123');
-      
+      const user = await mockAuthService.login(
+        'volunteer@ccf.dev',
+        'volunteer123'
+      );
+
       expect(user).toBeDefined();
       expect(user.email).toBe('volunteer@ccf.dev');
       expect(user.name).toBe('Volunteer User');
@@ -56,7 +59,7 @@ describe('MockAuthService', () => {
 
     it('should successfully login with public user credentials', async () => {
       const user = await mockAuthService.login('user@ccf.dev', 'user123');
-      
+
       expect(user).toBeDefined();
       expect(user.email).toBe('user@ccf.dev');
       expect(user.name).toBe('Public User');
@@ -78,10 +81,10 @@ describe('MockAuthService', () => {
 
     it('should store session in localStorage', async () => {
       await mockAuthService.login('admin@ccf.dev', 'admin123');
-      
+
       const sessionData = localStorageMock.getItem('ccf_mock_session');
       expect(sessionData).toBeDefined();
-      
+
       const user = JSON.parse(sessionData!);
       expect(user.email).toBe('admin@ccf.dev');
       expect(user.role).toBe('admin');
@@ -96,7 +99,7 @@ describe('MockAuthService', () => {
 
     it('should return user from session', async () => {
       await mockAuthService.login('volunteer@ccf.dev', 'volunteer123');
-      
+
       const user = await mockAuthService.getCurrentUser();
       expect(user).toBeDefined();
       expect(user?.email).toBe('volunteer@ccf.dev');
@@ -105,7 +108,7 @@ describe('MockAuthService', () => {
 
     it('should return null for invalid session data', async () => {
       localStorageMock.setItem('ccf_mock_session', 'invalid json');
-      
+
       const user = await mockAuthService.getCurrentUser();
       expect(user).toBeNull();
     });
@@ -115,7 +118,7 @@ describe('MockAuthService', () => {
     it('should remove session from localStorage', async () => {
       await mockAuthService.login('admin@ccf.dev', 'admin123');
       expect(localStorageMock.getItem('ccf_mock_session')).toBeDefined();
-      
+
       await mockAuthService.logout();
       expect(localStorageMock.getItem('ccf_mock_session')).toBeNull();
     });
@@ -123,7 +126,7 @@ describe('MockAuthService', () => {
     it('should clear current user', async () => {
       await mockAuthService.login('admin@ccf.dev', 'admin123');
       await mockAuthService.logout();
-      
+
       const user = await mockAuthService.getCurrentUser();
       expect(user).toBeNull();
     });
@@ -136,7 +139,7 @@ describe('MockAuthService', () => {
         'password123',
         'New User'
       );
-      
+
       expect(user).toBeDefined();
       expect(user.email).toBe('newuser@ccf.dev');
       expect(user.name).toBe('New User');
@@ -144,11 +147,15 @@ describe('MockAuthService', () => {
     });
 
     it('should store new user session', async () => {
-      await mockAuthService.register('newuser@ccf.dev', 'password123', 'New User');
-      
+      await mockAuthService.register(
+        'newuser@ccf.dev',
+        'password123',
+        'New User'
+      );
+
       const sessionData = localStorageMock.getItem('ccf_mock_session');
       expect(sessionData).toBeDefined();
-      
+
       const user = JSON.parse(sessionData!);
       expect(user.email).toBe('newuser@ccf.dev');
     });

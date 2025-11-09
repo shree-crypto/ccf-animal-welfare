@@ -5,9 +5,11 @@ This directory contains the notification and communication system components for
 ## Components
 
 ### NotificationCenter
+
 The main notification center component that displays all notifications in a dropdown panel.
 
 **Features:**
+
 - Real-time notification updates using Appwrite Realtime
 - Unread notification badge
 - Filter by all/unread notifications
@@ -18,16 +20,19 @@ The main notification center component that displays all notifications in a drop
 - Time-relative display (e.g., "2 hours ago")
 
 **Usage:**
+
 ```tsx
 import NotificationCenter from '@/components/features/notifications/NotificationCenter';
 
-<NotificationCenter />
+<NotificationCenter />;
 ```
 
 ### NotificationPreferences
+
 Component for managing user notification preferences.
 
 **Features:**
+
 - Toggle email notifications
 - Toggle push notifications
 - Configure notification types (tasks, medical alerts, etc.)
@@ -35,33 +40,39 @@ Component for managing user notification preferences.
 - Real-time preference updates
 
 **Usage:**
+
 ```tsx
 import NotificationPreferences from '@/components/features/notifications/NotificationPreferences';
 
-<NotificationPreferences />
+<NotificationPreferences />;
 ```
 
 ## Context
 
 ### NotificationContext
+
 Provides notification state and functions throughout the app.
 
 **Features:**
+
 - Real-time notification synchronization
 - Unread count tracking
 - Mark as read functionality
 - Automatic cleanup of expired notifications
 
 **Usage:**
+
 ```tsx
 import { useNotifications } from '@/contexts/NotificationContext';
 
-const { notifications, unreadCount, markNotificationAsRead } = useNotifications();
+const { notifications, unreadCount, markNotificationAsRead } =
+  useNotifications();
 ```
 
 ## Database Functions
 
 ### Notification CRUD Operations
+
 Located in `src/lib/db/notifications.ts`:
 
 - `createNotification()` - Create a new notification
@@ -73,11 +84,13 @@ Located in `src/lib/db/notifications.ts`:
 - `deleteExpiredNotifications()` - Clean up expired notifications
 
 ### Notification Preferences
+
 - `getNotificationPreferences()` - Get user preferences
 - `updateNotificationPreferences()` - Update user preferences
 - `createNotificationPreferences()` - Create default preferences
 
 ### Helper Functions
+
 - `createTaskNotification()` - Create task-related notifications
 - `createMedicalNotification()` - Create medical-related notifications
 
@@ -96,6 +109,7 @@ These functions should be called when events occur:
 - `triggerSystemAnnouncementNotification()` - For system announcements
 
 **Example Usage:**
+
 ```tsx
 import { triggerTaskAssignedNotification } from '@/lib/notifications/triggers';
 
@@ -185,9 +199,7 @@ import { NotificationProvider } from '@/contexts/NotificationContext';
 export default function RootLayout({ children }) {
   return (
     <AuthProvider>
-      <NotificationProvider>
-        {children}
-      </NotificationProvider>
+      <NotificationProvider>{children}</NotificationProvider>
     </AuthProvider>
   );
 }

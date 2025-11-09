@@ -21,8 +21,8 @@ export default function UnauthorizedPage() {
         </CardHeader>
         <CardContent>
           <p className="text-sm text-gray-600">
-            This page requires special permissions. If you believe you should have
-            access, please contact an administrator.
+            This page requires special permissions. If you believe you should
+            have access, please contact an administrator.
           </p>
         </CardContent>
         <CardFooter className="flex gap-2">

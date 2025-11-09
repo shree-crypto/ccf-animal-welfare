@@ -5,6 +5,7 @@ This guide will help you get started with the notification and communication sys
 ## Overview
 
 The notification system provides:
+
 - Real-time notifications for tasks, medical alerts, and updates
 - Notification center with unread badge
 - User preferences for notification types
@@ -38,16 +39,19 @@ The notification system provides:
 ### Task Notifications
 
 **Task Assigned**
+
 - Triggered when a task is assigned to you
 - Shows task title and due date
 - Click to view task details
 
 **Task Reminder**
+
 - Sent before task due date
 - Helps you stay on schedule
 - Configurable in preferences
 
 **Task Completed**
+
 - Notifies when someone completes a task
 - Useful for coordinators
 - Shows who completed it
@@ -55,11 +59,13 @@ The notification system provides:
 ### Medical Notifications
 
 **Medical Alert**
+
 - Urgent medical situations
 - High priority (red badge)
 - Immediate attention required
 
 **Medical Follow-up**
+
 - Scheduled follow-up reminders
 - Shows animal name and date
 - Click to view medical record
@@ -67,11 +73,13 @@ The notification system provides:
 ### System Notifications
 
 **Volunteer Updates**
+
 - Important announcements for volunteers
 - Schedule changes
 - Policy updates
 
 **System Announcements**
+
 - General system messages
 - New features
 - Maintenance notices
@@ -87,16 +95,19 @@ The notification system provides:
 ### Preference Options
 
 **Delivery Methods**
+
 - **Email Notifications**: Receive emails for important notifications
 - **Push Notifications**: Browser push notifications (coming soon)
 
 **Notification Types**
+
 - **Task Reminders**: Upcoming task notifications
 - **Medical Alerts**: Urgent medical situations
 - **Volunteer Updates**: Important volunteer announcements
 - **System Announcements**: General system messages
 
 **Digest Options**
+
 - **Daily Digest**: Receive a summary email once per day
 
 ### Updating Preferences
@@ -109,21 +120,25 @@ The notification system provides:
 ## Notification Priority Levels
 
 ### Low (Gray)
+
 - General information
 - Non-urgent updates
 - Can be reviewed later
 
 ### Medium (Blue)
+
 - Standard notifications
 - Task assignments
 - Regular updates
 
 ### High (Orange)
+
 - Important notifications
 - Upcoming deadlines
 - Requires attention soon
 
 ### Urgent (Red)
+
 - Critical alerts
 - Medical emergencies
 - Immediate action required
@@ -152,11 +167,13 @@ Email notifications require Appwrite Functions to be configured. See [NOTIFICATI
 ### Email Types
 
 **Immediate Emails**
+
 - Task assignments
 - Medical alerts
 - Urgent notifications
 
 **Daily Digest**
+
 - Summary of all notifications from the day
 - Sent at 8:00 AM
 - Includes unread notifications only
@@ -209,6 +226,7 @@ Email notifications require Appwrite Functions to be configured. See [NOTIFICATI
 ### Clickable Notifications
 
 Most notifications include action URLs:
+
 - **Task notifications**: Navigate to task details
 - **Medical notifications**: Open medical record
 - **Animal notifications**: View animal profile

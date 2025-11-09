@@ -11,7 +11,9 @@ export interface Territory {
 }
 
 // Appwrite document type
-export interface TerritoryDocument extends Models.Document, Omit<Territory, 'id' | 'lastUpdated'> {
+export interface TerritoryDocument
+  extends Models.Document,
+    Omit<Territory, 'id' | 'lastUpdated'> {
   $id: string;
   $createdAt: string;
   $updatedAt: string;

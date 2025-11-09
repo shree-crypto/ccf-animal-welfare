@@ -8,12 +8,16 @@ interface AnimalGridProps {
   animals: AnimalProfile[];
 }
 
-export const AnimalGrid = memo(function AnimalGrid({ animals }: AnimalGridProps) {
+export const AnimalGrid = memo(function AnimalGrid({
+  animals,
+}: AnimalGridProps) {
   if (animals.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
         <p className="text-lg text-muted-foreground">No animals found</p>
-        <p className="text-sm text-muted-foreground mt-2">Try adjusting your filters</p>
+        <p className="text-sm text-muted-foreground mt-2">
+          Try adjusting your filters
+        </p>
       </div>
     );
   }

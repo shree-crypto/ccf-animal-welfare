@@ -12,40 +12,55 @@ export function DonationMethods() {
         </div>
         <h3 className="text-3xl font-bold mb-4">Financial Donations</h3>
         <p className="text-muted-foreground mb-6">
-          Direct financial support helps us cover operational costs and respond quickly to 
-          emergencies.
+          Direct financial support helps us cover operational costs and respond
+          quickly to emergencies.
         </p>
 
         <div className="space-y-4 mb-8">
           <div className="bg-muted/50 rounded-lg p-4">
             <h4 className="font-semibold mb-2">Bank Transfer</h4>
             <div className="text-sm text-muted-foreground space-y-1">
-              <p><span className="font-medium">Account Name:</span> CCF Animal Welfare Fund</p>
-              <p><span className="font-medium">Account Number:</span> 1234567890</p>
-              <p><span className="font-medium">IFSC Code:</span> SBIN0001234</p>
-              <p><span className="font-medium">Bank:</span> State Bank of India</p>
+              <p>
+                <span className="font-medium">Account Name:</span> CCF Animal
+                Welfare Fund
+              </p>
+              <p>
+                <span className="font-medium">Account Number:</span> 1234567890
+              </p>
+              <p>
+                <span className="font-medium">IFSC Code:</span> SBIN0001234
+              </p>
+              <p>
+                <span className="font-medium">Bank:</span> State Bank of India
+              </p>
             </div>
           </div>
 
           <div className="bg-muted/50 rounded-lg p-4">
             <h4 className="font-semibold mb-2">UPI Payment</h4>
             <div className="text-sm text-muted-foreground">
-              <p><span className="font-medium">UPI ID:</span> ccf@iitr</p>
-              <p className="mt-2 text-xs">Scan QR code or use UPI ID for instant transfer</p>
+              <p>
+                <span className="font-medium">UPI ID:</span> ccf@iitr
+              </p>
+              <p className="mt-2 text-xs">
+                Scan QR code or use UPI ID for instant transfer
+              </p>
             </div>
           </div>
 
           <div className="bg-muted/50 rounded-lg p-4">
             <h4 className="font-semibold mb-2">Online Payment</h4>
             <p className="text-sm text-muted-foreground mb-3">
-              Use our secure online payment portal for credit/debit card donations
+              Use our secure online payment portal for credit/debit card
+              donations
             </p>
             <Button className="w-full">Donate Online</Button>
           </div>
         </div>
 
         <p className="text-xs text-muted-foreground">
-          All donations are tax-deductible under Section 80G. Receipt will be provided.
+          All donations are tax-deductible under Section 80G. Receipt will be
+          provided.
         </p>
       </div>
 
@@ -56,7 +71,8 @@ export function DonationMethods() {
         </div>
         <h3 className="text-3xl font-bold mb-4">In-Kind Donations</h3>
         <p className="text-muted-foreground mb-6">
-          Donate supplies and materials that directly support our daily operations.
+          Donate supplies and materials that directly support our daily
+          operations.
         </p>
 
         <div className="space-y-4 mb-6">
@@ -97,9 +113,12 @@ export function DonationMethods() {
           <div className="bg-muted/50 rounded-lg p-4">
             <h4 className="font-semibold mb-2">Drop-off Location</h4>
             <p className="text-sm text-muted-foreground">
-              CCF Office, Student Activity Center<br />
-              IIT Roorkee Campus<br />
-              Monday - Friday: 9 AM - 6 PM<br />
+              CCF Office, Student Activity Center
+              <br />
+              IIT Roorkee Campus
+              <br />
+              Monday - Friday: 9 AM - 6 PM
+              <br />
               Saturday: 10 AM - 4 PM
             </p>
           </div>

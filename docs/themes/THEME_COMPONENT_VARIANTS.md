@@ -14,6 +14,7 @@ The theme system provides two distinct visual experiences:
 ### Variants
 
 #### `default` (Primary)
+
 - **Custom Theme**: Blue gradient with hover shadow and lift effect
 - **Default Theme**: Solid blue background with subtle hover darkening
 
@@ -23,6 +24,7 @@ The theme system provides two distinct visual experiences:
 ```
 
 #### `secondary`
+
 - **Custom Theme**: Green gradient with hover shadow and lift effect
 - **Default Theme**: Solid gray background with subtle hover darkening
 
@@ -31,6 +33,7 @@ The theme system provides two distinct visual experiences:
 ```
 
 #### `accent`
+
 - **Custom Theme**: Orange gradient with hover shadow and lift effect
 - **Default Theme**: Solid indigo background with subtle hover darkening
 
@@ -39,6 +42,7 @@ The theme system provides two distinct visual experiences:
 ```
 
 #### `destructive`
+
 - **Both Themes**: Red background (same styling in both themes)
 
 ```tsx
@@ -46,6 +50,7 @@ The theme system provides two distinct visual experiences:
 ```
 
 #### `outline`
+
 - **Both Themes**: Transparent background with border (same styling in both themes)
 
 ```tsx
@@ -53,6 +58,7 @@ The theme system provides two distinct visual experiences:
 ```
 
 #### `ghost`
+
 - **Both Themes**: Transparent background, hover accent (same styling in both themes)
 
 ```tsx
@@ -60,6 +66,7 @@ The theme system provides two distinct visual experiences:
 ```
 
 #### `link`
+
 - **Both Themes**: Text-only with underline on hover (same styling in both themes)
 
 ```tsx
@@ -69,6 +76,7 @@ The theme system provides two distinct visual experiences:
 ### Sizes
 
 All button variants support these sizes:
+
 - `sm`: 40px height (close to minimum touch target)
 - `default`: 44px height (recommended touch target)
 - `lg`: 48px height (comfortable touch target)
@@ -84,6 +92,7 @@ All button variants support these sizes:
 ### Custom Theme Effects
 
 In the custom theme, primary, secondary, and accent buttons feature:
+
 - Gradient backgrounds (light to dark)
 - Hover effects:
   - Darker gradient
@@ -94,6 +103,7 @@ In the custom theme, primary, secondary, and accent buttons feature:
 ### Default Theme Effects
 
 In the default theme, buttons feature:
+
 - Solid color backgrounds
 - Hover effects:
   - Slightly darker background
@@ -105,6 +115,7 @@ In the default theme, buttons feature:
 ### Variants
 
 #### `default`
+
 - **Custom Theme**: Gradient background with colored border and shadow
 - **Default Theme**: White background with simple gray border
 
@@ -119,37 +130,35 @@ In the default theme, buttons feature:
 ```
 
 #### `elevated`
+
 - **Custom Theme**: Subtle gradient with prominent shadow
 - **Default Theme**: White background with larger shadow
 
 ```tsx
-<Card variant="elevated">
-  {/* Content */}
-</Card>
+<Card variant="elevated">{/* Content */}</Card>
 ```
 
 #### `outline`
+
 - **Custom Theme**: Transparent background with gradient border
 - **Default Theme**: Transparent background with solid border
 
 ```tsx
-<Card variant="outline">
-  {/* Content */}
-</Card>
+<Card variant="outline">{/* Content */}</Card>
 ```
 
 #### `ghost`
+
 - **Both Themes**: Completely transparent (no border or background)
 
 ```tsx
-<Card variant="ghost">
-  {/* Content */}
-</Card>
+<Card variant="ghost">{/* Content */}</Card>
 ```
 
 ### Custom Theme Effects
 
 In the custom theme, cards feature:
+
 - Gradient backgrounds (blue to green tint)
 - Colored borders with transparency
 - Hover effects:
@@ -161,6 +170,7 @@ In the custom theme, cards feature:
 ### Default Theme Effects
 
 In the default theme, cards feature:
+
 - Solid white background (or dark gray in dark mode)
 - Simple gray borders
 - Hover effects:
@@ -174,6 +184,7 @@ In the default theme, cards feature:
 ### Variants
 
 #### `default` (Primary)
+
 - **Custom Theme**: Blue gradient with shadow
 - **Default Theme**: Solid blue background
 
@@ -183,6 +194,7 @@ In the default theme, cards feature:
 ```
 
 #### `secondary`
+
 - **Custom Theme**: Green gradient with shadow
 - **Default Theme**: Solid gray background
 
@@ -191,6 +203,7 @@ In the default theme, cards feature:
 ```
 
 #### `accent`
+
 - **Custom Theme**: Orange gradient with shadow
 - **Default Theme**: Solid indigo background
 
@@ -199,6 +212,7 @@ In the default theme, cards feature:
 ```
 
 #### `success`
+
 - **Custom Theme**: Green gradient with shadow
 - **Default Theme**: Solid green background
 
@@ -207,6 +221,7 @@ In the default theme, cards feature:
 ```
 
 #### `warning`
+
 - **Custom Theme**: Orange gradient with shadow
 - **Default Theme**: Solid yellow background
 
@@ -215,6 +230,7 @@ In the default theme, cards feature:
 ```
 
 #### `destructive`
+
 - **Custom Theme**: Red gradient with shadow
 - **Default Theme**: Solid red background
 
@@ -223,6 +239,7 @@ In the default theme, cards feature:
 ```
 
 #### `outline`
+
 - **Custom Theme**: Transparent with gradient border
 - **Default Theme**: Transparent with solid border
 
@@ -233,6 +250,7 @@ In the default theme, cards feature:
 ### Custom Theme Effects
 
 In the custom theme, badges feature:
+
 - Gradient backgrounds
 - Colored shadows
 - Hover effects:
@@ -243,6 +261,7 @@ In the custom theme, badges feature:
 ### Default Theme Effects
 
 In the default theme, badges feature:
+
 - Solid color backgrounds
 - No shadows
 - Hover effects:
@@ -255,7 +274,13 @@ In the default theme, badges feature:
 ### Animal Card with Theme-Aware Components
 
 ```tsx
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
@@ -317,16 +342,12 @@ function ActionButtons() {
       <Button variant="accent" size="lg">
         Donate Now
       </Button>
-      
+
       {/* Secondary action */}
-      <Button variant="secondary">
-        Learn More
-      </Button>
-      
+      <Button variant="secondary">Learn More</Button>
+
       {/* Tertiary action */}
-      <Button variant="outline">
-        Share
-      </Button>
+      <Button variant="outline">Share</Button>
     </div>
   );
 }
@@ -337,6 +358,7 @@ function ActionButtons() {
 ### CSS Classes
 
 The theme variants are implemented using CSS classes defined in:
+
 - `src/styles/themes/custom.css` - Custom theme styles
 - `src/styles/themes/default.css` - Default theme styles
 
@@ -347,18 +369,15 @@ These classes are automatically applied based on the `data-theme` attribute on t
 Components use `class-variance-authority` (CVA) to define variants:
 
 ```tsx
-const buttonVariants = cva(
-  "base-classes",
-  {
-    variants: {
-      variant: {
-        default: "btn-gradient text-primary-foreground",
-        secondary: "btn-gradient-secondary text-secondary-foreground",
-        // ...
-      },
+const buttonVariants = cva('base-classes', {
+  variants: {
+    variant: {
+      default: 'btn-gradient text-primary-foreground',
+      secondary: 'btn-gradient-secondary text-secondary-foreground',
+      // ...
     },
-  }
-);
+  },
+});
 ```
 
 ### Theme-Specific Styling
@@ -367,13 +386,13 @@ CSS classes are scoped to themes using data attributes:
 
 ```css
 /* Custom theme */
-[data-theme="custom"] .btn-gradient {
+[data-theme='custom'] .btn-gradient {
   background: var(--gradient-primary);
   /* ... */
 }
 
 /* Default theme */
-[data-theme="default"] .btn-gradient {
+[data-theme='default'] .btn-gradient {
   background: rgb(var(--color-primary-default));
   /* ... */
 }
@@ -411,7 +430,7 @@ To test component variants:
 import { ComponentVariantsDemo } from '@/components/features/theme/ComponentVariantsDemo';
 
 // In your test page
-<ComponentVariantsDemo />
+<ComponentVariantsDemo />;
 ```
 
 ## Best Practices
@@ -419,6 +438,7 @@ import { ComponentVariantsDemo } from '@/components/features/theme/ComponentVari
 ### When to Use Each Variant
 
 **Buttons:**
+
 - `default`: Primary actions (submit, save, create)
 - `secondary`: Secondary actions (cancel, back, view)
 - `accent`: Call-to-action buttons (donate, adopt, volunteer)
@@ -428,12 +448,14 @@ import { ComponentVariantsDemo } from '@/components/features/theme/ComponentVari
 - `link`: Navigation links
 
 **Cards:**
+
 - `default`: Standard content cards
 - `elevated`: Important or featured content
 - `outline`: Secondary or grouped content
 - `ghost`: Minimal content containers
 
 **Badges:**
+
 - `default`: General labels
 - `secondary`: Categories or types
 - `accent`: Important highlights
@@ -455,7 +477,9 @@ Components work well together:
     </div>
   </CardHeader>
   <CardContent>
-    <Button variant="accent" size="lg">Adopt Now</Button>
+    <Button variant="accent" size="lg">
+      Adopt Now
+    </Button>
   </CardContent>
 </Card>
 ```
@@ -479,6 +503,7 @@ If you have existing components using the old button/card/badge components:
 ## Future Enhancements
 
 Potential future additions:
+
 - Additional color variants (info, muted)
 - Size variants for cards and badges
 - Animation variants (pulse, bounce)

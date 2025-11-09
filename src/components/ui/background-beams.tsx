@@ -1,36 +1,36 @@
-"use client";
-import React from "react";
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { useTheme } from "@/contexts/ThemeContext";
+'use client';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
+import { useTheme } from '@/contexts/ThemeContext';
 
 /**
  * BackgroundBeams - Aceternity UI component
- * 
+ *
  * Displays animated gradient beams in the background.
  * Only renders when custom theme is active (config.effects.aceternity === true).
- * 
+ *
  * @param className - Optional additional CSS classes
  * @returns Animated beam background or null if disabled
  */
 export const BackgroundBeams = ({ className }: { className?: string }) => {
   const { config } = useTheme();
-  
+
   // Only show in custom theme
   if (!config.effects.aceternity) {
     return null;
   }
-  
+
   const paths = [
-    "M-380 -189C-380 -189 -312 216 152 343C616 470 684 875 684 875",
-    "M-373 -197C-373 -197 -305 208 159 335C623 462 691 867 691 867",
-    "M-366 -205C-366 -205 -298 200 166 327C630 454 698 859 698 859",
+    'M-380 -189C-380 -189 -312 216 152 343C616 470 684 875 684 875',
+    'M-373 -197C-373 -197 -305 208 159 335C623 462 691 867 691 867',
+    'M-366 -205C-366 -205 -298 200 166 327C630 454 698 859 698 859',
   ];
 
   return (
     <div
       className={cn(
-        "absolute inset-0 z-0 flex items-center justify-center overflow-hidden",
+        'absolute inset-0 z-0 flex items-center justify-center overflow-hidden',
         className
       )}
     >
@@ -57,22 +57,22 @@ export const BackgroundBeams = ({ className }: { className?: string }) => {
               id={`linearGradient-${index}`}
               key={`gradient-${index}`}
               initial={{
-                x1: "0%",
-                x2: "0%",
-                y1: "0%",
-                y2: "0%",
+                x1: '0%',
+                x2: '0%',
+                y1: '0%',
+                y2: '0%',
               }}
               animate={{
-                x1: ["0%", "100%"],
-                x2: ["0%", "95%"],
-                y1: ["0%", "100%"],
-                y2: ["0%", `${93 + index * 1}%`],
+                x1: ['0%', '100%'],
+                x2: ['0%', '95%'],
+                y1: ['0%', '100%'],
+                y2: ['0%', `${93 + index * 1}%`],
               }}
               transition={{
                 duration: Math.random() * 10 + 10,
-                ease: "linear",
+                ease: 'linear',
                 repeat: Infinity,
-                repeatType: "loop",
+                repeatType: 'loop',
               }}
             >
               <stop stopColor="#A78BFA" stopOpacity="0"></stop>

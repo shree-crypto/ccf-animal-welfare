@@ -1,6 +1,13 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState, useCallback, useMemo } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+} from 'react';
 import { client } from '@/lib/appwrite';
 import { DATABASE_ID, COLLECTIONS } from '@/lib/constants/database';
 import { Notification } from '@/types/notification';
@@ -21,26 +28,32 @@ interface NotificationContextType {
   refreshNotifications: () => Promise<void>;
 }
 
-const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
+const NotificationContext = createContext<NotificationContextType | undefined>(
+  undefined
+);
 
 export const useNotifications = () => {
   const context = useContext(NotificationContext);
   if (!context) {
-    throw new Error('useNotifications must be used within a NotificationProvider');
+    throw new Error(
+      'useNotifications must be used within a NotificationProvider'
+    );
   }
   return context;
 };
 
 /**
  * NotificationProvider manages notification state and real-time updates.
- * 
+ *
  * Optimization notes:
  * - Uses useMemo to memoize context value and prevent unnecessary re-renders
  * - Uses useCallback for all functions to maintain referential equality
  * - Subscribes to real-time Appwrite updates for instant notification delivery
  * - Only fetches notifications when user is authenticated
  */
-export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const { user } = useAuth();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
@@ -79,7 +92,7 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
     // Subscribe to notification changes
     const unsubscribe = client.subscribe(
       `databases.${DATABASE_ID}.collections.${COLLECTIONS.NOTIFICATIONS}.documents`,
-      (response) => {
+      response => {
         const payload = response.payload as any;
 
         // Only process notifications for the current user
@@ -107,9 +120,9 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
             expiresAt: payload.expiresAt,
           };
 
-          setNotifications((prev) => [newNotification, ...prev]);
+          setNotifications(prev => [newNotification, ...prev]);
           if (!newNotification.read) {
-            setUnreadCount((prev) => prev + 1);
+            setUnreadCount(prev => prev + 1);
           }
         } else if (
           response.events.includes(
@@ -117,8 +130,8 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
           )
         ) {
           // Notification updated
-          setNotifications((prev) =>
-            prev.map((notif) =>
+          setNotifications(prev =>
+            prev.map(notif =>
               notif.id === payload.$id
                 ? {
                     ...notif,
@@ -131,7 +144,7 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
           // Update unread count
           if (payload.read) {
-            setUnreadCount((prev) => Math.max(0, prev - 1));
+            setUnreadCount(prev => Math.max(0, prev - 1));
           }
         } else if (
           response.events.includes(
@@ -139,9 +152,11 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
           )
         ) {
           // Notification deleted
-          setNotifications((prev) => prev.filter((notif) => notif.id !== payload.$id));
+          setNotifications(prev =>
+            prev.filter(notif => notif.id !== payload.$id)
+          );
           if (!payload.read) {
-            setUnreadCount((prev) => Math.max(0, prev - 1));
+            setUnreadCount(prev => Math.max(0, prev - 1));
           }
         }
       }
@@ -175,14 +190,28 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
   }, [user]);
 
   // Memoize context value to prevent unnecessary re-renders
-  const value: NotificationContextType = useMemo(() => ({
-    notifications,
-    unreadCount,
-    loading,
-    markNotificationAsRead,
-    markAllNotificationsAsRead,
-    refreshNotifications: fetchNotifications,
-  }), [notifications, unreadCount, loading, markNotificationAsRead, markAllNotificationsAsRead, fetchNotifications]);
+  const value: NotificationContextType = useMemo(
+    () => ({
+      notifications,
+      unreadCount,
+      loading,
+      markNotificationAsRead,
+      markAllNotificationsAsRead,
+      refreshNotifications: fetchNotifications,
+    }),
+    [
+      notifications,
+      unreadCount,
+      loading,
+      markNotificationAsRead,
+      markAllNotificationsAsRead,
+      fetchNotifications,
+    ]
+  );
 
-  return <NotificationContext.Provider value={value}>{children}</NotificationContext.Provider>;
+  return (
+    <NotificationContext.Provider value={value}>
+      {children}
+    </NotificationContext.Provider>
+  );
 };

@@ -5,6 +5,7 @@ This guide will help you get started with the volunteer task management system.
 ## Overview
 
 The task management system provides:
+
 - Task creation and assignment
 - Calendar view of scheduled tasks
 - Task status tracking
@@ -27,18 +28,21 @@ The task management system provides:
 ## Task Interface Overview
 
 ### Calendar View
+
 - Monthly calendar with task indicators
 - Color-coded by task type
 - Click dates to view tasks
 - Navigate between months
 
 ### Task List
+
 - Shows tasks for selected date
 - Filtered by status
 - Quick actions available
 - Real-time updates
 
 ### Quick Actions Panel
+
 - Create new task
 - Filter by status
 - Filter by type
@@ -53,6 +57,7 @@ Click the "Create Task" button or "+" icon
 ### Step 2: Fill in Task Details
 
 **Required Fields:**
+
 - **Title**: Brief task description
 - **Type**: Feeding, Medical, Cleaning, Monitoring, Maintenance, or Event
 - **Date**: When task should be completed
@@ -60,6 +65,7 @@ Click the "Create Task" button or "+" icon
 - **Location**: Where task takes place
 
 **Optional Fields:**
+
 - **Description**: Detailed instructions
 - **Assigned To**: Volunteer responsible
 - **Related Animal**: Associated animal (if applicable)
@@ -71,6 +77,7 @@ Click the "Create Task" button or "+" icon
 ### Step 3: Set Priority
 
 Choose priority level:
+
 - **Low**: Non-urgent routine tasks
 - **Medium**: Standard daily tasks
 - **High**: Important tasks requiring attention
@@ -86,6 +93,7 @@ Choose priority level:
 ### Step 5: Configure Recurrence (Optional)
 
 For recurring tasks:
+
 1. Enable "Recurring Task" toggle
 2. Select frequency: Daily, Weekly, Monthly
 3. Set end date or number of occurrences
@@ -100,6 +108,7 @@ Click "Create Task" to save
 ### Calendar View
 
 **Features:**
+
 - Monthly calendar grid
 - Dots indicate days with tasks
 - Color-coded by task type
@@ -107,6 +116,7 @@ Click "Create Task" to save
 - Selected date highlighted
 
 **Navigation:**
+
 - Previous/Next month buttons
 - "Today" button to jump to current date
 - Click any date to view tasks
@@ -114,6 +124,7 @@ Click "Create Task" to save
 ### Task Cards
 
 Each task card shows:
+
 - Task title and type badge
 - Date and time
 - Location
@@ -125,6 +136,7 @@ Each task card shows:
 ### Task Details
 
 Click a task to view:
+
 - Full description
 - All task information
 - Related animal/territory
@@ -135,36 +147,42 @@ Click a task to view:
 ## Task Types
 
 ### Feeding
+
 - Daily feeding schedules
 - Special dietary requirements
 - Food preparation
 - Water refills
 
 ### Medical
+
 - Medication administration
 - Health checkups
 - Vet appointments
 - Treatment follow-ups
 
 ### Cleaning
+
 - Shelter cleaning
 - Area maintenance
 - Waste disposal
 - Sanitization
 
 ### Monitoring
+
 - Animal observation
 - Behavior tracking
 - Territory patrols
 - Safety checks
 
 ### Maintenance
+
 - Facility repairs
 - Equipment maintenance
 - Supply restocking
 - Infrastructure work
 
 ### Event
+
 - Volunteer meetings
 - Training sessions
 - Adoption events
@@ -173,24 +191,28 @@ Click a task to view:
 ## Task Status
 
 ### Pending
+
 - Newly created tasks
 - Not yet started
 - Awaiting assignment
 - Gray badge
 
 ### In Progress
+
 - Currently being worked on
 - Volunteer has started
 - Active tasks
 - Blue badge
 
 ### Completed
+
 - Task finished
 - Marked as done
 - Archived
 - Green badge
 
 ### Cancelled
+
 - Task no longer needed
 - Cancelled by admin
 - Not completed
@@ -201,12 +223,14 @@ Click a task to view:
 ### Updating Task Status
 
 **Mark as In Progress:**
+
 1. Click task card
 2. Click "Start Task" button
 3. Status updates automatically
 4. Notification sent to coordinators
 
 **Mark as Completed:**
+
 1. Click task card
 2. Click "Complete Task" button
 3. Add completion notes (optional)
@@ -214,6 +238,7 @@ Click a task to view:
 5. Notification sent to assignee and coordinators
 
 **Cancel Task:**
+
 1. Click task card
 2. Click "Cancel Task" button
 3. Provide reason (optional)
@@ -273,21 +298,25 @@ Click a task to view:
 ### Automatic Notifications
 
 **Task Assigned:**
+
 - Sent when task is assigned to you
 - Includes task details and due date
 - Click to view task
 
 **Task Reminder:**
+
 - Sent 24 hours before due time
 - Helps you prepare
 - Includes location and instructions
 
 **Task Completed:**
+
 - Sent to coordinators
 - Shows who completed task
 - Includes completion notes
 
 **Task Overdue:**
+
 - Sent if task not completed by due time
 - Reminder to complete or reschedule
 - Escalated to coordinators
@@ -316,16 +345,19 @@ Click a task to view:
 ### Managing Recurring Tasks
 
 **Edit Series:**
+
 - Changes apply to all future occurrences
 - Past occurrences unchanged
 - Option to update all or just future
 
 **Edit Single Occurrence:**
+
 - Changes apply to one instance only
 - Series continues unchanged
 - Useful for exceptions
 
 **Cancel Series:**
+
 - Stops creating future occurrences
 - Past occurrences remain
 - Can restart if needed
@@ -388,6 +420,7 @@ Click a task to view:
 ## Troubleshooting
 
 ### "Failed to create task"
+
 - Check all required fields
 - Verify date/time is valid
 - Ensure location is specified

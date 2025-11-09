@@ -13,10 +13,10 @@ import { ThemeVariant, THEME_CONFIGS } from '@/types/theme';
 
 /**
  * ThemeSwitcher Component
- * 
+ *
  * Dropdown component for switching between custom and default themes.
  * Shows current theme with icon and allows selection from available themes.
- * 
+ *
  * Features:
  * - Visual theme preview icons (colorful for custom, minimal for default)
  * - Shows current theme name

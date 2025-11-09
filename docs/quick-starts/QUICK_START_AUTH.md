@@ -5,6 +5,7 @@ This guide will help you get started with the authentication system in the CCF A
 ## Overview
 
 The authentication system provides:
+
 - User registration and login
 - Role-based access control (Public, Volunteer, Admin)
 - Protected routes and pages
@@ -43,6 +44,7 @@ NEXT_PUBLIC_ADMIN_TEAM_ID=your-admin-team-id
 ### 3. Test Authentication
 
 1. Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -69,11 +71,13 @@ To assign roles to users:
 ## User Roles
 
 ### Public (Default)
+
 - Can view public pages
 - Can register and login
 - No access to protected features
 
 ### Volunteer
+
 - All public permissions
 - Access to dashboard
 - Can view and manage tasks
@@ -81,6 +85,7 @@ To assign roles to users:
 - Can view territories
 
 ### Admin
+
 - All volunteer permissions
 - Access to admin panel
 - Can manage animal database
@@ -169,29 +174,32 @@ function MyPage() {
 
 ```tsx
 const {
-  user,           // Current user object or null
-  role,           // User role: 'public' | 'volunteer' | 'admin'
-  isLoading,      // Loading state
-  login,          // (email, password) => Promise<void>
-  register,       // (name, email, password) => Promise<void>
-  logout,         // () => Promise<void>
-  updateProfile,  // (name) => Promise<void>
+  user, // Current user object or null
+  role, // User role: 'public' | 'volunteer' | 'admin'
+  isLoading, // Loading state
+  login, // (email, password) => Promise<void>
+  register, // (name, email, password) => Promise<void>
+  logout, // () => Promise<void>
+  updateProfile, // (name) => Promise<void>
 } = useAuth();
 ```
 
 ## Common Issues
 
 ### "Unauthorized" Error
+
 - Check if user is assigned to correct team in Appwrite
 - Verify team IDs in environment variables
 - Clear browser cache and cookies
 
 ### Redirect Loop
+
 - Check middleware configuration
 - Verify protected route patterns
 - Ensure session is being set correctly
 
 ### Role Not Updating
+
 - User needs to log out and log back in after role change
 - Check team membership in Appwrite Console
 

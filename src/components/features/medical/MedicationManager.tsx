@@ -11,7 +11,11 @@ interface MedicationManagerProps {
   onRemove: (medication: string) => void;
 }
 
-export function MedicationManager({ medications, onAdd, onRemove }: MedicationManagerProps) {
+export function MedicationManager({
+  medications,
+  onAdd,
+  onRemove,
+}: MedicationManagerProps) {
   const [newMedication, setNewMedication] = useState('');
 
   const handleAdd = () => {
@@ -28,8 +32,8 @@ export function MedicationManager({ medications, onAdd, onRemove }: MedicationMa
         <Input
           placeholder="Add medication name"
           value={newMedication}
-          onChange={(e) => setNewMedication(e.target.value)}
-          onKeyPress={(e) => {
+          onChange={e => setNewMedication(e.target.value)}
+          onKeyPress={e => {
             if (e.key === 'Enter') {
               e.preventDefault();
               handleAdd();
@@ -42,7 +46,7 @@ export function MedicationManager({ medications, onAdd, onRemove }: MedicationMa
       </div>
       {medications.length > 0 && (
         <div className="flex flex-wrap gap-2 mt-2">
-          {medications.map((med) => (
+          {medications.map(med => (
             <div
               key={med}
               className="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm flex items-center gap-2"

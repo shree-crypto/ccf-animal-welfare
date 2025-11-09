@@ -37,9 +37,8 @@ export function Header() {
   ];
 
   // Admin only links
-  const adminLinks = user?.role === 'admin' ? [
-    { href: '/admin/animals', label: 'Admin' },
-  ] : [];
+  const adminLinks =
+    user?.role === 'admin' ? [{ href: '/admin/animals', label: 'Admin' }] : [];
 
   // Combine links based on auth state
   const navLinks = [
@@ -57,7 +56,10 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 font-semibold text-lg">
+          <Link
+            href="/"
+            className="flex items-center gap-2 font-semibold text-lg"
+          >
             <Heart className="h-6 w-6 text-primary" />
             <span className="hidden sm:inline">CCF Animal Welfare</span>
             <span className="sm:hidden">CCF</span>
@@ -82,15 +84,15 @@ export function Header() {
             <div className="hidden md:flex items-center gap-2 ml-2">
               {/* Theme Switcher */}
               <ThemeSwitcherCompact />
-              
+
               {/* Dark Mode Toggle */}
               <ThemeToggle />
-              
+
               {user ? (
                 <>
                   {/* Notification Center */}
                   <NotificationCenter />
-                  
+
                   {/* User Info & Logout */}
                   <div className="flex items-center gap-2 pl-2 border-l">
                     <span className="text-sm text-muted-foreground">
@@ -153,21 +155,25 @@ export function Header() {
                   {link.label}
                 </LinkButton>
               ))}
-              
+
               {/* Mobile Auth Actions */}
               <div className="border-t pt-2 mt-2 space-y-2">
                 {/* Theme Switcher for Mobile */}
                 <div className="flex items-center justify-between px-3 py-2">
-                  <span className="text-sm text-muted-foreground">Theme Style</span>
+                  <span className="text-sm text-muted-foreground">
+                    Theme Style
+                  </span>
                   <ThemeSwitcherCompact />
                 </div>
-                
+
                 {/* Dark Mode Toggle for Mobile */}
                 <div className="flex items-center justify-between px-3 py-2">
-                  <span className="text-sm text-muted-foreground">Dark Mode</span>
+                  <span className="text-sm text-muted-foreground">
+                    Dark Mode
+                  </span>
                   <ThemeToggle />
                 </div>
-                
+
                 {user ? (
                   <>
                     <div className="px-3 py-2 text-sm text-muted-foreground">

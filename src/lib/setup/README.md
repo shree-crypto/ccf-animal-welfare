@@ -25,12 +25,14 @@ npx tsx src/lib/setup/create-indexes.ts
 ### What It Does
 
 The script will:
+
 1. Display all required index configurations
 2. Show detailed information for each collection
 3. Generate Appwrite CLI commands for automated creation
 4. Provide instructions for manual creation in Appwrite Console
 
 **Note**: The script does not automatically create indexes. You must create them manually using one of these methods:
+
 - Appwrite Console (Web UI)
 - Appwrite CLI (Command line)
 - Appwrite REST API
@@ -86,6 +88,7 @@ Total: 20 indexes across 6 collections
 3. Run the generated commands from the script output
 
 Example:
+
 ```bash
 appwrite databases createIndex \
   --databaseId "ccf-database" \
@@ -100,7 +103,8 @@ appwrite databases createIndex \
 
 #### Index Creation Fails
 
-**Solution**: 
+**Solution**:
+
 - Verify the collection exists
 - Check attribute names match your schema
 - Ensure you have admin permissions
@@ -130,6 +134,7 @@ After running the script, verify indexes in Appwrite Console:
 ### Performance Impact
 
 Creating indexes:
+
 - **During creation**: May cause temporary performance impact
 - **After creation**: Significantly improves query performance
 - **Write operations**: Slight overhead due to index maintenance

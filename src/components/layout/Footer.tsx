@@ -13,8 +13,8 @@ export function Footer() {
               <span className="font-semibold text-lg">CCF</span>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
-              Dedicated to the welfare and protection of campus animals at IIT Roorkee through 
-              compassionate care and community engagement.
+              Dedicated to the welfare and protection of campus animals at IIT
+              Roorkee through compassionate care and community engagement.
             </p>
           </div>
 
@@ -23,22 +23,34 @@ export function Footer() {
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/about"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/animals" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/animals"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Our Animals
                 </Link>
               </li>
               <li>
-                <Link href="/stories" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/stories"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Success Stories
                 </Link>
               </li>
               <li>
-                <Link href="/events" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/events"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Events
                 </Link>
               </li>
@@ -50,22 +62,34 @@ export function Footer() {
             <h3 className="font-semibold mb-4">Get Involved</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/contact"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Volunteer
                 </Link>
               </li>
               <li>
-                <Link href="/donate" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/donate"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Donate
                 </Link>
               </li>
               <li>
-                <Link href="/login" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/login"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Volunteer Login
                 </Link>
               </li>
               <li>
-                <Link href="/dashboard" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/dashboard"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Dashboard
                 </Link>
               </li>
@@ -78,13 +102,19 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2 text-muted-foreground">
                 <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <a href="mailto:ccf@iitr.ac.in" className="hover:text-primary transition-colors">
+                <a
+                  href="mailto:ccf@iitr.ac.in"
+                  className="hover:text-primary transition-colors"
+                >
                   ccf@iitr.ac.in
                 </a>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <Phone className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <a href="tel:+911332285311" className="hover:text-primary transition-colors">
+                <a
+                  href="tel:+911332285311"
+                  className="hover:text-primary transition-colors"
+                >
                   +91 133 228 5311
                 </a>
               </li>
@@ -100,13 +130,20 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
             <p>
-              © {new Date().getFullYear()} Committee for Campus Fauna. All rights reserved.
+              © {new Date().getFullYear()} Committee for Campus Fauna. All
+              rights reserved.
             </p>
             <div className="flex gap-6">
-              <Link href="/about" className="hover:text-primary transition-colors">
+              <Link
+                href="/about"
+                className="hover:text-primary transition-colors"
+              >
                 Privacy Policy
               </Link>
-              <Link href="/about" className="hover:text-primary transition-colors">
+              <Link
+                href="/about"
+                className="hover:text-primary transition-colors"
+              >
                 Terms of Service
               </Link>
             </div>

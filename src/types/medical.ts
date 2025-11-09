@@ -1,6 +1,10 @@
 import { Models } from 'appwrite';
 
-export type MedicalRecordType = 'checkup' | 'vaccination' | 'treatment' | 'emergency';
+export type MedicalRecordType =
+  | 'checkup'
+  | 'vaccination'
+  | 'treatment'
+  | 'emergency';
 
 export interface MedicalRecord {
   id: string;
@@ -16,7 +20,9 @@ export interface MedicalRecord {
 }
 
 // Appwrite document type
-export interface MedicalRecordDocument extends Models.Document, Omit<MedicalRecord, 'id'> {
+export interface MedicalRecordDocument
+  extends Models.Document,
+    Omit<MedicalRecord, 'id'> {
   $id: string;
   $createdAt: string;
   $updatedAt: string;

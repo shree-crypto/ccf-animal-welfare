@@ -1,6 +1,6 @@
 /**
  * Query Configuration and Constants
- * 
+ *
  * Centralized configuration for database query optimization including
  * pagination defaults, limits, and query patterns.
  */
