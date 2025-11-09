@@ -51,9 +51,7 @@ export function ThemeSwitcherCompact() {
         }}
         asChild
       >
-        <SelectTrigger>
-          {getThemeIcon(theme)}
-        </SelectTrigger>
+        <SelectTrigger>{getThemeIcon(theme)}</SelectTrigger>
       </Button>
       <SelectContent align="end">
         {Object.entries(THEME_CONFIGS).map(([key, config]) => (
