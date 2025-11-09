@@ -9,12 +9,14 @@ The typography system has been successfully implemented for the CampusPaws Phase
 ### 1. Fonts Added ✅
 
 **Playfair Display** (Headlines - Elegant, Classic Serif)
+
 - Weights: 400, 700
 - Variable: `--font-playfair`
 - Usage: H1 and H2 headings
 - Loaded via Next.js Google Fonts in `src/app/layout.tsx`
 
 **Montserrat** (Body Text - Clean, Modern, Friendly)
+
 - Weights: 400, 500, 600, 700
 - Variable: `--font-montserrat`
 - Usage: H3-H6, body text, buttons
@@ -25,20 +27,24 @@ The typography system has been successfully implemented for the CampusPaws Phase
 Location: `src/app/globals.css`
 
 **Font Family Utilities:**
+
 - `.font-serif` - Playfair Display
 - `.font-sans` - Montserrat
 
 **Heading Utilities:**
+
 - `.heading-1` - 48px, Playfair Display, Bold, Line height 1.2
 - `.heading-2` - 36px, Playfair Display, Bold, Line height 1.3
 - `.heading-3` - 24px, Montserrat, Bold, Line height 1.4
 
 **Body Text Utilities:**
+
 - `.body-large` - 18px, Montserrat, Line height 1.6
 - `.body-regular` - 16px, Montserrat, Line height 1.6
 - `.body-small` - 14px, Montserrat, Line height 1.5
 
 **Button Text Utility:**
+
 - `.button-text` - 16px, Montserrat, Bold, Line height 1
 
 ### 3. Heading Components Updated ✅
@@ -47,7 +53,8 @@ Location: `src/app/globals.css`
 All semantic HTML heading elements (h1-h6) have proper font families and sizes applied via CSS:
 
 ```css
-h1, h2 {
+h1,
+h2 {
   font-family: var(--font-playfair);
   font-weight: 700;
 }
@@ -62,7 +69,10 @@ h2 {
   line-height: 1.3;
 }
 
-h3, h4, h5, h6 {
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-montserrat);
   font-weight: 600-700;
 }
@@ -70,6 +80,7 @@ h3, h4, h5, h6 {
 
 **Responsive Typography:**
 Mobile breakpoints implemented for optimal readability:
+
 - H1: 36px on mobile, 48px on desktop
 - H2: 30px on mobile, 36px on desktop
 - H3: 20px on mobile, 24px on desktop
@@ -77,6 +88,7 @@ Mobile breakpoints implemented for optimal readability:
 ### 4. Minimum 16px Body Text Ensured ✅
 
 **Body Text Configuration:**
+
 ```css
 body {
   font-size: 16px; /* Minimum body text size for accessibility */
@@ -91,6 +103,7 @@ p {
 ```
 
 **Accessibility Compliance:**
+
 - Meets WCAG 2.1 Level AA requirements
 - Body text never smaller than 16px (except for small utility text at 14px)
 - High contrast ratios maintained (4.5:1 minimum)
@@ -130,6 +143,7 @@ The project uses Tailwind CSS v4 with inline theme configuration via `@theme` di
 ## Usage Examples
 
 **Using Semantic HTML (Recommended):**
+
 ```tsx
 <h1>Main Page Title</h1>  {/* Automatically uses Playfair Display */}
 <h2>Section Title</h2>     {/* Automatically uses Playfair Display */}
@@ -138,6 +152,7 @@ The project uses Tailwind CSS v4 with inline theme configuration via `@theme` di
 ```
 
 **Using Utility Classes:**
+
 ```tsx
 <div className="heading-1">Custom Heading</div>
 <div className="body-large">Larger body text</div>
@@ -147,6 +162,7 @@ The project uses Tailwind CSS v4 with inline theme configuration via `@theme` di
 ## Next Steps
 
 The typography system is now ready for use across all Phase 2 components. Developers should:
+
 1. Use semantic HTML elements (h1-h6, p) for automatic styling
 2. Apply utility classes when custom styling is needed
 3. Maintain 16px minimum for body text

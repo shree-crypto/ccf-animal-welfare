@@ -2,8 +2,15 @@ import { ID, Query } from 'appwrite';
 import { databases } from '@/lib/appwrite';
 import { DATABASE_ID, COLLECTIONS } from '@/lib/constants/database';
 import { AnimalProfile, AnimalDocument } from '@/types/animal';
-import { createAnimalSchema, updateAnimalSchema } from '@/lib/validations/animal';
-import { normalizePagination, calculatePaginationMeta, QUERY_LIMITS } from './query-config';
+import {
+  createAnimalSchema,
+  updateAnimalSchema,
+} from '@/lib/validations/animal';
+import {
+  normalizePagination,
+  calculatePaginationMeta,
+  QUERY_LIMITS,
+} from './query-config';
 import { mockAnimals } from '@/lib/mock-data/animals';
 
 // Helper to convert Appwrite document to AnimalProfile
@@ -24,7 +31,9 @@ const documentToAnimal = (doc: AnimalDocument): AnimalProfile => ({
 });
 
 // Create a new animal
-export const createAnimal = async (data: Omit<AnimalProfile, 'id' | 'createdAt' | 'updatedAt'>): Promise<AnimalProfile> => {
+export const createAnimal = async (
+  data: Omit<AnimalProfile, 'id' | 'createdAt' | 'updatedAt'>
+): Promise<AnimalProfile> => {
   // Validate data
   const validatedData = createAnimalSchema.parse(data);
 
@@ -39,7 +48,9 @@ export const createAnimal = async (data: Omit<AnimalProfile, 'id' | 'createdAt' 
 };
 
 // Get an animal by ID
-export const getAnimalById = async (id: string): Promise<AnimalProfile | null> => {
+export const getAnimalById = async (
+  id: string
+): Promise<AnimalProfile | null> => {
   try {
     const document = await databases.getDocument<AnimalDocument>(
       DATABASE_ID,
@@ -78,7 +89,7 @@ export const getAnimals = async (filters?: {
     if (filters?.status) {
       queries.push(Query.equal('status', filters.status));
     }
-    
+
     // Index: packId (packId ASC)
     if (filters?.packId) {
       queries.push(Query.equal('packId', filters.packId));
@@ -110,10 +121,10 @@ export const getAnimals = async (filters?: {
     };
   } catch (error) {
     console.warn('Appwrite not available, using mock data:', error);
-    
+
     // Use mock data as fallback
     let filtered = [...mockAnimals];
-    
+
     // Apply filters
     if (filters?.type) {
       filtered = filtered.filter(animal => animal.type === filters.type);
@@ -124,17 +135,17 @@ export const getAnimals = async (filters?: {
     if (filters?.packId) {
       filtered = filtered.filter(animal => animal.packId === filters.packId);
     }
-    
+
     // Apply pagination
     const { limit, offset } = normalizePagination({
       limit: filters?.limit || QUERY_LIMITS.ANIMAL_GALLERY,
       offset: filters?.offset,
     });
-    
+
     const total = filtered.length;
     const paginatedAnimals = filtered.slice(offset, offset + limit);
     const pagination = calculatePaginationMeta(total, limit, offset);
-    
+
     return {
       animals: paginatedAnimals,
       total,
@@ -203,23 +214,24 @@ export const searchAnimalsByName = async (
     };
   } catch (error) {
     console.warn('Appwrite not available, using mock data:', error);
-    
+
     // Fallback to mock data with simple search
     const { limit, offset } = normalizePagination({
       limit: options?.limit || QUERY_LIMITS.SEARCH_RESULTS,
       offset: options?.offset,
     });
-    
+
     const searchLower = searchTerm.toLowerCase();
-    const filtered = mockAnimals.filter(animal =>
-      animal.name.toLowerCase().includes(searchLower) ||
-      animal.breed?.toLowerCase().includes(searchLower)
+    const filtered = mockAnimals.filter(
+      animal =>
+        animal.name.toLowerCase().includes(searchLower) ||
+        animal.breed?.toLowerCase().includes(searchLower)
     );
-    
+
     const total = filtered.length;
     const paginatedAnimals = filtered.slice(offset, offset + limit);
     const pagination = calculatePaginationMeta(total, limit, offset);
-    
+
     return {
       animals: paginatedAnimals,
       total,
@@ -230,9 +242,10 @@ export const searchAnimalsByName = async (
 
 // Get animals needing attention (optimized for medical alerts)
 // Uses index: status_createdAt (status ASC, $createdAt DESC)
-export const getAnimalsNeedingAttention = async (
-  options?: { limit?: number; offset?: number }
-): Promise<{
+export const getAnimalsNeedingAttention = async (options?: {
+  limit?: number;
+  offset?: number;
+}): Promise<{
   animals: AnimalProfile[];
   total: number;
   pagination: ReturnType<typeof calculatePaginationMeta>;

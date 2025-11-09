@@ -13,12 +13,13 @@ export const mockAnimals: AnimalProfile[] = [
     breed: 'Golden Retriever',
     location: {
       area: 'Main Campus',
-      coordinates: [29.8543, 77.8880],
+      coordinates: [29.8543, 77.888],
     },
     currentFeeder: 'John Doe',
     medicalHistory: [],
     photos: {
-      profile: 'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=400&h=400&fit=crop',
+      profile:
+        'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=400&h=400&fit=crop',
       gallery: [
         'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=800&h=600&fit=crop',
         'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&h=600&fit=crop',
@@ -42,7 +43,8 @@ export const mockAnimals: AnimalProfile[] = [
     currentFeeder: 'Jane Smith',
     medicalHistory: [],
     photos: {
-      profile: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=400&fit=crop',
+      profile:
+        'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=400&fit=crop',
       gallery: [
         'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=800&h=600&fit=crop',
       ],
@@ -64,7 +66,8 @@ export const mockAnimals: AnimalProfile[] = [
     currentFeeder: 'Mike Johnson',
     medicalHistory: [],
     photos: {
-      profile: 'https://images.unsplash.com/photo-1568572933382-74d440642117?w=400&h=400&fit=crop',
+      profile:
+        'https://images.unsplash.com/photo-1568572933382-74d440642117?w=400&h=400&fit=crop',
       gallery: [
         'https://images.unsplash.com/photo-1568572933382-74d440642117?w=800&h=600&fit=crop',
         'https://images.unsplash.com/photo-1534361960057-19889db9621e?w=800&h=600&fit=crop',
@@ -83,12 +86,13 @@ export const mockAnimals: AnimalProfile[] = [
     breed: 'Labrador',
     location: {
       area: 'Hostel Area',
-      coordinates: [29.8550, 77.8885],
+      coordinates: [29.855, 77.8885],
     },
     currentFeeder: 'Sarah Williams',
     medicalHistory: [],
     photos: {
-      profile: 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=400&fit=crop',
+      profile:
+        'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=400&fit=crop',
       gallery: [
         'https://images.unsplash.com/photo-1552053831-71594a27632d?w=800&h=600&fit=crop',
       ],
@@ -111,7 +115,8 @@ export const mockAnimals: AnimalProfile[] = [
     currentFeeder: 'Emily Brown',
     medicalHistory: [],
     photos: {
-      profile: 'https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=400&h=400&fit=crop',
+      profile:
+        'https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=400&h=400&fit=crop',
       gallery: [
         'https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=800&h=600&fit=crop',
         'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&h=600&fit=crop',
@@ -134,7 +139,8 @@ export const mockAnimals: AnimalProfile[] = [
     currentFeeder: 'David Lee',
     medicalHistory: [],
     photos: {
-      profile: 'https://images.unsplash.com/photo-1505628346881-b72b27e84530?w=400&h=400&fit=crop',
+      profile:
+        'https://images.unsplash.com/photo-1505628346881-b72b27e84530?w=400&h=400&fit=crop',
       gallery: [
         'https://images.unsplash.com/photo-1505628346881-b72b27e84530?w=800&h=600&fit=crop',
       ],
@@ -157,7 +163,8 @@ export const mockAnimals: AnimalProfile[] = [
     currentFeeder: 'Lisa Anderson',
     medicalHistory: [],
     photos: {
-      profile: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=400&h=400&fit=crop',
+      profile:
+        'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=400&h=400&fit=crop',
       gallery: [
         'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=800&h=600&fit=crop',
       ],
@@ -179,7 +186,8 @@ export const mockAnimals: AnimalProfile[] = [
     currentFeeder: 'Tom Wilson',
     medicalHistory: [],
     photos: {
-      profile: 'https://images.unsplash.com/photo-1568393691622-c7ba131d63b4?w=400&h=400&fit=crop',
+      profile:
+        'https://images.unsplash.com/photo-1568393691622-c7ba131d63b4?w=400&h=400&fit=crop',
       gallery: [
         'https://images.unsplash.com/photo-1568393691622-c7ba131d63b4?w=800&h=600&fit=crop',
         'https://images.unsplash.com/photo-1605568427561-40dd23c2acea?w=800&h=600&fit=crop',
@@ -203,7 +211,8 @@ export const mockAnimals: AnimalProfile[] = [
     currentFeeder: 'Rachel Green',
     medicalHistory: [],
     photos: {
-      profile: 'https://images.unsplash.com/photo-1529257414772-1960b7bea4eb?w=400&h=400&fit=crop',
+      profile:
+        'https://images.unsplash.com/photo-1529257414772-1960b7bea4eb?w=400&h=400&fit=crop',
       gallery: [
         'https://images.unsplash.com/photo-1529257414772-1960b7bea4eb?w=800&h=600&fit=crop',
       ],
@@ -225,7 +234,8 @@ export const mockAnimals: AnimalProfile[] = [
     currentFeeder: 'Chris Martin',
     medicalHistory: [],
     photos: {
-      profile: 'https://images.unsplash.com/photo-1567529692333-de9fd6772897?w=400&h=400&fit=crop',
+      profile:
+        'https://images.unsplash.com/photo-1567529692333-de9fd6772897?w=400&h=400&fit=crop',
       gallery: [
         'https://images.unsplash.com/photo-1567529692333-de9fd6772897?w=800&h=600&fit=crop',
       ],
@@ -248,7 +258,8 @@ export const mockAnimals: AnimalProfile[] = [
     currentFeeder: 'Anna Taylor',
     medicalHistory: [],
     photos: {
-      profile: 'https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=400&h=400&fit=crop',
+      profile:
+        'https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=400&h=400&fit=crop',
       gallery: [
         'https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=800&h=600&fit=crop',
       ],
@@ -270,7 +281,8 @@ export const mockAnimals: AnimalProfile[] = [
     currentFeeder: 'Mark Davis',
     medicalHistory: [],
     photos: {
-      profile: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=400&h=400&fit=crop',
+      profile:
+        'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=400&h=400&fit=crop',
       gallery: [
         'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=800&h=600&fit=crop',
       ],

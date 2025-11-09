@@ -26,10 +26,10 @@ export function MedicalAlertBanner() {
       try {
         setLoading(true);
         const records = await getFollowUpRecords();
-        
+
         // Fetch animal details for each record
         const recordsWithAnimals = await Promise.all(
-          records.records.map(async (record) => {
+          records.records.map(async record => {
             const animal = await getAnimalById(record.animalId);
             return { ...record, animal: animal || undefined };
           })
@@ -58,23 +58,29 @@ export function MedicalAlertBanner() {
 
   return (
     <div className="space-y-3">
-      {visibleAlerts.map((alert) => {
-        const followUpDate = alert.followUpDate ? new Date(alert.followUpDate) : null;
+      {visibleAlerts.map(alert => {
+        const followUpDate = alert.followUpDate
+          ? new Date(alert.followUpDate)
+          : null;
         const isOverdue = followUpDate && isPast(followUpDate);
         const isDueToday = followUpDate && isToday(followUpDate);
         const isDueTomorrow = followUpDate && isTomorrow(followUpDate);
 
-        let urgencyColor = 'bg-yellow-50 border-yellow-200 dark:bg-yellow-950 dark:border-yellow-800';
+        let urgencyColor =
+          'bg-yellow-50 border-yellow-200 dark:bg-yellow-950 dark:border-yellow-800';
         let urgencyText = 'Follow-up Due';
 
         if (isOverdue) {
-          urgencyColor = 'bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800';
+          urgencyColor =
+            'bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800';
           urgencyText = 'Overdue Follow-up';
         } else if (isDueToday) {
-          urgencyColor = 'bg-orange-50 border-orange-200 dark:bg-orange-950 dark:border-orange-800';
+          urgencyColor =
+            'bg-orange-50 border-orange-200 dark:bg-orange-950 dark:border-orange-800';
           urgencyText = 'Follow-up Today';
         } else if (isDueTomorrow) {
-          urgencyColor = 'bg-yellow-50 border-yellow-200 dark:bg-yellow-950 dark:border-yellow-800';
+          urgencyColor =
+            'bg-yellow-50 border-yellow-200 dark:bg-yellow-950 dark:border-yellow-800';
           urgencyText = 'Follow-up Tomorrow';
         }
 
@@ -109,9 +115,7 @@ export function MedicalAlertBanner() {
                   {followUpDate && (
                     <div className="flex items-center gap-2 text-sm mt-1">
                       <Calendar className="h-3 w-3" />
-                      <span>
-                        {format(followUpDate, 'PPp')}
-                      </span>
+                      <span>{format(followUpDate, 'PPp')}</span>
                     </div>
                   )}
                 </div>

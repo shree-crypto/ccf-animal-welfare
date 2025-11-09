@@ -24,9 +24,12 @@ ErrorBoundary
 Both `AuthContext` and `NotificationContext` use `useMemo` to memoize their context values:
 
 ```typescript
-const value = useMemo(() => ({
-  // context data and functions
-}), [dependencies]);
+const value = useMemo(
+  () => ({
+    // context data and functions
+  }),
+  [dependencies]
+);
 ```
 
 **Why**: Without memoization, the context value object is recreated on every render, causing all consumers to re-render even when the actual data hasn't changed.
@@ -36,9 +39,12 @@ const value = useMemo(() => ({
 All context functions use `useCallback` to maintain stable references:
 
 ```typescript
-const login = useCallback(async (email: string, password: string) => {
-  // implementation
-}, [dependencies]);
+const login = useCallback(
+  async (email: string, password: string) => {
+    // implementation
+  },
+  [dependencies]
+);
 ```
 
 **Why**: Functions passed through context should have stable references to prevent unnecessary re-renders of components that use them.
@@ -85,13 +91,13 @@ If a context has multiple independent pieces of state that change at different r
 
 ```typescript
 // Instead of one large context:
-const AppContext = { userProfile, notifications, settings, theme }
+const AppContext = { userProfile, notifications, settings, theme };
 
 // Split into focused contexts:
-const UserContext = { userProfile }
-const NotificationContext = { notifications }
-const SettingsContext = { settings }
-const ThemeContext = { theme }
+const UserContext = { userProfile };
+const NotificationContext = { notifications };
+const SettingsContext = { settings };
+const ThemeContext = { theme };
 ```
 
 ### 3. Use Context Selectors for Complex State
@@ -138,14 +144,14 @@ const value = {
 
 ```typescript
 // Good - memoize computed values
-const activeItems = useMemo(
-  () => items.filter(item => item.active),
-  [items]
-);
+const activeItems = useMemo(() => items.filter(item => item.active), [items]);
 
-const value = useMemo(() => ({
-  items: activeItems,
-}), [activeItems]);
+const value = useMemo(
+  () => ({
+    items: activeItems,
+  }),
+  [activeItems]
+);
 ```
 
 ### ❌ Not Memoizing Context Value
@@ -172,9 +178,12 @@ const value = {
 
 ```typescript
 // Good - stable function reference
-const onUpdate = useCallback((id: string) => {
-  updateItem(id);
-}, [updateItem]);
+const onUpdate = useCallback(
+  (id: string) => {
+    updateItem(id);
+  },
+  [updateItem]
+);
 
 const value = useMemo(() => ({ onUpdate }), [onUpdate]);
 ```
@@ -200,7 +209,7 @@ test('context updates are performant', () => {
   const start = performance.now();
   const { result } = renderHook(() => useAuth());
   const end = performance.now();
-  
+
   expect(end - start).toBeLessThan(100); // Should render in < 100ms
 });
 ```
@@ -223,8 +232,8 @@ For large notification lists, implement virtualization to render only visible it
 Allow components to subscribe to specific notification types only:
 
 ```typescript
-const urgentNotifications = useNotifications({ 
-  filter: { priority: 'urgent' } 
+const urgentNotifications = useNotifications({
+  filter: { priority: 'urgent' },
 });
 ```
 

@@ -8,7 +8,7 @@
  * - No Aceternity effects
  */
 
-[data-theme="default"] {
+[data-theme='default'] {
   /* Base Colors - Neutral Palette */
   --color-neutral-50: 250 250 252; /* #FAFAFC - Soft white */
   --color-neutral-100: 244 245 249; /* #F4F5F9 - Very light gray */
@@ -45,35 +45,35 @@
   /* Background Colors */
   --background: rgb(var(--color-neutral-50));
   --foreground: rgb(var(--color-neutral-900));
-  
+
   /* Card */
   --card: rgb(255 255 255);
   --card-foreground: rgb(var(--color-neutral-900));
-  
+
   /* Popover */
   --popover: rgb(255 255 255);
   --popover-foreground: rgb(var(--color-neutral-900));
-  
+
   /* Primary */
   --primary: rgb(var(--color-primary-default));
   --primary-foreground: rgb(255 255 255);
-  
+
   /* Secondary */
   --secondary: rgb(var(--color-secondary-default));
   --secondary-foreground: rgb(255 255 255);
-  
+
   /* Muted */
   --muted: rgb(var(--color-neutral-100));
   --muted-foreground: rgb(var(--color-neutral-500));
-  
+
   /* Accent */
   --accent: rgb(var(--color-accent-default));
   --accent-foreground: rgb(255 255 255);
-  
+
   /* Destructive */
   --destructive: rgb(var(--color-error-default));
   --destructive-foreground: rgb(255 255 255);
-  
+
   /* Borders and Inputs */
   --border: rgb(var(--color-neutral-300));
   --input: rgb(var(--color-neutral-300));
@@ -98,15 +98,15 @@
 }
 
 /* Default Theme - Dark Mode */
-[data-theme="default"].dark {
+[data-theme='default'].dark {
   /* Background Colors */
   --background: rgb(var(--color-neutral-900));
   --foreground: rgb(var(--color-neutral-100));
-  
+
   /* Card */
   --card: rgb(var(--color-neutral-800));
   --card-foreground: rgb(var(--color-neutral-100));
-  
+
   /* Popover */
   --popover: rgb(var(--color-neutral-800));
   --popover-foreground: rgb(var(--color-neutral-100));
@@ -118,7 +118,7 @@
   /* Secondary - Lighter pastel for dark mode */
   --secondary: rgb(var(--color-secondary-light));
   --secondary-foreground: rgb(var(--color-neutral-900));
-  
+
   /* Muted */
   --muted: rgb(var(--color-neutral-800));
   --muted-foreground: rgb(var(--color-neutral-400));
@@ -155,9 +155,9 @@
 }
 
 /* Default Theme - Remove Gradients */
-[data-theme="default"] .gradient-bg,
-[data-theme="default"] .gradient-text,
-[data-theme="default"] .gradient-border {
+[data-theme='default'] .gradient-bg,
+[data-theme='default'] .gradient-text,
+[data-theme='default'] .gradient-border {
   background: none;
   background-image: none;
   background-clip: unset;
@@ -166,44 +166,44 @@
 }
 
 /* Default Theme - Simple Buttons */
-[data-theme="default"] .btn-gradient {
+[data-theme='default'] .btn-gradient {
   background: rgb(var(--color-primary-default));
   background-image: none;
   transition: all 0.2s ease;
 }
 
-[data-theme="default"] .btn-gradient:hover:not(:disabled) {
+[data-theme='default'] .btn-gradient:hover:not(:disabled) {
   background: rgb(var(--color-primary-dark));
   transform: none;
   box-shadow: none;
 }
 
-[data-theme="default"] .btn-gradient-secondary {
+[data-theme='default'] .btn-gradient-secondary {
   background: rgb(var(--color-secondary-default));
   background-image: none;
   transition: all 0.2s ease;
 }
 
-[data-theme="default"] .btn-gradient-secondary:hover:not(:disabled) {
+[data-theme='default'] .btn-gradient-secondary:hover:not(:disabled) {
   background: rgb(var(--color-secondary-dark));
   transform: none;
   box-shadow: none;
 }
 
-[data-theme="default"] .btn-gradient-accent {
+[data-theme='default'] .btn-gradient-accent {
   background: rgb(var(--color-accent-default));
   background-image: none;
   transition: all 0.2s ease;
 }
 
-[data-theme="default"] .btn-gradient-accent:hover:not(:disabled) {
+[data-theme='default'] .btn-gradient-accent:hover:not(:disabled) {
   background: rgb(var(--color-accent-dark));
   transform: none;
   box-shadow: none;
 }
 
 /* Default Theme - Simple Cards */
-[data-theme="default"] .card-gradient {
+[data-theme='default'] .card-gradient {
   background: rgb(255 255 255);
   background-image: none;
   border: 1px solid rgb(var(--color-neutral-300));
@@ -211,89 +211,89 @@
   transition: all 0.2s ease;
 }
 
-[data-theme="default"] .card-gradient:hover {
+[data-theme='default'] .card-gradient:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transform: none;
   border-color: rgb(var(--color-neutral-400));
 }
 
-[data-theme="default"].dark .card-gradient {
+[data-theme='default'].dark .card-gradient {
   background: rgb(var(--color-neutral-800));
   border-color: rgb(var(--color-neutral-700));
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-[data-theme="default"].dark .card-gradient:hover {
+[data-theme='default'].dark .card-gradient:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
   border-color: rgb(var(--color-neutral-600));
 }
 
 /* Default Theme - Card Variants */
-[data-theme="default"] .card-elevated {
+[data-theme='default'] .card-elevated {
   background: rgb(255 255 255);
   border: 1px solid rgb(var(--color-neutral-300));
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-[data-theme="default"] .card-elevated:hover {
+[data-theme='default'] .card-elevated:hover {
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
 }
 
-[data-theme="default"].dark .card-elevated {
+[data-theme='default'].dark .card-elevated {
   background: rgb(var(--color-neutral-800));
   border-color: rgb(var(--color-neutral-700));
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-[data-theme="default"].dark .card-elevated:hover {
+[data-theme='default'].dark .card-elevated:hover {
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
 }
 
-[data-theme="default"] .card-outline {
+[data-theme='default'] .card-outline {
   background: transparent;
   border: 2px solid rgb(var(--color-neutral-300));
   background-image: none;
 }
 
-[data-theme="default"].dark .card-outline {
+[data-theme='default'].dark .card-outline {
   border-color: rgb(var(--color-neutral-700));
 }
 
 /* Default Theme - Badge Variants */
-[data-theme="default"] .badge-default {
+[data-theme='default'] .badge-default {
   background: rgb(var(--color-primary-default));
   background-image: none;
   box-shadow: none;
 }
 
-[data-theme="default"] .badge-default:hover {
+[data-theme='default'] .badge-default:hover {
   background: rgb(var(--color-primary-dark));
   transform: none;
 }
 
-[data-theme="default"] .badge-secondary {
+[data-theme='default'] .badge-secondary {
   background: rgb(var(--color-secondary-default));
   background-image: none;
   box-shadow: none;
 }
 
-[data-theme="default"] .badge-secondary:hover {
+[data-theme='default'] .badge-secondary:hover {
   background: rgb(var(--color-secondary-dark));
   transform: none;
 }
 
-[data-theme="default"] .badge-accent {
+[data-theme='default'] .badge-accent {
   background: rgb(var(--color-accent-default));
   background-image: none;
   box-shadow: none;
 }
 
-[data-theme="default"] .badge-accent:hover {
+[data-theme='default'] .badge-accent:hover {
   background: rgb(var(--color-accent-dark));
   transform: none;
 }
 
-[data-theme="default"] .badge-success {
+[data-theme='default'] .badge-success {
   background: rgb(var(--color-success-default));
   color: rgb(34 197 94); /* Darker text for contrast */
   background-image: none;
@@ -305,7 +305,7 @@
   transform: none;
 }
 
-[data-theme="default"] .badge-warning {
+[data-theme='default'] .badge-warning {
   background: rgb(var(--color-warning-default));
   color: rgb(202 138 4); /* Darker text for contrast */
   background-image: none;
@@ -317,7 +317,7 @@
   transform: none;
 }
 
-[data-theme="default"] .badge-destructive {
+[data-theme='default'] .badge-destructive {
   background: rgb(var(--color-error-default));
   color: rgb(220 38 38); /* Darker text for contrast */
   background-image: none;
@@ -329,18 +329,18 @@
   transform: none;
 }
 
-[data-theme="default"] .badge-outline {
+[data-theme='default'] .badge-outline {
   border: 1px solid rgb(var(--color-neutral-300));
   background: transparent;
   background-image: none;
 }
 
-[data-theme="default"].dark .badge-outline {
+[data-theme='default'].dark .badge-outline {
   border-color: rgb(var(--color-neutral-700));
 }
 
 /* Default Theme - Hide Aceternity Effects */
-[data-theme="default"] .aceternity-effect,
-[data-theme="default"] [data-aceternity="true"] {
+[data-theme='default'] .aceternity-effect,
+[data-theme='default'] [data-aceternity='true'] {
   display: none !important;
 }

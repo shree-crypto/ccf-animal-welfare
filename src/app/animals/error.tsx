@@ -22,7 +22,7 @@ export default function Error({
         <div className="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-red-200 to-pink-200 dark:from-red-900/30 dark:to-pink-900/30">
           <AlertCircle className="h-10 w-10 text-red-600 dark:text-red-400" />
         </div>
-        
+
         <div className="text-center space-y-2">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">
             Oops! Something went wrong
@@ -40,7 +40,7 @@ export default function Error({
             Try Again
           </Button>
           <Button
-            onClick={() => window.location.href = '/'}
+            onClick={() => (window.location.href = '/')}
             variant="outline"
             className="border-2 border-purple-300 dark:border-purple-700"
           >

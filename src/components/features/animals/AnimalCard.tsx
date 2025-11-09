@@ -13,7 +13,10 @@ interface AnimalCardProps {
   index?: number;
 }
 
-export const AnimalCard = memo(function AnimalCard({ animal, index = 0 }: AnimalCardProps) {
+export const AnimalCard = memo(function AnimalCard({
+  animal,
+  index = 0,
+}: AnimalCardProps) {
   const statusColors = {
     healthy: 'bg-emerald-200/80 text-emerald-900 dark:bg-emerald-800/80 dark:text-emerald-100',
     needs_attention: 'bg-amber-200/80 text-amber-900 dark:bg-amber-800/80 dark:text-amber-100',
@@ -43,8 +46,13 @@ export const AnimalCard = memo(function AnimalCard({ animal, index = 0 }: Animal
       transition={{ duration: 0.4, delay: index * 0.05 }}
       whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.2 } }}
     >
-      <Link href={`/animals/${animal.id}`} aria-label={`View details for ${animal.name}`}>
-        <Card className={`group overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-purple-300 dark:hover:border-purple-700 bg-gradient-to-br ${cardGradient} backdrop-blur-sm`}>
+      <Link
+        href={`/animals/${animal.id}`}
+        aria-label={`View details for ${animal.name}`}
+      >
+        <Card
+          className={`group overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-purple-300 dark:hover:border-purple-700 bg-gradient-to-br ${cardGradient} backdrop-blur-sm`}
+        >
           <div className="relative h-64 w-full overflow-hidden">
             {animal.photos.profile ? (
               <>
@@ -64,7 +72,7 @@ export const AnimalCard = memo(function AnimalCard({ animal, index = 0 }: Animal
               </div>
             )}
             <div className="absolute top-3 right-3 z-10">
-              <motion.span 
+              <motion.span
                 whileHover={{ scale: 1.1 }}
                 className={`px-4 py-1.5 rounded-full text-xs font-bold backdrop-blur-md ${statusColors[animal.status]}`}
               >
@@ -82,7 +90,7 @@ export const AnimalCard = memo(function AnimalCard({ animal, index = 0 }: Animal
               </motion.div>
             </div>
           </div>
-          
+
           <CardContent className="p-5 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
             <div className="space-y-3">
               <div>
@@ -90,7 +98,8 @@ export const AnimalCard = memo(function AnimalCard({ animal, index = 0 }: Animal
                   {animal.name}
                 </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400 capitalize font-medium">
-                  {animal.breed || animal.type} • {animal.age} {animal.age === 1 ? 'year' : 'years'} old
+                  {animal.breed || animal.type} • {animal.age}{' '}
+                  {animal.age === 1 ? 'year' : 'years'} old
                 </p>
               </div>
 
@@ -99,15 +108,19 @@ export const AnimalCard = memo(function AnimalCard({ animal, index = 0 }: Animal
                   <div className="h-8 w-8 rounded-full bg-gradient-to-br from-purple-200 to-pink-200 dark:from-purple-800 dark:to-pink-800 flex items-center justify-center">
                     <MapPin className="h-4 w-4 flex-shrink-0" />
                   </div>
-                  <span className="truncate font-medium">{animal.location.area}</span>
+                  <span className="truncate font-medium">
+                    {animal.location.area}
+                  </span>
                 </div>
-                
+
                 {animal.currentFeeder && (
                   <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                     <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-200 to-cyan-200 dark:from-blue-800 dark:to-cyan-800 flex items-center justify-center">
                       <User className="h-4 w-4 flex-shrink-0" />
                     </div>
-                    <span className="truncate font-medium">Fed by {animal.currentFeeder}</span>
+                    <span className="truncate font-medium">
+                      Fed by {animal.currentFeeder}
+                    </span>
                   </div>
                 )}
               </div>

@@ -16,15 +16,15 @@ CampusPaws is fully configured to run with **mock data** for all features, allow
 
 ### ✅ Fully Implemented with Mock Data
 
-| Feature | Status | Mock Data Location | Notes |
-|---------|--------|-------------------|-------|
-| **Authentication** | ✅ Active | `src/lib/mock-auth.ts` | 3 test accounts (admin, volunteer, public) |
-| **Animals** | ✅ Active | `src/lib/mock-data/animals.ts` | 12 animal profiles with photos |
-| **Territories/Map** | ✅ Active | `src/lib/mock-data/territories.ts` | 6 territories with boundaries |
-| **Impact Dashboard** | ✅ Active | `src/lib/mock-data/impact.ts` | Real-time metrics and activities |
-| **Tasks** | ✅ Active | Database fallback | Mock tasks generated |
-| **Medical Records** | ✅ Active | Database fallback | Mock medical history |
-| **Notifications** | ✅ Active | Database fallback | Mock notifications |
+| Feature              | Status    | Mock Data Location                 | Notes                                      |
+| -------------------- | --------- | ---------------------------------- | ------------------------------------------ |
+| **Authentication**   | ✅ Active | `src/lib/mock-auth.ts`             | 3 test accounts (admin, volunteer, public) |
+| **Animals**          | ✅ Active | `src/lib/mock-data/animals.ts`     | 12 animal profiles with photos             |
+| **Territories/Map**  | ✅ Active | `src/lib/mock-data/territories.ts` | 6 territories with boundaries              |
+| **Impact Dashboard** | ✅ Active | `src/lib/mock-data/impact.ts`      | Real-time metrics and activities           |
+| **Tasks**            | ✅ Active | Database fallback                  | Mock tasks generated                       |
+| **Medical Records**  | ✅ Active | Database fallback                  | Mock medical history                       |
+| **Notifications**    | ✅ Active | Database fallback                  | Mock notifications                         |
 
 ## 🔐 Authentication (Mock Login)
 
@@ -33,18 +33,21 @@ CampusPaws is fully configured to run with **mock data** for all features, allow
 The login page displays these credentials prominently in development mode:
 
 #### 👑 Admin Account
+
 - **Email**: `admin@ccf.dev`
 - **Password**: `admin123`
 - **Access**: Full system access including admin panel
 - **Features**: Animal management, user management, all volunteer features
 
 #### 🤝 Volunteer Account
+
 - **Email**: `volunteer@ccf.dev`
 - **Password**: `volunteer123`
 - **Access**: Dashboard, tasks, medical records
 - **Features**: Task management, medical record viewing, notifications
 
 #### 👤 Public Account
+
 - **Email**: `user@ccf.dev`
 - **Password**: `user123`
 - **Access**: Public pages only
@@ -67,6 +70,7 @@ if (mockAuthService.isAvailable()) {
 ## 🐕 Animals Mock Data
 
 ### Features
+
 - **12 animal profiles** with realistic data
 - Various breeds (dogs and cats)
 - Different statuses (healthy, needs_attention, under_treatment)
@@ -75,6 +79,7 @@ if (mockAuthService.isAvailable()) {
 - Complete medical history
 
 ### Usage
+
 ```typescript
 import { mockAnimals } from '@/lib/mock-data/animals';
 // Automatically used when Appwrite is unavailable
@@ -85,6 +90,7 @@ import { mockAnimals } from '@/lib/mock-data/animals';
 ## 🗺️ Territories/Map Mock Data
 
 ### Features
+
 - **6 territories** across campus
 - Realistic GPS boundaries (IIT Roorkee coordinates)
 - Pack sizes ranging from 2-12 animals
@@ -92,6 +98,7 @@ import { mockAnimals } from '@/lib/mock-data/animals';
 - Interactive map with heatmap overlay
 
 ### Territories Included
+
 1. Main Building Area (8 animals)
 2. Hostel Complex (12 animals)
 3. Library Lawn (5 animals)
@@ -106,19 +113,23 @@ import { mockAnimals } from '@/lib/mock-data/animals';
 ## 📊 Impact Dashboard Mock Data
 
 ### Features
+
 - **Real-time metrics** with trends
 - **Recent activities** that update every 30 seconds
 - **Historical trends** for 30 days
 - Simulated real-time updates
 
 ### Mock Metrics
+
 - Animals Rescued: 247 total, 18 this month (↑12.5%)
 - Active Volunteers: 89 total, 12 this week (↑8.3%)
 - Meals Provided: 3456 total, 234 this week (stable)
 - Successful Adoptions: 156 total, 8 this month (↑14.2%)
 
 ### Simulated Real-Time Updates
+
 New activities appear every 30 seconds:
+
 - Random activity types (donation, adoption, volunteer, rescue)
 - Random names and messages
 - Automatic cleanup (keeps 10 most recent)
@@ -139,7 +150,7 @@ export const getAnimals = async () => {
   if (useMockData()) {
     return mockAnimals;
   }
-  
+
   try {
     // Try Appwrite
     const response = await databases.listDocuments(...);
@@ -156,24 +167,29 @@ export const getAnimals = async () => {
 
 ```typescript
 const useMockData = () => {
-  return process.env.NODE_ENV === 'development' && 
-         process.env.NEXT_PUBLIC_USE_MOCK_DATA !== 'false';
+  return (
+    process.env.NODE_ENV === 'development' &&
+    process.env.NEXT_PUBLIC_USE_MOCK_DATA !== 'false'
+  );
 };
 ```
 
 ## 🎨 Visual Indicators
 
 ### Login Page
+
 - Prominent credentials display with color-coded roles
 - Copy-to-clipboard functionality
 - Role descriptions and access levels
 
 ### Console Logs
+
 - `✅ Mock auth successful` - Login worked
 - `🔧 Using mock data` - Feature using mock data
 - `ℹ️ Not a mock user` - Trying real Appwrite
 
 ### Development Notices
+
 - Blue banners on pages using mock data
 - Console warnings when falling back to mock data
 
@@ -196,21 +212,26 @@ src/lib/
 ### Enable/Disable Mock Data
 
 #### Global Toggle (Future)
+
 Add to `.env.local`:
+
 ```env
 NEXT_PUBLIC_USE_MOCK_DATA=false  # Disable all mock data
 ```
 
 #### Per-Feature Toggle
+
 Each feature has its own toggle:
 
 **Impact Dashboard**:
+
 ```typescript
 // src/hooks/useImpactMetrics.ts
 const USE_MOCK_DATA = true; // Change to false
 ```
 
 **Authentication**:
+
 ```typescript
 // src/lib/mock-auth.ts
 isAvailable() {
@@ -223,12 +244,14 @@ isAvailable() {
 ### Step-by-Step Guide
 
 #### 1. Set Up Appwrite
+
 - Install Appwrite (see `docs/SETUP_GUIDE.md`)
 - Create database and collections
 - Set up authentication
 - Configure storage buckets
 
 #### 2. Add Environment Variables
+
 ```env
 NEXT_PUBLIC_APPWRITE_ENDPOINT=http://localhost/v1
 NEXT_PUBLIC_APPWRITE_PROJECT_ID=your-project-id
@@ -237,10 +260,12 @@ NEXT_PUBLIC_APPWRITE_DATABASE_ID=ccf-database
 ```
 
 #### 3. Disable Mock Data
+
 - Set `NEXT_PUBLIC_USE_MOCK_DATA=false`
 - Or change individual feature toggles
 
 #### 4. Test
+
 - Verify all features work with real backend
 - Check authentication flows
 - Test data persistence
@@ -248,6 +273,7 @@ NEXT_PUBLIC_APPWRITE_DATABASE_ID=ccf-database
 ## 🧪 Testing with Mock Data
 
 ### Advantages
+
 - ✅ No backend setup required
 - ✅ Consistent test data
 - ✅ Fast development iteration
@@ -256,6 +282,7 @@ NEXT_PUBLIC_APPWRITE_DATABASE_ID=ccf-database
 - ✅ Easy to demo
 
 ### Limitations
+
 - ❌ No data persistence
 - ❌ No real-time sync across tabs
 - ❌ Can't test backend validation
@@ -263,6 +290,7 @@ NEXT_PUBLIC_APPWRITE_DATABASE_ID=ccf-database
 - ❌ Can't test error scenarios
 
 ### Best Practices
+
 1. **Develop with mock data** - Fast iteration
 2. **Test with real backend** - Before production
 3. **Keep mock data realistic** - Match production scenarios
@@ -280,24 +308,28 @@ NEXT_PUBLIC_APPWRITE_DATABASE_ID=ccf-database
 ## 🎯 Feature-Specific Guides
 
 ### Animals & Gallery
+
 - **Page**: `/animals`
 - **Mock Data**: 12 profiles
 - **Features**: Filtering, search, pagination
 - **Photos**: Unsplash images
 
 ### Territories Map
+
 - **Page**: `/territories`
 - **Mock Data**: 6 territories
 - **Features**: Interactive map, heatmap, boundaries
 - **Technology**: Leaflet + OpenStreetMap
 
 ### Dashboard
+
 - **Page**: `/dashboard`
 - **Access**: Volunteer/Admin only
 - **Mock Data**: Tasks, notifications, quick stats
 - **Features**: Task overview, quick actions
 
 ### Impact Dashboard
+
 - **Page**: `/` (homepage) and `/impact`
 - **Mock Data**: Metrics, activities, trends
 - **Features**: Real-time updates, historical charts
@@ -306,24 +338,28 @@ NEXT_PUBLIC_APPWRITE_DATABASE_ID=ccf-database
 ## 🐛 Troubleshooting
 
 ### Login Not Working
+
 1. Check credentials exactly match (case-sensitive)
 2. Verify `NODE_ENV=development`
 3. Clear localStorage: `localStorage.clear()`
 4. Check console for error messages
 
 ### Mock Data Not Loading
+
 1. Check console for warnings
 2. Verify mock data files exist
 3. Check import paths
 4. Restart development server
 
 ### Map Not Showing
+
 1. Check browser console for errors
 2. Verify Leaflet CSS is loaded
 3. Check mock territories data
 4. Try refreshing the page
 
 ### Dashboard Shows Empty
+
 1. Login with correct credentials
 2. Check role permissions
 3. Verify mock data is enabled
@@ -332,25 +368,31 @@ NEXT_PUBLIC_APPWRITE_DATABASE_ID=ccf-database
 ## 💡 Tips & Tricks
 
 ### Quick Copy Credentials
+
 The login page shows credentials - click to copy (future enhancement)
 
 ### Console Debugging
+
 Open DevTools and filter by:
+
 - `Mock` - See all mock data operations
 - `✅` - See successful operations
 - `❌` - See errors
 
 ### Testing Different Roles
+
 1. Logout
 2. Login with different account
 3. See different features/permissions
 
 ### Simulating Real-Time Updates
+
 Impact dashboard activities update every 30 seconds automatically
 
 ## 🎉 Summary
 
 CampusPaws is **100% functional with mock data**:
+
 - ✅ No backend setup required
 - ✅ All features work out of the box
 - ✅ Complete development environment

@@ -1,6 +1,6 @@
 /**
  * MetricCard Component
- * 
+ *
  * Displays a single impact metric with trend indicator
  * Requirements: 3.1, 3.2
  */
@@ -32,13 +32,17 @@ export function MetricCard({
   className,
 }: MetricCardProps) {
   const { config } = useTheme();
-  
+
   const getTrendIcon = () => {
     switch (metric.trend) {
       case 'up':
-        return <TrendingUp className="h-4 w-4 text-green-600 dark:text-green-400" />;
+        return (
+          <TrendingUp className="h-4 w-4 text-green-600 dark:text-green-400" />
+        );
       case 'down':
-        return <TrendingDown className="h-4 w-4 text-red-600 dark:text-red-400" />;
+        return (
+          <TrendingDown className="h-4 w-4 text-red-600 dark:text-red-400" />
+        );
       case 'stable':
         return <Minus className="h-4 w-4 text-gray-600 dark:text-gray-400" />;
     }
@@ -72,7 +76,12 @@ export function MetricCard({
   }
 
   return (
-    <Card className={cn('relative overflow-hidden transition-shadow hover:shadow-lg', className)}>
+    <Card
+      className={cn(
+        'relative overflow-hidden transition-shadow hover:shadow-lg',
+        className
+      )}
+    >
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium text-gray-700 dark:text-gray-300">
           {title}
@@ -102,12 +111,17 @@ export function MetricCard({
 
           {/* Total value */}
           <div className="text-sm text-gray-600 dark:text-gray-400">
-            Total: <span className="font-semibold">{metric.total.toLocaleString()}</span>
+            Total:{' '}
+            <span className="font-semibold">
+              {metric.total.toLocaleString()}
+            </span>
           </div>
 
           {/* Description */}
           {description && (
-            <p className="text-xs text-gray-500 dark:text-gray-500">{description}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-500">
+              {description}
+            </p>
           )}
         </div>
       </CardContent>

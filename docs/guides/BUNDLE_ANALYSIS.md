@@ -13,6 +13,7 @@ Based on the production build:
 All routes are successfully building as static (○) or dynamic (ƒ) pages:
 
 **Static Pages (Pre-rendered):**
+
 - Home (`/`)
 - About (`/about`)
 - Admin pages (`/admin`, `/admin/animals`)
@@ -31,6 +32,7 @@ All routes are successfully building as static (○) or dynamic (ƒ) pages:
 - Unauthorized (`/unauthorized`)
 
 **Dynamic Pages:**
+
 - Animal details (`/animals/[id]`)
 
 ## Key Optimizations Implemented
@@ -38,6 +40,7 @@ All routes are successfully building as static (○) or dynamic (ƒ) pages:
 ### 1. Dynamic Imports ✅
 
 **Territories Page:**
+
 - InteractiveMap component is dynamically imported with `ssr: false`
 - Prevents Leaflet from causing SSR issues
 - Reduces initial bundle size by lazy-loading the map library
@@ -143,6 +146,7 @@ npm run analyze
 ```
 
 This will:
+
 1. Build the production bundle
 2. Generate interactive bundle visualizations
 3. Open the analyzer in your browser
@@ -176,17 +180,19 @@ This will:
 ## Build Performance
 
 **Current Build Times:**
+
 - Compilation: ~27s
 - TypeScript checking: ~22s
 - Page generation: ~5s
 - Total: ~55s
 
 **Optimization Opportunities:**
+
 - Enable SWC minification (already default in Next.js 13+)
 - Use Turbopack for faster builds (experimental)
 - Implement incremental builds in CI/CD
 
 ---
 
-*Last Updated: November 7, 2025*
-*Next Review: After implementing lazy loading optimizations*
+_Last Updated: November 7, 2025_
+_Next Review: After implementing lazy loading optimizations_

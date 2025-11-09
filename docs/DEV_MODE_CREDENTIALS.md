@@ -9,6 +9,7 @@ The login page includes a development mode banner and test credentials section t
 ### 1. Development Mode Banner
 
 A prominent banner at the top of the login page that:
+
 - Clearly indicates "Development Mode"
 - Warns that mock authentication is being used
 - Provides a toggle to show/hide the credentials section
@@ -17,11 +18,13 @@ A prominent banner at the top of the login page that:
 ### 2. Test Credentials Section
 
 When visible, displays three credential cards:
+
 - **Admin Account**: Full access to all features
 - **Volunteer Account**: Access to tasks, medical records, dashboard
 - **Public Account**: Limited access to public features only
 
 Each card includes:
+
 - Role icon and title
 - Email and password with copy-to-clipboard functionality
 - Auto-fill button to populate the login form
@@ -32,6 +35,7 @@ Each card includes:
 ### Default Behavior
 
 By default, the development mode banner and credentials are:
+
 - **Shown** when `NODE_ENV === 'development'`
 - **Hidden** when `NODE_ENV === 'production'`
 

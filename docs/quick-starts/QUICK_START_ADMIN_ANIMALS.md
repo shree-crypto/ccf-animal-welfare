@@ -5,6 +5,7 @@ This guide will help you get started with the administrative animal database man
 ## Overview
 
 The admin animal management system provides:
+
 - Create, read, update, and delete animal profiles
 - Photo management (profile and gallery photos)
 - Bulk upload via CSV
@@ -32,6 +33,7 @@ Click the "Add New Animal" button in the top right
 ### Step 2: Fill in Basic Information
 
 **Required Fields:**
+
 - **Name**: Animal's name
 - **Type**: Dog or Cat
 - **Age**: Age in years
@@ -40,6 +42,7 @@ Click the "Add New Animal" button in the top right
 - **Longitude**: GPS longitude coordinate
 
 **Optional Fields:**
+
 - **Breed**: Animal breed
 - **Status**: Health status (Healthy, Needs Attention, Under Treatment)
 - **Current Feeder**: Name of primary caretaker
@@ -85,6 +88,7 @@ Bella,cat,2,Persian,Library,29.8550,77.8890,healthy,Jane Smith,
 ```
 
 **Required Columns:**
+
 - name
 - type (dog or cat)
 - age
@@ -93,6 +97,7 @@ Bella,cat,2,Persian,Library,29.8550,77.8890,healthy,Jane Smith,
 - longitude
 
 **Optional Columns:**
+
 - breed
 - status (healthy, needs_attention, under_treatment)
 - feeder
@@ -120,6 +125,7 @@ Bella,cat,2,Persian,Library,29.8550,77.8890,healthy,Jane Smith,
 ### Search
 
 Use the search box to find animals by:
+
 - Name
 - Location area
 
@@ -128,6 +134,7 @@ The search updates in real-time as you type.
 ### Filter by Type
 
 Click the type filter dropdown to show:
+
 - All animals
 - Dogs only
 - Cats only
@@ -135,6 +142,7 @@ Click the type filter dropdown to show:
 ### Filter by Status
 
 Click the status filter dropdown to show:
+
 - All statuses
 - Healthy
 - Needs Attention
@@ -143,6 +151,7 @@ Click the status filter dropdown to show:
 ### Sorting
 
 Click column headers to sort by:
+
 - Name (alphabetical)
 - Age (numerical)
 - Created Date (chronological)
@@ -189,6 +198,7 @@ Click column headers to sort by:
 ### Animal Cards
 
 Each row shows:
+
 - Profile photo thumbnail
 - Name and type
 - Age
@@ -236,24 +246,28 @@ Each row shows:
 ## Troubleshooting
 
 ### "Failed to create animal"
+
 - Check all required fields are filled
 - Verify coordinates are valid numbers
 - Ensure type is either "dog" or "cat"
 - Check network connection
 
 ### Photo Upload Fails
+
 - Check file size (must be < 10MB)
 - Verify file format (JPG, PNG, GIF only)
 - Check storage bucket permissions
 - Try uploading one photo at a time
 
 ### CSV Upload Errors
+
 - Verify CSV format matches template
 - Check for special characters in data
 - Ensure coordinates are numbers
 - Review error messages for specific issues
 
 ### Search Not Working
+
 - Clear search box and try again
 - Check spelling
 - Try filtering instead

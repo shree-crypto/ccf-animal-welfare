@@ -1,18 +1,25 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { ThemeProvider, useTheme } from '@/contexts/ThemeContext';
+import { ThemeSwitcher } from '@/components/features/theme/ThemeSwitcher';
 
 // Test component that displays theme state
 function ThemeDisplay() {
   const { theme, config } = useTheme();
-  
+
   return (
     <div>
       <div data-testid="current-theme">{theme}</div>
       <div data-testid="theme-name">{config.name}</div>
-      <div data-testid="gradients-enabled">{config.effects.gradients.toString()}</div>
-      <div data-testid="animations-enabled">{config.effects.animations.toString()}</div>
-      <div data-testid="aceternity-enabled">{config.effects.aceternity.toString()}</div>
+      <div data-testid="gradients-enabled">
+        {config.effects.gradients.toString()}
+      </div>
+      <div data-testid="animations-enabled">
+        {config.effects.animations.toString()}
+      </div>
+      <div data-testid="aceternity-enabled">
+        {config.effects.aceternity.toString()}
+      </div>
     </div>
   );
 }
@@ -70,11 +77,17 @@ describe('Theme Switching - Comprehensive Tests', () => {
       );
 
       await waitFor(() => {
-        expect(screen.getByTestId('current-theme')).toHaveTextContent('default');
+        expect(screen.getByTestId('current-theme')).toHaveTextContent(
+          'default'
+        );
       });
 
-      expect(screen.getByTestId('theme-name')).toHaveTextContent('Clean Default');
-      expect(screen.getByTestId('gradients-enabled')).toHaveTextContent('false');
+      expect(screen.getByTestId('theme-name')).toHaveTextContent(
+        'Clean Default'
+      );
+      expect(screen.getByTestId('gradients-enabled')).toHaveTextContent(
+        'false'
+      );
     });
 
     it('should handle invalid localStorage values gracefully', async () => {
@@ -100,7 +113,9 @@ describe('Theme Switching - Comprehensive Tests', () => {
         return (
           <div>
             <div data-testid="current-theme">{theme}</div>
-            <button onClick={() => setTheme('default')}>Switch to Default</button>
+            <button onClick={() => setTheme('default')}>
+              Switch to Default
+            </button>
           </div>
         );
       };
@@ -118,7 +133,9 @@ describe('Theme Switching - Comprehensive Tests', () => {
       fireEvent.click(screen.getByText('Switch to Default'));
 
       await waitFor(() => {
-        expect(screen.getByTestId('current-theme')).toHaveTextContent('default');
+        expect(screen.getByTestId('current-theme')).toHaveTextContent(
+          'default'
+        );
       });
 
       expect(localStorage.getItem('campuspaws-theme')).toBe('default');
@@ -144,7 +161,9 @@ describe('Theme Switching - Comprehensive Tests', () => {
       );
 
       await waitFor(() => {
-        expect(screen.getByTestId('current-theme')).toHaveTextContent('default');
+        expect(screen.getByTestId('current-theme')).toHaveTextContent(
+          'default'
+        );
       });
 
       fireEvent.click(screen.getByText('Switch to Custom'));
@@ -164,7 +183,9 @@ describe('Theme Switching - Comprehensive Tests', () => {
       );
 
       await waitFor(() => {
-        expect(document.documentElement.getAttribute('data-theme')).toBe('custom');
+        expect(document.documentElement.getAttribute('data-theme')).toBe(
+          'custom'
+        );
       });
     });
 
@@ -183,13 +204,17 @@ describe('Theme Switching - Comprehensive Tests', () => {
       );
 
       await waitFor(() => {
-        expect(document.documentElement.getAttribute('data-theme')).toBe('custom');
+        expect(document.documentElement.getAttribute('data-theme')).toBe(
+          'custom'
+        );
       });
 
       fireEvent.click(screen.getByText('Switch to Default'));
 
       await waitFor(() => {
-        expect(document.documentElement.getAttribute('data-theme')).toBe('default');
+        expect(document.documentElement.getAttribute('data-theme')).toBe(
+          'default'
+        );
       });
     });
   });
@@ -203,10 +228,18 @@ describe('Theme Switching - Comprehensive Tests', () => {
       );
 
       await waitFor(() => {
-        expect(screen.getByTestId('theme-name')).toHaveTextContent('CampusPaws Custom');
-        expect(screen.getByTestId('gradients-enabled')).toHaveTextContent('true');
-        expect(screen.getByTestId('animations-enabled')).toHaveTextContent('true');
-        expect(screen.getByTestId('aceternity-enabled')).toHaveTextContent('true');
+        expect(screen.getByTestId('theme-name')).toHaveTextContent(
+          'CampusPaws Custom'
+        );
+        expect(screen.getByTestId('gradients-enabled')).toHaveTextContent(
+          'true'
+        );
+        expect(screen.getByTestId('animations-enabled')).toHaveTextContent(
+          'true'
+        );
+        expect(screen.getByTestId('aceternity-enabled')).toHaveTextContent(
+          'true'
+        );
       });
     });
 
@@ -220,10 +253,18 @@ describe('Theme Switching - Comprehensive Tests', () => {
       );
 
       await waitFor(() => {
-        expect(screen.getByTestId('theme-name')).toHaveTextContent('Clean Default');
-        expect(screen.getByTestId('gradients-enabled')).toHaveTextContent('false');
-        expect(screen.getByTestId('animations-enabled')).toHaveTextContent('false');
-        expect(screen.getByTestId('aceternity-enabled')).toHaveTextContent('false');
+        expect(screen.getByTestId('theme-name')).toHaveTextContent(
+          'Clean Default'
+        );
+        expect(screen.getByTestId('gradients-enabled')).toHaveTextContent(
+          'false'
+        );
+        expect(screen.getByTestId('animations-enabled')).toHaveTextContent(
+          'false'
+        );
+        expect(screen.getByTestId('aceternity-enabled')).toHaveTextContent(
+          'false'
+        );
       });
     });
   });
@@ -244,7 +285,9 @@ describe('Theme Switching - Comprehensive Tests', () => {
 
       // Both dark class and data-theme should coexist
       expect(document.documentElement.classList.contains('dark')).toBe(true);
-      expect(document.documentElement.getAttribute('data-theme')).toBe('custom');
+      expect(document.documentElement.getAttribute('data-theme')).toBe(
+        'custom'
+      );
 
       document.documentElement.classList.remove('dark');
     });
@@ -255,7 +298,9 @@ describe('Theme Switching - Comprehensive Tests', () => {
         return (
           <div>
             <div data-testid="current-theme">{theme}</div>
-            <button onClick={() => document.documentElement.classList.toggle('dark')}>
+            <button
+              onClick={() => document.documentElement.classList.toggle('dark')}
+            >
               Toggle Dark Mode
             </button>
           </div>

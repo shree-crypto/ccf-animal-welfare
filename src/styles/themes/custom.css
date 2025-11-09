@@ -40,34 +40,34 @@
   /* Background Colors */
   --background: rgb(var(--color-white));
   --foreground: rgb(var(--color-text-primary));
-  
+
   /* Card */
   --card: rgb(var(--color-white));
   --card-foreground: rgb(var(--color-text-primary));
-  
+
   --popover: rgb(var(--color-white));
   --popover-foreground: rgb(var(--color-text-primary));
-  
+
   /* Primary - Trust Blue */
   --primary: rgb(var(--color-trust-blue));
   --primary-foreground: rgb(var(--color-white));
-  
+
   /* Secondary - Nature Green */
   --secondary: rgb(var(--color-nature-green));
   --secondary-foreground: rgb(var(--color-white));
-  
+
   /* Muted */
   --muted: rgb(var(--color-bg-subtle));
   --muted-foreground: rgb(115 115 115); /* #737373 */
-  
+
   /* Accent - Action Orange */
   --accent: rgb(var(--color-action-orange));
   --accent-foreground: rgb(var(--color-white));
-  
+
   /* Destructive */
   --destructive: rgb(var(--color-error));
   --destructive-foreground: rgb(var(--color-white));
-  
+
   /* Borders and Inputs */
   --border: rgb(var(--color-border-subtle));
   --input: rgb(var(--color-border-subtle));
@@ -92,7 +92,7 @@
 }
 
 /* Custom Theme - Dark Mode */
-[data-theme="custom"].dark {
+[data-theme='custom'].dark {
   /* Dark mode color adjustments */
   --color-bg-dark: 17 20 26; /* #11141A */
   --color-bg-dark-elevated: 30 34 43; /* #1E222B */
@@ -101,10 +101,10 @@
   
   --background: rgb(var(--color-bg-dark));
   --foreground: rgb(var(--color-text-dark));
-  
+
   --card: rgb(var(--color-bg-dark-elevated));
   --card-foreground: rgb(var(--color-text-dark));
-  
+
   --popover: rgb(var(--color-bg-dark-elevated));
   --popover-foreground: rgb(var(--color-text-dark));
   
@@ -115,7 +115,7 @@
   /* Secondary - Keep pastel green for dark mode */
   --secondary: rgb(var(--color-nature-green));
   --secondary-foreground: rgb(var(--color-bg-dark));
-  
+
   --muted: rgb(var(--color-bg-dark-elevated));
   --muted-foreground: rgb(155 164 182); /* #9BA4B6 */
   
@@ -268,11 +268,11 @@
 }
 
 /* Custom Theme - Aceternity Effect Styles */
-[data-theme="custom"] .aceternity-effect {
+[data-theme='custom'] .aceternity-effect {
   display: block;
 }
 
-[data-theme="custom"] [data-aceternity="true"] {
+[data-theme='custom'] [data-aceternity='true'] {
   display: block !important;
 }
 
@@ -379,79 +379,79 @@
 }
 
 /* Custom Theme - Trust and Action Color Utilities */
-[data-theme="custom"] .bg-trust-blue {
+[data-theme='custom'] .bg-trust-blue {
   background-color: rgb(var(--color-trust-blue));
 }
 
-[data-theme="custom"] .bg-trust-blue-light {
+[data-theme='custom'] .bg-trust-blue-light {
   background-color: rgb(var(--color-trust-blue-light));
 }
 
-[data-theme="custom"] .bg-trust-blue-dark {
+[data-theme='custom'] .bg-trust-blue-dark {
   background-color: rgb(var(--color-trust-blue-dark));
 }
 
-[data-theme="custom"] .text-trust-blue {
+[data-theme='custom'] .text-trust-blue {
   color: rgb(var(--color-trust-blue));
 }
 
-[data-theme="custom"] .border-trust-blue {
+[data-theme='custom'] .border-trust-blue {
   border-color: rgb(var(--color-trust-blue));
 }
 
-[data-theme="custom"] .bg-nature-green {
+[data-theme='custom'] .bg-nature-green {
   background-color: rgb(var(--color-nature-green));
 }
 
-[data-theme="custom"] .text-nature-green {
+[data-theme='custom'] .text-nature-green {
   color: rgb(var(--color-nature-green));
 }
 
-[data-theme="custom"] .border-nature-green {
+[data-theme='custom'] .border-nature-green {
   border-color: rgb(var(--color-nature-green));
 }
 
-[data-theme="custom"] .bg-action-orange {
+[data-theme='custom'] .bg-action-orange {
   background-color: rgb(var(--color-action-orange));
 }
 
-[data-theme="custom"] .text-action-orange {
+[data-theme='custom'] .text-action-orange {
   color: rgb(var(--color-action-orange));
 }
 
-[data-theme="custom"] .border-action-orange {
+[data-theme='custom'] .border-action-orange {
   border-color: rgb(var(--color-action-orange));
 }
 
 /* Custom Theme - Status Colors */
-[data-theme="custom"] .bg-status-success {
+[data-theme='custom'] .bg-status-success {
   background-color: rgb(var(--color-success));
 }
 
-[data-theme="custom"] .bg-status-warning {
+[data-theme='custom'] .bg-status-warning {
   background-color: rgb(var(--color-warning));
 }
 
-[data-theme="custom"] .bg-status-error {
+[data-theme='custom'] .bg-status-error {
   background-color: rgb(var(--color-error));
 }
 
-[data-theme="custom"] .bg-status-info {
+[data-theme='custom'] .bg-status-info {
   background-color: rgb(var(--color-info));
 }
 
-[data-theme="custom"] .text-status-success {
+[data-theme='custom'] .text-status-success {
   color: rgb(var(--color-success));
 }
 
-[data-theme="custom"] .text-status-warning {
+[data-theme='custom'] .text-status-warning {
   color: rgb(var(--color-warning));
 }
 
-[data-theme="custom"] .text-status-error {
+[data-theme='custom'] .text-status-error {
   color: rgb(var(--color-error));
 }
 
-[data-theme="custom"] .text-status-info {
+[data-theme='custom'] .text-status-info {
   color: rgb(var(--color-info));
 }
