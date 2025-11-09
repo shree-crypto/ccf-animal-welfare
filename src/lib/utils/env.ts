@@ -4,11 +4,11 @@
 
 /**
  * Check if the application is running in development mode
- * 
+ *
  * This checks:
  * 1. NODE_ENV === 'development'
  * 2. Optional override via NEXT_PUBLIC_SHOW_DEV_CREDENTIALS environment variable
- * 
+ *
  * @returns true if in development mode or explicitly enabled
  */
 export function isDevelopmentMode(): boolean {
@@ -28,7 +28,7 @@ export function isDevelopmentMode(): boolean {
 
 /**
  * Check if the application is running in production mode
- * 
+ *
  * @returns true if in production mode
  */
 export function isProductionMode(): boolean {
@@ -37,9 +37,12 @@ export function isProductionMode(): boolean {
 
 /**
  * Get the current environment name
- * 
+ *
  * @returns 'development', 'production', or 'test'
  */
 export function getEnvironment(): 'development' | 'production' | 'test' {
-  return (process.env.NODE_ENV as 'development' | 'production' | 'test') || 'development';
+  return (
+    (process.env.NODE_ENV as 'development' | 'production' | 'test') ||
+    'development'
+  );
 }

@@ -4,7 +4,14 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday } from 'date-fns';
+import {
+  format,
+  startOfMonth,
+  endOfMonth,
+  eachDayOfInterval,
+  isSameDay,
+  isToday,
+} from 'date-fns';
 import { getEventTypeColor } from '@/lib/utils/event-colors';
 
 interface Event {
@@ -44,7 +51,14 @@ export function EventCalendar({ events }: EventCalendarProps) {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1))}
+                onClick={() =>
+                  setCurrentMonth(
+                    new Date(
+                      currentMonth.getFullYear(),
+                      currentMonth.getMonth() - 1
+                    )
+                  )
+                }
               >
                 Previous
               </Button>
@@ -58,7 +72,14 @@ export function EventCalendar({ events }: EventCalendarProps) {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1))}
+                onClick={() =>
+                  setCurrentMonth(
+                    new Date(
+                      currentMonth.getFullYear(),
+                      currentMonth.getMonth() + 1
+                    )
+                  )
+                }
               >
                 Next
               </Button>
@@ -67,7 +88,10 @@ export function EventCalendar({ events }: EventCalendarProps) {
 
           <div className="grid grid-cols-7 gap-2">
             {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-              <div key={day} className="text-center text-sm font-semibold text-muted-foreground p-2">
+              <div
+                key={day}
+                className="text-center text-sm font-semibold text-muted-foreground p-2"
+              >
                 {day}
               </div>
             ))}
@@ -99,7 +123,10 @@ export function EventCalendar({ events }: EventCalendarProps) {
                   {hasEvents && (
                     <div className="flex justify-center gap-1 mt-1">
                       {dayEvents.slice(0, 3).map((_, i) => (
-                        <div key={i} className="w-1 h-1 rounded-full bg-current" />
+                        <div
+                          key={i}
+                          className="w-1 h-1 rounded-full bg-current"
+                        />
                       ))}
                     </div>
                   )}
@@ -114,24 +141,35 @@ export function EventCalendar({ events }: EventCalendarProps) {
       <div>
         <Card className="p-6 sticky top-20">
           <h3 className="text-xl font-semibold mb-4">
-            {selectedDate ? format(selectedDate, 'MMMM d, yyyy') : 'Select a date'}
+            {selectedDate
+              ? format(selectedDate, 'MMMM d, yyyy')
+              : 'Select a date'}
           </h3>
           {selectedDate ? (
             <div className="space-y-4">
               {getEventsForDate(selectedDate).length > 0 ? (
                 getEventsForDate(selectedDate).map(event => (
-                  <div key={event.id} className="border-l-4 border-primary pl-4 py-2">
-                    <Badge className={getEventTypeColor(event.type)} variant="outline">
+                  <div
+                    key={event.id}
+                    className="border-l-4 border-primary pl-4 py-2"
+                  >
+                    <Badge
+                      className={getEventTypeColor(event.type)}
+                      variant="outline"
+                    >
                       {event.type}
                     </Badge>
                     <h4 className="font-semibold mt-2">{event.title}</h4>
                     <p className="text-sm text-muted-foreground mt-1">
-                      {format(new Date(event.date), 'h:mm a')} - {format(new Date(event.endDate), 'h:mm a')}
+                      {format(new Date(event.date), 'h:mm a')} -{' '}
+                      {format(new Date(event.endDate), 'h:mm a')}
                     </p>
                   </div>
                 ))
               ) : (
-                <p className="text-muted-foreground text-sm">No events scheduled for this date.</p>
+                <p className="text-muted-foreground text-sm">
+                  No events scheduled for this date.
+                </p>
               )}
             </div>
           ) : (

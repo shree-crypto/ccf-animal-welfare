@@ -5,26 +5,33 @@ This directory contains the authentication components for the CCF Animal Welfare
 ## Components
 
 ### LoginForm
+
 Login form component with email/password authentication.
 
 **Props:**
+
 - `onSuccess?: () => void` - Callback after successful login
 - `onSwitchToRegister?: () => void` - Callback to switch to registration
 
 ### RegisterForm
+
 Registration form component for new users.
 
 **Props:**
+
 - `onSuccess?: () => void` - Callback after successful registration
 - `onSwitchToLogin?: () => void` - Callback to switch to login
 
 ### ProfileForm
+
 User profile management form for updating account information.
 
 ### ProtectedRoute
+
 Wrapper component to protect routes requiring authentication and specific roles.
 
 **Props:**
+
 - `children: React.ReactNode` - Content to render if authorized
 - `requiredRole?: UserRole` - Minimum role required (default: 'volunteer')
 - `fallbackUrl?: string` - URL to redirect if not authenticated (default: '/login')
@@ -52,14 +59,10 @@ import { useAuth } from '@/contexts/AuthContext';
 
 function MyComponent() {
   const { user, login, logout, checkRole } = useAuth();
-  
+
   const isAdmin = checkRole('admin');
-  
-  return (
-    <div>
-      {user ? `Welcome ${user.name}` : 'Not logged in'}
-    </div>
-  );
+
+  return <div>{user ? `Welcome ${user.name}` : 'Not logged in'}</div>;
 }
 ```
 
@@ -70,9 +73,9 @@ import { useRequireAuth } from '@/hooks/useRequireAuth';
 
 function MyPage() {
   const { user, loading } = useRequireAuth('volunteer');
-  
+
   if (loading) return <div>Loading...</div>;
-  
+
   return <div>Protected content for {user?.name}</div>;
 }
 ```

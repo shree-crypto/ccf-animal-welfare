@@ -3,16 +3,19 @@
 ## What's Been Set Up
 
 ### 1. Mock Authentication System
+
 - **Location**: `src/lib/mock-auth.ts`
 - **Integration**: `src/lib/auth.ts` (automatic fallback)
 - **Credentials**: See `DEV_CREDENTIALS.md`
 
 ### 2. Mock Territory Data
+
 - **Location**: `src/lib/mock-data/territories.ts`
 - **Integration**: `src/lib/db/territories.ts` (automatic in dev)
 - **Data**: 6 territories with realistic boundaries
 
 ### 3. Debug Tools
+
 - **AuthDebug Component**: Shows auth state in bottom-right corner
 - **Console Logging**: Detailed logs for auth flow
 - **Troubleshooting Guide**: `TROUBLESHOOTING.md`
@@ -20,6 +23,7 @@
 ## Quick Start
 
 1. **Start the dev server**:
+
    ```bash
    npm run dev
    ```
@@ -42,5 +46,7 @@
 ## Console Messages to Look For
 
 ### Successful Login Flow:
+
 ```
 🔐 Attempting logi
+```

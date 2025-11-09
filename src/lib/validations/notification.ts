@@ -10,7 +10,12 @@ export const notificationTypeSchema = z.enum([
   'volunteer_update',
 ]);
 
-export const notificationPrioritySchema = z.enum(['low', 'medium', 'high', 'urgent']);
+export const notificationPrioritySchema = z.enum([
+  'low',
+  'medium',
+  'high',
+  'urgent',
+]);
 
 export const createNotificationSchema = z.object({
   type: notificationTypeSchema,
@@ -19,7 +24,9 @@ export const createNotificationSchema = z.object({
   message: z.string().min(1, 'Message is required').max(1000),
   recipientId: z.string().min(1, 'Recipient ID is required'),
   relatedEntityId: z.string().optional(),
-  relatedEntityType: z.enum(['task', 'animal', 'medical_record', 'territory']).optional(),
+  relatedEntityType: z
+    .enum(['task', 'animal', 'medical_record', 'territory'])
+    .optional(),
   read: z.boolean().default(false),
   readAt: z.string().optional(),
   actionUrl: z.string().optional(),
@@ -44,4 +51,6 @@ export const notificationPreferencesSchema = z.object({
 
 export type CreateNotificationInput = z.infer<typeof createNotificationSchema>;
 export type UpdateNotificationInput = z.infer<typeof updateNotificationSchema>;
-export type NotificationPreferencesInput = z.infer<typeof notificationPreferencesSchema>;
+export type NotificationPreferencesInput = z.infer<
+  typeof notificationPreferencesSchema
+>;

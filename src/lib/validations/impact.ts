@@ -1,6 +1,6 @@
 /**
  * Impact Dashboard Validation Schemas
- * 
+ *
  * Zod validation schemas for impact metrics and related data
  */
 
@@ -23,7 +23,10 @@ export const impactMetricsSchema = z.object({
   volunteersActive: metricValueSchema,
   mealsProvided: metricValueSchema,
   successfulAdoptions: metricValueSchema,
-  lastUpdated: z.date().optional().default(() => new Date()),
+  lastUpdated: z
+    .date()
+    .optional()
+    .default(() => new Date()),
 });
 
 // Create impact metrics input
@@ -50,7 +53,10 @@ export const metricTrendSchema = z.object({
 export const recentActivitySchema = z.object({
   type: z.enum(['donation', 'adoption', 'volunteer', 'rescue']),
   displayName: z.string().min(1, 'Display name is required').max(50),
-  timestamp: z.date().optional().default(() => new Date()),
+  timestamp: z
+    .date()
+    .optional()
+    .default(() => new Date()),
   message: z.string().max(200).optional(),
 });
 

@@ -3,7 +3,11 @@
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Upload, X, Loader2, FileText, Image as ImageIcon } from 'lucide-react';
-import { uploadMedicalDocument, isValidDocumentFile, isValidFileSize } from '@/lib/storage';
+import {
+  uploadMedicalDocument,
+  isValidDocumentFile,
+  isValidFileSize,
+} from '@/lib/storage';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 
@@ -18,71 +22,83 @@ interface UploadingFile {
   error?: string;
 }
 
-export function FileUploadZone({ onFilesUploaded, maxFiles = 5 }: FileUploadZoneProps) {
+export function FileUploadZone({
+  onFilesUploaded,
+  maxFiles = 5,
+}: FileUploadZoneProps) {
   const [uploadingFiles, setUploadingFiles] = useState<UploadingFile[]>([]);
 
-  const onDrop = useCallback(async (acceptedFiles: File[]) => {
-    const validFiles = acceptedFiles.filter(file => {
-      if (!isValidDocumentFile(file)) {
-        alert(`${file.name} is not a valid file type. Please upload images or PDF documents.`);
-        return false;
-      }
-      if (!isValidFileSize(file, 10)) {
-        alert(`${file.name} is too large. Maximum file size is 10MB.`);
-        return false;
-      }
-      return true;
-    });
+  const onDrop = useCallback(
+    async (acceptedFiles: File[]) => {
+      const validFiles = acceptedFiles.filter(file => {
+        if (!isValidDocumentFile(file)) {
+          alert(
+            `${file.name} is not a valid file type. Please upload images or PDF documents.`
+          );
+          return false;
+        }
+        if (!isValidFileSize(file, 10)) {
+          alert(`${file.name} is too large. Maximum file size is 10MB.`);
+          return false;
+        }
+        return true;
+      });
 
-    if (validFiles.length === 0) return;
+      if (validFiles.length === 0) return;
 
-    // Initialize uploading state
-    const initialUploading = validFiles.map(file => ({
-      file,
-      progress: 0,
-    }));
-    setUploadingFiles(prev => [...prev, ...initialUploading]);
+      // Initialize uploading state
+      const initialUploading = validFiles.map(file => ({
+        file,
+        progress: 0,
+      }));
+      setUploadingFiles(prev => [...prev, ...initialUploading]);
 
-    // Upload files
-    const uploadPromises = validFiles.map(async (file, index) => {
-      try {
-        const fileInfo = await uploadMedicalDocument(file, (progress) => {
+      // Upload files
+      const uploadPromises = validFiles.map(async (file, index) => {
+        try {
+          const fileInfo = await uploadMedicalDocument(file, progress => {
+            setUploadingFiles(prev => {
+              const newState = [...prev];
+              const fileIndex = newState.findIndex(f => f.file === file);
+              if (fileIndex !== -1) {
+                newState[fileIndex].progress = Math.round(
+                  progress.$id ? 100 : 0
+                );
+              }
+              return newState;
+            });
+          });
+          return fileInfo.url;
+        } catch (error) {
+          console.error('Upload error:', error);
           setUploadingFiles(prev => {
             const newState = [...prev];
             const fileIndex = newState.findIndex(f => f.file === file);
             if (fileIndex !== -1) {
-              newState[fileIndex].progress = Math.round((progress.$id ? 100 : 0));
+              newState[fileIndex].error = 'Upload failed';
             }
             return newState;
           });
-        });
-        return fileInfo.url;
-      } catch (error) {
-        console.error('Upload error:', error);
-        setUploadingFiles(prev => {
-          const newState = [...prev];
-          const fileIndex = newState.findIndex(f => f.file === file);
-          if (fileIndex !== -1) {
-            newState[fileIndex].error = 'Upload failed';
-          }
-          return newState;
-        });
-        return null;
+          return null;
+        }
+      });
+
+      const urls = await Promise.all(uploadPromises);
+      const successfulUrls = urls.filter((url): url is string => url !== null);
+
+      if (successfulUrls.length > 0) {
+        onFilesUploaded(successfulUrls);
       }
-    });
 
-    const urls = await Promise.all(uploadPromises);
-    const successfulUrls = urls.filter((url): url is string => url !== null);
-
-    if (successfulUrls.length > 0) {
-      onFilesUploaded(successfulUrls);
-    }
-
-    // Clear uploading state after a delay
-    setTimeout(() => {
-      setUploadingFiles(prev => prev.filter(f => !validFiles.includes(f.file)));
-    }, 1000);
-  }, [onFilesUploaded]);
+      // Clear uploading state after a delay
+      setTimeout(() => {
+        setUploadingFiles(prev =>
+          prev.filter(f => !validFiles.includes(f.file))
+        );
+      }, 1000);
+    },
+    [onFilesUploaded]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -91,7 +107,8 @@ export function FileUploadZone({ onFilesUploaded, maxFiles = 5 }: FileUploadZone
       'image/*': ['.png', '.jpg', '.jpeg', '.webp'],
       'application/pdf': ['.pdf'],
       'application/msword': ['.doc'],
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+        ['.docx'],
     },
   });
 
@@ -106,9 +123,10 @@ export function FileUploadZone({ onFilesUploaded, maxFiles = 5 }: FileUploadZone
         className={`
           border-2 border-dashed rounded-lg p-8 text-center cursor-pointer
           transition-colors duration-200
-          ${isDragActive 
-            ? 'border-primary bg-primary/5' 
-            : 'border-muted-foreground/25 hover:border-primary/50'
+          ${
+            isDragActive
+              ? 'border-primary bg-primary/5'
+              : 'border-muted-foreground/25 hover:border-primary/50'
           }
         `}
       >
@@ -146,7 +164,9 @@ export function FileUploadZone({ onFilesUploaded, maxFiles = 5 }: FileUploadZone
                   {uploadingFile.file.name}
                 </p>
                 {uploadingFile.error ? (
-                  <p className="text-xs text-destructive">{uploadingFile.error}</p>
+                  <p className="text-xs text-destructive">
+                    {uploadingFile.error}
+                  </p>
                 ) : (
                   <div className="flex items-center gap-2 mt-1">
                     <Progress value={uploadingFile.progress} className="h-1" />

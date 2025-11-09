@@ -14,7 +14,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Check if the route is protected
-  const isProtectedRoute = protectedRoutes.some((route) =>
+  const isProtectedRoute = protectedRoutes.some(route =>
     pathname.startsWith(route)
   );
 
@@ -23,7 +23,10 @@ export function middleware(request: NextRequest) {
   }
 
   // Check for session cookie (Appwrite sets this)
-  const sessionCookie = request.cookies.get('a_session_' + (process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || 'ccf-animal-welfare'));
+  const sessionCookie = request.cookies.get(
+    'a_session_' +
+      (process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || 'ccf-animal-welfare')
+  );
 
   if (!sessionCookie) {
     // Redirect to login if no session

@@ -3,7 +3,10 @@
 import { useState, memo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { createTaskSchema, CreateTaskFormData } from '@/lib/validations/task';
+import {
+  createTaskSchema,
+  CreateTaskInput,
+} from '@/lib/validations/task';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -34,15 +37,18 @@ import { Plus } from 'lucide-react';
 import { format } from 'date-fns';
 
 interface QuickActionsProps {
-  onCreateTask: (data: CreateTaskFormData) => Promise<void>;
+  onCreateTask: (data: CreateTaskInput) => Promise<void>;
   currentUserId: string;
 }
 
-export const QuickActions = memo(function QuickActions({ onCreateTask, currentUserId }: QuickActionsProps) {
+export const QuickActions = memo(function QuickActions({
+  onCreateTask,
+  currentUserId,
+}: QuickActionsProps) {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm<CreateTaskFormData>({
+  const form = useForm<CreateTaskInput>({
     resolver: zodResolver(createTaskSchema),
     defaultValues: {
       type: 'feeding',
@@ -55,7 +61,7 @@ export const QuickActions = memo(function QuickActions({ onCreateTask, currentUs
     },
   });
 
-  const onSubmit = async (data: CreateTaskFormData) => {
+  const onSubmit = async (data: CreateTaskInput) => {
     try {
       setIsSubmitting(true);
       await onCreateTask(data);
@@ -91,7 +97,10 @@ export const QuickActions = memo(function QuickActions({ onCreateTask, currentUs
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Task Type</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select task type" />
@@ -147,7 +156,10 @@ export const QuickActions = memo(function QuickActions({ onCreateTask, currentUs
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Priority</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select priority" />

@@ -5,9 +5,11 @@ This directory contains components for the Interactive Territory Mapping System,
 ## Components
 
 ### InteractiveMap
+
 The main map component that integrates React Leaflet with OpenStreetMap.
 
 **Features:**
+
 - Displays territory boundaries as colored polygons
 - Color-coded by pack size (gray=empty, green=1-3, yellow=4-6, orange=7-10, red=10+)
 - Interactive territory selection
@@ -16,6 +18,7 @@ The main map component that integrates React Leaflet with OpenStreetMap.
 - Optional heatmap overlay
 
 **Props:**
+
 - `territories`: Array of Territory objects to display
 - `center`: Map center coordinates (default: IIT Roorkee)
 - `zoom`: Initial zoom level (default: 15)
@@ -23,9 +26,11 @@ The main map component that integrates React Leaflet with OpenStreetMap.
 - `onTerritoryClick`: Callback when territory is clicked
 
 ### PackInfo
+
 Side panel that displays detailed information about a selected territory.
 
 **Features:**
+
 - Territory statistics (pack size, animal count)
 - Last updated timestamp
 - Assigned volunteers list
@@ -33,28 +38,34 @@ Side panel that displays detailed information about a selected territory.
 - Smooth animations and transitions
 
 **Props:**
+
 - `territory`: Territory object to display
 - `onClose`: Callback to close the panel
 
 ### TerritoryHeatmap
+
 Heatmap overlay showing pack density visualization.
 
 **Features:**
+
 - Uses leaflet.heat plugin
 - Color gradient from blue (low) to red (high)
 - Intensity based on pack size
 - Configurable radius and blur
 
 **Props:**
+
 - `territories`: Array of Territory objects
 - `intensity`: Maximum intensity value (default: 0.5)
 - `radius`: Heatmap point radius (default: 25)
 - `blur`: Blur amount (default: 15)
 
 ### MapControls
+
 Custom map control buttons for zoom and layer management.
 
 **Features:**
+
 - Zoom in/out buttons
 - Fit to bounds button
 - Layer toggle menu
@@ -76,10 +87,10 @@ export default function TerritoriesPage() {
 
   return (
     <div className="h-screen">
-      <InteractiveMap 
-        territories={territories} 
+      <InteractiveMap
+        territories={territories}
         showHeatmap={showHeatmap}
-        onTerritoryClick={(territory) => console.log(territory)}
+        onTerritoryClick={territory => console.log(territory)}
       />
     </div>
   );
@@ -97,6 +108,7 @@ export default function TerritoriesPage() {
 ## Styling
 
 The components use Tailwind CSS for styling and include:
+
 - Responsive design for mobile, tablet, and desktop
 - Smooth transitions and hover effects
 - Accessible color contrasts
@@ -107,8 +119,9 @@ The components use Tailwind CSS for styling and include:
 The map uses OpenStreetMap tiles by default. The center is set to IIT Roorkee coordinates (29.8543, 77.8880).
 
 To customize:
+
 ```tsx
-<InteractiveMap 
+<InteractiveMap
   center={[latitude, longitude]}
   zoom={15}
   territories={territories}
@@ -118,6 +131,7 @@ To customize:
 ## Requirements Addressed
 
 This implementation addresses the following requirements:
+
 - 2.1: Interactive map with territory boundaries
 - 2.2: Heatmap visualization for pack density
 - 2.3: Territory click interaction with pack info

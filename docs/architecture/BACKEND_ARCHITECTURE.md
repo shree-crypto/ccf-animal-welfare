@@ -9,6 +9,7 @@ The backend uses Appwrite as a Backend-as-a-Service (BaaS) solution, providing d
 ### Configuration
 
 **Environment Variables** (`.env.local`):
+
 ```env
 NEXT_PUBLIC_APPWRITE_ENDPOINT=http://localhost/v1
 NEXT_PUBLIC_APPWRITE_PROJECT_ID=ccf-animal-welfare
@@ -52,6 +53,7 @@ export { client };
 ### Local Development
 
 **Docker Compose** (`docker-compose.yml`):
+
 ```bash
 # Start Appwrite
 docker-compose up -d
@@ -88,6 +90,7 @@ Appwrite Database
 #### Animals (`src/lib/db/animals.ts`)
 
 **Create Animal:**
+
 ```typescript
 export const createAnimal = async (
   data: Omit<AnimalProfile, 'id' | 'createdAt' | 'updatedAt'>
@@ -107,6 +110,7 @@ export const createAnimal = async (
 ```
 
 **Get Animals with Filters:**
+
 ```typescript
 export const getAnimals = async (filters?: {
   type?: 'dog' | 'cat';
@@ -160,6 +164,7 @@ export const getAnimals = async (filters?: {
 ```
 
 **Update Animal:**
+
 ```typescript
 export const updateAnimal = async (
   id: string,
@@ -179,6 +184,7 @@ export const updateAnimal = async (
 ```
 
 **Delete Animal:**
+
 ```typescript
 export const deleteAnimal = async (id: string): Promise<void> => {
   await databases.deleteDocument(DATABASE_ID, COLLECTIONS.ANIMALS, id);
@@ -186,6 +192,7 @@ export const deleteAnimal = async (id: string): Promise<void> => {
 ```
 
 **Search Animals:**
+
 ```typescript
 // Uses fulltext index: name_fulltext
 export const searchAnimalsByName = async (
@@ -224,11 +231,13 @@ export const searchAnimalsByName = async (
 ```
 
 **Get Animals Needing Attention:**
+
 ```typescript
 // Uses index: status_createdAt (status ASC, $createdAt DESC)
-export const getAnimalsNeedingAttention = async (
-  options?: { limit?: number; offset?: number }
-): Promise<{
+export const getAnimalsNeedingAttention = async (options?: {
+  limit?: number;
+  offset?: number;
+}): Promise<{
   animals: AnimalProfile[];
   total: number;
   pagination: PaginationMeta;
@@ -261,10 +270,10 @@ export const getAnimalsNeedingAttention = async (
 };
 ```
 
-
 #### Tasks (`src/lib/db/tasks.ts`)
 
 **Key Functions:**
+
 - `createTask()`: Create new task
 - `getTasks()`: Get tasks with filters (assignedTo, completed, type, priority)
 - `getTaskById()`: Get single task
@@ -275,6 +284,7 @@ export const getAnimalsNeedingAttention = async (
 - `getUpcomingTasks()`: Get upcoming tasks for dashboard
 
 **Index Usage:**
+
 - `assignedTo_completed_scheduledDate`: For volunteer task lists
 - `type_priority_scheduledDate`: For task prioritization
 - `animalId_completed`: For animal-specific tasks
@@ -283,6 +293,7 @@ export const getAnimalsNeedingAttention = async (
 #### Medical Records (`src/lib/db/medical.ts`)
 
 **Key Functions:**
+
 - `createMedicalRecord()`: Create new medical record
 - `getMedicalRecords()`: Get records with filters (animalId, type, followUpRequired)
 - `getMedicalRecordById()`: Get single record
@@ -292,6 +303,7 @@ export const getAnimalsNeedingAttention = async (
 - `getRecordsNeedingFollowUp()`: Get records with pending follow-ups
 
 **Index Usage:**
+
 - `animalId_date`: For animal medical history
 - `type_date`: For filtering by record type
 - `followUpRequired_followUpDate`: For follow-up tracking
@@ -300,6 +312,7 @@ export const getAnimalsNeedingAttention = async (
 #### Notifications (`src/lib/db/notifications.ts`)
 
 **Key Functions:**
+
 - `createNotification()`: Create new notification
 - `getUserNotifications()`: Get notifications for a user
 - `getNotificationById()`: Get single notification
@@ -310,6 +323,7 @@ export const getAnimalsNeedingAttention = async (
 - `cleanupExpiredNotifications()`: Remove expired notifications
 
 **Index Usage:**
+
 - `recipientId_read_createdAt`: For user notification lists
 - `recipientId_type_createdAt`: For filtering by type
 - `recipientId_priority_read`: For priority sorting
@@ -323,6 +337,7 @@ Notifications use Appwrite's real-time subscriptions in `NotificationContext` to
 **Location**: `src/lib/db/query-config.ts`
 
 **Pagination Defaults:**
+
 ```typescript
 export const PAGINATION = {
   DEFAULT_LIMIT: 25,
@@ -332,6 +347,7 @@ export const PAGINATION = {
 ```
 
 **Query Limits:**
+
 ```typescript
 export const QUERY_LIMITS = {
   SEARCH_RESULTS: 50,
@@ -345,6 +361,7 @@ export const QUERY_LIMITS = {
 ```
 
 **Normalize Pagination:**
+
 ```typescript
 export function normalizePagination(options?: {
   limit?: number;
@@ -361,6 +378,7 @@ export function normalizePagination(options?: {
 ```
 
 **Calculate Pagination Metadata:**
+
 ```typescript
 export function calculatePaginationMeta(
   total: number,
@@ -396,6 +414,7 @@ export function calculatePaginationMeta(
 Comprehensive index configuration for optimal query performance. Each collection has multiple indexes designed for specific query patterns.
 
 **Example: Animals Collection Indexes**
+
 ```typescript
 [COLLECTIONS.ANIMALS]: [
   {
@@ -426,11 +445,13 @@ Comprehensive index configuration for optimal query performance. Each collection
 
 **Index Creation:**
 Indexes must be created manually in Appwrite Console or using Appwrite CLI. The script provides:
+
 1. Detailed index configurations
 2. CLI commands for automation
 3. Documentation for manual creation
 
 **Run the script:**
+
 ```bash
 npx tsx src/lib/setup/create-indexes.ts
 ```
@@ -446,6 +467,7 @@ See `docs/QUERY_OPTIMIZATION.md` for detailed information.
 **Class Methods:**
 
 **Register:**
+
 ```typescript
 async register(email: string, password: string, name: string) {
   const user = await account.create(ID.unique(), email, password, name);
@@ -455,6 +477,7 @@ async register(email: string, password: string, name: string) {
 ```
 
 **Login:**
+
 ```typescript
 async login(email: string, password: string) {
   const session = await account.createEmailPasswordSession(email, password);
@@ -463,6 +486,7 @@ async login(email: string, password: string) {
 ```
 
 **Logout:**
+
 ```typescript
 async logout() {
   await account.deleteSession('current');
@@ -470,6 +494,7 @@ async logout() {
 ```
 
 **Get Current User:**
+
 ```typescript
 async getCurrentUser() {
   try {
@@ -482,23 +507,25 @@ async getCurrentUser() {
 ```
 
 **Get User Role:**
+
 ```typescript
 async getUserRole(): Promise<UserRole> {
   const teamsList = await teams.list();
-  
+
   // Check if user is in admin team
   const isAdmin = teamsList.teams.some(team => team.$id === TEAM_IDS.ADMIN);
   if (isAdmin) return 'admin';
-  
+
   // Check if user is in volunteer team
   const isVolunteer = teamsList.teams.some(team => team.$id === TEAM_IDS.VOLUNTEER);
   if (isVolunteer) return 'volunteer';
-  
+
   return 'public';
 }
 ```
 
 **Check Role:**
+
 ```typescript
 checkRole(userRole: UserRole, requiredRole: UserRole): boolean {
   return ROLE_HIERARCHY[userRole] >= ROLE_HIERARCHY[requiredRole];
@@ -520,6 +547,7 @@ export const ROLE_HIERARCHY = {
 ### Team-based Permissions
 
 Appwrite uses teams for role-based access control:
+
 - **Public**: No team membership required
 - **Volunteer**: Member of volunteer team
 - **Admin**: Member of admin team
@@ -533,6 +561,7 @@ Admins automatically have volunteer permissions due to role hierarchy.
 **Location**: `src/lib/storage/index.ts`
 
 **Upload File:**
+
 ```typescript
 export const uploadFile = async ({
   file,
@@ -561,6 +590,7 @@ export const uploadFile = async ({
 ```
 
 **Get File URL:**
+
 ```typescript
 export const getFileUrl = (bucketId: string, fileId: string): string => {
   const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!;
@@ -570,6 +600,7 @@ export const getFileUrl = (bucketId: string, fileId: string): string => {
 ```
 
 **Get File Preview URL (for images):**
+
 ```typescript
 export const getFilePreviewUrl = (
   bucketId: string,
@@ -580,20 +611,24 @@ export const getFilePreviewUrl = (
 ): string => {
   const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!;
   const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!;
-  
+
   let url = `${endpoint}/storage/buckets/${bucketId}/files/${fileId}/preview?project=${projectId}`;
-  
+
   if (width) url += `&width=${width}`;
   if (height) url += `&height=${height}`;
   if (quality) url += `&quality=${quality}`;
-  
+
   return url;
 };
 ```
 
 **Delete File:**
+
 ```typescript
-export const deleteFile = async (bucketId: string, fileId: string): Promise<void> => {
+export const deleteFile = async (
+  bucketId: string,
+  fileId: string
+): Promise<void> => {
   await storage.deleteFile(bucketId, fileId);
 };
 ```
@@ -601,6 +636,7 @@ export const deleteFile = async (bucketId: string, fileId: string): Promise<void
 ### Specialized Upload Functions
 
 **Upload Animal Photo:**
+
 ```typescript
 export const uploadAnimalPhoto = async (
   file: File,
@@ -615,6 +651,7 @@ export const uploadAnimalPhoto = async (
 ```
 
 **Upload Medical Document:**
+
 ```typescript
 export const uploadMedicalDocument = async (
   file: File,
@@ -631,6 +668,7 @@ export const uploadMedicalDocument = async (
 ### File Validation
 
 **Image Validation:**
+
 ```typescript
 export const isValidImageFile = (file: File): boolean => {
   const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
@@ -639,6 +677,7 @@ export const isValidImageFile = (file: File): boolean => {
 ```
 
 **Document Validation:**
+
 ```typescript
 export const isValidDocumentFile = (file: File): boolean => {
   const validTypes = [
@@ -655,8 +694,12 @@ export const isValidDocumentFile = (file: File): boolean => {
 ```
 
 **Size Validation:**
+
 ```typescript
-export const isValidFileSize = (file: File, maxSizeMB: number = 10): boolean => {
+export const isValidFileSize = (
+  file: File,
+  maxSizeMB: number = 10
+): boolean => {
   const maxSizeBytes = maxSizeMB * 1024 * 1024;
   return file.size <= maxSizeBytes;
 };
@@ -665,6 +708,7 @@ export const isValidFileSize = (file: File, maxSizeMB: number = 10): boolean => 
 ### Storage Buckets
 
 Two storage buckets are configured:
+
 1. **animal-photos**: For animal profile and gallery photos
 2. **medical-documents**: For medical records and documents
 
@@ -675,10 +719,11 @@ Two storage buckets are configured:
 Appwrite provides real-time updates through WebSocket subscriptions.
 
 **Example: Notification Subscriptions**
+
 ```typescript
 const unsubscribe = client.subscribe(
   `databases.${DATABASE_ID}.collections.${COLLECTIONS.NOTIFICATIONS}.documents`,
-  (response) => {
+  response => {
     const payload = response.payload as any;
 
     // Only process notifications for the current user
@@ -697,9 +742,7 @@ const unsubscribe = client.subscribe(
       );
     } else if (response.events.includes('*.delete')) {
       // Handle notification deletion
-      setNotifications(prev =>
-        prev.filter(notif => notif.id !== payload.$id)
-      );
+      setNotifications(prev => prev.filter(notif => notif.id !== payload.$id));
     }
   }
 );
@@ -711,10 +754,12 @@ return () => unsubscribe();
 ### Subscription Patterns
 
 **Channel Patterns:**
+
 - `databases.[DATABASE_ID].collections.[COLLECTION_ID].documents`: All documents in collection
 - `databases.[DATABASE_ID].collections.[COLLECTION_ID].documents.[DOCUMENT_ID]`: Specific document
 
 **Event Types:**
+
 - `*.create`: Document created
 - `*.update`: Document updated
 - `*.delete`: Document deleted
@@ -728,6 +773,7 @@ All data validation uses Zod for type-safe validation.
 **Location**: `src/lib/validations/`
 
 **Example: Animal Validation**
+
 ```typescript
 import { z } from 'zod';
 
@@ -763,7 +809,9 @@ export type AnimalProfileFormData = z.infer<typeof animalProfileSchema>;
 ### Validation in Database Operations
 
 ```typescript
-export const createAnimal = async (data: CreateAnimalInput): Promise<AnimalProfile> => {
+export const createAnimal = async (
+  data: CreateAnimalInput
+): Promise<AnimalProfile> => {
   // Validate data before database operation
   const validatedData = createAnimalSchema.parse(data);
 
@@ -783,7 +831,9 @@ export const createAnimal = async (data: CreateAnimalInput): Promise<AnimalProfi
 ### Database Errors
 
 ```typescript
-export const getAnimalById = async (id: string): Promise<AnimalProfile | null> => {
+export const getAnimalById = async (
+  id: string
+): Promise<AnimalProfile | null> => {
   try {
     const document = await databases.getDocument<AnimalDocument>(
       DATABASE_ID,
@@ -801,6 +851,7 @@ export const getAnimalById = async (id: string): Promise<AnimalProfile | null> =
 ### Validation Errors
 
 Zod throws validation errors with detailed messages:
+
 ```typescript
 try {
   const validatedData = animalProfileSchema.parse(data);
@@ -815,6 +866,7 @@ try {
 ### Appwrite Errors
 
 Appwrite throws `AppwriteException` with error codes:
+
 ```typescript
 try {
   await databases.createDocument(...);
@@ -832,6 +884,7 @@ try {
 **Location**: `src/lib/notifications/`
 
 Helper functions for creating notifications:
+
 - `createTaskNotification()`: Notify about task assignments
 - `createMedicalNotification()`: Notify about medical updates
 - `createSystemNotification()`: System announcements
@@ -841,6 +894,7 @@ Helper functions for creating notifications:
 **Location**: `src/lib/utils.ts`
 
 **cn() - Class Name Utility:**
+
 ```typescript
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -851,6 +905,7 @@ export function cn(...inputs: ClassValue[]) {
 ```
 
 Usage:
+
 ```typescript
 <div className={cn('base-class', isActive && 'active-class', className)} />
 ```

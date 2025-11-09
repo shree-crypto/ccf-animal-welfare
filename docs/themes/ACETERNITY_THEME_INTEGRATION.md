@@ -15,6 +15,7 @@ All Aceternity UI components (AnimatedGradient, BackgroundBeams, SparklesCore) h
 ### How It Works
 
 Each component now:
+
 - Imports and uses the `useTheme` hook from `ThemeContext`
 - Checks `config.effects.aceternity` to determine if effects should be shown
 - Returns `null` when the default theme is active (aceternity effects disabled)
@@ -27,12 +28,12 @@ import { useTheme } from "@/contexts/ThemeContext";
 
 export const AnimatedGradient = ({ className }: { className?: string }) => {
   const { config } = useTheme();
-  
+
   // Only show in custom theme
   if (!config.effects.aceternity) {
     return null;
   }
-  
+
   return (
     <div className={cn("absolute inset-0 -z-10 overflow-hidden", className)}>
       {/* Gradient animation elements */}
@@ -51,7 +52,7 @@ import { AnimatedGradient } from '@/components/ui/animated-gradient';
 
 function MyPage() {
   const { config } = useTheme();
-  
+
   return (
     <div>
       {config.effects.aceternity && <AnimatedGradient />}
@@ -91,7 +92,7 @@ export const THEME_CONFIGS: Record<ThemeVariant, ThemeConfig> = {
     effects: {
       gradients: true,
       animations: true,
-      aceternity: true,  // ✅ Aceternity effects enabled
+      aceternity: true, // ✅ Aceternity effects enabled
     },
   },
   default: {
@@ -101,7 +102,7 @@ export const THEME_CONFIGS: Record<ThemeVariant, ThemeConfig> = {
     effects: {
       gradients: false,
       animations: true,
-      aceternity: false,  // ❌ Aceternity effects disabled
+      aceternity: false, // ❌ Aceternity effects disabled
     },
   },
 };

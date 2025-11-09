@@ -5,6 +5,7 @@ This guide will help you get started with the interactive territory mapping syst
 ## Overview
 
 The territory mapping system provides:
+
 - Interactive map of campus territories
 - Pack location visualization
 - Territory boundaries and heatmaps
@@ -77,6 +78,7 @@ The territory mapping system provides:
 ### Pack Details
 
 When you click a pack marker:
+
 - **Pack Name**: Identifier
 - **Territory**: Associated area
 - **Member Count**: Number of animals
@@ -114,11 +116,13 @@ When you click a pack marker:
 ### Sighting Information
 
 **Required:**
+
 - Location (from map click)
 - Date and time
 - Animal or pack ID
 
 **Optional:**
+
 - Number of animals seen
 - Behavior description
 - Photos
@@ -168,16 +172,19 @@ When you click a pack marker:
 ### Navigation
 
 **Mouse:**
+
 - Click and drag to pan
 - Scroll wheel to zoom
 - Double-click to zoom in
 
 **Touch:**
+
 - Swipe to pan
 - Pinch to zoom
 - Tap to select
 
 **Keyboard:**
+
 - Arrow keys to pan
 - +/- to zoom
 - Space to reset view
@@ -185,12 +192,14 @@ When you click a pack marker:
 ### Layer Controls
 
 **Toggle Layers:**
+
 - Territories on/off
 - Heatmap on/off
 - Markers on/off
 - Labels on/off
 
 **Adjust Opacity:**
+
 - Territory transparency
 - Heatmap intensity
 - Marker size
@@ -198,12 +207,14 @@ When you click a pack marker:
 ### Search and Filter
 
 **Search:**
+
 - Find pack by name
 - Find animal by name
 - Find territory by area
 - Search sightings
 
 **Filter:**
+
 - By pack status
 - By date range
 - By animal type

@@ -1,6 +1,6 @@
 /**
  * Theme Utility Examples
- * 
+ *
  * This file demonstrates how to use the theme utility functions
  * in various components throughout the CampusPaws application.
  */
@@ -44,12 +44,7 @@ export function ThemedCard() {
   const { theme } = useTheme();
 
   return (
-    <div
-      className={themeCard(
-        theme,
-        'p-6 rounded-lg shadow-lg'
-      )}
-    >
+    <div className={themeCard(theme, 'p-6 rounded-lg shadow-lg')}>
       <h3 className="text-xl font-bold mb-2">Animal Profile</h3>
       <p className="text-muted-foreground">Details about the animal...</p>
     </div>
@@ -63,13 +58,7 @@ export function ThemedHeading() {
   const { theme } = useTheme();
 
   return (
-    <h1
-      className={themeText(
-        theme,
-        'primary',
-        'text-4xl font-bold mb-4'
-      )}
-    >
+    <h1 className={themeText(theme, 'primary', 'text-4xl font-bold mb-4')}>
       Welcome to CampusPaws
     </h1>
   );
@@ -95,7 +84,11 @@ export function ThemedHero() {
         </h1>
         <p className="text-lg mb-8">Join our mission to help campus animals</p>
         <button
-          className={themeButton(theme, 'accent', 'px-8 py-4 rounded-lg text-white font-bold')}
+          className={themeButton(
+            theme,
+            'accent',
+            'px-8 py-4 rounded-lg text-white font-bold'
+          )}
         >
           Get Started
         </button>
@@ -119,7 +112,7 @@ export function ThemedWithEffects() {
           <div className="animated-gradient-bg opacity-20" />
         </div>
       )}
-      
+
       <div className="relative z-10">
         <h2>Content with optional effects</h2>
       </div>
@@ -162,9 +155,7 @@ export function ThemedActiveButton({ isActive }: { isActive: boolean }) {
   );
 
   return (
-    <button className={buttonClass}>
-      {isActive ? 'Active' : 'Inactive'}
-    </button>
+    <button className={buttonClass}>{isActive ? 'Active' : 'Inactive'}</button>
   );
 }
 
@@ -179,7 +170,9 @@ export function ThemedButtonGroup() {
       <button className={themeButton(theme, 'primary', 'px-6 py-3 rounded-lg')}>
         Primary Action
       </button>
-      <button className={themeButton(theme, 'secondary', 'px-6 py-3 rounded-lg')}>
+      <button
+        className={themeButton(theme, 'secondary', 'px-6 py-3 rounded-lg')}
+      >
         Secondary Action
       </button>
       <button className={themeButton(theme, 'accent', 'px-6 py-3 rounded-lg')}>
@@ -219,12 +212,8 @@ export function ThemedAceternityWrapper() {
     <div {...getAceternityProps(theme)} className="relative">
       {/* This div will have data-aceternity="true" or "false" */}
       {/* CSS can target [data-aceternity="true"] for styling */}
-      <div className="aceternity-effect">
-        {/* Aceternity component */}
-      </div>
-      <div className="content">
-        Regular content
-      </div>
+      <div className="aceternity-effect">{/* Aceternity component */}</div>
+      <div className="content">Regular content</div>
     </div>
   );
 }
@@ -238,20 +227,14 @@ export function ThemedPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section
-        className={themeBackground(
-          theme,
-          'hero',
-          'py-20 px-4'
-        )}
-      >
+      <section className={themeBackground(theme, 'hero', 'py-20 px-4')}>
         <div className="container mx-auto text-center">
-          <h1 className={themeText(theme, 'primary', 'text-5xl font-bold mb-6')}>
+          <h1
+            className={themeText(theme, 'primary', 'text-5xl font-bold mb-6')}
+          >
             Make a Difference
           </h1>
-          <p className="text-xl mb-8">
-            Every contribution helps save lives
-          </p>
+          <p className="text-xl mb-8">Every contribution helps save lives</p>
           <button
             className={themeButton(
               theme,
@@ -268,14 +251,8 @@ export function ThemedPage() {
       <section className="py-16 px-4">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className={themeCard(
-                  theme,
-                  'p-6 rounded-lg'
-                )}
-              >
+            {[1, 2, 3].map(i => (
+              <div key={i} className={themeCard(theme, 'p-6 rounded-lg')}>
                 <h3 className="text-xl font-bold mb-4">Feature {i}</h3>
                 <p className="text-muted-foreground">
                   Description of feature {i}

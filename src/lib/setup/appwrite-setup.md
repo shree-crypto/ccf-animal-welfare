@@ -25,6 +25,7 @@ This guide will help you set up the required database collections and storage bu
 - **Name**: Animals
 
 **Attributes:**
+
 - `name` (String, 100 chars, required)
 - `type` (Enum: ['dog', 'cat'], required)
 - `age` (Integer, required)
@@ -37,12 +38,14 @@ This guide will help you set up the required database collections and storage bu
 - `status` (Enum: ['healthy', 'needs_attention', 'under_treatment'], required)
 
 **Indexes:**
+
 - `name_idx` on `name` (fulltext)
 - `type_idx` on `type` (key)
 - `status_idx` on `status` (key)
 - `packId_idx` on `packId` (key)
 
 **Permissions:**
+
 - Read: Any
 - Create: Team:volunteers, Team:admins
 - Update: Team:volunteers, Team:admins
@@ -54,6 +57,7 @@ This guide will help you set up the required database collections and storage bu
 - **Name**: Territories
 
 **Attributes:**
+
 - `name` (String, 100 chars, required)
 - `boundaries` (JSON, required) - Array of coordinate pairs
 - `packSize` (Integer, required)
@@ -61,9 +65,11 @@ This guide will help you set up the required database collections and storage bu
 - `assignedVolunteers` (String[], required, array)
 
 **Indexes:**
+
 - `name_idx` on `name` (key)
 
 **Permissions:**
+
 - Read: Team:volunteers, Team:admins
 - Create: Team:admins
 - Update: Team:volunteers, Team:admins
@@ -75,6 +81,7 @@ This guide will help you set up the required database collections and storage bu
 - **Name**: Tasks
 
 **Attributes:**
+
 - `type` (Enum: ['feeding', 'medical', 'maintenance'], required)
 - `title` (String, 200 chars, required)
 - `description` (String, 1000 chars, required)
@@ -87,6 +94,7 @@ This guide will help you set up the required database collections and storage bu
 - `priority` (Enum: ['low', 'medium', 'high', 'urgent'], required)
 
 **Indexes:**
+
 - `assignedTo_idx` on `assignedTo` (key)
 - `scheduledDate_idx` on `scheduledDate` (key)
 - `completed_idx` on `completed` (key)
@@ -95,6 +103,7 @@ This guide will help you set up the required database collections and storage bu
 - `territoryId_idx` on `territoryId` (key)
 
 **Permissions:**
+
 - Read: Team:volunteers, Team:admins
 - Create: Team:volunteers, Team:admins
 - Update: Team:volunteers, Team:admins
@@ -106,6 +115,7 @@ This guide will help you set up the required database collections and storage bu
 - **Name**: Medical Records
 
 **Attributes:**
+
 - `animalId` (String, required)
 - `date` (DateTime, required)
 - `type` (Enum: ['checkup', 'vaccination', 'treatment', 'emergency'], required)
@@ -117,12 +127,14 @@ This guide will help you set up the required database collections and storage bu
 - `followUpDate` (DateTime, optional)
 
 **Indexes:**
+
 - `animalId_idx` on `animalId` (key)
 - `date_idx` on `date` (key)
 - `type_idx` on `type` (key)
 - `followUpRequired_idx` on `followUpRequired` (key)
 
 **Permissions:**
+
 - Read: Team:volunteers, Team:admins
 - Create: Team:volunteers, Team:admins
 - Update: Team:volunteers, Team:admins
