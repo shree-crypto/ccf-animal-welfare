@@ -43,7 +43,7 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
   return (
     <div className="absolute top-4 right-4 w-80 bg-white rounded-lg shadow-xl z-[1000] max-h-[calc(100vh-2rem)] overflow-hidden flex flex-col">
       {/* Header */}
-      <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-gradient-to-r from-green-50 to-blue-50">
+      <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-blue-50/50">
         <h3 className="text-lg font-semibold text-gray-900">{territory.name}</h3>
         <button
           onClick={onClose}

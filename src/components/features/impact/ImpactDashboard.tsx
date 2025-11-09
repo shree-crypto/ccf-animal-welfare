@@ -160,7 +160,7 @@ export function ImpactDashboard({
       <div className={cn(
         "text-center py-8 px-4 rounded-lg",
         config.effects.gradients
-          ? "bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950"
+          ? "bg-blue-50/50 dark:bg-blue-950/30"
           : "bg-muted"
       )}>
         <h3 className="text-xl font-bold text-foreground mb-2">
