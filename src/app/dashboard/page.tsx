@@ -104,6 +104,20 @@ export default function DashboardPage() {
 
             <Card>
               <CardHeader>
+                <CardTitle>Emergency Alerts</CardTitle>
+                <CardDescription>
+                  Report and respond to urgent situations
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button asChild variant="destructive" className="w-full">
+                  <Link href="/emergency">View Alerts</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
                 <CardTitle>Profile Settings</CardTitle>
                 <CardDescription>
                   Update your account information

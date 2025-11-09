@@ -7,11 +7,11 @@ import { AnimalProfile } from '@/types/animal';
 import { getAnimalById } from '@/lib/db/animals';
 import { createMedicalRecord } from '@/lib/db/medical';
 import { PhotoCarousel } from '@/components/features/animals/PhotoCarousel';
-import {
-  MedicalHistoryTimeline,
-  MedicalRecordForm,
-} from '@/components/features/medical';
+import { MedicalHistoryTimeline, MedicalRecordForm } from '@/components/features/medical';
+import { BehaviorTracker } from '@/components/features/animals/BehaviorTracker';
+import { AnimalQRCode } from '@/components/features/animals/AnimalQRCode';
 import { MedicalRecordFormData } from '@/lib/validations/medical';
+import { BehaviorProfile } from '@/types/animal';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -25,6 +25,7 @@ import {
   Plus,
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { toast } from 'sonner';
 
 export default function AnimalDetailPage() {
   const params = useParams();
@@ -68,6 +69,23 @@ export default function AnimalDetailPage() {
       setRefreshKey(prev => prev + 1);
     } catch (error) {
       console.error('Error creating medical record:', error);
+      throw error;
+    }
+  };
+
+  const handleSaveBehavior = async (behavior: BehaviorProfile) => {
+    try {
+      // TODO: Replace with actual API call to update animal behavior
+      console.log('Saving behavior:', behavior);
+      toast.success('Behavior profile updated successfully');
+      
+      // Update local state
+      if (animal) {
+        setAnimal({ ...animal, behavior });
+      }
+    } catch (error) {
+      console.error('Error saving behavior:', error);
+      toast.error('Failed to update behavior profile');
       throw error;
     }
   };
@@ -278,6 +296,47 @@ export default function AnimalDetailPage() {
         >
           <MedicalHistoryTimeline key={refreshKey} animalId={animal.id} />
         </motion.div>
+
+        {/* Behavior Tracking Section */}
+        {user && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="mt-8"
+          >
+            <BehaviorTracker
+              animalId={animal.id}
+              initialBehavior={animal.behavior}
+              onSave={handleSaveBehavior}
+              readOnly={user.role === 'public'}
+            />
+          </motion.div>
+        )}
+
+        {/* QR Code Section */}
+        {user && user.role !== 'public' && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="mt-8"
+          >
+            <Card>
+              <CardHeader>
+                <CardTitle>Quick Access</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex gap-2">
+                  <AnimalQRCode animalId={animal.id} animalName={animal.name} />
+                  <p className="text-sm text-muted-foreground flex-1">
+                    Generate a QR code for {animal.name}&apos;s profile that can be printed and attached to physical tags or feeding stations.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
       </div>
     </div>
   );

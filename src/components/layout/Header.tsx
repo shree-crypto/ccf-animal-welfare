@@ -22,6 +22,7 @@ export function Header() {
     { href: '/', label: 'Home' },
     { href: '/animals', label: 'Animals' },
     { href: '/territories', label: 'Map' },
+    { href: '/report', label: 'Report' },
     { href: '/about', label: 'About' },
     { href: '/stories', label: 'Stories' },
     { href: '/events', label: 'Events' },
@@ -34,6 +35,7 @@ export function Header() {
     { href: '/dashboard', label: 'Dashboard' },
     { href: '/tasks', label: 'Tasks' },
     { href: '/medical', label: 'Medical' },
+    { href: '/emergency', label: 'Emergency' },
   ];
 
   // Admin only links
