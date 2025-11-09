@@ -25,7 +25,7 @@ export default function ProfilePage() {
         // TODO: Replace with actual API call
         // Mock data for demonstration
         const mockStats: VolunteerStats = {
-          volunteerId: user.id,
+          volunteerId: user.$id,
           totalHours: 45.5,
           tasksCompleted: 23,
           animalsHelped: 12,
@@ -85,7 +85,7 @@ export default function ProfilePage() {
                   </Card>
                 ) : stats ? (
                   <VolunteerImpactDashboard
-                    volunteerId={user?.id || ''}
+                    volunteerId={user?.$id || ''}
                     stats={stats}
                   />
                 ) : (

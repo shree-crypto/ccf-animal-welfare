@@ -126,7 +126,7 @@ export default function EmergencyPage() {
             ? {
                 ...alert,
                 status: 'in_progress' as EmergencyStatus,
-                respondedBy: user?.name || user?.id,
+                respondedBy: user?.name || user?.$id,
                 respondedAt: new Date().toISOString(),
               }
             : alert
@@ -148,7 +148,7 @@ export default function EmergencyPage() {
             ? {
                 ...alert,
                 status: 'resolved' as EmergencyStatus,
-                resolvedBy: user?.name || user?.id,
+                resolvedBy: user?.name || user?.$id,
                 resolvedAt: new Date().toISOString(),
                 notes,
               }
@@ -171,7 +171,7 @@ export default function EmergencyPage() {
             ? {
                 ...alert,
                 status: 'false_alarm' as EmergencyStatus,
-                resolvedBy: user?.name || user?.id,
+                resolvedBy: user?.name || user?.$id,
                 resolvedAt: new Date().toISOString(),
               }
             : alert
@@ -248,7 +248,7 @@ export default function EmergencyPage() {
           {/* Create Alert Button */}
           <div className="mb-6">
             <NewEmergencyAlertForm
-              currentUserId={user?.id || ''}
+              currentUserId={user?.$id || ''}
               onSubmit={handleCreateAlert}
             />
           </div>

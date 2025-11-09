@@ -85,7 +85,7 @@ export default function DashboardPage() {
           const todayStr = today.toISOString();
           
           const tasksResponse = await getTasks({
-            assignedTo: user?.id || '',
+            assignedTo: user?.$id || '',
             completed: false,
             limit: 50,
           });
@@ -120,12 +120,12 @@ export default function DashboardPage() {
       }
     };
 
-    if (user?.id) {
+    if (user?.$id) {
       fetchDashboardData();
     } else {
       setLoading(false);
     }
-  }, [user?.id]);
+  }, [user?.$id]);
 
   return (
     <ProtectedRoute requiredRole="volunteer">
