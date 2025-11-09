@@ -12,9 +12,11 @@ describe('Aceternity Components Theme Conditional Rendering', () => {
         <AnimatedGradient />
       </ThemeProvider>
     );
-    
+
     // Should render gradient divs in custom theme (default)
-    const gradientContainer = container.querySelector('.absolute.inset-0.-z-10');
+    const gradientContainer = container.querySelector(
+      '.absolute.inset-0.-z-10'
+    );
     expect(gradientContainer).toBeTruthy();
   });
 
@@ -24,7 +26,7 @@ describe('Aceternity Components Theme Conditional Rendering', () => {
         <BackgroundBeams />
       </ThemeProvider>
     );
-    
+
     // Should render SVG in custom theme (default)
     const svg = container.querySelector('svg');
     expect(svg).toBeTruthy();
@@ -36,7 +38,7 @@ describe('Aceternity Components Theme Conditional Rendering', () => {
         <SparklesCore density={10} />
       </ThemeProvider>
     );
-    
+
     // Should render SVG in custom theme (default)
     const svg = container.querySelector('svg');
     expect(svg).toBeTruthy();

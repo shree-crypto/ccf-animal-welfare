@@ -5,7 +5,13 @@ export interface Event {
   date: Date;
   endDate?: Date;
   location: string;
-  type: 'feeding' | 'medical' | 'training' | 'fundraiser' | 'awareness' | 'other';
+  type:
+    | 'feeding'
+    | 'medical'
+    | 'training'
+    | 'fundraiser'
+    | 'awareness'
+    | 'other';
   volunteersNeeded: number;
   volunteersRegistered: number;
   organizer: string;

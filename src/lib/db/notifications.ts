@@ -15,7 +15,11 @@ import {
   notificationPreferencesSchema,
   CreateNotificationInput,
 } from '@/lib/validations/notification';
-import { normalizePagination, calculatePaginationMeta, QUERY_LIMITS } from './query-config';
+import {
+  normalizePagination,
+  calculatePaginationMeta,
+  QUERY_LIMITS,
+} from './query-config';
 
 // Helper to convert Appwrite document to Notification
 const documentToNotification = (doc: NotificationDocument): Notification => ({
@@ -35,7 +39,9 @@ const documentToNotification = (doc: NotificationDocument): Notification => ({
 });
 
 // Helper to convert Appwrite document to NotificationPreferences
-const documentToPreferences = (doc: NotificationPreferencesDocument): NotificationPreferences => ({
+const documentToPreferences = (
+  doc: NotificationPreferencesDocument
+): NotificationPreferences => ({
   id: doc.$id,
   userId: doc.userId,
   emailNotifications: doc.emailNotifications,
@@ -49,7 +55,9 @@ const documentToPreferences = (doc: NotificationPreferencesDocument): Notificati
 });
 
 // Create a new notification
-export const createNotification = async (data: CreateNotificationInput): Promise<Notification> => {
+export const createNotification = async (
+  data: CreateNotificationInput
+): Promise<Notification> => {
   // Validate data
   const validatedData = createNotificationSchema.parse(data);
 
@@ -64,7 +72,9 @@ export const createNotification = async (data: CreateNotificationInput): Promise
 };
 
 // Get a notification by ID
-export const getNotificationById = async (id: string): Promise<Notification | null> => {
+export const getNotificationById = async (
+  id: string
+): Promise<Notification | null> => {
   try {
     const document = await databases.getDocument<NotificationDocument>(
       DATABASE_ID,
@@ -144,7 +154,11 @@ export const getUnreadCount = async (userId: string): Promise<number> => {
   const response = await databases.listDocuments<NotificationDocument>(
     DATABASE_ID,
     COLLECTIONS.NOTIFICATIONS,
-    [Query.equal('recipientId', userId), Query.equal('read', false), Query.limit(1)]
+    [
+      Query.equal('recipientId', userId),
+      Query.equal('read', false),
+      Query.limit(1),
+    ]
   );
 
   return response.total;
@@ -175,7 +189,9 @@ export const markAllAsRead = async (userId: string): Promise<void> => {
     limit: QUERY_LIMITS.NOTIFICATION_BATCH,
   });
 
-  await Promise.all(result.notifications.map((notification) => markAsRead(notification.id)));
+  await Promise.all(
+    result.notifications.map(notification => markAsRead(notification.id))
+  );
 };
 
 // Delete a notification
@@ -187,7 +203,7 @@ export const deleteNotification = async (id: string): Promise<void> => {
 // Uses index: expiresAt (expiresAt ASC)
 export const deleteExpiredNotifications = async (): Promise<void> => {
   const now = new Date().toISOString();
-  
+
   // Process in batches to avoid overwhelming the system
   const response = await databases.listDocuments<NotificationDocument>(
     DATABASE_ID,
@@ -198,7 +214,7 @@ export const deleteExpiredNotifications = async (): Promise<void> => {
     ]
   );
 
-  await Promise.all(response.documents.map((doc) => deleteNotification(doc.$id)));
+  await Promise.all(response.documents.map(doc => deleteNotification(doc.$id)));
 };
 
 // Get or create notification preferences for a user
@@ -206,11 +222,12 @@ export const getNotificationPreferences = async (
   userId: string
 ): Promise<NotificationPreferences> => {
   try {
-    const response = await databases.listDocuments<NotificationPreferencesDocument>(
-      DATABASE_ID,
-      COLLECTIONS.NOTIFICATION_PREFERENCES,
-      [Query.equal('userId', userId), Query.limit(1)]
-    );
+    const response =
+      await databases.listDocuments<NotificationPreferencesDocument>(
+        DATABASE_ID,
+        COLLECTIONS.NOTIFICATION_PREFERENCES,
+        [Query.equal('userId', userId), Query.limit(1)]
+      );
 
     if (response.documents.length > 0) {
       return documentToPreferences(response.documents[0]);
@@ -228,19 +245,22 @@ export const getNotificationPreferences = async (
 // Create notification preferences
 export const createNotificationPreferences = async (
   userId: string,
-  preferences?: Partial<Omit<NotificationPreferences, 'id' | 'userId' | 'updatedAt'>>
+  preferences?: Partial<
+    Omit<NotificationPreferences, 'id' | 'userId' | 'updatedAt'>
+  >
 ): Promise<NotificationPreferences> => {
   const validatedData = notificationPreferencesSchema.parse({
     userId,
     ...preferences,
   });
 
-  const document = await databases.createDocument<NotificationPreferencesDocument>(
-    DATABASE_ID,
-    COLLECTIONS.NOTIFICATION_PREFERENCES,
-    ID.unique(),
-    validatedData
-  );
+  const document =
+    await databases.createDocument<NotificationPreferencesDocument>(
+      DATABASE_ID,
+      COLLECTIONS.NOTIFICATION_PREFERENCES,
+      ID.unique(),
+      validatedData
+    );
 
   return documentToPreferences(document);
 };
@@ -248,16 +268,19 @@ export const createNotificationPreferences = async (
 // Update notification preferences
 export const updateNotificationPreferences = async (
   userId: string,
-  preferences: Partial<Omit<NotificationPreferences, 'id' | 'userId' | 'updatedAt'>>
+  preferences: Partial<
+    Omit<NotificationPreferences, 'id' | 'userId' | 'updatedAt'>
+  >
 ): Promise<NotificationPreferences> => {
   const existing = await getNotificationPreferences(userId);
 
-  const document = await databases.updateDocument<NotificationPreferencesDocument>(
-    DATABASE_ID,
-    COLLECTIONS.NOTIFICATION_PREFERENCES,
-    existing.id,
-    preferences
-  );
+  const document =
+    await databases.updateDocument<NotificationPreferencesDocument>(
+      DATABASE_ID,
+      COLLECTIONS.NOTIFICATION_PREFERENCES,
+      existing.id,
+      preferences
+    );
 
   return documentToPreferences(document);
 };

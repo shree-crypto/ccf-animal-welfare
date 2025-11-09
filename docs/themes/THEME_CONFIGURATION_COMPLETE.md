@@ -11,6 +11,7 @@ Task 2 and its subtasks (2.1 and 2.2) have been successfully completed. The them
 **File**: `src/styles/themes/default.css`
 
 Created a clean, minimal theme with:
+
 - Neutral color palette (grays, subtle blues)
 - Standard shadcn/ui colors
 - No gradient definitions
@@ -19,6 +20,7 @@ Created a clean, minimal theme with:
 - Full dark mode support
 
 **Key Features**:
+
 - Primary: Blue 500 (#3B82F6)
 - Secondary: Slate 500 (#64748B)
 - Accent: Indigo 500 (#6366F1)
@@ -30,6 +32,7 @@ Created a clean, minimal theme with:
 **File**: `src/styles/themes/custom.css`
 
 Created the full CampusPaws branded theme with:
+
 - Trust and Action color palette
 - Comprehensive gradient definitions
 - Aceternity effect styles
@@ -37,6 +40,7 @@ Created the full CampusPaws branded theme with:
 - Full dark mode support
 
 **Key Features**:
+
 - Primary: Trust Blue (#336DF5)
 - Secondary: Nature Green (#66AA33)
 - Accent: Action Orange (#F75F00)
@@ -49,6 +53,7 @@ Created the full CampusPaws branded theme with:
 **File**: `src/styles/themes/index.ts`
 
 Created TypeScript utilities for:
+
 - Theme metadata definitions
 - Feature detection (gradients, animations, aceternity)
 - Helper functions for theme management
@@ -59,6 +64,7 @@ Created TypeScript utilities for:
 **File**: `src/styles/themes/README.md`
 
 Comprehensive documentation covering:
+
 - Theme architecture and how it works
 - Color palettes for both themes
 - Gradient definitions
@@ -73,9 +79,10 @@ Comprehensive documentation covering:
 **File**: `src/app/globals.css` (updated)
 
 Added imports for both theme files:
+
 ```css
-@import "../styles/themes/default.css";
-@import "../styles/themes/custom.css";
+@import '../styles/themes/default.css';
+@import '../styles/themes/custom.css';
 ```
 
 ## File Structure
@@ -95,8 +102,12 @@ src/styles/themes/
 Themes are applied via the `data-theme` attribute on the HTML element:
 
 ```html
-<html data-theme="default">  <!-- Default theme -->
-<html data-theme="custom">   <!-- Custom theme -->
+<html data-theme="default">
+  <!-- Default theme -->
+  <html data-theme="custom">
+    <!-- Custom theme -->
+  </html>
+</html>
 ```
 
 ### CSS Variable Scoping
@@ -104,12 +115,12 @@ Themes are applied via the `data-theme` attribute on the HTML element:
 Each theme defines its own scoped CSS variables:
 
 ```css
-[data-theme="default"] {
+[data-theme='default'] {
   --primary: rgb(59 130 246);
   /* ... */
 }
 
-[data-theme="custom"] {
+[data-theme='custom'] {
   --primary: rgb(51 109 245);
   /* ... */
 }
@@ -120,20 +131,24 @@ Each theme defines its own scoped CSS variables:
 Both themes support dark mode independently:
 
 ```css
-[data-theme="default"].dark { /* ... */ }
-[data-theme="custom"].dark { /* ... */ }
+[data-theme='default'].dark {
+  /* ... */
+}
+[data-theme='custom'].dark {
+  /* ... */
+}
 ```
 
 ## Key Differences Between Themes
 
-| Feature | Default Theme | Custom Theme |
-|---------|--------------|--------------|
-| **Color Palette** | Neutral (grays, blues) | Trust & Action (blue, green, orange) |
-| **Gradients** | ❌ None | ✅ Multiple gradient utilities |
-| **Animations** | ❌ Minimal | ✅ Shimmer, pulse, glow |
-| **Aceternity Effects** | ❌ Hidden | ✅ Visible |
-| **Performance** | ⚡ Faster | 🎨 More visual |
-| **Use Case** | Professional, minimal | Engaging, branded |
+| Feature                | Default Theme          | Custom Theme                         |
+| ---------------------- | ---------------------- | ------------------------------------ |
+| **Color Palette**      | Neutral (grays, blues) | Trust & Action (blue, green, orange) |
+| **Gradients**          | ❌ None                | ✅ Multiple gradient utilities       |
+| **Animations**         | ❌ Minimal             | ✅ Shimmer, pulse, glow              |
+| **Aceternity Effects** | ❌ Hidden              | ✅ Visible                           |
+| **Performance**        | ⚡ Faster              | 🎨 More visual                       |
+| **Use Case**           | Professional, minimal  | Engaging, branded                    |
 
 ## Gradient Utilities (Custom Theme)
 
@@ -186,13 +201,15 @@ import { cn } from '@/lib/utils';
 
 function MyComponent() {
   const { theme } = useTheme();
-  
+
   return (
-    <div className={cn(
-      'p-4 rounded-lg',
-      theme === 'custom' && 'gradient-bg',
-      theme === 'default' && 'bg-white'
-    )}>
+    <div
+      className={cn(
+        'p-4 rounded-lg',
+        theme === 'custom' && 'gradient-bg',
+        theme === 'default' && 'bg-white'
+      )}
+    >
       Content
     </div>
   );
@@ -207,15 +224,13 @@ import { AnimatedGradient } from '@/components/ui/animated-gradient';
 
 function Hero() {
   const { config } = useTheme();
-  
+
   return (
     <div className="relative">
       {config.features.aceternity && (
         <AnimatedGradient className="absolute inset-0" />
       )}
-      <div className="relative z-10">
-        Hero content
-      </div>
+      <div className="relative z-10">Hero content</div>
     </div>
   );
 }
@@ -236,6 +251,7 @@ function Hero() {
 ## Performance Considerations
 
 ### Default Theme
+
 - ✅ Smaller CSS bundle
 - ✅ Faster rendering
 - ✅ Lower GPU usage
@@ -243,6 +259,7 @@ function Hero() {
 - ✅ Accessibility-focused
 
 ### Custom Theme
+
 - 🎨 Larger CSS bundle (gradients, animations)
 - 🎨 More GPU usage (effects)
 - 🎨 Best on modern devices
@@ -297,6 +314,7 @@ To test the themes:
 - ❌ IE11 (not supported)
 
 Requires:
+
 - CSS custom properties
 - CSS `data-*` attribute selectors
 - Modern CSS features

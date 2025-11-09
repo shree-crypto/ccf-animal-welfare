@@ -2,9 +2,20 @@ import { ID, Query } from 'appwrite';
 import { databases } from '@/lib/appwrite';
 import { DATABASE_ID, COLLECTIONS } from '@/lib/constants/database';
 import { Task, TaskDocument, TaskType, TaskPriority } from '@/types/task';
-import { createTaskSchema, updateTaskSchema } from '@/lib/validations/task';
-import { triggerTaskAssignedNotification, triggerTaskCompletedNotification } from '@/lib/notifications/triggers';
-import { normalizePagination, calculatePaginationMeta, QUERY_LIMITS } from './query-config';
+import {
+  createTaskSchema,
+  updateTaskSchema,
+  CreateTaskInput,
+} from '@/lib/validations/task';
+import {
+  triggerTaskAssignedNotification,
+  triggerTaskCompletedNotification,
+} from '@/lib/notifications/triggers';
+import {
+  normalizePagination,
+  calculatePaginationMeta,
+  QUERY_LIMITS,
+} from './query-config';
 
 // Helper to convert Appwrite document to Task
 const documentToTask = (doc: TaskDocument): Task => ({
@@ -23,10 +34,10 @@ const documentToTask = (doc: TaskDocument): Task => ({
 
 // Create a new task
 export const createTask = async (
-  data: Omit<Task, 'id'>,
+  data: CreateTaskInput,
   options?: { sendNotification?: boolean }
 ): Promise<Task> => {
-  // Validate data
+  // Validate data and apply defaults
   const validatedData = createTaskSchema.parse(data);
 
   const document = await databases.createDocument<TaskDocument>(

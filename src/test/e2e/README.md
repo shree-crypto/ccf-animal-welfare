@@ -9,6 +9,7 @@ This directory contains comprehensive end-to-end tests that validate complete us
 Tests complete user journeys from animal browsing to task management:
 
 #### 1. Public User Animal Browsing Journey
+
 - **Requirement 1.1**: Display all animals in responsive card grid layout
 - **Requirement 1.2**: Navigate to detailed profile page
 - **Requirement 1.3**: Display animal information on cards (name, age, location, feeder, photo)
@@ -16,6 +17,7 @@ Tests complete user journeys from animal browsing to task management:
 - **Requirement 1.5**: Load additional photos in gallery view
 
 #### 2. Volunteer Task Management Journey
+
 - **Requirement 3.1**: Display Volunteer Dashboard after authentication
 - **Requirement 3.2**: Create and modify feeding schedule entries
 - **Requirement 3.3**: Display tasks in shared calendar interface
@@ -27,6 +29,7 @@ Tests complete user journeys from animal browsing to task management:
 Tests complete admin workflows for animal database management:
 
 #### 1. Admin Medical Records Management
+
 - **Requirement 4.1**: Create and update medical records
 - **Requirement 4.2**: Associate medical records with animal profiles
 - **Requirement 4.3**: Display medical history chronologically
@@ -34,6 +37,7 @@ Tests complete admin workflows for animal database management:
 - **Requirement 4.5**: Highlight animals needing care
 
 #### 2. Admin Animal Database Management
+
 - **Requirement 6.1**: Create new animal profiles
 - **Requirement 6.2**: Edit existing animal profile information including photos
 - **Requirement 6.3**: Bulk upload and editing of animal data
@@ -45,11 +49,13 @@ Tests complete admin workflows for animal database management:
 ### Prerequisites
 
 1. **Appwrite Instance Running**: Ensure your local Appwrite instance is running:
+
    ```bash
    docker-compose up -d
    ```
 
 2. **Environment Variables**: Ensure `.env.local` is configured with:
+
    ```
    NEXT_PUBLIC_APPWRITE_ENDPOINT=http://localhost/v1
    NEXT_PUBLIC_APPWRITE_PROJECT_ID=your-project-id
@@ -115,6 +121,7 @@ Each test suite follows this pattern:
 ### Tests Failing Due to Missing Collections
 
 If tests fail with "Collection not found" errors:
+
 ```bash
 # Run database setup
 npm run setup:db
@@ -123,12 +130,14 @@ npm run setup:db
 ### Tests Failing Due to Permissions
 
 Ensure your Appwrite project has the correct team configurations:
+
 - `volunteers` team for volunteer access
 - `admins` team for admin access
 
 ### Connection Errors
 
 Verify Appwrite is running:
+
 ```bash
 docker-compose ps
 ```

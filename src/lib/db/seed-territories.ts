@@ -10,10 +10,10 @@ const sampleTerritories = [
   {
     name: 'Main Building Area',
     boundaries: [
-      [29.8650, 77.8950],
-      [29.8650, 77.9000],
-      [29.8600, 77.9000],
-      [29.8600, 77.8950],
+      [29.865, 77.895],
+      [29.865, 77.9],
+      [29.86, 77.9],
+      [29.86, 77.895],
     ] as [number, number][],
     packSize: 5,
     animals: [],
@@ -22,10 +22,10 @@ const sampleTerritories = [
   {
     name: 'Hostel Complex',
     boundaries: [
-      [29.8550, 77.8900],
-      [29.8550, 77.8950],
-      [29.8500, 77.8950],
-      [29.8500, 77.8900],
+      [29.855, 77.89],
+      [29.855, 77.895],
+      [29.85, 77.895],
+      [29.85, 77.89],
     ] as [number, number][],
     packSize: 8,
     animals: [],
@@ -34,10 +34,10 @@ const sampleTerritories = [
   {
     name: 'Sports Ground',
     boundaries: [
-      [29.8600, 77.8850],
-      [29.8600, 77.8900],
-      [29.8550, 77.8900],
-      [29.8550, 77.8850],
+      [29.86, 77.885],
+      [29.86, 77.89],
+      [29.855, 77.89],
+      [29.855, 77.885],
     ] as [number, number][],
     packSize: 3,
     animals: [],
@@ -46,10 +46,10 @@ const sampleTerritories = [
   {
     name: 'Academic Block',
     boundaries: [
-      [29.8650, 77.8900],
-      [29.8650, 77.8950],
-      [29.8600, 77.8950],
-      [29.8600, 77.8900],
+      [29.865, 77.89],
+      [29.865, 77.895],
+      [29.86, 77.895],
+      [29.86, 77.89],
     ] as [number, number][],
     packSize: 4,
     animals: [],
@@ -58,10 +58,10 @@ const sampleTerritories = [
   {
     name: 'Library Area',
     boundaries: [
-      [29.8580, 77.8920],
-      [29.8580, 77.8970],
-      [29.8530, 77.8970],
-      [29.8530, 77.8920],
+      [29.858, 77.892],
+      [29.858, 77.897],
+      [29.853, 77.897],
+      [29.853, 77.892],
     ] as [number, number][],
     packSize: 2,
     animals: [],
@@ -71,7 +71,7 @@ const sampleTerritories = [
 
 export async function seedTerritories() {
   console.log('Seeding territories...');
-  
+
   try {
     for (const territory of sampleTerritories) {
       const created = await createTerritory(territory);
@@ -88,7 +88,7 @@ export async function seedTerritories() {
 if (require.main === module) {
   seedTerritories()
     .then(() => process.exit(0))
-    .catch((error) => {
+    .catch(error => {
       console.error(error);
       process.exit(1);
     });

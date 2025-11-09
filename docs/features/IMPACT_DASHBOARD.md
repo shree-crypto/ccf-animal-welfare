@@ -16,6 +16,7 @@ Four key metrics are displayed with live updates:
 - **Successful Adoptions**: Total and monthly count of successful adoptions
 
 Each metric includes:
+
 - Current period value (this month/week)
 - Total cumulative value
 - Trend indicator (up/down/stable)
@@ -24,6 +25,7 @@ Each metric includes:
 ### 2. Historical Trend Visualizations
 
 Interactive charts showing:
+
 - Daily, weekly, or monthly trends
 - Last 30 days of data
 - Visual representation of progress over time
@@ -32,12 +34,14 @@ Interactive charts showing:
 ### 3. Recent Activity Ticker
 
 Live-updating feed showing:
+
 - Recent donations (first name only for privacy)
 - New adoptions
 - Volunteer sign-ups
 - Rescue reports
 
 Features:
+
 - Auto-scrolling carousel
 - Real-time updates via Appwrite Realtime
 - Privacy-respecting display names
@@ -46,6 +50,7 @@ Features:
 ### 4. Key Insights
 
 Automatically generated insights based on trends:
+
 - Highlights positive trends
 - Celebrates milestones
 - Provides context for metrics
@@ -64,10 +69,11 @@ import { ImpactDashboard } from '@/components/features/impact';
   activities={activities}
   showTrends={false}
   loading={false}
-/>
+/>;
 ```
 
 **Props:**
+
 - `metrics`: ImpactMetrics object or null
 - `activities`: Array of RecentActivity objects
 - `showTrends`: Boolean to show/hide trend charts
@@ -81,10 +87,11 @@ Container component with data fetching and real-time updates.
 ```tsx
 import { ImpactDashboardContainer } from '@/components/features/impact';
 
-<ImpactDashboardContainer showTrends={false} />
+<ImpactDashboardContainer showTrends={false} />;
 ```
 
 **Props:**
+
 - `showTrends`: Boolean to show/hide trend charts
 - `className`: Optional CSS classes
 
@@ -95,10 +102,11 @@ Enhanced dashboard with historical trend visualizations.
 ```tsx
 import { ImpactDashboardWithTrends } from '@/components/features/impact';
 
-<ImpactDashboardWithTrends />
+<ImpactDashboardWithTrends />;
 ```
 
 **Props:**
+
 - `className`: Optional CSS classes
 
 ### MetricCard
@@ -114,7 +122,7 @@ import { MetricCard } from '@/components/features/impact';
   icon={<Heart />}
   description="This month"
   loading={false}
-/>
+/>;
 ```
 
 ### TrendChart
@@ -124,11 +132,7 @@ Historical trend visualization chart.
 ```tsx
 import { TrendChart } from '@/components/features/impact';
 
-<TrendChart
-  trend={trendData}
-  title="Rescue Trend"
-  loading={false}
-/>
+<TrendChart trend={trendData} title="Rescue Trend" loading={false} />;
 ```
 
 ### RecentActivity
@@ -138,11 +142,7 @@ Activity ticker component.
 ```tsx
 import { RecentActivity } from '@/components/features/impact';
 
-<RecentActivity
-  activities={activities}
-  loading={false}
-  autoScroll={true}
-/>
+<RecentActivity activities={activities} loading={false} autoScroll={true} />;
 ```
 
 ## Hooks
@@ -158,6 +158,7 @@ const { metrics, activities, loading, error, refetch } = useImpactMetrics();
 ```
 
 **Returns:**
+
 - `metrics`: Current impact metrics or null
 - `activities`: Array of recent activities
 - `loading`: Boolean loading state
@@ -175,6 +176,7 @@ const { trend, loading, error } = useMetricTrend('animalsRescued', 'daily', 30);
 ```
 
 **Parameters:**
+
 - `metricName`: Name of the metric to fetch
 - `period`: 'daily' | 'weekly' | 'monthly'
 - `days`: Number of days to fetch (default: 30)
@@ -199,10 +201,30 @@ Creates new impact metrics (admin only).
 import { createImpactMetrics } from '@/lib/db/impact';
 
 const metrics = await createImpactMetrics({
-  animalsRescued: { total: 247, current: 18, trend: 'up', percentageChange: 12.5 },
-  volunteersActive: { total: 89, current: 12, trend: 'up', percentageChange: 8.3 },
-  mealsProvided: { total: 3456, current: 234, trend: 'stable', percentageChange: 0.5 },
-  successfulAdoptions: { total: 156, current: 8, trend: 'up', percentageChange: 14.2 },
+  animalsRescued: {
+    total: 247,
+    current: 18,
+    trend: 'up',
+    percentageChange: 12.5,
+  },
+  volunteersActive: {
+    total: 89,
+    current: 12,
+    trend: 'up',
+    percentageChange: 8.3,
+  },
+  mealsProvided: {
+    total: 3456,
+    current: 234,
+    trend: 'stable',
+    percentageChange: 0.5,
+  },
+  successfulAdoptions: {
+    total: 156,
+    current: 8,
+    trend: 'up',
+    percentageChange: 14.2,
+  },
 });
 ```
 
@@ -267,7 +289,7 @@ import { ImpactDashboardContainer } from '@/components/features/impact';
   <div className="max-w-7xl mx-auto">
     <ImpactDashboardContainer />
   </div>
-</section>
+</section>;
 ```
 
 ### Dedicated Impact Page
@@ -278,7 +300,7 @@ A full-featured impact page with trends is available at `/impact`:
 // src/app/impact/page.tsx
 import { ImpactDashboardWithTrends } from '@/components/features/impact';
 
-<ImpactDashboardWithTrends />
+<ImpactDashboardWithTrends />;
 ```
 
 ## Mobile Responsiveness

@@ -2,7 +2,10 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { animalProfileSchema, type AnimalProfileFormData } from '@/lib/validations/animal';
+import {
+  animalProfileSchema,
+  type AnimalProfileFormData,
+} from '@/lib/validations/animal';
 import { AnimalProfile } from '@/types/animal';
 import {
   Form,
@@ -32,7 +35,12 @@ interface AnimalFormProps {
   isLoading?: boolean;
 }
 
-export function AnimalForm({ initialData, onSubmit, onCancel, isLoading }: AnimalFormProps) {
+export function AnimalForm({
+  initialData,
+  onSubmit,
+  onCancel,
+  isLoading,
+}: AnimalFormProps) {
   const [submitting, setSubmitting] = useState(false);
 
   const form = useForm<AnimalProfileFormData>({
@@ -44,7 +52,7 @@ export function AnimalForm({ initialData, onSubmit, onCancel, isLoading }: Anima
       breed: initialData?.breed || '',
       location: {
         area: initialData?.location?.area || '',
-        coordinates: initialData?.location?.coordinates || [29.8543, 77.8880],
+        coordinates: initialData?.location?.coordinates || [29.8543, 77.888],
       },
       currentFeeder: initialData?.currentFeeder || '',
       medicalHistory: initialData?.medicalHistory || [],
@@ -92,7 +100,10 @@ export function AnimalForm({ initialData, onSubmit, onCancel, isLoading }: Anima
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Type *</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Select animal type" />
@@ -120,7 +131,7 @@ export function AnimalForm({ initialData, onSubmit, onCancel, isLoading }: Anima
                     type="number"
                     placeholder="Enter age"
                     {...field}
-                    onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                    onChange={e => field.onChange(parseFloat(e.target.value))}
                   />
                 </FormControl>
                 <FormMessage />
@@ -151,7 +162,10 @@ export function AnimalForm({ initialData, onSubmit, onCancel, isLoading }: Anima
               <FormItem>
                 <FormLabel>Location Area *</FormLabel>
                 <FormControl>
-                  <Input placeholder="e.g., Main Building, Hostel Area" {...field} />
+                  <Input
+                    placeholder="e.g., Main Building, Hostel Area"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -165,7 +179,10 @@ export function AnimalForm({ initialData, onSubmit, onCancel, isLoading }: Anima
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Health Status *</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Select status" />
@@ -173,8 +190,12 @@ export function AnimalForm({ initialData, onSubmit, onCancel, isLoading }: Anima
                   </FormControl>
                   <SelectContent>
                     <SelectItem value="healthy">Healthy</SelectItem>
-                    <SelectItem value="needs_attention">Needs Attention</SelectItem>
-                    <SelectItem value="under_treatment">Under Treatment</SelectItem>
+                    <SelectItem value="needs_attention">
+                      Needs Attention
+                    </SelectItem>
+                    <SelectItem value="under_treatment">
+                      Under Treatment
+                    </SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -230,7 +251,7 @@ export function AnimalForm({ initialData, onSubmit, onCancel, isLoading }: Anima
                     step="any"
                     placeholder="29.8543"
                     {...field}
-                    onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                    onChange={e => field.onChange(parseFloat(e.target.value))}
                   />
                 </FormControl>
                 <FormMessage />
@@ -250,7 +271,7 @@ export function AnimalForm({ initialData, onSubmit, onCancel, isLoading }: Anima
                     step="any"
                     placeholder="77.8880"
                     {...field}
-                    onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                    onChange={e => field.onChange(parseFloat(e.target.value))}
                   />
                 </FormControl>
                 <FormMessage />
@@ -262,12 +283,21 @@ export function AnimalForm({ initialData, onSubmit, onCancel, isLoading }: Anima
         {/* Form Actions */}
         <div className="flex justify-end gap-4 pt-4 border-t">
           {onCancel && (
-            <Button type="button" variant="outline" onClick={onCancel} disabled={submitting}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onCancel}
+              disabled={submitting}
+            >
               Cancel
             </Button>
           )}
           <Button type="submit" disabled={submitting || isLoading}>
-            {submitting ? 'Saving...' : initialData ? 'Update Animal' : 'Create Animal'}
+            {submitting
+              ? 'Saving...'
+              : initialData
+                ? 'Update Animal'
+                : 'Create Animal'}
           </Button>
         </div>
       </form>

@@ -8,14 +8,17 @@ import { ErrorBoundary } from '@/components/ui/error-boundary';
 
 // Dynamically import the map component with no SSR
 const InteractiveMap = dynamic(
-  () => import('@/components/features/territories').then(mod => ({ default: mod.InteractiveMap })),
-  { 
+  () =>
+    import('@/components/features/territories').then(mod => ({
+      default: mod.InteractiveMap,
+    })),
+  {
     ssr: false,
     loading: () => (
       <div className="h-full flex items-center justify-center bg-gray-50">
         <Loader2 className="w-8 h-8 text-gray-400 animate-spin" />
       </div>
-    )
+    ),
   }
 );
 

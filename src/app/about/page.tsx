@@ -16,8 +16,9 @@ export default function AboutPage() {
               Our Mission
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-              Dedicated to the welfare and protection of campus animals at IIT Roorkee through 
-              compassionate care, community engagement, and sustainable practices.
+              Dedicated to the welfare and protection of campus animals at IIT
+              Roorkee through compassionate care, community engagement, and
+              sustainable practices.
             </p>
           </div>
         </div>
@@ -32,21 +33,25 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
               <p>
-                The Committee for Campus Fauna (CCF) is a student-led initiative at IIT Roorkee 
-                committed to ensuring the well-being of all animals living on our campus. Founded 
-                by passionate students who recognized the need for organized animal care, we have 
-                grown into a dedicated community of volunteers working tirelessly to make a difference.
+                The Committee for Campus Fauna (CCF) is a student-led initiative
+                at IIT Roorkee committed to ensuring the well-being of all
+                animals living on our campus. Founded by passionate students who
+                recognized the need for organized animal care, we have grown
+                into a dedicated community of volunteers working tirelessly to
+                make a difference.
               </p>
               <p>
-                Our mission extends beyond basic care. We strive to create a harmonious environment 
-                where humans and animals coexist peacefully, where every animal receives the medical 
-                attention they need, and where the campus community is educated about responsible 
-                animal welfare practices.
+                Our mission extends beyond basic care. We strive to create a
+                harmonious environment where humans and animals coexist
+                peacefully, where every animal receives the medical attention
+                they need, and where the campus community is educated about
+                responsible animal welfare practices.
               </p>
               <p>
-                Through systematic territory management, regular feeding schedules, comprehensive 
-                medical care, and community awareness programs, we ensure that no animal on campus 
-                goes unnoticed or uncared for.
+                Through systematic territory management, regular feeding
+                schedules, comprehensive medical care, and community awareness
+                programs, we ensure that no animal on campus goes unnoticed or
+                uncared for.
               </p>
             </div>
           </div>
@@ -75,8 +80,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-2xl font-semibold mb-3">Compassion</h3>
                 <p className="text-muted-foreground">
-                  Every animal deserves love, care, and respect. We approach each situation with 
-                  empathy and understanding.
+                  Every animal deserves love, care, and respect. We approach
+                  each situation with empathy and understanding.
                 </p>
               </div>
             </div>
@@ -90,8 +95,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-2xl font-semibold mb-3">Community</h3>
                 <p className="text-muted-foreground">
-                  Building a network of caring individuals who work together to create lasting 
-                  positive change for campus animals.
+                  Building a network of caring individuals who work together to
+                  create lasting positive change for campus animals.
                 </p>
               </div>
             </div>
@@ -105,8 +110,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-2xl font-semibold mb-3">Responsibility</h3>
                 <p className="text-muted-foreground">
-                  Taking ownership of animal welfare on campus through consistent care, proper 
-                  documentation, and accountability.
+                  Taking ownership of animal welfare on campus through
+                  consistent care, proper documentation, and accountability.
                 </p>
               </div>
             </div>
@@ -120,8 +125,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-2xl font-semibold mb-3">Excellence</h3>
                 <p className="text-muted-foreground">
-                  Striving for the highest standards in animal care, from medical treatment to 
-                  daily feeding routines.
+                  Striving for the highest standards in animal care, from
+                  medical treatment to daily feeding routines.
                 </p>
               </div>
             </div>
@@ -135,8 +140,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-2xl font-semibold mb-3">Transparency</h3>
                 <p className="text-muted-foreground">
-                  Maintaining open communication and clear records of all our activities and 
-                  animal care operations.
+                  Maintaining open communication and clear records of all our
+                  activities and animal care operations.
                 </p>
               </div>
             </div>
@@ -150,8 +155,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-2xl font-semibold mb-3">Innovation</h3>
                 <p className="text-muted-foreground">
-                  Leveraging technology and creative solutions to improve animal welfare and 
-                  volunteer coordination.
+                  Leveraging technology and creative solutions to improve animal
+                  welfare and volunteer coordination.
                 </p>
               </div>
             </div>
@@ -173,11 +178,14 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-gradient-to-br from-primary/5 to-background rounded-2xl p-8 border border-border">
-              <h3 className="text-2xl font-semibold mb-4">Daily Care & Feeding</h3>
+              <h3 className="text-2xl font-semibold mb-4">
+                Daily Care & Feeding
+              </h3>
               <p className="text-muted-foreground mb-4">
-                Our volunteers follow systematic feeding schedules across all campus territories, 
-                ensuring every animal receives nutritious meals regularly. We maintain detailed 
-                records of feeding patterns and dietary needs.
+                Our volunteers follow systematic feeding schedules across all
+                campus territories, ensuring every animal receives nutritious
+                meals regularly. We maintain detailed records of feeding
+                patterns and dietary needs.
               </p>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
@@ -198,9 +206,9 @@ export default function AboutPage() {
             <div className="bg-gradient-to-br from-primary/5 to-background rounded-2xl p-8 border border-border">
               <h3 className="text-2xl font-semibold mb-4">Medical Care</h3>
               <p className="text-muted-foreground mb-4">
-                We coordinate with local veterinarians to provide comprehensive medical care, 
-                from routine vaccinations to emergency treatments. Every medical interaction 
-                is documented for continuity of care.
+                We coordinate with local veterinarians to provide comprehensive
+                medical care, from routine vaccinations to emergency treatments.
+                Every medical interaction is documented for continuity of care.
               </p>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
@@ -219,11 +227,13 @@ export default function AboutPage() {
             </div>
 
             <div className="bg-gradient-to-br from-primary/5 to-background rounded-2xl p-8 border border-border">
-              <h3 className="text-2xl font-semibold mb-4">Territory Management</h3>
+              <h3 className="text-2xl font-semibold mb-4">
+                Territory Management
+              </h3>
               <p className="text-muted-foreground mb-4">
-                Using advanced mapping technology, we track animal territories and pack dynamics 
-                across campus. This helps us optimize feeding routes and identify areas needing 
-                attention.
+                Using advanced mapping technology, we track animal territories
+                and pack dynamics across campus. This helps us optimize feeding
+                routes and identify areas needing attention.
               </p>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
@@ -242,10 +252,13 @@ export default function AboutPage() {
             </div>
 
             <div className="bg-gradient-to-br from-primary/5 to-background rounded-2xl p-8 border border-border">
-              <h3 className="text-2xl font-semibold mb-4">Community Awareness</h3>
+              <h3 className="text-2xl font-semibold mb-4">
+                Community Awareness
+              </h3>
               <p className="text-muted-foreground mb-4">
-                We conduct awareness campaigns, workshops, and events to educate the campus 
-                community about responsible animal interaction and the importance of animal welfare.
+                We conduct awareness campaigns, workshops, and events to educate
+                the campus community about responsible animal interaction and
+                the importance of animal welfare.
               </p>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
@@ -273,7 +286,8 @@ export default function AboutPage() {
             Join Our Mission
           </h2>
           <p className="text-xl text-muted-foreground">
-            Be part of something meaningful. Help us create a better world for campus animals.
+            Be part of something meaningful. Help us create a better world for
+            campus animals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg">

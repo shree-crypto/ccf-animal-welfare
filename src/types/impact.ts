@@ -1,6 +1,6 @@
 /**
  * Impact Dashboard Types
- * 
+ *
  * Type definitions for the Live Impact Dashboard feature
  * Requirements: 3.1, 3.2, 3.3, 3.4
  */
@@ -54,7 +54,8 @@ export interface CreateImpactMetricsInput {
   successfulAdoptions: MetricValue;
 }
 
-export interface UpdateImpactMetricsInput extends Partial<CreateImpactMetricsInput> {
+export interface UpdateImpactMetricsInput
+  extends Partial<CreateImpactMetricsInput> {
   lastUpdated?: Date;
 }
 

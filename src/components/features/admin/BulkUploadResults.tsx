@@ -10,7 +10,11 @@ interface BulkUploadResultsProps {
   errors: string[];
 }
 
-export function BulkUploadResults({ success, failed, errors }: BulkUploadResultsProps) {
+export function BulkUploadResults({
+  success,
+  failed,
+  errors,
+}: BulkUploadResultsProps) {
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
@@ -25,7 +29,7 @@ export function BulkUploadResults({ success, failed, errors }: BulkUploadResults
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">

@@ -50,7 +50,9 @@ export const LoginForm = forwardRef<LoginFormRef, LoginFormProps>(
         await login(data.email, data.password);
         onSuccess?.();
       } catch (err: any) {
-        setError(err.message || 'Failed to login. Please check your credentials.');
+        setError(
+          err.message || 'Failed to login. Please check your credentials.'
+        );
       } finally {
         setIsLoading(false);
       }
@@ -107,7 +109,9 @@ export const LoginForm = forwardRef<LoginFormRef, LoginFormProps>(
                 disabled={isLoading}
               />
               {errors.password && (
-                <p className="text-sm text-red-600">{errors.password.message}</p>
+                <p className="text-sm text-red-600">
+                  {errors.password.message}
+                </p>
               )}
             </div>
           </CardContent>

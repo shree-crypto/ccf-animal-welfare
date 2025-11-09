@@ -45,8 +45,10 @@ export const uploadFile = async ({
 
 // Get file URL
 export const getFileUrl = (bucketId: string, fileId: string): string => {
-  const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT || 'http://localhost/v1';
-  const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || 'ccf-animal-welfare';
+  const endpoint =
+    process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT || 'http://localhost/v1';
+  const projectId =
+    process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || 'ccf-animal-welfare';
   return `${endpoint}/storage/buckets/${bucketId}/files/${fileId}/view?project=${projectId}`;
 };
 
@@ -58,20 +60,25 @@ export const getFilePreviewUrl = (
   height?: number,
   quality?: number
 ): string => {
-  const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT || 'http://localhost/v1';
-  const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || 'ccf-animal-welfare';
-  
+  const endpoint =
+    process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT || 'http://localhost/v1';
+  const projectId =
+    process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || 'ccf-animal-welfare';
+
   let url = `${endpoint}/storage/buckets/${bucketId}/files/${fileId}/preview?project=${projectId}`;
-  
+
   if (width) url += `&width=${width}`;
   if (height) url += `&height=${height}`;
   if (quality) url += `&quality=${quality}`;
-  
+
   return url;
 };
 
 // Delete a file
-export const deleteFile = async (bucketId: string, fileId: string): Promise<void> => {
+export const deleteFile = async (
+  bucketId: string,
+  fileId: string
+): Promise<void> => {
   await storage.deleteFile(bucketId, fileId);
 };
 
@@ -130,7 +137,10 @@ export const isValidDocumentFile = (file: File): boolean => {
 };
 
 // Validate file size (in bytes)
-export const isValidFileSize = (file: File, maxSizeMB: number = 10): boolean => {
+export const isValidFileSize = (
+  file: File,
+  maxSizeMB: number = 10
+): boolean => {
   const maxSizeBytes = maxSizeMB * 1024 * 1024;
   return file.size <= maxSizeBytes;
 };

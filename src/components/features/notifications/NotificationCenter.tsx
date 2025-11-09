@@ -1,20 +1,32 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Bell, Check, CheckCheck, X, AlertCircle, Calendar, Activity } from 'lucide-react';
+import {
+  Bell,
+  Check,
+  CheckCheck,
+  X,
+  AlertCircle,
+  Calendar,
+  Activity,
+} from 'lucide-react';
 import { useNotifications } from '@/contexts/NotificationContext';
 import { Notification, NotificationPriority } from '@/types/notification';
 import { formatDistanceToNow } from 'date-fns';
 import { cn } from '@/lib/utils';
 
 const NotificationCenter: React.FC = () => {
-  const { notifications, unreadCount, markNotificationAsRead, markAllNotificationsAsRead } =
-    useNotifications();
+  const {
+    notifications,
+    unreadCount,
+    markNotificationAsRead,
+    markAllNotificationsAsRead,
+  } = useNotifications();
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState<'all' | 'unread'>('all');
 
   const filteredNotifications =
-    filter === 'unread' ? notifications.filter((n) => !n.read) : notifications;
+    filter === 'unread' ? notifications.filter(n => !n.read) : notifications;
 
   const getPriorityColor = (priority: NotificationPriority) => {
     switch (priority) {
@@ -75,14 +87,19 @@ const NotificationCenter: React.FC = () => {
       {isOpen && (
         <>
           {/* Backdrop */}
-          <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
+          <div
+            className="fixed inset-0 z-40"
+            onClick={() => setIsOpen(false)}
+          />
 
           {/* Panel */}
           <div className="absolute right-0 mt-2 w-96 bg-white rounded-lg shadow-xl border border-gray-200 z-50 max-h-[600px] flex flex-col">
             {/* Header */}
             <div className="p-4 border-b border-gray-200">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="text-lg font-semibold text-gray-900">Notifications</h3>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Notifications
+                </h3>
                 <button
                   onClick={() => setIsOpen(false)}
                   className="p-1 rounded-full hover:bg-gray-100 transition-colors"
@@ -138,7 +155,7 @@ const NotificationCenter: React.FC = () => {
                 </div>
               ) : (
                 <div className="divide-y divide-gray-100">
-                  {filteredNotifications.map((notification) => (
+                  {filteredNotifications.map(notification => (
                     <div
                       key={notification.id}
                       onClick={() => handleNotificationClick(notification)}
@@ -177,9 +194,12 @@ const NotificationCenter: React.FC = () => {
                             {notification.message}
                           </p>
                           <p className="text-xs text-gray-500 mt-2">
-                            {formatDistanceToNow(new Date(notification.createdAt), {
-                              addSuffix: true,
-                            })}
+                            {formatDistanceToNow(
+                              new Date(notification.createdAt),
+                              {
+                                addSuffix: true,
+                              }
+                            )}
                           </p>
                         </div>
                       </div>
@@ -187,7 +207,7 @@ const NotificationCenter: React.FC = () => {
                       {/* Mark as Read Button */}
                       {!notification.read && (
                         <button
-                          onClick={(e) => {
+                          onClick={e => {
                             e.stopPropagation();
                             markNotificationAsRead(notification.id);
                           }}

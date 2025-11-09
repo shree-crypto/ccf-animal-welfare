@@ -40,15 +40,14 @@ export function EventCard({ event }: EventCardProps) {
         {event.title}
       </h3>
 
-      <p className="text-muted-foreground mb-4">
-        {event.description}
-      </p>
+      <p className="text-muted-foreground mb-4">{event.description}</p>
 
       <div className="space-y-3 mb-6">
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Clock className="h-4 w-4" />
           <span>
-            {format(new Date(event.date), 'h:mm a')} - {format(new Date(event.endDate), 'h:mm a')}
+            {format(new Date(event.date), 'h:mm a')} -{' '}
+            {format(new Date(event.endDate), 'h:mm a')}
           </span>
         </div>
 
@@ -66,7 +65,7 @@ export function EventCard({ event }: EventCardProps) {
             <div
               className="bg-primary h-2 rounded-full transition-all"
               style={{
-                width: `${(event.volunteersRegistered / event.volunteersNeeded) * 100}%`
+                width: `${(event.volunteersRegistered / event.volunteersNeeded) * 100}%`,
               }}
             />
           </div>

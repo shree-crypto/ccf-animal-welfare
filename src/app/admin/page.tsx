@@ -13,6 +13,9 @@ import { Button } from '@/components/ui/button';
 import { ErrorBoundary } from '@/components/ui/error-boundary';
 import Link from 'next/link';
 
+// Force dynamic rendering for this page
+export const dynamic = 'force-dynamic';
+
 export default function AdminPage() {
   const { user } = useAuth();
 
@@ -29,78 +32,78 @@ export default function AdminPage() {
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
-              <CardHeader>
-                <CardTitle>User Management</CardTitle>
-                <CardDescription>
-                  Manage volunteer accounts and permissions
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button className="w-full" disabled>
-                  Coming Soon
-                </Button>
-              </CardContent>
-            </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>User Management</CardTitle>
+                  <CardDescription>
+                    Manage volunteer accounts and permissions
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button className="w-full" disabled>
+                    Coming Soon
+                  </Button>
+                </CardContent>
+              </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Animal Database</CardTitle>
-                <CardDescription>
-                  Add, edit, and manage animal profiles
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button asChild className="w-full">
-                  <Link href="/admin/animals">Manage Animals</Link>
-                </Button>
-              </CardContent>
-            </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Animal Database</CardTitle>
+                  <CardDescription>
+                    Add, edit, and manage animal profiles
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button asChild className="w-full">
+                    <Link href="/admin/animals">Manage Animals</Link>
+                  </Button>
+                </CardContent>
+              </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>System Settings</CardTitle>
-                <CardDescription>
-                  Configure system-wide settings
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button className="w-full" disabled>
-                  Coming Soon
-                </Button>
-              </CardContent>
-            </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>System Settings</CardTitle>
+                  <CardDescription>
+                    Configure system-wide settings
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button className="w-full" disabled>
+                    Coming Soon
+                  </Button>
+                </CardContent>
+              </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Reports & Analytics</CardTitle>
-                <CardDescription>
-                  View system usage and activity reports
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button className="w-full" disabled>
-                  Coming Soon
-                </Button>
-              </CardContent>
-            </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Reports & Analytics</CardTitle>
+                  <CardDescription>
+                    View system usage and activity reports
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button className="w-full" disabled>
+                    Coming Soon
+                  </Button>
+                </CardContent>
+              </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Back to Dashboard</CardTitle>
-                <CardDescription>
-                  Return to the main dashboard
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button asChild variant="outline" className="w-full">
-                  <Link href="/dashboard">Dashboard</Link>
-                </Button>
-              </CardContent>
-            </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Back to Dashboard</CardTitle>
+                  <CardDescription>
+                    Return to the main dashboard
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button asChild variant="outline" className="w-full">
+                    <Link href="/dashboard">Dashboard</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
-      </div>
       </ErrorBoundary>
     </ProtectedRoute>
   );

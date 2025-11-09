@@ -1,6 +1,6 @@
 /**
  * Theme Configuration Tests
- * 
+ *
  * Tests for theme metadata and utilities
  */
 
@@ -10,7 +10,6 @@ import {
   getThemeMetadata,
   hasThemeFeature,
   getAvailableThemes,
-  type ThemeVariant,
 } from '@/styles/themes';
 
 describe('Theme Configuration', () => {

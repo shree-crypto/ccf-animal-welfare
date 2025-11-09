@@ -15,7 +15,7 @@ describe('Animal Validation Schemas', () => {
         breed: 'Golden Retriever',
         location: {
           area: 'Main Campus',
-          coordinates: [29.8543, 77.8880] as [number, number],
+          coordinates: [29.8543, 77.888] as [number, number],
         },
         currentFeeder: 'user123',
         medicalHistory: ['record1', 'record2'],
@@ -38,7 +38,7 @@ describe('Animal Validation Schemas', () => {
         age: 5,
         location: {
           area: 'Main Campus',
-          coordinates: [29.8543, 77.8880],
+          coordinates: [29.8543, 77.888],
         },
         medicalHistory: [],
         photos: {
@@ -59,7 +59,7 @@ describe('Animal Validation Schemas', () => {
         age: -1,
         location: {
           area: 'Main Campus',
-          coordinates: [29.8543, 77.8880],
+          coordinates: [29.8543, 77.888],
         },
         medicalHistory: [],
         photos: {
@@ -80,7 +80,7 @@ describe('Animal Validation Schemas', () => {
         age: 5,
         location: {
           area: 'Main Campus',
-          coordinates: [29.8543, 77.8880],
+          coordinates: [29.8543, 77.888],
         },
         medicalHistory: [],
         photos: {
@@ -101,7 +101,7 @@ describe('Animal Validation Schemas', () => {
         age: 3,
         location: {
           area: 'Library Area',
-          coordinates: [29.8543, 77.8880] as [number, number],
+          coordinates: [29.8543, 77.888] as [number, number],
         },
         medicalHistory: [],
         photos: {

@@ -13,10 +13,10 @@ import { ThemeVariant, THEME_CONFIGS } from '@/types/theme';
 
 /**
  * ThemeSwitcherCompact Component
- * 
+ *
  * Compact icon-only theme switcher for header/navigation.
  * Shows current theme icon and opens dropdown on click.
- * 
+ *
  * Features:
  * - Icon-only display (saves space in header)
  * - Visual theme preview icons

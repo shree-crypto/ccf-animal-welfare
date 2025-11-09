@@ -11,6 +11,7 @@ The mock data is automatically used as a fallback when database operations fail 
 ### `animals.ts`
 
 Contains 12 mock animal profiles with:
+
 - Various dog and cat breeds
 - Different statuses (healthy, needs_attention, under_treatment)
 - Different locations across campus
@@ -20,6 +21,7 @@ Contains 12 mock animal profiles with:
 ### `territories.ts`
 
 Contains 6 mock territories with:
+
 - Realistic boundaries using IIT Roorkee coordinates
 - Pack sizes ranging from 2 to 12 animals
 - Assigned volunteers for testing
@@ -35,6 +37,7 @@ When adding new collections, create corresponding mock data files:
 3. Import and use in database operations as fallback
 
 Example:
+
 ```typescript
 import { mockAnimals } from '@/lib/mock-data/animals';
 
@@ -54,6 +57,7 @@ export const getAnimals = async () => {
 ## Image Sources
 
 All images are from Unsplash and are free to use:
+
 - Dog photos: Various breeds from Unsplash
 - Cat photos: Various breeds from Unsplash
 
@@ -67,10 +71,10 @@ All images are from Unsplash and are free to use:
   - Demo purposes
   - Component development
 
-
 ### `impact.ts` (Phase 2)
 
 Contains mock data for the Live Impact Dashboard:
+
 - **Current Metrics**: Realistic impact metrics with trends
   - Animals rescued: 247 total, 18 this month (↑12.5%)
   - Active volunteers: 89 total, 12 this week (↑8.3%)
@@ -81,6 +85,7 @@ Contains mock data for the Live Impact Dashboard:
 - **Historical Metrics**: 7 days of historical data
 
 **Current Status**: The Impact Dashboard uses mock data by default. To switch to real backend:
+
 1. Set up Appwrite collections (see `docs/IMPACT_DASHBOARD_SETUP.md`)
 2. Change `USE_MOCK_DATA` to `false` in `src/hooks/useImpactMetrics.ts`
 

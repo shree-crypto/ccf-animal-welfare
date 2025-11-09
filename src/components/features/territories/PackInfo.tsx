@@ -19,9 +19,11 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
     const fetchAnimals = async () => {
       setLoading(true);
       try {
-        const animalPromises = territory.animals.map((id) => getAnimalById(id));
+        const animalPromises = territory.animals.map(id => getAnimalById(id));
         const fetchedAnimals = await Promise.all(animalPromises);
-        setAnimals(fetchedAnimals.filter((a): a is AnimalProfile => a !== null));
+        setAnimals(
+          fetchedAnimals.filter((a): a is AnimalProfile => a !== null)
+        );
       } catch (error) {
         console.error('Error fetching animals:', error);
       } finally {
@@ -86,7 +88,7 @@ export function PackInfo({ territory, onClose }: PackInfoProps) {
           <div className="mb-3">
             <h4 className="text-xs font-semibold text-gray-900 mb-1">Volunteers</h4>
             <div className="space-y-1">
-              {territory.assignedVolunteers.map((volunteerId) => (
+              {territory.assignedVolunteers.map(volunteerId => (
                 <div
                   key={volunteerId}
                   className="text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded"

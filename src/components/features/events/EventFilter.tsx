@@ -20,7 +20,7 @@ export function EventFilter({ eventTypes, selectedType }: EventFilterProps) {
 
   const handleTypeChange = (type: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    
+
     if (type === 'all') {
       params.delete('type');
     } else {

@@ -3,6 +3,7 @@
 ## File Naming Conventions
 
 ### Files and Directories
+
 - **kebab-case**: Use for file and directory names
   - ✅ `animal-card.tsx`
   - ✅ `user-profile.tsx`
@@ -10,20 +11,23 @@
   - ❌ `user_profile.tsx`
 
 ### React Components
+
 - **PascalCase**: Use for component names in code
   ```typescript
-  export function AnimalCard() { }
-  export default function UserProfile() { }
+  export function AnimalCard() {}
+  export default function UserProfile() {}
   ```
 
 ### Functions and Variables
+
 - **camelCase**: Use for functions, variables, and parameters
   ```typescript
   const userName = 'John';
-  function getUserById(id: string) { }
+  function getUserById(id: string) {}
   ```
 
 ### Constants
+
 - **UPPER_SNAKE_CASE**: Use for true constants
   ```typescript
   const MAX_FILE_SIZE = 10 * 1024 * 1024;
@@ -31,15 +35,17 @@
   ```
 
 ### Types and Interfaces
+
 - **PascalCase**: Use for TypeScript types and interfaces
   ```typescript
-  interface AnimalProfile { }
+  interface AnimalProfile {}
   type UserRole = 'admin' | 'volunteer' | 'public';
   ```
 
 ## Directory Structure Conventions
 
 ### App Router Pages
+
 ```
 src/app/
 ├── page.tsx              # Home page
@@ -51,6 +57,7 @@ src/app/
 ```
 
 ### Components
+
 ```
 src/components/
 ├── features/            # Feature-specific components
@@ -66,6 +73,7 @@ src/components/
 ```
 
 ### Library Code
+
 ```
 src/lib/
 ├── db/                 # Database operations
@@ -83,6 +91,7 @@ src/lib/
 ## TypeScript Conventions
 
 ### Type Definitions
+
 - Define types in `src/types/` directory
 - One file per domain (animal, task, etc.)
 - Export all types
@@ -104,12 +113,14 @@ export interface AnimalDocument extends AnimalProfile {
 ```
 
 ### Type Imports
+
 ```typescript
 import type { AnimalProfile } from '@/types/animal';
 import { type AnimalProfile } from '@/types/animal'; // Alternative
 ```
 
 ### Strict Mode
+
 - Always use TypeScript strict mode
 - No implicit `any`
 - Proper null checks
@@ -127,6 +138,7 @@ function getAnimal(id) {
 ```
 
 ### Type Inference
+
 - Let TypeScript infer types when obvious
 - Explicitly type function returns
 - Explicitly type complex objects
@@ -148,6 +160,7 @@ const name: string = 'Max';
 ## React Conventions
 
 ### Component Structure
+
 ```typescript
 'use client'; // Only if client component
 
@@ -178,6 +191,7 @@ export function AnimalCard({ animal, onEdit }: AnimalCardProps) {
 ```
 
 ### Component Order
+
 1. Imports (React, third-party, local)
 2. Type definitions
 3. Component function
@@ -187,6 +201,7 @@ export function AnimalCard({ animal, onEdit }: AnimalCardProps) {
 7. Return JSX
 
 ### Props
+
 - Use interfaces for props
 - Destructure props in function signature
 - Use optional chaining for optional callbacks
@@ -206,6 +221,7 @@ export function MyComponent({ title, description, onSave }: Props) {
 ```
 
 ### Hooks
+
 - Custom hooks start with `use`
 - Place hooks at the top of component
 - Don't call hooks conditionally
@@ -215,25 +231,26 @@ export function MyComponent({ title, description, onSave }: Props) {
 export function MyComponent() {
   const { user } = useAuth();
   const [data, setData] = useState(null);
-  
+
   if (!user) return null;
-  
+
   return <div>{data}</div>;
 }
 
 // ❌ Bad
 export function MyComponent() {
   const { user } = useAuth();
-  
+
   if (!user) return null;
-  
+
   const [data, setData] = useState(null); // Hook called conditionally
-  
+
   return <div>{data}</div>;
 }
 ```
 
 ### Event Handlers
+
 - Prefix with `handle`
 - Use arrow functions for inline handlers
 
@@ -253,25 +270,27 @@ const handleSubmit = async (data: FormData) => {
 ## Database Conventions
 
 ### Function Naming
+
 - CRUD operations: `create`, `get`, `update`, `delete`
 - List operations: `getAnimals`, `getTasks`
 - Specific queries: `getAnimalsNeedingAttention`, `getUpcomingTasks`
 
 ```typescript
 // CRUD
-export const createAnimal = async (data) => { };
-export const getAnimalById = async (id) => { };
-export const updateAnimal = async (id, data) => { };
-export const deleteAnimal = async (id) => { };
+export const createAnimal = async data => {};
+export const getAnimalById = async id => {};
+export const updateAnimal = async (id, data) => {};
+export const deleteAnimal = async id => {};
 
 // List
-export const getAnimals = async (filters?) => { };
+export const getAnimals = async (filters?) => {};
 
 // Specific
-export const getAnimalsNeedingAttention = async () => { };
+export const getAnimalsNeedingAttention = async () => {};
 ```
 
 ### Query Building
+
 - Build queries in order of indexes
 - Use query configuration constants
 - Always paginate list queries
@@ -297,12 +316,15 @@ queries.push(Query.offset(offset));
 ```
 
 ### Return Types
+
 - Single item: Return type or null
 - List: Return object with items, total, pagination
 
 ```typescript
 // Single
-export const getAnimalById = async (id: string): Promise<AnimalProfile | null> => {
+export const getAnimalById = async (
+  id: string
+): Promise<AnimalProfile | null> => {
   // ...
 };
 
@@ -317,6 +339,7 @@ export const getAnimals = async (): Promise<{
 ```
 
 ### Error Handling
+
 - Try-catch for single items (return null)
 - Let errors bubble for create/update/delete
 - Log errors for debugging
@@ -344,6 +367,7 @@ export const createAnimal = async (data: CreateAnimalInput): Promise<AnimalProfi
 ## Validation Conventions
 
 ### Zod Schemas
+
 - One file per domain
 - Export schemas and inferred types
 - Provide clear error messages
@@ -364,6 +388,7 @@ export type AnimalProfileFormData = z.infer<typeof animalProfileSchema>;
 ```
 
 ### Validation Usage
+
 ```typescript
 // In database operations
 const validatedData = createAnimalSchema.parse(data);
@@ -381,6 +406,7 @@ const {
 ## Styling Conventions
 
 ### Tailwind CSS
+
 - Use Tailwind utility classes
 - Group related utilities
 - Use responsive prefixes
@@ -401,6 +427,7 @@ const {
 ```
 
 ### Class Name Utility
+
 - Use `cn()` for conditional classes
 - Merge Tailwind classes properly
 
@@ -416,36 +443,35 @@ import { cn } from '@/lib/utils';
 ```
 
 ### Component Variants
+
 - Use `class-variance-authority` for variants
 - Define variants in component file
 
 ```typescript
 import { cva } from 'class-variance-authority';
 
-const buttonVariants = cva(
-  'base-classes',
-  {
-    variants: {
-      variant: {
-        default: 'default-classes',
-        primary: 'primary-classes',
-      },
-      size: {
-        sm: 'small-classes',
-        lg: 'large-classes',
-      },
+const buttonVariants = cva('base-classes', {
+  variants: {
+    variant: {
+      default: 'default-classes',
+      primary: 'primary-classes',
     },
-    defaultVariants: {
-      variant: 'default',
-      size: 'sm',
+    size: {
+      sm: 'small-classes',
+      lg: 'large-classes',
     },
-  }
-);
+  },
+  defaultVariants: {
+    variant: 'default',
+    size: 'sm',
+  },
+});
 ```
 
 ## Import Conventions
 
 ### Import Order
+
 1. React imports
 2. Third-party imports
 3. Internal imports (contexts, hooks, components)
@@ -467,6 +493,7 @@ import { localHelper } from './helpers';
 ```
 
 ### Path Aliases
+
 - Use `@/` for src directory
 - Avoid relative imports for shared code
 
@@ -482,23 +509,25 @@ import { Button } from '../../../components/ui/button';
 ## Comment Conventions
 
 ### File Headers
+
 ```typescript
 /**
  * Animal Database Operations
- * 
+ *
  * Provides CRUD operations and queries for animal profiles.
  * Uses indexes for optimal query performance.
  */
 ```
 
 ### Function Comments
+
 ```typescript
 /**
  * Get animals with optional filters and pagination
- * 
+ *
  * @param filters - Optional filters for type, status, packId
  * @returns Object with animals array, total count, and pagination metadata
- * 
+ *
  * @example
  * const { animals, total } = await getAnimals({ type: 'dog', limit: 10 });
  */
@@ -508,6 +537,7 @@ export const getAnimals = async (filters?) => {
 ```
 
 ### Inline Comments
+
 - Explain why, not what
 - Comment complex logic
 - Reference indexes used
@@ -523,6 +553,7 @@ const { limit, offset } = normalizePagination(filters);
 ```
 
 ### TODO Comments
+
 ```typescript
 // TODO: Add caching for frequently accessed animals
 // FIXME: Handle edge case when packId is invalid
@@ -532,6 +563,7 @@ const { limit, offset } = normalizePagination(filters);
 ## Error Handling Conventions
 
 ### Try-Catch
+
 ```typescript
 try {
   const result = await operation();
@@ -543,6 +575,7 @@ try {
 ```
 
 ### User-Facing Errors
+
 ```typescript
 try {
   await createAnimal(data);
@@ -554,6 +587,7 @@ try {
 ```
 
 ### Validation Errors
+
 ```typescript
 try {
   const validatedData = schema.parse(data);
@@ -570,6 +604,7 @@ try {
 ## Testing Conventions
 
 ### Test File Naming
+
 - Place tests in `__tests__` directory
 - Name: `[filename].test.ts`
 
@@ -581,6 +616,7 @@ src/lib/validations/
 ```
 
 ### Test Structure
+
 ```typescript
 import { describe, it, expect } from 'vitest';
 import { animalProfileSchema } from '../animal';
@@ -594,7 +630,7 @@ describe('Animal Validation', () => {
         age: 3,
         // ...
       };
-      
+
       expect(() => animalProfileSchema.parse(data)).not.toThrow();
     });
 
@@ -604,7 +640,7 @@ describe('Animal Validation', () => {
         type: 'bird', // Invalid
         age: 3,
       };
-      
+
       expect(() => animalProfileSchema.parse(data)).toThrow();
     });
   });
@@ -614,6 +650,7 @@ describe('Animal Validation', () => {
 ## Git Conventions
 
 ### Commit Messages
+
 ```
 feat: Add animal search functionality
 fix: Correct pagination calculation
@@ -625,6 +662,7 @@ chore: Update dependencies
 ```
 
 ### Branch Naming
+
 ```
 feature/animal-search
 fix/pagination-bug
@@ -635,6 +673,7 @@ refactor/query-builder
 ## Performance Best Practices
 
 ### Memoization
+
 ```typescript
 import { useMemo, useCallback } from 'react';
 
@@ -648,6 +687,7 @@ const handleClick = useCallback(() => {
 ```
 
 ### Code Splitting
+
 ```typescript
 import dynamic from 'next/dynamic';
 
@@ -658,6 +698,7 @@ const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
 ```
 
 ### Image Optimization
+
 ```typescript
 import Image from 'next/image';
 
@@ -673,6 +714,7 @@ import Image from 'next/image';
 ## Accessibility Best Practices
 
 ### Semantic HTML
+
 ```typescript
 <nav>
   <ul>
@@ -687,6 +729,7 @@ import Image from 'next/image';
 ```
 
 ### ARIA Attributes
+
 ```typescript
 <button aria-label="Close dialog" onClick={onClose}>
   <X className="h-4 w-4" />
@@ -698,6 +741,7 @@ import Image from 'next/image';
 ```
 
 ### Keyboard Navigation
+
 ```typescript
 <div
   tabIndex={0}

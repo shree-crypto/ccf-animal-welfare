@@ -5,9 +5,11 @@ This directory contains components for managing medical records for animals in t
 ## Components
 
 ### MedicalRecordForm
+
 A comprehensive form component for creating and editing medical records.
 
 **Features:**
+
 - Record type selection (checkup, vaccination, treatment, emergency)
 - Date and time picker
 - Veterinarian information
@@ -18,21 +20,24 @@ A comprehensive form component for creating and editing medical records.
 - Form validation with Zod
 
 **Usage:**
+
 ```tsx
 import { MedicalRecordForm } from '@/components/features/medical';
 
 <MedicalRecordForm
   animalId="animal-id"
-  onSubmit={async (data) => {
+  onSubmit={async data => {
     await createMedicalRecord(data);
   }}
-/>
+/>;
 ```
 
 ### MedicalHistoryTimeline
+
 Displays a chronological timeline of all medical records for an animal.
 
 **Features:**
+
 - Visual timeline with type-specific icons and colors
 - Displays all record details (date, description, veterinarian, medications)
 - Document links with external access
@@ -40,16 +45,19 @@ Displays a chronological timeline of all medical records for an animal.
 - Responsive design
 
 **Usage:**
+
 ```tsx
 import { MedicalHistoryTimeline } from '@/components/features/medical';
 
-<MedicalHistoryTimeline animalId="animal-id" />
+<MedicalHistoryTimeline animalId="animal-id" />;
 ```
 
 ### MedicalAlertBanner
+
 Shows alerts for animals requiring follow-up medical attention.
 
 **Features:**
+
 - Fetches records with pending follow-ups
 - Color-coded urgency (overdue, today, tomorrow, upcoming)
 - Dismissible alerts
@@ -57,16 +65,19 @@ Shows alerts for animals requiring follow-up medical attention.
 - Auto-refresh capability
 
 **Usage:**
+
 ```tsx
 import { MedicalAlertBanner } from '@/components/features/medical';
 
-<MedicalAlertBanner />
+<MedicalAlertBanner />;
 ```
 
 ### FileUploadZone
+
 Drag-and-drop file upload component for medical documents.
 
 **Features:**
+
 - Drag-and-drop interface
 - Multiple file upload
 - File type validation (images, PDF, DOC, DOCX)
@@ -75,43 +86,49 @@ Drag-and-drop file upload component for medical documents.
 - Error handling
 
 **Usage:**
+
 ```tsx
 import { FileUploadZone } from '@/components/features/medical';
 
 <FileUploadZone
-  onFilesUploaded={(urls) => {
+  onFilesUploaded={urls => {
     console.log('Uploaded files:', urls);
   }}
   maxFiles={5}
-/>
+/>;
 ```
 
 ## Integration
 
 ### In Animal Detail Page
+
 ```tsx
-import { MedicalHistoryTimeline, MedicalRecordForm } from '@/components/features/medical';
+import {
+  MedicalHistoryTimeline,
+  MedicalRecordForm,
+} from '@/components/features/medical';
 import { createMedicalRecord } from '@/lib/db/medical';
 
 // In your component
 <div className="space-y-6">
   <MedicalRecordForm
     animalId={animal.id}
-    onSubmit={async (data) => {
+    onSubmit={async data => {
       await createMedicalRecord(data);
       // Refresh the timeline
     }}
   />
   <MedicalHistoryTimeline animalId={animal.id} />
-</div>
+</div>;
 ```
 
 ### In Dashboard
+
 ```tsx
 import { MedicalAlertBanner } from '@/components/features/medical';
 
 // At the top of your dashboard
-<MedicalAlertBanner />
+<MedicalAlertBanner />;
 ```
 
 ## Data Flow
@@ -132,6 +149,7 @@ import { MedicalAlertBanner } from '@/components/features/medical';
 ## File Upload
 
 Medical documents are uploaded to Appwrite Storage in the `medical-documents` bucket. Supported file types:
+
 - Images: PNG, JPG, JPEG, WEBP
 - Documents: PDF, DOC, DOCX
 
