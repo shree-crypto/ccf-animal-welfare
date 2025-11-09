@@ -55,6 +55,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/report" className="text-muted-foreground hover:text-primary transition-colors">
+                  Report a Concern
+                </Link>
+              </li>
+              <li>
                 <Link href="/donate" className="text-muted-foreground hover:text-primary transition-colors">
                   Donate
                 </Link>
