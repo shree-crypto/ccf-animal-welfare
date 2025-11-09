@@ -294,6 +294,15 @@ export default function MedicalRecordsPage() {
                                 </Button>
                               )}
                             </div>
+                            {record.animal && (
+                              <Button variant="outline" size="sm" asChild>
+                                <Link href={`/animals/${record.animal.id}`} className="flex items-center">
+                                  View Animal
+                                  <ExternalLink className="h-3 w-3 ml-1" />
+                                </Link>
+                              </Button>
+                            )}
+                          </div>
 
                             <p className="text-sm">{record.description}</p>
 

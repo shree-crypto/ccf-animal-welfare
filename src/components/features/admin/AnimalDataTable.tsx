@@ -220,8 +220,12 @@ export function AnimalDataTable({
                     <td className="px-4 py-3">{animal.currentFeeder || '-'}</td>
                     <td className="px-4 py-3">
                       <div className="flex justify-end gap-2">
-                        <Button size="sm" variant="ghost" asChild>
-                          <Link href={`/animals/${animal.id}`}>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          asChild
+                        >
+                          <Link href={`/animals/${animal.id}`} className="flex items-center">
                             <Eye className="h-4 w-4" />
                           </Link>
                         </Button>
