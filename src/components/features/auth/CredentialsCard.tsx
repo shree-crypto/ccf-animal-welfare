@@ -115,10 +115,10 @@ export function CredentialsCard({
       className={cn(
         colors.bg,
         colors.border,
-        'rounded-lg transition-all duration-300 cursor-pointer',
-        onAutoFill && 'hover:shadow-lg hover:scale-[1.02]',
+        'rounded-lg transition-all duration-200 cursor-pointer border',
+        onAutoFill && 'hover:shadow-md hover:scale-[1.01]',
         isSelected &&
-          'ring-2 ring-offset-2 ring-primary shadow-xl scale-[1.02]',
+          'ring-2 ring-offset-1 ring-primary shadow-lg scale-[1.01]',
         className
       )}
       onClick={handleCardClick}
@@ -132,49 +132,49 @@ export function CredentialsCard({
       }}
       aria-label={`${credential.title} - Click to auto-fill credentials`}
     >
-      <CardContent className="p-4">
+      <CardContent className="p-3">
         {/* Header with icon, title, and selection indicator */}
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-1.5">
             <span
-              className="text-2xl"
+              className="text-xl"
               role="img"
               aria-label={`${credential.role} icon`}
             >
               {credential.icon}
             </span>
-            <h3 className={cn('font-bold text-lg', colors.text)}>
+            <h3 className={cn('font-bold text-base', colors.text)}>
               {credential.title}
             </h3>
           </div>
           {isSelected && (
-            <div className="flex items-center gap-1 text-xs font-medium text-primary animate-pulse">
-              <Check className="h-4 w-4" />
+            <div className="flex items-center gap-1 text-[10px] font-medium text-primary animate-pulse">
+              <Check className="h-3 w-3" />
               <span>Selected</span>
             </div>
           )}
           {!isSelected && onAutoFill && (
             <MousePointerClick
-              className={cn('h-4 w-4 opacity-50', colors.text)}
+              className={cn('h-3 w-3 opacity-40', colors.text)}
             />
           )}
         </div>
 
         {/* Email field */}
-        <div className="mb-2">
+        <div className="mb-1.5">
           <div className="flex items-center justify-between gap-2">
             <div className="flex-1 min-w-0">
-              <p className={cn('text-xs font-medium mb-1', colors.description)}>
+              <p className={cn('text-[10px] font-medium mb-0.5', colors.description)}>
                 Email
               </p>
-              <p className={cn('text-sm font-mono truncate', colors.subtext)}>
+              <p className={cn('text-xs font-mono truncate', colors.subtext)}>
                 {credential.email}
               </p>
             </div>
             <Button
               variant="ghost"
               size="sm"
-              className={cn('h-8 w-8 p-0', colors.hover)}
+              className={cn('h-7 w-7 p-0', colors.hover)}
               onClick={e => {
                 e.stopPropagation();
                 copyToClipboard(credential.email, 'Email');
@@ -186,29 +186,29 @@ export function CredentialsCard({
               aria-label={`Copy ${credential.role} email`}
             >
               {copiedField === 'Email' ? (
-                <Check className="h-4 w-4" />
+                <Check className="h-3 w-3" />
               ) : (
-                <Copy className="h-4 w-4" />
+                <Copy className="h-3 w-3" />
               )}
             </Button>
           </div>
         </div>
 
         {/* Password field */}
-        <div className="mb-3">
+        <div className="mb-2">
           <div className="flex items-center justify-between gap-2">
             <div className="flex-1 min-w-0">
-              <p className={cn('text-xs font-medium mb-1', colors.description)}>
+              <p className={cn('text-[10px] font-medium mb-0.5', colors.description)}>
                 Password
               </p>
-              <p className={cn('text-sm font-mono truncate', colors.subtext)}>
+              <p className={cn('text-xs font-mono truncate', colors.subtext)}>
                 {credential.password}
               </p>
             </div>
             <Button
               variant="ghost"
               size="sm"
-              className={cn('h-8 w-8 p-0', colors.hover)}
+              className={cn('h-7 w-7 p-0', colors.hover)}
               onClick={e => {
                 e.stopPropagation();
                 copyToClipboard(credential.password, 'Password');
@@ -220,9 +220,9 @@ export function CredentialsCard({
               aria-label={`Copy ${credential.role} password`}
             >
               {copiedField === 'Password' ? (
-                <Check className="h-4 w-4" />
+                <Check className="h-3 w-3" />
               ) : (
-                <Copy className="h-4 w-4" />
+                <Copy className="h-3 w-3" />
               )}
             </Button>
           </div>
@@ -231,7 +231,7 @@ export function CredentialsCard({
         {/* Description/Permissions */}
         <p
           className={cn(
-            'text-xs mt-2 pt-2 border-t',
+            'text-[10px] mt-1.5 pt-1.5 border-t',
             colors.description,
             colors.border
           )}
@@ -240,11 +240,11 @@ export function CredentialsCard({
         </p>
 
         {/* Action buttons */}
-        <div className="grid grid-cols-2 gap-2 mt-3">
+        <div className="grid grid-cols-2 gap-1.5 mt-2">
           <Button
             variant="outline"
             size="sm"
-            className={cn('w-full', colors.border, colors.hover)}
+            className={cn('w-full h-7 text-[10px]', colors.border, colors.hover)}
             onClick={e => {
               e.stopPropagation();
               const both = `${credential.email}\n${credential.password}`;
@@ -260,7 +260,7 @@ export function CredentialsCard({
             }}
             aria-label={`Copy both ${credential.role} credentials`}
           >
-            <Copy className="h-3 w-3 mr-1" />
+            <Copy className="h-2.5 w-2.5 mr-1" />
             Copy
           </Button>
 
@@ -268,7 +268,7 @@ export function CredentialsCard({
             <Button
               size="sm"
               className={cn(
-                'w-full font-semibold',
+                'w-full h-7 text-[10px] font-semibold',
                 credential.role === 'admin' &&
                   'bg-red-600 hover:bg-red-700 text-white',
                 credential.role === 'volunteer' &&
@@ -286,7 +286,7 @@ export function CredentialsCard({
               }}
               aria-label={`Quick login as ${credential.role}`}
             >
-              <LogIn className="h-3 w-3 mr-1" />
+              <LogIn className="h-2.5 w-2.5 mr-1" />
               Login
             </Button>
           )}

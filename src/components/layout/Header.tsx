@@ -54,9 +54,9 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-14 items-center justify-between">
           {/* Logo */}
           <Link
             href="/"
@@ -68,14 +68,15 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="flex items-center gap-2">
-            <nav className="hidden md:flex items-center gap-1">
+          <div className="flex items-center gap-1">
+            <nav className="hidden md:flex items-center gap-0.5">
               {navLinks.map(link => (
                 <LinkButton
                   key={link.href}
                   href={link.href}
                   variant={isActive(link.href) ? 'default' : 'ghost'}
                   size="sm"
+                  className={isActive(link.href) ? '' : 'text-muted-foreground hover:text-foreground'}
                 >
                   {link.label}
                 </LinkButton>
@@ -83,7 +84,7 @@ export function Header() {
             </nav>
 
             {/* Auth Actions */}
-            <div className="hidden md:flex items-center gap-2 ml-2">
+            <div className="hidden md:flex items-center gap-1 ml-2 pl-2 border-l border-border/40">
               {/* Theme Switcher */}
               <ThemeSwitcherCompact />
 
@@ -96,13 +97,14 @@ export function Header() {
                   <NotificationCenter />
 
                   {/* User Info & Logout */}
-                  <div className="flex items-center gap-2 pl-2 border-l">
-                    <span className="text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2 pl-2 border-l border-border/40">
+                    <span className="text-xs text-muted-foreground truncate max-w-[100px]">
                       {user.name}
                     </span>
                     <Button
-                      variant="outline"
+                      variant="ghost"
                       size="sm"
+                      className="h-8 px-2 text-xs"
                       onClick={async () => {
                         await logout();
                         window.location.href = '/';
@@ -113,7 +115,7 @@ export function Header() {
                   </div>
                 </>
               ) : (
-                <LinkButton href="/login" size="sm">
+                <LinkButton href="/login" size="sm" className="h-8 px-3 text-xs">
                   Login
                 </LinkButton>
               )}

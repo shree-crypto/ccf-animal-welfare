@@ -103,40 +103,40 @@ function LoginContent() {
       <div
         className={cn(
           'flex items-center justify-center min-h-screen px-4 py-8',
-          isDev && 'pt-24', // Add padding when banner is visible
+          isDev && 'pt-20', // Add padding when banner is visible
           config.effects.gradients
             ? 'bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-900 dark:to-blue-900'
             : 'bg-background'
         )}
       >
         <div className="w-full max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
             {/* Credentials Section - Now more prominent */}
             {isDev && showCredentials && (
               <div
                 className={cn(
-                  'rounded-xl p-1 shadow-2xl order-2 lg:order-1',
+                  'rounded-xl p-0.5 shadow-lg order-2 lg:order-1',
                   config.effects.gradients
                     ? 'bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500'
                     : 'bg-primary'
                 )}
               >
-                <div className="bg-card rounded-lg p-6 lg:p-8 h-full">
+                <div className="bg-card rounded-lg p-5 lg:p-6 h-full">
                   {/* Prominent Header */}
-                  <div className="text-center mb-6">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 mb-4">
-                      <span className="text-3xl">🔧</span>
+                  <div className="text-center mb-5">
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 mb-3">
+                      <span className="text-2xl">🔧</span>
                     </div>
-                    <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-2">
+                    <h2 className="text-xl lg:text-2xl font-bold text-foreground mb-1.5">
                       Test Credentials
                     </h2>
-                    <p className="text-muted-foreground text-sm lg:text-base">
+                    <p className="text-muted-foreground text-xs lg:text-sm">
                       Quick access to demo accounts for testing
                     </p>
                   </div>
 
                   {/* Credentials Cards with better spacing */}
-                  <div className="space-y-4 mb-6">
+                  <div className="space-y-3 mb-5">
                     {mockCredentials.map(credential => (
                       <CredentialsCard
                         key={credential.role}
@@ -149,16 +149,16 @@ function LoginContent() {
                   </div>
 
                   {/* Enhanced Tips Section */}
-                  <div className="mt-6 pt-6 border-t border-border space-y-3">
-                    <div className="flex items-start gap-2 text-xs text-muted-foreground">
-                      <span className="text-base">💡</span>
+                  <div className="mt-5 pt-5 border-t border-border space-y-2">
+                    <div className="flex items-start gap-2 text-[11px] text-muted-foreground">
+                      <span className="text-sm">💡</span>
                       <p>
                         <strong className="text-foreground">Auto-Fill:</strong>{' '}
                         Click a card to fill the login form
                       </p>
                     </div>
-                    <div className="flex items-start gap-2 text-xs text-muted-foreground">
-                      <span className="text-base">⚡</span>
+                    <div className="flex items-start gap-2 text-[11px] text-muted-foreground">
+                      <span className="text-sm">⚡</span>
                       <p>
                         <strong className="text-foreground">
                           Quick Login:
@@ -166,8 +166,8 @@ function LoginContent() {
                         Use the login button for instant access
                       </p>
                     </div>
-                    <div className="flex items-start gap-2 text-xs text-muted-foreground">
-                      <span className="text-base">📋</span>
+                    <div className="flex items-start gap-2 text-[11px] text-muted-foreground">
+                      <span className="text-sm">📋</span>
                       <p>
                         <strong className="text-foreground">Copy:</strong> Use
                         copy buttons for individual fields

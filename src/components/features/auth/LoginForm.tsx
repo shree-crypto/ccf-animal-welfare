@@ -70,62 +70,64 @@ export const LoginForm = forwardRef<LoginFormRef, LoginFormProps>(
     }));
 
     return (
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>Login</CardTitle>
-          <CardDescription>
+      <Card className="w-full max-w-md shadow-lg">
+        <CardHeader className="space-y-1 pb-4">
+          <CardTitle className="text-xl">Login</CardTitle>
+          <CardDescription className="text-xs">
             Enter your credentials to access your account
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-3">
             {error && (
-              <div className="p-3 text-sm text-red-600 bg-red-50 rounded-md">
+              <div className="p-2.5 text-xs text-red-600 bg-red-50 dark:bg-red-950 rounded-md border border-red-200 dark:border-red-800">
                 {error}
               </div>
             )}
 
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+            <div className="space-y-1.5">
+              <Label htmlFor="email" className="text-xs">Email</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="you@example.com"
                 {...register('email')}
                 disabled={isLoading}
+                className="h-9 text-sm"
               />
               {errors.email && (
-                <p className="text-sm text-red-600">{errors.email.message}</p>
+                <p className="text-xs text-red-600">{errors.email.message}</p>
               )}
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+            <div className="space-y-1.5">
+              <Label htmlFor="password" className="text-xs">Password</Label>
               <Input
                 id="password"
                 type="password"
                 placeholder="••••••••"
                 {...register('password')}
                 disabled={isLoading}
+                className="h-9 text-sm"
               />
               {errors.password && (
-                <p className="text-sm text-red-600">
+                <p className="text-xs text-red-600">
                   {errors.password.message}
                 </p>
               )}
             </div>
           </CardContent>
-          <CardFooter className="flex flex-col space-y-4">
-            <Button type="submit" className="w-full" disabled={isLoading}>
+          <CardFooter className="flex flex-col space-y-3 pt-2">
+            <Button type="submit" className="w-full h-9 text-sm" disabled={isLoading}>
               {isLoading ? 'Logging in...' : 'Login'}
             </Button>
             {onSwitchToRegister && (
-              <p className="text-sm text-center text-gray-600">
+              <p className="text-xs text-center text-muted-foreground">
                 Don&apos;t have an account?{' '}
                 <button
                   type="button"
                   onClick={onSwitchToRegister}
-                  className="text-blue-600 hover:underline"
+                  className="text-primary hover:underline font-medium"
                 >
                   Register here
                 </button>
