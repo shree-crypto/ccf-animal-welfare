@@ -42,6 +42,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       (storedTheme === 'custom' || storedTheme === 'default')
     ) {
       setThemeState(storedTheme);
+    } else {
+      // If no stored theme, save the default to localStorage
+      localStorage.setItem(THEME_STORAGE_KEY, 'custom');
     }
     setMounted(true);
   }, []);
