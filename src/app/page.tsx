@@ -97,7 +97,7 @@ export default function Home() {
                     : ""
                 )}
               >
-                <Link href="/animals">
+                <Link href="/animals" className="flex items-center">
                   <Heart className="h-6 w-6 mr-2 fill-current" />
                   Meet Our Animals
                 </Link>
@@ -113,7 +113,7 @@ export default function Home() {
                     : ""
                 )}
               >
-                <Link href="/login">
+                <Link href="/login" className="flex items-center">
                   <Users className="h-6 w-6 mr-2" />
                   Volunteer Login
                 </Link>
@@ -359,7 +359,7 @@ export default function Home() {
                   : ""
               )}
             >
-              <Link href="/contact">
+              <Link href="/contact" className="flex items-center">
                 <Users className="h-6 w-6 mr-2" />
                 Become a Volunteer
               </Link>
@@ -375,7 +375,7 @@ export default function Home() {
                   : ""
               )}
             >
-              <Link href="/animals">
+              <Link href="/animals" className="flex items-center">
                 <PawPrint className="h-6 w-6 mr-2" />
                 Explore Animal Profiles
               </Link>
