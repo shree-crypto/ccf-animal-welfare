@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
-import { Playfair_Display, Montserrat } from 'next/font/google';
+// Temporarily disabled Google Fonts due to network restrictions in build environment
+// import { Playfair_Display, Montserrat } from 'next/font/google';
 import './globals.css';
 import 'leaflet/dist/leaflet.css';
 import { AuthProvider } from '@/contexts/AuthContext';
@@ -9,21 +10,24 @@ import { Header, Footer } from '@/components/layout';
 import { ErrorBoundary } from '@/components/ui/error-boundary';
 import { Toaster } from 'sonner';
 
+// Temporarily disabled Google Fonts due to network restrictions in build environment
 // Playfair Display for headlines - elegant, classic serif
-const playfairDisplay = Playfair_Display({
-  variable: '--font-playfair',
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-});
+// const playfairDisplay = Playfair_Display({
+//   variable: '--font-playfair',
+//   subsets: ['latin'],
+//   weight: ['400', '700'],
+//   display: 'swap',
+//   adjustFontFallback: false,
+// });
 
 // Montserrat for body text - clean, modern, friendly
-const montserrat = Montserrat({
-  variable: '--font-montserrat',
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-});
+// const montserrat = Montserrat({
+//   variable: '--font-montserrat',
+//   subsets: ['latin'],
+//   weight: ['400', '500', '600', '700'],
+//   display: 'swap',
+//   adjustFontFallback: false,
+// });
 
 export const metadata: Metadata = {
   title: {
@@ -112,9 +116,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className={`${playfairDisplay.variable} ${montserrat.variable} antialiased`}
-      >
+      <body className="antialiased">
         {/* Skip to main content link for accessibility */}
         <a
           href="#main-content"
@@ -126,10 +128,12 @@ export default function RootLayout({
           <ThemeProvider>
             <AuthProvider>
               <NotificationProvider>
-                <Header />
-                <main id="main-content">{children}</main>
-                <Footer />
-                <Toaster position="top-right" richColors />
+                <>
+                  <Header />
+                  <main id="main-content">{children}</main>
+                  <Footer />
+                  <Toaster position="top-right" richColors />
+                </>
               </NotificationProvider>
             </AuthProvider>
           </ThemeProvider>

@@ -14,7 +14,7 @@ import {
 import { TaskCard } from '@/components/features/tasks/TaskCard';
 import { TaskCalendar } from '@/components/features/tasks/TaskCalendar';
 import { QuickActions } from '@/components/features/tasks/QuickActions';
-import { CreateTaskFormData } from '@/lib/validations/task';
+import { CreateTaskFormData, CreateTaskInput } from '@/lib/validations/task';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -29,7 +29,7 @@ export default function TasksPage() {
   const [filter, setFilter] = useState<'all' | 'pending' | 'completed'>('all');
 
   // Memoize event handlers to prevent unnecessary re-renders
-  const handleCreateTask = useCallback(async (data: CreateTaskFormData) => {
+  const handleCreateTask = useCallback(async (data: CreateTaskInput) => {
     try {
       await createTask(data);
       await loadTasks();

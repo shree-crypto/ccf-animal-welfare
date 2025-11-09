@@ -18,6 +18,7 @@ Before running integration tests, ensure you have:
 
 3. **Database and Collections Set Up**
    - Run the database setup script to create collections and indexes:
+
    ```bash
    npm run dev
    # Navigate to http://localhost:3000 and follow setup instructions

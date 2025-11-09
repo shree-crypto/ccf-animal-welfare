@@ -490,6 +490,7 @@ npm test
    ```
 
 4. **Configure Nginx**
+
    ```nginx
    server {
        listen 80;

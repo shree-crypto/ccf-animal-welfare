@@ -10,7 +10,6 @@ import {
   getThemeMetadata,
   hasThemeFeature,
   getAvailableThemes,
-  type ThemeVariant,
 } from '@/styles/themes';
 
 describe('Theme Configuration', () => {

@@ -3,7 +3,7 @@
 import { useState, memo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { createTaskSchema, CreateTaskFormData } from '@/lib/validations/task';
+import { createTaskSchema, CreateTaskInput } from '@/lib/validations/task';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -34,7 +34,7 @@ import { Plus } from 'lucide-react';
 import { format } from 'date-fns';
 
 interface QuickActionsProps {
-  onCreateTask: (data: CreateTaskFormData) => Promise<void>;
+  onCreateTask: (data: CreateTaskInput) => Promise<void>;
   currentUserId: string;
 }
 
@@ -45,7 +45,7 @@ export const QuickActions = memo(function QuickActions({
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm<CreateTaskFormData>({
+  const form = useForm<CreateTaskInput>({
     resolver: zodResolver(createTaskSchema),
     defaultValues: {
       type: 'feeding',
@@ -58,7 +58,7 @@ export const QuickActions = memo(function QuickActions({
     },
   });
 
-  const onSubmit = async (data: CreateTaskFormData) => {
+  const onSubmit = async (data: CreateTaskInput) => {
     try {
       setIsSubmitting(true);
       await onCreateTask(data);

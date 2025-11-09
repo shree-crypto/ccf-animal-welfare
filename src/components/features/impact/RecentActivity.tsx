@@ -120,7 +120,7 @@ export function RecentActivity({
       </CardHeader>
       <CardContent>
         {/* Featured activity (auto-scrolling) */}
-        <div className="mb-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 p-4 transition-all duration-500">
+        <div className="mb-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-blue-50/50 dark:bg-blue-950/30 p-4 transition-all duration-500">
           <div className="flex items-start gap-3">
             <div className="mt-1">
               {getActivityIcon(activities[currentIndex].type)}

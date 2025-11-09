@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { ThemeProvider, useTheme } from '@/contexts/ThemeContext';
+import { ThemeSwitcher } from '@/components/features/theme/ThemeSwitcher';
 
 // Test component that displays theme state
 function ThemeDisplay() {

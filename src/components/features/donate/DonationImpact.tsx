@@ -17,7 +17,7 @@ export function DonationImpact() {
       {impacts.map((impact, index) => (
         <div
           key={index}
-          className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-6 border border-border text-center"
+          className="bg-primary/8 rounded-xl p-6 border border-border text-center"
         >
           <div className="text-4xl font-bold text-primary mb-2">
             {impact.amount}

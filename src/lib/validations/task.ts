@@ -23,10 +23,13 @@ export const taskSchema = z.object({
   }),
 });
 
-export const createTaskSchema = taskSchema.omit({ completedAt: true });
+export const createTaskSchema = taskSchema.omit({ completedAt: true }).extend({
+  completed: z.boolean().default(false),
+});
 
 export const updateTaskSchema = taskSchema.partial();
 
 export type TaskFormData = z.infer<typeof taskSchema>;
 export type CreateTaskFormData = z.infer<typeof createTaskSchema>;
+export type CreateTaskInput = z.input<typeof createTaskSchema>;
 export type UpdateTaskFormData = z.infer<typeof updateTaskSchema>;
