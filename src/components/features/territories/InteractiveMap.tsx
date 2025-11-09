@@ -96,13 +96,13 @@ export function InteractiveMap({
     setSelectedTerritory(null);
   };
 
-  // Get color based on pack size
+  // Get color based on pack size - more subtle colors
   const getTerritoryColor = (packSize: number): string => {
-    if (packSize === 0) return '#94a3b8'; // gray
-    if (packSize <= 3) return '#22c55e'; // green
-    if (packSize <= 6) return '#eab308'; // yellow
-    if (packSize <= 10) return '#f97316'; // orange
-    return '#ef4444'; // red
+    if (packSize === 0) return '#9ca3af'; // gray-400
+    if (packSize <= 3) return '#34d399'; // green-400
+    if (packSize <= 6) return '#fbbf24'; // yellow-400
+    if (packSize <= 10) return '#fb923c'; // orange-400
+    return '#f87171'; // red-400
   };
 
   if (!mounted) {
@@ -145,8 +145,8 @@ export function InteractiveMap({
             pathOptions={{
               color: getTerritoryColor(territory.packSize),
               fillColor: getTerritoryColor(territory.packSize),
-              fillOpacity: 0.3,
-              weight: 2,
+              fillOpacity: 0.2,
+              weight: 1.5,
             }}
             eventHandlers={{
               click: e => {
@@ -156,15 +156,15 @@ export function InteractiveMap({
               mouseover: e => {
                 const layer = e.target;
                 layer.setStyle({
-                  fillOpacity: 0.5,
-                  weight: 3,
+                  fillOpacity: 0.4,
+                  weight: 2,
                 });
               },
               mouseout: e => {
                 const layer = e.target;
                 layer.setStyle({
-                  fillOpacity: 0.3,
-                  weight: 2,
+                  fillOpacity: 0.2,
+                  weight: 1.5,
                 });
               },
             }}
