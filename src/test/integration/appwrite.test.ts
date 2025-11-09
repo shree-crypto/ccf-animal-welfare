@@ -410,7 +410,7 @@ describe('Appwrite Permission Tests', () => {
 });
 
 describe('Appwrite Query and Filter Tests', () => {
-  let testAnimalIds: string[] = [];
+  const testAnimalIds: string[] = [];
 
   beforeAll(async () => {
     // Create multiple test animals for querying

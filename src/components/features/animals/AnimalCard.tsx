@@ -18,9 +18,12 @@ export const AnimalCard = memo(function AnimalCard({
   index = 0,
 }: AnimalCardProps) {
   const statusColors = {
-    healthy: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300 dark:border-emerald-900',
-    needs_attention: 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-900',
-    under_treatment: 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950 dark:text-rose-300 dark:border-rose-900',
+    healthy:
+      'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300 dark:border-emerald-900',
+    needs_attention:
+      'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-900',
+    under_treatment:
+      'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950 dark:text-rose-300 dark:border-rose-900',
   };
 
   const statusLabels = {
@@ -79,7 +82,9 @@ export const AnimalCard = memo(function AnimalCard({
 
             {/* Status Badge Below Profile */}
             <div className="mt-3">
-              <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${statusColors[animal.status]}`}>
+              <span
+                className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${statusColors[animal.status]}`}
+              >
                 {statusLabels[animal.status]}
               </span>
             </div>
@@ -120,7 +125,9 @@ export const AnimalCard = memo(function AnimalCard({
               {animal.currentFeeder && (
                 <div className="flex items-center gap-2.5 text-gray-700 dark:text-gray-300">
                   <User className="h-4 w-4 text-gray-400 dark:text-gray-500 flex-shrink-0" />
-                  <span className="truncate">Fed by {animal.currentFeeder}</span>
+                  <span className="truncate">
+                    Fed by {animal.currentFeeder}
+                  </span>
                 </div>
               )}
             </div>

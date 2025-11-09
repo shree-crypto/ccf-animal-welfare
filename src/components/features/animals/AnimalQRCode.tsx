@@ -3,8 +3,18 @@
 import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { generateAnimalQRCode, downloadQRCode, generatePrintableQRCard } from '@/lib/utils/qrcode';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import {
+  generateAnimalQRCode,
+  downloadQRCode,
+  generatePrintableQRCard,
+} from '@/lib/utils/qrcode';
 import { QrCode, Download, Printer, Share2 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -14,8 +24,14 @@ interface AnimalQRCodeProps {
   showInline?: boolean;
 }
 
-export function AnimalQRCode({ animalId, animalName, showInline = false }: AnimalQRCodeProps) {
-  const [qrData, setQrData] = useState<{ url: string; dataUrl: string } | null>(null);
+export function AnimalQRCode({
+  animalId,
+  animalName,
+  showInline = false,
+}: AnimalQRCodeProps) {
+  const [qrData, setQrData] = useState<{ url: string; dataUrl: string } | null>(
+    null
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 

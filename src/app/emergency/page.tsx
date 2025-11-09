@@ -1,8 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { EmergencyAlertCard, NewEmergencyAlertForm } from '@/components/features/emergency/EmergencyAlertCard';
-import { EmergencyAlert, EmergencyStatus, EmergencyPriority } from '@/types/emergency';
+import {
+  EmergencyAlertCard,
+  NewEmergencyAlertForm,
+} from '@/components/features/emergency/EmergencyAlertCard';
+import {
+  EmergencyAlert,
+  EmergencyStatus,
+  EmergencyPriority,
+} from '@/types/emergency';
 import { useAuth } from '@/contexts/AuthContext';
 import { ProtectedRoute } from '@/components/features/auth/ProtectedRoute';
 import { Button } from '@/components/ui/button';
@@ -26,10 +33,11 @@ const mockAlerts: EmergencyAlert[] = [
     priority: 'critical',
     status: 'open',
     title: 'Injured Dog Near Main Campus',
-    description: 'Found a dog with a visible leg injury near the main academic building. The animal seems to be in pain and unable to walk properly.',
+    description:
+      'Found a dog with a visible leg injury near the main academic building. The animal seems to be in pain and unable to walk properly.',
     location: {
       area: 'Main Academic Building',
-      coordinates: [29.8543, 77.8880],
+      coordinates: [29.8543, 77.888],
     },
     reportedBy: 'John Doe',
     reportedAt: new Date(Date.now() - 3600000).toISOString(),
@@ -41,7 +49,8 @@ const mockAlerts: EmergencyAlert[] = [
     priority: 'high',
     status: 'in_progress',
     title: 'Aggressive Pack Behavior',
-    description: 'A pack of dogs showing aggressive behavior towards students near the hostel area.',
+    description:
+      'A pack of dogs showing aggressive behavior towards students near the hostel area.',
     location: {
       area: 'Hostel Area',
     },
@@ -56,9 +65,14 @@ const mockAlerts: EmergencyAlert[] = [
 export default function EmergencyPage() {
   const { user } = useAuth();
   const [alerts, setAlerts] = useState<EmergencyAlert[]>(mockAlerts);
-  const [filteredAlerts, setFilteredAlerts] = useState<EmergencyAlert[]>(mockAlerts);
-  const [statusFilter, setStatusFilter] = useState<EmergencyStatus | 'all'>('all');
-  const [priorityFilter, setPriorityFilter] = useState<EmergencyPriority | 'all'>('all');
+  const [filteredAlerts, setFilteredAlerts] =
+    useState<EmergencyAlert[]>(mockAlerts);
+  const [statusFilter, setStatusFilter] = useState<EmergencyStatus | 'all'>(
+    'all'
+  );
+  const [priorityFilter, setPriorityFilter] = useState<
+    EmergencyPriority | 'all'
+  >('all');
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
@@ -67,15 +81,15 @@ export default function EmergencyPage() {
 
   const filterAlerts = () => {
     let filtered = [...alerts];
-    
+
     if (statusFilter !== 'all') {
-      filtered = filtered.filter((alert) => alert.status === statusFilter);
+      filtered = filtered.filter(alert => alert.status === statusFilter);
     }
-    
+
     if (priorityFilter !== 'all') {
-      filtered = filtered.filter((alert) => alert.priority === priorityFilter);
+      filtered = filtered.filter(alert => alert.priority === priorityFilter);
     }
-    
+
     // Sort by priority and date
     filtered.sort((a, b) => {
       const priorityOrder: Record<EmergencyPriority, number> = {
@@ -84,17 +98,25 @@ export default function EmergencyPage() {
         medium: 2,
         low: 3,
       };
-      
-      const priorityDiff = priorityOrder[a.priority] - priorityOrder[b.priority];
+
+      const priorityDiff =
+        priorityOrder[a.priority] - priorityOrder[b.priority];
       if (priorityDiff !== 0) return priorityDiff;
-      
-      return new Date(b.reportedAt).getTime() - new Date(a.reportedAt).getTime();
+
+      return (
+        new Date(b.reportedAt).getTime() - new Date(a.reportedAt).getTime()
+      );
     });
-    
+
     setFilteredAlerts(filtered);
   };
 
-  const handleCreateAlert = async (alert: Omit<EmergencyAlert, 'id' | 'reportedAt' | 'status' | 'notifiedVolunteers'>) => {
+  const handleCreateAlert = async (
+    alert: Omit<
+      EmergencyAlert,
+      'id' | 'reportedAt' | 'status' | 'notifiedVolunteers'
+    >
+  ) => {
     try {
       // TODO: Replace with actual API call
       const newAlert: EmergencyAlert = {
@@ -104,10 +126,10 @@ export default function EmergencyPage() {
         status: 'open',
         notifiedVolunteers: [],
       };
-      
+
       setAlerts([newAlert, ...alerts]);
       toast.success('Emergency alert created successfully');
-      
+
       // TODO: Send notifications to nearby volunteers
       console.log('Notifying volunteers about new alert:', newAlert);
     } catch (error) {
@@ -121,12 +143,12 @@ export default function EmergencyPage() {
     try {
       // TODO: Replace with actual API call
       setAlerts(
-        alerts.map((alert) =>
+        alerts.map(alert =>
           alert.id === alertId
             ? {
                 ...alert,
                 status: 'in_progress' as EmergencyStatus,
-                respondedBy: user?.name || user?.id,
+                respondedBy: user?.name || user?.$id,
                 respondedAt: new Date().toISOString(),
               }
             : alert
@@ -143,12 +165,12 @@ export default function EmergencyPage() {
     try {
       // TODO: Replace with actual API call
       setAlerts(
-        alerts.map((alert) =>
+        alerts.map(alert =>
           alert.id === alertId
             ? {
                 ...alert,
                 status: 'resolved' as EmergencyStatus,
-                resolvedBy: user?.name || user?.id,
+                resolvedBy: user?.name || user?.$id,
                 resolvedAt: new Date().toISOString(),
                 notes,
               }
@@ -166,12 +188,12 @@ export default function EmergencyPage() {
     try {
       // TODO: Replace with actual API call
       setAlerts(
-        alerts.map((alert) =>
+        alerts.map(alert =>
           alert.id === alertId
             ? {
                 ...alert,
                 status: 'false_alarm' as EmergencyStatus,
-                resolvedBy: user?.name || user?.id,
+                resolvedBy: user?.name || user?.$id,
                 resolvedAt: new Date().toISOString(),
               }
             : alert
@@ -188,18 +210,18 @@ export default function EmergencyPage() {
     setIsRefreshing(true);
     try {
       // TODO: Replace with actual API call to fetch latest alerts
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 1000));
       toast.success('Alerts refreshed');
-    } catch (error) {
+    } catch {
       toast.error('Failed to refresh alerts');
     } finally {
       setIsRefreshing(false);
     }
   };
 
-  const openAlertCount = alerts.filter((a) => a.status === 'open').length;
+  const openAlertCount = alerts.filter(a => a.status === 'open').length;
   const criticalAlertCount = alerts.filter(
-    (a) => a.status === 'open' && a.priority === 'critical'
+    a => a.status === 'open' && a.priority === 'critical'
   ).length;
 
   return (
@@ -248,7 +270,7 @@ export default function EmergencyPage() {
           {/* Create Alert Button */}
           <div className="mb-6">
             <NewEmergencyAlertForm
-              currentUserId={user?.id || ''}
+              currentUserId={user?.$id || ''}
               onSubmit={handleCreateAlert}
             />
           </div>
@@ -260,7 +282,7 @@ export default function EmergencyPage() {
                 <Filter className="h-5 w-5 text-gray-500" />
                 <span className="font-medium">Filters</span>
               </div>
-              
+
               <div className="flex flex-wrap gap-3">
                 <div className="flex items-center gap-2">
                   <label className="text-sm text-gray-600 dark:text-gray-400">
@@ -268,7 +290,9 @@ export default function EmergencyPage() {
                   </label>
                   <Select
                     value={statusFilter}
-                    onValueChange={(value) => setStatusFilter(value as EmergencyStatus | 'all')}
+                    onValueChange={value =>
+                      setStatusFilter(value as EmergencyStatus | 'all')
+                    }
                   >
                     <SelectTrigger className="w-[140px]">
                       <SelectValue />
@@ -289,7 +313,9 @@ export default function EmergencyPage() {
                   </label>
                   <Select
                     value={priorityFilter}
-                    onValueChange={(value) => setPriorityFilter(value as EmergencyPriority | 'all')}
+                    onValueChange={value =>
+                      setPriorityFilter(value as EmergencyPriority | 'all')
+                    }
                   >
                     <SelectTrigger className="w-[140px]">
                       <SelectValue />
@@ -310,7 +336,9 @@ export default function EmergencyPage() {
                   onClick={handleRefresh}
                   disabled={isRefreshing}
                 >
-                  <RefreshCw className={`h-4 w-4 mr-1 ${isRefreshing ? 'animate-spin' : ''}`} />
+                  <RefreshCw
+                    className={`h-4 w-4 mr-1 ${isRefreshing ? 'animate-spin' : ''}`}
+                  />
                   Refresh
                 </Button>
               </div>
@@ -326,7 +354,7 @@ export default function EmergencyPage() {
                 </p>
               </Card>
             ) : (
-              filteredAlerts.map((alert) => (
+              filteredAlerts.map(alert => (
                 <EmergencyAlertCard
                   key={alert.id}
                   alert={alert}

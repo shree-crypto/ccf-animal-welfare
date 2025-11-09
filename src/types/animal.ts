@@ -2,8 +2,19 @@ import { Models } from 'appwrite';
 
 export type AnimalType = 'dog' | 'cat';
 export type AnimalStatus = 'healthy' | 'needs_attention' | 'under_treatment';
-export type TemperamentLevel = 'very_friendly' | 'friendly' | 'neutral' | 'shy' | 'fearful' | 'aggressive';
-export type EnergyLevel = 'very_high' | 'high' | 'moderate' | 'low' | 'very_low';
+export type TemperamentLevel =
+  | 'very_friendly'
+  | 'friendly'
+  | 'neutral'
+  | 'shy'
+  | 'fearful'
+  | 'aggressive';
+export type EnergyLevel =
+  | 'very_high'
+  | 'high'
+  | 'moderate'
+  | 'low'
+  | 'very_low';
 
 export interface AnimalLocation {
   area: string;

@@ -1,6 +1,6 @@
 import { Models } from 'appwrite';
 
-export type EmergencyType = 
+export type EmergencyType =
   | 'injured_animal'
   | 'aggressive_behavior'
   | 'lost_animal'
@@ -10,7 +10,11 @@ export type EmergencyType =
   | 'other';
 
 export type EmergencyPriority = 'critical' | 'high' | 'medium' | 'low';
-export type EmergencyStatus = 'open' | 'in_progress' | 'resolved' | 'false_alarm';
+export type EmergencyStatus =
+  | 'open'
+  | 'in_progress'
+  | 'resolved'
+  | 'false_alarm';
 
 export interface EmergencyAlert {
   id: string;
@@ -54,13 +58,17 @@ export interface CommunityReport {
 }
 
 // Appwrite document types
-export interface EmergencyAlertDocument extends Models.Document, Omit<EmergencyAlert, 'id'> {
+export interface EmergencyAlertDocument
+  extends Models.Document,
+    Omit<EmergencyAlert, 'id'> {
   $id: string;
   $createdAt: string;
   $updatedAt: string;
 }
 
-export interface CommunityReportDocument extends Models.Document, Omit<CommunityReport, 'id' | 'createdAt' | 'updatedAt'> {
+export interface CommunityReportDocument
+  extends Models.Document,
+    Omit<CommunityReport, 'id' | 'createdAt' | 'updatedAt'> {
   $id: string;
   $createdAt: string;
   $updatedAt: string;

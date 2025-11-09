@@ -49,7 +49,7 @@ export function CommunityReportForm({ onSubmit }: CommunityReportFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.location || !formData.description) {
       toast.error('Please fill in all required fields');
       return;
@@ -61,7 +61,7 @@ export function CommunityReportForm({ onSubmit }: CommunityReportFormProps) {
         ...formData,
         photos: photos.length > 0 ? photos : undefined,
       });
-      
+
       // Reset form
       setFormData({
         reportType: 'sighting',
@@ -98,7 +98,9 @@ export function CommunityReportForm({ onSubmit }: CommunityReportFormProps) {
           <Label htmlFor="reportType">Report Type *</Label>
           <Select
             value={formData.reportType}
-            onValueChange={(value) => setFormData({ ...formData, reportType: value })}
+            onValueChange={value =>
+              setFormData({ ...formData, reportType: value })
+            }
           >
             <SelectTrigger id="reportType">
               <SelectValue />
@@ -113,14 +115,18 @@ export function CommunityReportForm({ onSubmit }: CommunityReportFormProps) {
           </Select>
         </div>
 
-        {(formData.reportType === 'sighting' || formData.reportType === 'injured' || formData.reportType === 'lost') && (
+        {(formData.reportType === 'sighting' ||
+          formData.reportType === 'injured' ||
+          formData.reportType === 'lost') && (
           <div>
             <Label htmlFor="animalDescription">Animal Description</Label>
             <Textarea
               id="animalDescription"
               placeholder="Describe the animal (type, color, size, distinguishing features)..."
               value={formData.animalDescription}
-              onChange={(e) => setFormData({ ...formData, animalDescription: e.target.value })}
+              onChange={e =>
+                setFormData({ ...formData, animalDescription: e.target.value })
+              }
               rows={2}
             />
           </div>
@@ -135,12 +141,15 @@ export function CommunityReportForm({ onSubmit }: CommunityReportFormProps) {
               required
               placeholder="Where did you see the animal or notice the issue?"
               value={formData.location}
-              onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+              onChange={e =>
+                setFormData({ ...formData, location: e.target.value })
+              }
               className="pl-10"
             />
           </div>
           <p className="text-xs text-gray-500 mt-1">
-            Be as specific as possible (e.g., &quot;Near LHC, beside the fountain&quot;)
+            Be as specific as possible (e.g., &quot;Near LHC, beside the
+            fountain&quot;)
           </p>
         </div>
 
@@ -151,7 +160,9 @@ export function CommunityReportForm({ onSubmit }: CommunityReportFormProps) {
             required
             placeholder="Provide detailed information about your observation or concern..."
             value={formData.description}
-            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+            onChange={e =>
+              setFormData({ ...formData, description: e.target.value })
+            }
             rows={4}
           />
         </div>
@@ -185,7 +196,7 @@ export function CommunityReportForm({ onSubmit }: CommunityReportFormProps) {
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
             Providing your contact information helps us follow up if needed
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="reporterName">Name</Label>
@@ -193,7 +204,9 @@ export function CommunityReportForm({ onSubmit }: CommunityReportFormProps) {
                 id="reporterName"
                 placeholder="Your name"
                 value={formData.reporterName}
-                onChange={(e) => setFormData({ ...formData, reporterName: e.target.value })}
+                onChange={e =>
+                  setFormData({ ...formData, reporterName: e.target.value })
+                }
               />
             </div>
 
@@ -203,7 +216,9 @@ export function CommunityReportForm({ onSubmit }: CommunityReportFormProps) {
                 id="reporterContact"
                 placeholder="Your email or phone number"
                 value={formData.reporterContact}
-                onChange={(e) => setFormData({ ...formData, reporterContact: e.target.value })}
+                onChange={e =>
+                  setFormData({ ...formData, reporterContact: e.target.value })
+                }
               />
             </div>
           </div>
@@ -217,7 +232,8 @@ export function CommunityReportForm({ onSubmit }: CommunityReportFormProps) {
         </div>
 
         <p className="text-xs text-gray-500 text-center">
-          For emergencies, please contact CCF directly or use the Emergency Alert feature
+          For emergencies, please contact CCF directly or use the Emergency
+          Alert feature
         </p>
       </form>
     </Card>

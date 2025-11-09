@@ -1,14 +1,14 @@
-import * as React from "react"
-import Link from "next/link"
-import { type VariantProps } from "class-variance-authority"
+import * as React from 'react';
+import Link from 'next/link';
+import { type VariantProps } from 'class-variance-authority';
 
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "./button"
+import { cn } from '@/lib/utils';
+import { buttonVariants } from './button';
 
 export interface LinkButtonProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement>,
     VariantProps<typeof buttonVariants> {
-  href: string
+  href: string;
 }
 
 const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
@@ -20,9 +20,9 @@ const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
         ref={ref}
         {...props}
       />
-    )
+    );
   }
-)
-LinkButton.displayName = "LinkButton"
+);
+LinkButton.displayName = 'LinkButton';
 
-export { LinkButton }
+export { LinkButton };

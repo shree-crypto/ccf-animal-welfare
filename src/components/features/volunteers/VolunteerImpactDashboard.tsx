@@ -4,7 +4,11 @@ import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { VolunteerStats, Badge as BadgeType, BadgeType as BadgeTypeEnum } from '@/types/volunteer';
+import {
+  VolunteerStats,
+  Badge as BadgeType,
+  BadgeType as BadgeTypeEnum,
+} from '@/types/volunteer';
 import { Clock, Award, CheckCircle, Heart, Star, Trophy } from 'lucide-react';
 import { ReactElement } from 'react';
 
@@ -13,7 +17,10 @@ interface VolunteerImpactDashboardProps {
   stats: VolunteerStats;
 }
 
-const badgeConfig: Record<BadgeTypeEnum, { name: string; description: string; icon: ReactElement; color: string }> = {
+const badgeConfig: Record<
+  BadgeTypeEnum,
+  { name: string; description: string; icon: ReactElement; color: string }
+> = {
   first_task: {
     name: 'First Task',
     description: 'Completed your first task',
@@ -84,12 +91,18 @@ const milestones = [
   { hours: 200, label: '200 Hours' },
 ];
 
-export function VolunteerImpactDashboard({ volunteerId, stats }: VolunteerImpactDashboardProps) {
-  const [nextMilestone, setNextMilestone] = useState<{ hours: number; label: string } | null>(null);
+export function VolunteerImpactDashboard({
+  volunteerId,
+  stats,
+}: VolunteerImpactDashboardProps) {
+  const [nextMilestone, setNextMilestone] = useState<{
+    hours: number;
+    label: string;
+  } | null>(null);
   const [progressToNext, setProgressToNext] = useState(0);
 
   useEffect(() => {
-    const next = milestones.find((m) => m.hours > stats.totalHours);
+    const next = milestones.find(m => m.hours > stats.totalHours);
     if (next) {
       setNextMilestone(next);
       const previousMilestone = milestones[milestones.indexOf(next) - 1];
@@ -114,7 +127,9 @@ export function VolunteerImpactDashboard({ volunteerId, stats }: VolunteerImpact
             </div>
             <div>
               <p className="text-2xl font-bold">{stats.totalHours}</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Total Hours</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Total Hours
+              </p>
             </div>
           </div>
         </Card>
@@ -126,7 +141,9 @@ export function VolunteerImpactDashboard({ volunteerId, stats }: VolunteerImpact
             </div>
             <div>
               <p className="text-2xl font-bold">{stats.tasksCompleted}</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Tasks Completed</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Tasks Completed
+              </p>
             </div>
           </div>
         </Card>
@@ -138,7 +155,9 @@ export function VolunteerImpactDashboard({ volunteerId, stats }: VolunteerImpact
             </div>
             <div>
               <p className="text-2xl font-bold">{stats.animalsHelped}</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Animals Helped</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Animals Helped
+              </p>
             </div>
           </div>
         </Card>
@@ -156,7 +175,8 @@ export function VolunteerImpactDashboard({ volunteerId, stats }: VolunteerImpact
             </div>
             <Progress value={progressToNext} className="h-2" />
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              {nextMilestone.hours - stats.totalHours} hours to {nextMilestone.label}
+              {nextMilestone.hours - stats.totalHours} hours to{' '}
+              {nextMilestone.label}
             </p>
           </div>
         </Card>
@@ -170,18 +190,22 @@ export function VolunteerImpactDashboard({ volunteerId, stats }: VolunteerImpact
             Earned Badges
           </h4>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {stats.badges.map((badgeType) => {
+            {stats.badges.map(badgeType => {
               const config = badgeConfig[badgeType];
               return (
                 <div
                   key={badgeType}
                   className="p-3 border rounded-lg text-center hover:shadow-md transition-shadow"
                 >
-                  <div className={`inline-flex p-2 rounded-full ${config.color} text-white mb-2`}>
+                  <div
+                    className={`inline-flex p-2 rounded-full ${config.color} text-white mb-2`}
+                  >
                     {config.icon}
                   </div>
                   <p className="font-medium text-sm">{config.name}</p>
-                  <p className="text-xs text-gray-600 dark:text-gray-400">{config.description}</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">
+                    {config.description}
+                  </p>
                 </div>
               );
             })}
@@ -194,9 +218,11 @@ export function VolunteerImpactDashboard({ volunteerId, stats }: VolunteerImpact
         <Card className="p-4">
           <h4 className="font-semibold mb-3">Skills & Expertise</h4>
           <div className="flex flex-wrap gap-2">
-            {stats.skills.map((skill) => (
+            {stats.skills.map(skill => (
               <Badge key={skill} variant="secondary">
-                {skill.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
+                {skill
+                  .replace(/_/g, ' ')
+                  .replace(/\b\w/g, l => l.toUpperCase())}
               </Badge>
             ))}
           </div>
@@ -207,12 +233,20 @@ export function VolunteerImpactDashboard({ volunteerId, stats }: VolunteerImpact
       <Card className="p-4">
         <div className="flex justify-between items-center">
           <div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Member Since</p>
-            <p className="font-semibold">{new Date(stats.joinDate).toLocaleDateString()}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Member Since
+            </p>
+            <p className="font-semibold">
+              {new Date(stats.joinDate).toLocaleDateString()}
+            </p>
           </div>
           <div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Last Active</p>
-            <p className="font-semibold">{new Date(stats.lastActiveDate).toLocaleDateString()}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Last Active
+            </p>
+            <p className="font-semibold">
+              {new Date(stats.lastActiveDate).toLocaleDateString()}
+            </p>
           </div>
         </div>
       </Card>
