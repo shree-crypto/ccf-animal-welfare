@@ -319,32 +319,32 @@ export default function DashboardPage() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <Button asChild className="w-full justify-start" variant="outline">
-                    <Link href="/animals">
+                    <Link href="/animals" className="flex items-center">
                       <PawPrint className="h-4 w-4 mr-2" />
                       View Animals
                     </Link>
                   </Button>
                   <Button asChild className="w-full justify-start" variant="outline">
-                    <Link href="/territories">
+                    <Link href="/territories" className="flex items-center">
                       <MapPin className="h-4 w-4 mr-2" />
                       Territory Map
                     </Link>
                   </Button>
                   <Button asChild className="w-full justify-start" variant="outline">
-                    <Link href="/medical">
+                    <Link href="/medical" className="flex items-center">
                       <Heart className="h-4 w-4 mr-2" />
                       Medical Records
                     </Link>
                   </Button>
                   <Button asChild className="w-full justify-start" variant="outline">
-                    <Link href="/profile">
+                    <Link href="/profile" className="flex items-center">
                       <Settings className="h-4 w-4 mr-2" />
                       Profile Settings
                     </Link>
                   </Button>
                   {user?.role === 'admin' && (
                     <Button asChild className="w-full justify-start" variant="secondary">
-                      <Link href="/admin">
+                      <Link href="/admin" className="flex items-center">
                         <Shield className="h-4 w-4 mr-2" />
                         Admin Panel
                       </Link>

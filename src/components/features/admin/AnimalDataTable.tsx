@@ -199,7 +199,7 @@ export function AnimalDataTable({ animals, onEdit, onDelete, isLoading }: Animal
                           variant="ghost"
                           asChild
                         >
-                          <Link href={`/animals/${animal.id}`}>
+                          <Link href={`/animals/${animal.id}`} className="flex items-center">
                             <Eye className="h-4 w-4" />
                           </Link>
                         </Button>
