@@ -18,12 +18,9 @@ export const AnimalCard = memo(function AnimalCard({
   index = 0,
 }: AnimalCardProps) {
   const statusColors = {
-    healthy:
-      'bg-gradient-to-r from-emerald-200 to-teal-200 text-emerald-900 dark:from-emerald-800 dark:to-teal-800 dark:text-emerald-100 shadow-lg shadow-emerald-200/50',
-    needs_attention:
-      'bg-gradient-to-r from-amber-200 to-orange-200 text-amber-900 dark:from-amber-800 dark:to-orange-800 dark:text-amber-100 shadow-lg shadow-amber-200/50',
-    under_treatment:
-      'bg-gradient-to-r from-rose-200 to-pink-200 text-rose-900 dark:from-rose-800 dark:to-pink-800 dark:text-rose-100 shadow-lg shadow-rose-200/50',
+    healthy: 'bg-emerald-200/80 text-emerald-900 dark:bg-emerald-800/80 dark:text-emerald-100',
+    needs_attention: 'bg-amber-200/80 text-amber-900 dark:bg-amber-800/80 dark:text-amber-100',
+    under_treatment: 'bg-rose-200/80 text-rose-900 dark:bg-rose-800/80 dark:text-rose-100',
   };
 
   const statusLabels = {
