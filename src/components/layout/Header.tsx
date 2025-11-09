@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import { LinkButton } from '@/components/ui/link-button';
 import { Heart, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -67,15 +68,15 @@ export function Header() {
           {/* Desktop Navigation */}
           <div className="flex items-center gap-2">
             <nav className="hidden md:flex items-center gap-1">
-              {navLinks.map(link => (
-                <Button
+              {navLinks.map((link) => (
+                <LinkButton
                   key={link.href}
-                  asChild
+                  href={link.href}
                   variant={isActive(link.href) ? 'default' : 'ghost'}
                   size="sm"
                 >
-                  <Link href={link.href}>{link.label}</Link>
-                </Button>
+                  {link.label}
+                </LinkButton>
               ))}
             </nav>
 
@@ -110,9 +111,9 @@ export function Header() {
                   </div>
                 </>
               ) : (
-                <Button asChild size="sm">
-                  <Link href="/login">Login</Link>
-                </Button>
+                <LinkButton href="/login" size="sm">
+                  Login
+                </LinkButton>
               )}
             </div>
 
@@ -143,16 +144,16 @@ export function Header() {
             className="md:hidden border-t"
           >
             <nav className="flex flex-col p-4 gap-2">
-              {navLinks.map(link => (
-                <Button
+              {navLinks.map((link) => (
+                <LinkButton
                   key={link.href}
-                  asChild
+                  href={link.href}
                   variant={isActive(link.href) ? 'default' : 'ghost'}
                   className="justify-start"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <Link href={link.href}>{link.label}</Link>
-                </Button>
+                  {link.label}
+                </LinkButton>
               ))}
 
               {/* Mobile Auth Actions */}
@@ -191,13 +192,13 @@ export function Header() {
                     </Button>
                   </>
                 ) : (
-                  <Button
-                    asChild
+                  <LinkButton
+                    href="/login"
                     className="w-full justify-start"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <Link href="/login">Login</Link>
-                  </Button>
+                    Login
+                  </LinkButton>
                 )}
               </div>
             </nav>
