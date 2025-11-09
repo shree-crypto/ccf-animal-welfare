@@ -13,6 +13,9 @@ import { Button } from '@/components/ui/button';
 import { ErrorBoundary } from '@/components/ui/error-boundary';
 import Link from 'next/link';
 
+// Force dynamic rendering for this page
+export const dynamic = 'force-dynamic';
+
 export default function AdminPage() {
   const { user } = useAuth();
 
