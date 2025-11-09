@@ -1,13 +1,19 @@
 'use client';
 
 import { useTheme } from '@/contexts/ThemeContext';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 
 /**
  * ThemeDemo Component
- * 
+ *
  * Demonstrates the visual differences between default and custom themes.
  * Shows color palettes, gradients, and effects for each theme.
  */
@@ -28,7 +34,7 @@ export function ThemeDemo() {
         <CardHeader>
           <CardTitle>Color Palette</CardTitle>
           <CardDescription>
-            {theme === 'default' 
+            {theme === 'default'
               ? 'Neutral colors with subtle blues'
               : 'Trust and Action color palette'}
           </CardDescription>
@@ -76,9 +82,7 @@ export function ThemeDemo() {
         <Card>
           <CardHeader>
             <CardTitle>Gradient Effects</CardTitle>
-            <CardDescription>
-              Available only in custom theme
-            </CardDescription>
+            <CardDescription>Available only in custom theme</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 gap-4">
@@ -153,27 +157,31 @@ export function ThemeDemo() {
       <Card>
         <CardHeader>
           <CardTitle>Theme Features</CardTitle>
-          <CardDescription>
-            What's enabled in {config.name}
-          </CardDescription>
+          <CardDescription>What's enabled in {config.name}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span>Gradients</span>
-              <Badge variant={config.effects.gradients ? 'default' : 'secondary'}>
+              <Badge
+                variant={config.effects.gradients ? 'default' : 'secondary'}
+              >
                 {config.effects.gradients ? 'Enabled' : 'Disabled'}
               </Badge>
             </div>
             <div className="flex items-center justify-between">
               <span>Animations</span>
-              <Badge variant={config.effects.animations ? 'default' : 'secondary'}>
+              <Badge
+                variant={config.effects.animations ? 'default' : 'secondary'}
+              >
                 {config.effects.animations ? 'Enabled' : 'Disabled'}
               </Badge>
             </div>
             <div className="flex items-center justify-between">
               <span>Aceternity Effects</span>
-              <Badge variant={config.effects.aceternity ? 'default' : 'secondary'}>
+              <Badge
+                variant={config.effects.aceternity ? 'default' : 'secondary'}
+              >
                 {config.effects.aceternity ? 'Enabled' : 'Disabled'}
               </Badge>
             </div>
@@ -185,9 +193,7 @@ export function ThemeDemo() {
       <Card>
         <CardHeader>
           <CardTitle>Status Colors</CardTitle>
-          <CardDescription>
-            Consistent across both themes
-          </CardDescription>
+          <CardDescription>Consistent across both themes</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-4 gap-4">

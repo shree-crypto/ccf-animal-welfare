@@ -1,7 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Polygon, useMap, useMapEvents } from 'react-leaflet';
+import {
+  MapContainer,
+  TileLayer,
+  Polygon,
+  useMap,
+  useMapEvents,
+} from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Territory } from '@/types/territory';
@@ -13,9 +19,12 @@ import { TerritoryHeatmap } from '@/components/features/territories/TerritoryHea
 if (typeof window !== 'undefined') {
   delete (L.Icon.Default.prototype as any)._getIconUrl;
   L.Icon.Default.mergeOptions({
-    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
-    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+    iconRetinaUrl:
+      'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
+    iconUrl:
+      'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
+    shadowUrl:
+      'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
   });
 }
 
@@ -50,7 +59,7 @@ function FitBounds({ territories }: { territories: Territory[] }) {
 
   useEffect(() => {
     if (territories.length > 0) {
-      const allPoints = territories.flatMap((t) => t.boundaries);
+      const allPoints = territories.flatMap(t => t.boundaries);
       if (allPoints.length > 0) {
         const bounds = L.latLngBounds(allPoints as [number, number][]);
         map.fitBounds(bounds, { padding: [50, 50] });
@@ -63,12 +72,14 @@ function FitBounds({ territories }: { territories: Territory[] }) {
 
 export function InteractiveMap({
   territories,
-  center = [29.8543, 77.8880], // IIT Roorkee coordinates
+  center = [29.8543, 77.888], // IIT Roorkee coordinates
   zoom = 15,
   showHeatmap = false,
   onTerritoryClick,
 }: InteractiveMapProps) {
-  const [selectedTerritory, setSelectedTerritory] = useState<Territory | null>(null);
+  const [selectedTerritory, setSelectedTerritory] = useState<Territory | null>(
+    null
+  );
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -85,13 +96,13 @@ export function InteractiveMap({
     setSelectedTerritory(null);
   };
 
-  // Get color based on pack size
+  // Get color based on pack size - more subtle colors
   const getTerritoryColor = (packSize: number): string => {
-    if (packSize === 0) return '#94a3b8'; // gray
-    if (packSize <= 3) return '#22c55e'; // green
-    if (packSize <= 6) return '#eab308'; // yellow
-    if (packSize <= 10) return '#f97316'; // orange
-    return '#ef4444'; // red
+    if (packSize === 0) return '#9ca3af'; // gray-400
+    if (packSize <= 3) return '#34d399'; // green-400
+    if (packSize <= 6) return '#fbbf24'; // yellow-400
+    if (packSize <= 10) return '#fb923c'; // orange-400
+    return '#f87171'; // red-400
   };
 
   if (!mounted) {
@@ -121,36 +132,39 @@ export function InteractiveMap({
         />
 
         <FitBounds territories={territories} />
-        <MapEventHandler territories={territories} onTerritorySelect={setSelectedTerritory} />
+        <MapEventHandler
+          territories={territories}
+          onTerritorySelect={setSelectedTerritory}
+        />
 
         {/* Territory polygons */}
-        {territories.map((territory) => (
+        {territories.map(territory => (
           <Polygon
             key={territory.id}
             positions={territory.boundaries as [number, number][]}
             pathOptions={{
               color: getTerritoryColor(territory.packSize),
               fillColor: getTerritoryColor(territory.packSize),
-              fillOpacity: 0.3,
-              weight: 2,
+              fillOpacity: 0.2,
+              weight: 1.5,
             }}
             eventHandlers={{
-              click: (e) => {
+              click: e => {
                 L.DomEvent.stopPropagation(e);
                 handleTerritoryClick(territory);
               },
-              mouseover: (e) => {
+              mouseover: e => {
                 const layer = e.target;
                 layer.setStyle({
-                  fillOpacity: 0.5,
-                  weight: 3,
+                  fillOpacity: 0.4,
+                  weight: 2,
                 });
               },
-              mouseout: (e) => {
+              mouseout: e => {
                 const layer = e.target;
                 layer.setStyle({
-                  fillOpacity: 0.3,
-                  weight: 2,
+                  fillOpacity: 0.2,
+                  weight: 1.5,
                 });
               },
             }}

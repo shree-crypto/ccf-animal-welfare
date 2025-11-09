@@ -1,10 +1,10 @@
 import { Models } from 'appwrite';
 
-export type NotificationType = 
-  | 'task_reminder' 
-  | 'task_assigned' 
+export type NotificationType =
+  | 'task_reminder'
+  | 'task_assigned'
   | 'task_completed'
-  | 'medical_alert' 
+  | 'medical_alert'
   | 'medical_followup'
   | 'system_announcement'
   | 'volunteer_update';
@@ -28,7 +28,9 @@ export interface Notification {
 }
 
 // Appwrite document type
-export interface NotificationDocument extends Models.Document, Omit<Notification, 'id' | 'createdAt'> {
+export interface NotificationDocument
+  extends Models.Document,
+    Omit<Notification, 'id' | 'createdAt'> {
   $id: string;
   $createdAt: string;
   $updatedAt: string;
@@ -48,7 +50,9 @@ export interface NotificationPreferences {
   updatedAt: string;
 }
 
-export interface NotificationPreferencesDocument extends Models.Document, Omit<NotificationPreferences, 'id' | 'updatedAt'> {
+export interface NotificationPreferencesDocument
+  extends Models.Document,
+    Omit<NotificationPreferences, 'id' | 'updatedAt'> {
   $id: string;
   $createdAt: string;
   $updatedAt: string;

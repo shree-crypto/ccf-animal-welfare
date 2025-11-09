@@ -1,9 +1,9 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 /* Theme Configuration Files */
-@import "../styles/themes/default.css";
-@import "../styles/themes/custom.css";
+@import '../styles/themes/default.css';
+@import '../styles/themes/custom.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -66,29 +66,30 @@
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   body {
     @apply bg-background text-foreground font-sans;
     font-size: 16px; /* Minimum body text size for accessibility */
     line-height: 1.6;
   }
-  
+
   /* Typography System - Playfair Display for headlines */
-  h1, h2 {
+  h1,
+  h2 {
     font-family: var(--font-playfair);
     font-weight: 700;
   }
-  
+
   h1 {
     font-size: 3rem; /* 48px */
     line-height: 1.2;
   }
-  
+
   h2 {
     font-size: 2.25rem; /* 36px */
     line-height: 1.3;
   }
-  
+
   /* Montserrat for h3 and body */
   h3 {
     font-family: var(--font-montserrat);
@@ -96,44 +97,44 @@
     font-size: 1.5rem; /* 24px */
     line-height: 1.4;
   }
-  
+
   h4 {
     font-family: var(--font-montserrat);
     font-weight: 600;
     font-size: 1.25rem; /* 20px */
     line-height: 1.4;
   }
-  
+
   h5 {
     font-family: var(--font-montserrat);
     font-weight: 600;
     font-size: 1.125rem; /* 18px */
     line-height: 1.4;
   }
-  
+
   h6 {
     font-family: var(--font-montserrat);
     font-weight: 600;
     font-size: 1rem; /* 16px */
     line-height: 1.4;
   }
-  
+
   p {
     font-family: var(--font-montserrat);
     font-size: 1rem; /* 16px minimum */
     line-height: 1.6;
   }
-  
+
   /* Responsive typography */
   @media (max-width: 768px) {
     h1 {
       font-size: 2.25rem; /* 36px on mobile */
     }
-    
+
     h2 {
       font-size: 1.875rem; /* 30px on mobile */
     }
-    
+
     h3 {
       font-size: 1.25rem; /* 20px on mobile */
     }
@@ -150,11 +151,11 @@
   .font-serif {
     font-family: var(--font-playfair);
   }
-  
+
   .font-sans {
     font-family: var(--font-montserrat);
   }
-  
+
   /* Heading styles */
   .heading-1 {
     font-family: var(--font-playfair);
@@ -162,40 +163,40 @@
     font-size: 3rem;
     line-height: 1.2;
   }
-  
+
   .heading-2 {
     font-family: var(--font-playfair);
     font-weight: 700;
     font-size: 2.25rem;
     line-height: 1.3;
   }
-  
+
   .heading-3 {
     font-family: var(--font-montserrat);
     font-weight: 700;
     font-size: 1.5rem;
     line-height: 1.4;
   }
-  
+
   /* Body text styles */
   .body-large {
     font-family: var(--font-montserrat);
     font-size: 1.125rem;
     line-height: 1.6;
   }
-  
+
   .body-regular {
     font-family: var(--font-montserrat);
     font-size: 1rem;
     line-height: 1.6;
   }
-  
+
   .body-small {
     font-family: var(--font-montserrat);
     font-size: 0.875rem;
     line-height: 1.5;
   }
-  
+
   /* Button text */
   .button-text {
     font-family: var(--font-montserrat);
@@ -203,79 +204,79 @@
     font-size: 1rem;
     line-height: 1;
   }
-  
+
   /* Consistent Spacing System - Using Tailwind's spacing scale */
   /* Tight spacing for related items */
   .space-tight > * + * {
     margin-top: 0.5rem; /* 8px - space-y-2 */
   }
-  
+
   /* Normal spacing for sections */
   .space-normal > * + * {
     margin-top: 1rem; /* 16px - space-y-4 */
   }
-  
+
   /* Loose spacing for major sections */
   .space-loose > * + * {
     margin-top: 2rem; /* 32px - space-y-8 */
   }
-  
+
   /* Extra loose spacing for page sections */
   .space-extra-loose > * + * {
     margin-top: 3rem; /* 48px - space-y-12 */
   }
-  
+
   /* Container spacing */
   .container-padding {
     padding-left: 1rem; /* 16px */
     padding-right: 1rem;
   }
-  
+
   @media (min-width: 768px) {
     .container-padding {
       padding-left: 2rem; /* 32px */
       padding-right: 2rem;
     }
   }
-  
+
   @media (min-width: 1024px) {
     .container-padding {
       padding-left: 4rem; /* 64px */
       padding-right: 4rem;
     }
   }
-  
+
   /* Section spacing */
   .section-spacing {
     padding-top: 3rem; /* 48px */
     padding-bottom: 3rem;
   }
-  
+
   @media (min-width: 768px) {
     .section-spacing {
       padding-top: 4rem; /* 64px */
       padding-bottom: 4rem;
     }
   }
-  
+
   @media (min-width: 1024px) {
     .section-spacing {
       padding-top: 6rem; /* 96px */
       padding-bottom: 6rem;
     }
   }
-  
+
   /* Card spacing */
   .card-padding {
     padding: 1rem; /* 16px */
   }
-  
+
   @media (min-width: 768px) {
     .card-padding {
       padding: 1.5rem; /* 24px */
     }
   }
-  
+
   /* Touch Target Accessibility - Minimum 44x44px */
   .touch-target {
     min-width: 44px;
@@ -284,12 +285,12 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   /* Ensure adequate spacing between touch targets */
   .touch-target-spacing > * + * {
     margin-left: 0.5rem; /* 8px minimum spacing */
   }
-  
+
   /* Interactive elements should have visible focus states */
   .focus-visible-ring:focus-visible {
     outline: 2px solid currentColor;

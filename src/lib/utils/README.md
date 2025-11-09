@@ -24,14 +24,14 @@ import { themeClasses } from '@/lib/utils/theme';
 
 function MyComponent() {
   const { theme } = useTheme();
-  
+
   return (
     <div
       className={themeClasses(
         theme,
-        'gradient-bg shimmer',      // custom theme
-        'bg-primary',                // default theme
-        'px-4 py-2 rounded'          // base classes
+        'gradient-bg shimmer', // custom theme
+        'bg-primary', // default theme
+        'px-4 py-2 rounded' // base classes
       )}
     >
       Content
@@ -48,7 +48,7 @@ Build a theme-aware className string with an options object.
 const className = buildThemeClass(theme, {
   base: 'px-4 py-2 rounded',
   custom: 'gradient-bg hover:gradient-bg-hover',
-  default: 'bg-primary hover:bg-primary-dark'
+  default: 'bg-primary hover:bg-primary-dark',
 });
 ```
 
@@ -60,8 +60,8 @@ Apply theme classes to button components.
 <button
   className={themeButton(
     theme,
-    'primary',              // 'primary' | 'secondary' | 'accent'
-    'px-6 py-3 rounded-lg'  // additional classes
+    'primary', // 'primary' | 'secondary' | 'accent'
+    'px-6 py-3 rounded-lg' // additional classes
   )}
 >
   Click Me
@@ -69,6 +69,7 @@ Apply theme classes to button components.
 ```
 
 **Variants:**
+
 - `primary`: Main action buttons (blue gradient in custom, solid blue in default)
 - `secondary`: Secondary actions (green gradient in custom, solid green in default)
 - `accent`: Call-to-action buttons (orange gradient in custom, solid orange in default)
@@ -95,6 +96,7 @@ Apply theme classes to text with gradient effects.
 ```
 
 **Variants:**
+
 - `primary`: Blue gradient in custom theme, solid blue in default
 - `accent`: Orange gradient in custom theme, solid orange in default
 
@@ -106,8 +108,8 @@ Apply theme classes to background elements.
 <section
   className={themeBackground(
     theme,
-    'hero',                    // 'hero' | 'primary' | 'secondary'
-    'min-h-screen py-20'       // additional classes
+    'hero', // 'hero' | 'primary' | 'secondary'
+    'min-h-screen py-20' // additional classes
   )}
 >
   Content
@@ -115,6 +117,7 @@ Apply theme classes to background elements.
 ```
 
 **Variants:**
+
 - `hero`: Animated multi-color gradient in custom, plain background in default
 - `primary`: Blue gradient in custom, solid blue in default
 - `secondary`: Green gradient in custom, solid green in default
@@ -124,9 +127,9 @@ Apply theme classes to background elements.
 Check if Aceternity effects should be shown.
 
 ```tsx
-{shouldShowAceternity(theme) && (
-  <AnimatedGradient />
-)}
+{
+  shouldShowAceternity(theme) && <AnimatedGradient />;
+}
 ```
 
 ### `shouldUseGradients(theme)`
@@ -134,9 +137,9 @@ Check if Aceternity effects should be shown.
 Check if gradients should be used.
 
 ```tsx
-{shouldUseGradients(theme) && (
-  <div className="gradient-bg" />
-)}
+{
+  shouldUseGradients(theme) && <div className="gradient-bg" />;
+}
 ```
 
 ### `getAceternityProps(theme)`
@@ -159,9 +162,9 @@ Apply conditional theme classes based on a condition.
 const className = conditionalThemeClasses(
   theme,
   isActive,
-  'glow-primary pulse-glow',  // custom theme when active
-  'ring-2 ring-primary',       // default theme when active
-  'px-4 py-2 rounded'          // base classes
+  'glow-primary pulse-glow', // custom theme when active
+  'ring-2 ring-primary', // default theme when active
+  'px-4 py-2 rounded' // base classes
 );
 ```
 
@@ -184,8 +187,8 @@ Get theme-specific value.
 ```tsx
 const buttonText = getThemeValue(
   theme,
-  'Donate with Style',  // custom theme
-  'Donate'              // default theme
+  'Donate with Style', // custom theme
+  'Donate' // default theme
 );
 ```
 
@@ -199,7 +202,7 @@ import { themeButton } from '@/lib/utils/theme';
 
 export function DonateButton() {
   const { theme } = useTheme();
-  
+
   return (
     <button className={themeButton(theme, 'accent', 'px-8 py-4 rounded-lg')}>
       Donate Now
@@ -216,7 +219,7 @@ import { themeCard, themeText, themeButton } from '@/lib/utils/theme';
 
 export function AnimalCard({ animal }) {
   const { theme } = useTheme();
-  
+
   return (
     <div className={themeCard(theme, 'p-6 rounded-lg')}>
       <h3 className={themeText(theme, 'primary', 'text-2xl font-bold mb-2')}>
@@ -240,7 +243,7 @@ import { AnimatedGradient } from '@/components/ui/animated-gradient';
 
 export function HeroSection() {
   const { theme } = useTheme();
-  
+
   return (
     <section className="relative min-h-screen">
       {shouldShowAceternity(theme) && (
@@ -248,7 +251,7 @@ export function HeroSection() {
           <AnimatedGradient />
         </div>
       )}
-      
+
       <div className="relative z-10">
         <h1>Hero Content</h1>
       </div>
@@ -265,17 +268,17 @@ import { buildThemeClass } from '@/lib/utils/theme';
 
 export function FeatureCard({ isHighlighted }) {
   const { theme } = useTheme();
-  
+
   const cardClass = buildThemeClass(theme, {
     base: 'p-6 rounded-xl transition-all duration-300',
-    custom: isHighlighted 
-      ? 'card-gradient glow-primary scale-105' 
+    custom: isHighlighted
+      ? 'card-gradient glow-primary scale-105'
       : 'card-gradient hover:scale-105',
     default: isHighlighted
       ? 'bg-card border-2 border-primary shadow-xl'
       : 'bg-card border border-border hover:shadow-lg',
   });
-  
+
   return (
     <div className={cardClass}>
       <h3>Feature Title</h3>
@@ -315,6 +318,7 @@ const className = cn(
 These classes are defined in `src/styles/themes/custom.css`:
 
 **Gradients:**
+
 - `gradient-bg` - Primary gradient background
 - `gradient-bg-secondary` - Secondary gradient background
 - `gradient-bg-accent` - Accent gradient background
@@ -324,13 +328,16 @@ These classes are defined in `src/styles/themes/custom.css`:
 - `gradient-border` - Gradient border
 
 **Buttons:**
+
 - `btn-gradient` - Primary gradient button
 - `btn-gradient-accent` - Accent gradient button
 
 **Cards:**
+
 - `card-gradient` - Gradient card with hover effects
 
 **Effects:**
+
 - `glow-primary` - Primary color glow effect
 - `glow-accent` - Accent color glow effect
 - `glow-success` - Success color glow effect
@@ -339,6 +346,7 @@ These classes are defined in `src/styles/themes/custom.css`:
 - `animated-gradient-bg` - Animated gradient background
 
 **Colors:**
+
 - `bg-trust-blue`, `text-trust-blue`, `border-trust-blue`
 - `bg-nature-green`, `text-nature-green`, `border-nature-green`
 - `bg-action-orange`, `text-action-orange`, `border-action-orange`
@@ -361,6 +369,7 @@ See `theme.examples.tsx` for comprehensive examples of using all theme utilities
 If you have existing components with hardcoded theme-specific styles, here's how to migrate them:
 
 ### Before:
+
 ```tsx
 <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 px-6 py-3 rounded-lg">
   Click Me
@@ -368,6 +377,7 @@ If you have existing components with hardcoded theme-specific styles, here's how
 ```
 
 ### After:
+
 ```tsx
 import { useTheme } from '@/contexts/ThemeContext';
 import { themeButton } from '@/lib/utils/theme';

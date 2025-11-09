@@ -1,6 +1,6 @@
 /**
  * ImpactDashboardWithTrends Component
- * 
+ *
  * Enhanced dashboard with historical trend visualizations
  * Requirements: 3.4
  */
@@ -21,15 +21,35 @@ interface ImpactDashboardWithTrendsProps {
   className?: string;
 }
 
-export function ImpactDashboardWithTrends({ className }: ImpactDashboardWithTrendsProps) {
+export function ImpactDashboardWithTrends({
+  className,
+}: ImpactDashboardWithTrendsProps) {
   const { metrics, activities, loading, error, refetch } = useImpactMetrics();
-  const [selectedPeriod, setSelectedPeriod] = useState<'daily' | 'weekly' | 'monthly'>('daily');
+  const [selectedPeriod, setSelectedPeriod] = useState<
+    'daily' | 'weekly' | 'monthly'
+  >('daily');
 
   // Fetch trends for each metric
-  const animalsRescuedTrend = useMetricTrend('animalsRescued', selectedPeriod, 30);
-  const volunteersActiveTrend = useMetricTrend('volunteersActive', selectedPeriod, 30);
-  const mealsProvidedTrend = useMetricTrend('mealsProvided', selectedPeriod, 30);
-  const successfulAdoptionsTrend = useMetricTrend('successfulAdoptions', selectedPeriod, 30);
+  const animalsRescuedTrend = useMetricTrend(
+    'animalsRescued',
+    selectedPeriod,
+    30
+  );
+  const volunteersActiveTrend = useMetricTrend(
+    'volunteersActive',
+    selectedPeriod,
+    30
+  );
+  const mealsProvidedTrend = useMetricTrend(
+    'mealsProvided',
+    selectedPeriod,
+    30
+  );
+  const successfulAdoptionsTrend = useMetricTrend(
+    'successfulAdoptions',
+    selectedPeriod,
+    30
+  );
 
   if (error) {
     return (
@@ -75,7 +95,10 @@ export function ImpactDashboardWithTrends({ className }: ImpactDashboardWithTren
           </div>
 
           {/* Period Selector */}
-          <Tabs value={selectedPeriod} onValueChange={(v) => setSelectedPeriod(v as any)}>
+          <Tabs
+            value={selectedPeriod}
+            onValueChange={v => setSelectedPeriod(v as any)}
+          >
             <TabsList>
               <TabsTrigger value="daily">Daily</TabsTrigger>
               <TabsTrigger value="weekly">Weekly</TabsTrigger>
@@ -87,41 +110,49 @@ export function ImpactDashboardWithTrends({ className }: ImpactDashboardWithTren
         {/* Trend Charts Grid */}
         <div className="grid gap-6 md:grid-cols-2">
           <TrendChart
-            trend={animalsRescuedTrend.trend || {
-              metricName: 'Animals Rescued',
-              period: selectedPeriod,
-              data: [],
-            }}
+            trend={
+              animalsRescuedTrend.trend || {
+                metricName: 'Animals Rescued',
+                period: selectedPeriod,
+                data: [],
+              }
+            }
             title="Animals Rescued"
             loading={animalsRescuedTrend.loading}
           />
 
           <TrendChart
-            trend={successfulAdoptionsTrend.trend || {
-              metricName: 'Successful Adoptions',
-              period: selectedPeriod,
-              data: [],
-            }}
+            trend={
+              successfulAdoptionsTrend.trend || {
+                metricName: 'Successful Adoptions',
+                period: selectedPeriod,
+                data: [],
+              }
+            }
             title="Successful Adoptions"
             loading={successfulAdoptionsTrend.loading}
           />
 
           <TrendChart
-            trend={volunteersActiveTrend.trend || {
-              metricName: 'Active Volunteers',
-              period: selectedPeriod,
-              data: [],
-            }}
+            trend={
+              volunteersActiveTrend.trend || {
+                metricName: 'Active Volunteers',
+                period: selectedPeriod,
+                data: [],
+              }
+            }
             title="Active Volunteers"
             loading={volunteersActiveTrend.loading}
           />
 
           <TrendChart
-            trend={mealsProvidedTrend.trend || {
-              metricName: 'Meals Provided',
-              period: selectedPeriod,
-              data: [],
-            }}
+            trend={
+              mealsProvidedTrend.trend || {
+                metricName: 'Meals Provided',
+                period: selectedPeriod,
+                data: [],
+              }
+            }
             title="Meals Provided"
             loading={mealsProvidedTrend.loading}
           />
@@ -143,7 +174,9 @@ export function ImpactDashboardWithTrends({ className }: ImpactDashboardWithTren
                       Rescue Rate Increasing
                     </p>
                     <p className="text-xs text-green-700 dark:text-green-300 mt-1">
-                      We've rescued {metrics.animalsRescued.percentageChange?.toFixed(1)}% more animals this period
+                      We've rescued{' '}
+                      {metrics.animalsRescued.percentageChange?.toFixed(1)}%
+                      more animals this period
                     </p>
                   </div>
                 </div>
@@ -156,7 +189,8 @@ export function ImpactDashboardWithTrends({ className }: ImpactDashboardWithTren
                       Growing Community
                     </p>
                     <p className="text-xs text-blue-700 dark:text-blue-300 mt-1">
-                      Volunteer participation is up {metrics.volunteersActive.percentageChange?.toFixed(1)}%
+                      Volunteer participation is up{' '}
+                      {metrics.volunteersActive.percentageChange?.toFixed(1)}%
                     </p>
                   </div>
                 </div>
@@ -169,7 +203,9 @@ export function ImpactDashboardWithTrends({ className }: ImpactDashboardWithTren
                       More Happy Endings
                     </p>
                     <p className="text-xs text-purple-700 dark:text-purple-300 mt-1">
-                      Adoptions increased by {metrics.successfulAdoptions.percentageChange?.toFixed(1)}%
+                      Adoptions increased by{' '}
+                      {metrics.successfulAdoptions.percentageChange?.toFixed(1)}
+                      %
                     </p>
                   </div>
                 </div>

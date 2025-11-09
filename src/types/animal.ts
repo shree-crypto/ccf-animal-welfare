@@ -46,7 +46,9 @@ export interface AnimalProfile {
 }
 
 // Appwrite document type
-export interface AnimalDocument extends Models.Document, Omit<AnimalProfile, 'id' | 'createdAt' | 'updatedAt'> {
+export interface AnimalDocument
+  extends Models.Document,
+    Omit<AnimalProfile, 'id' | 'createdAt' | 'updatedAt'> {
   $id: string;
   $createdAt: string;
   $updatedAt: string;

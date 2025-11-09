@@ -1,7 +1,7 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { useTheme } from "@/contexts/ThemeContext";
+'use client';
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface SparklesProps {
   className?: string;
@@ -11,7 +11,7 @@ interface SparklesProps {
   speed?: number;
   minSpeed?: number;
   opacity?: number;
-  direction?: "top" | "bottom" | "left" | "right";
+  direction?: 'top' | 'bottom' | 'left' | 'right';
   opacitySpeed?: number;
   minOpacity?: number;
   color?: string;
@@ -20,45 +20,47 @@ interface SparklesProps {
 
 /**
  * SparklesCore - Aceternity UI component
- * 
+ *
  * Displays animated sparkle particles in the background.
  * Only renders when custom theme is active (config.effects.aceternity === true).
- * 
+ *
  * @param props - Sparkles configuration options
  * @returns Animated sparkles or null if disabled
  */
 export const SparklesCore = (props: SparklesProps) => {
   const { config } = useTheme();
-  
+
   const {
-    className = "",
+    className = '',
     size = 1.2,
     minSize = 0.4,
     density = 50,
     speed = 1.5,
     minSpeed = 0.5,
     opacity = 1,
-    direction = "top",
+    direction = 'top',
     minOpacity = 0.1,
-    color = "#FFF",
-    background = "transparent",
+    color = '#FFF',
+    background = 'transparent',
   } = props;
 
-  const [particles, setParticles] = useState<Array<{
-    id: number;
-    x: number;
-    y: number;
-    size: number;
-    speedY: number;
-    opacity: number;
-  }>>([]);
+  const [particles, setParticles] = useState<
+    Array<{
+      id: number;
+      x: number;
+      y: number;
+      size: number;
+      speedY: number;
+      opacity: number;
+    }>
+  >([]);
 
   useEffect(() => {
     // Only generate particles if aceternity effects are enabled
     if (!config.effects.aceternity) {
       return;
     }
-    
+
     const generateParticles = () => {
       const newParticles = [];
       for (let i = 0; i < density; i++) {
@@ -75,7 +77,16 @@ export const SparklesCore = (props: SparklesProps) => {
     };
 
     generateParticles();
-  }, [config.effects.aceternity, density, size, minSize, speed, minSpeed, opacity, minOpacity]);
+  }, [
+    config.effects.aceternity,
+    density,
+    size,
+    minSize,
+    speed,
+    minSpeed,
+    opacity,
+    minOpacity,
+  ]);
 
   // Only show in custom theme
   if (!config.effects.aceternity) {
@@ -94,7 +105,7 @@ export const SparklesCore = (props: SparklesProps) => {
       }}
     >
       <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
-        {particles.map((particle) => (
+        {particles.map(particle => (
           <motion.circle
             key={particle.id}
             cx={`${particle.x}%`}
@@ -104,14 +115,15 @@ export const SparklesCore = (props: SparklesProps) => {
             initial={{ opacity: 0 }}
             animate={{
               opacity: [particle.opacity, minOpacity, particle.opacity],
-              cy: direction === "top" 
-                ? [`${particle.y}%`, `${particle.y - 20}%`] 
-                : [`${particle.y}%`, `${particle.y + 20}%`],
+              cy:
+                direction === 'top'
+                  ? [`${particle.y}%`, `${particle.y - 20}%`]
+                  : [`${particle.y}%`, `${particle.y + 20}%`],
             }}
             transition={{
               duration: particle.speedY * 2,
               repeat: Infinity,
-              ease: "linear",
+              ease: 'linear',
             }}
           />
         ))}

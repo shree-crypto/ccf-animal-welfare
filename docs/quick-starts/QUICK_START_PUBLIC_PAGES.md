@@ -5,6 +5,7 @@ This guide provides an overview of the public-facing pages that showcase CCF's m
 ## Overview
 
 The public pages provide:
+
 - Organization mission and values
 - Success stories and impact
 - Upcoming events and activities
@@ -18,6 +19,7 @@ The public pages provide:
 **Purpose:** Introduce CCF and communicate the organization's mission
 
 **Sections:**
+
 - **Hero**: Mission statement with engaging visuals
 - **Who We Are**: Detailed organization description
 - **Core Values**: 6 key values (Compassion, Community, Responsibility, Excellence, Transparency, Innovation)
@@ -25,12 +27,14 @@ The public pages provide:
 - **Call to Action**: Links to volunteer and donate
 
 **Key Features:**
+
 - Animated value cards
 - Gradient backgrounds
 - Responsive design
 - Clear information hierarchy
 
 **Best For:**
+
 - New visitors learning about CCF
 - Potential volunteers
 - Donors researching the organization
@@ -41,18 +45,21 @@ The public pages provide:
 **Purpose:** Provide contact information and volunteer recruitment
 
 **Sections:**
+
 - **Contact Information**: Email, phone, location, office hours
 - **Volunteer Recruitment**: What volunteers do, requirements, training
 - **Other Ways to Help**: Donations, spreading awareness, partnerships
 - **FAQ**: Common questions and answers
 
 **Key Features:**
+
 - Icon-based information cards
 - Highlighted volunteer section
 - Clear call-to-action buttons
 - Comprehensive FAQ
 
 **Best For:**
+
 - People wanting to get involved
 - Those with questions
 - Potential volunteers
@@ -63,12 +70,14 @@ The public pages provide:
 **Purpose:** Showcase impact through real stories
 
 **Sections:**
+
 - **Featured Stories**: 3 highlighted success stories
 - **Category Filter**: Filter by story type
 - **Story Grid**: All stories with details
 - **Impact Statistics**: Key metrics and achievements
 
 **Story Categories:**
+
 - Rescues
 - Recoveries
 - Adoptions
@@ -76,12 +85,14 @@ The public pages provide:
 - Community
 
 **Key Features:**
+
 - Category-based filtering
 - Color-coded badges
 - Engaging story cards
 - Impact metrics display
 
 **Best For:**
+
 - Demonstrating impact
 - Inspiring donations
 - Volunteer recruitment
@@ -92,6 +103,7 @@ The public pages provide:
 **Purpose:** Facilitate donations and support
 
 **Sections:**
+
 - **Why Support Matters**: Impact areas
 - **Donation Methods**: Financial and in-kind options
 - **Donation Impact**: What different amounts provide
@@ -99,18 +111,21 @@ The public pages provide:
 - **Other Ways to Help**: Non-financial support
 
 **Donation Methods:**
+
 - Bank transfer
 - UPI payment
 - Online payment gateway
 - In-kind donations (food, supplies, equipment)
 
 **Key Features:**
+
 - Clear donation options
 - Impact visualization
 - Multiple giving methods
 - Transparency messaging
 
 **Best For:**
+
 - Accepting donations
 - Showing impact of contributions
 - Building donor trust
@@ -121,12 +136,14 @@ The public pages provide:
 **Purpose:** Display upcoming events and enable registration
 
 **Sections:**
+
 - **Interactive Calendar**: Month view with event indicators
 - **Event Filters**: Filter by event type
 - **Event Cards**: Detailed event information
 - **Selected Date Panel**: Events for chosen date
 
 **Event Types:**
+
 - Feeding Drive
 - Medical Camp
 - Adoption Fair
@@ -136,6 +153,7 @@ The public pages provide:
 - Community Meetup
 
 **Key Features:**
+
 - Calendar-based interface
 - Event type filtering
 - Volunteer capacity tracking
@@ -143,6 +161,7 @@ The public pages provide:
 - Progress indicators
 
 **Best For:**
+
 - Event promotion
 - Volunteer coordination
 - Community engagement
@@ -153,18 +172,21 @@ The public pages provide:
 **Purpose:** Provide site-wide navigation and information
 
 **Sections:**
+
 - **About CCF**: Brief description
 - **Quick Links**: Main page navigation
 - **Get Involved**: Action links
 - **Contact**: Contact information
 
 **Key Features:**
+
 - Four-column layout
 - Responsive design
 - Icon-based contact info
 - Social media links (ready for integration)
 
 **Appears On:**
+
 - All pages site-wide
 - Consistent navigation
 - Always accessible
@@ -174,6 +196,7 @@ The public pages provide:
 ### Header Links
 
 All public pages are accessible from the main navigation:
+
 - Home
 - About
 - Animals (public gallery)
@@ -186,6 +209,7 @@ All public pages are accessible from the main navigation:
 ### Footer Links
 
 Quick access to:
+
 - All main pages
 - Volunteer registration
 - Donation page
@@ -197,12 +221,14 @@ Quick access to:
 ### Updating Content
 
 **For Developers:**
+
 - Content is currently hardcoded in page components
 - Located in `src/app/[page-name]/page.tsx`
 - Edit directly in component files
 - Rebuild and deploy
 
 **Future CMS Integration:**
+
 - Content can be moved to Appwrite Database
 - Create collections for stories, events, etc.
 - Build admin interface for content management
@@ -212,6 +238,7 @@ Quick access to:
 
 1. Open `src/app/stories/page.tsx`
 2. Add new story to `stories` array:
+
 ```typescript
 {
   id: 'unique-id',
@@ -222,12 +249,14 @@ Quick access to:
   description: 'Full story description...',
 }
 ```
+
 3. Save and rebuild
 
 ### Adding New Events
 
 1. Open `src/app/events/page.tsx`
 2. Add new event to `events` array:
+
 ```typescript
 {
   id: 'unique-id',
@@ -241,6 +270,7 @@ Quick access to:
   volunteersRegistered: 3,
 }
 ```
+
 3. Save and rebuild
 
 ## Design Principles
@@ -280,6 +310,7 @@ Quick access to:
 ### Meta Tags
 
 Each page includes:
+
 - Title tag
 - Meta description
 - Open Graph tags

@@ -1,7 +1,15 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Bell, Mail, Smartphone, Calendar, AlertCircle, Users, Megaphone } from 'lucide-react';
+import {
+  Bell,
+  Mail,
+  Smartphone,
+  Calendar,
+  AlertCircle,
+  Users,
+  Megaphone,
+} from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import {
   getNotificationPreferences,
@@ -13,7 +21,8 @@ import { Label } from '@/components/ui/label';
 
 const NotificationPreferencesComponent: React.FC = () => {
   const { user } = useAuth();
-  const [preferences, setPreferences] = useState<NotificationPreferences | null>(null);
+  const [preferences, setPreferences] =
+    useState<NotificationPreferences | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
@@ -37,7 +46,9 @@ const NotificationPreferencesComponent: React.FC = () => {
     }
   };
 
-  const handleToggle = async (key: keyof Omit<NotificationPreferences, 'id' | 'userId' | 'updatedAt'>) => {
+  const handleToggle = async (
+    key: keyof Omit<NotificationPreferences, 'id' | 'userId' | 'updatedAt'>
+  ) => {
     if (!user || !preferences) return;
 
     try {
@@ -59,7 +70,7 @@ const NotificationPreferencesComponent: React.FC = () => {
         <div className="animate-pulse space-y-4">
           <div className="h-6 bg-gray-200 rounded w-1/3"></div>
           <div className="space-y-3">
-            {[1, 2, 3, 4].map((i) => (
+            {[1, 2, 3, 4].map(i => (
               <div key={i} className="h-12 bg-gray-100 rounded"></div>
             ))}
           </div>
@@ -71,7 +82,9 @@ const NotificationPreferencesComponent: React.FC = () => {
   if (!preferences) {
     return (
       <div className="p-6 bg-white rounded-lg shadow-sm border border-gray-200">
-        <p className="text-gray-500">Unable to load notification preferences.</p>
+        <p className="text-gray-500">
+          Unable to load notification preferences.
+        </p>
       </div>
     );
   }
@@ -134,7 +147,7 @@ const NotificationPreferencesComponent: React.FC = () => {
       </div>
 
       <div className="space-y-4">
-        {preferenceItems.map((item) => {
+        {preferenceItems.map(item => {
           const Icon = item.icon;
           return (
             <div
@@ -145,10 +158,15 @@ const NotificationPreferencesComponent: React.FC = () => {
                 <Icon className="h-5 w-5 text-blue-600" />
               </div>
               <div className="flex-1 min-w-0">
-                <Label htmlFor={item.key} className="text-sm font-medium text-gray-900 cursor-pointer">
+                <Label
+                  htmlFor={item.key}
+                  className="text-sm font-medium text-gray-900 cursor-pointer"
+                >
                   {item.title}
                 </Label>
-                <p className="text-sm text-gray-600 mt-0.5">{item.description}</p>
+                <p className="text-sm text-gray-600 mt-0.5">
+                  {item.description}
+                </p>
               </div>
               <Checkbox
                 id={item.key}

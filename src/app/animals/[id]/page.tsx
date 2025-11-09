@@ -14,15 +14,15 @@ import { MedicalRecordFormData } from '@/lib/validations/medical';
 import { BehaviorProfile } from '@/types/animal';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { 
-  ArrowLeft, 
-  MapPin, 
-  User, 
-  Calendar, 
+import {
+  ArrowLeft,
+  MapPin,
+  User,
+  Calendar,
   Heart,
   AlertCircle,
   Loader2,
-  Plus
+  Plus,
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
@@ -43,7 +43,7 @@ export default function AnimalDetailPage() {
         setError(null);
         const id = params.id as string;
         const data = await getAnimalById(id);
-        
+
         if (!data) {
           setError('Animal not found');
         } else {
@@ -118,9 +118,12 @@ export default function AnimalDetailPage() {
   }
 
   const statusColors = {
-    healthy: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-    needs_attention: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-    under_treatment: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
+    healthy:
+      'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+    needs_attention:
+      'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
+    under_treatment:
+      'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
   };
 
   const statusLabels = {
@@ -129,17 +132,16 @@ export default function AnimalDetailPage() {
     under_treatment: 'Under Treatment',
   };
 
-  const allPhotos = [animal.photos.profile, ...animal.photos.gallery].filter(Boolean);
+  const allPhotos = [animal.photos.profile, ...animal.photos.gallery].filter(
+    Boolean
+  );
 
   return (
     <div className="min-h-screen bg-background">
       {/* Back Button */}
       <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <Button
-            variant="ghost"
-            onClick={() => router.push('/animals')}
-          >
+          <Button variant="ghost" onClick={() => router.push('/animals')}>
             <ArrowLeft className="h-4 w-4" />
             Back to Animals
           </Button>
@@ -176,7 +178,9 @@ export default function AnimalDetailPage() {
                         {animal.breed || animal.type}
                       </p>
                     </div>
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${statusColors[animal.status]}`}>
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-medium ${statusColors[animal.status]}`}
+                    >
                       {statusLabels[animal.status]}
                     </span>
                   </div>
@@ -186,14 +190,18 @@ export default function AnimalDetailPage() {
                     <Calendar className="h-5 w-5 flex-shrink-0" />
                     <div>
                       <p className="text-sm font-medium text-foreground">Age</p>
-                      <p className="text-sm">{animal.age} {animal.age === 1 ? 'year' : 'years'} old</p>
+                      <p className="text-sm">
+                        {animal.age} {animal.age === 1 ? 'year' : 'years'} old
+                      </p>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-3 text-muted-foreground">
                     <MapPin className="h-5 w-5 flex-shrink-0" />
                     <div>
-                      <p className="text-sm font-medium text-foreground">Location</p>
+                      <p className="text-sm font-medium text-foreground">
+                        Location
+                      </p>
                       <p className="text-sm">{animal.location.area}</p>
                     </div>
                   </div>
@@ -202,7 +210,9 @@ export default function AnimalDetailPage() {
                     <div className="flex items-center gap-3 text-muted-foreground">
                       <User className="h-5 w-5 flex-shrink-0" />
                       <div>
-                        <p className="text-sm font-medium text-foreground">Current Feeder</p>
+                        <p className="text-sm font-medium text-foreground">
+                          Current Feeder
+                        </p>
                         <p className="text-sm">{animal.currentFeeder}</p>
                       </div>
                     </div>
@@ -212,8 +222,12 @@ export default function AnimalDetailPage() {
                     <div className="flex items-center gap-3 text-muted-foreground">
                       <Heart className="h-5 w-5 flex-shrink-0" />
                       <div>
-                        <p className="text-sm font-medium text-foreground">Pack</p>
-                        <p className="text-sm">Member of pack {animal.packId}</p>
+                        <p className="text-sm font-medium text-foreground">
+                          Pack
+                        </p>
+                        <p className="text-sm">
+                          Member of pack {animal.packId}
+                        </p>
                       </div>
                     </div>
                   )}
@@ -253,7 +267,9 @@ export default function AnimalDetailPage() {
                 </CardHeader>
                 <CardContent className="text-sm text-muted-foreground space-y-2">
                   <p>
-                    {animal.name} is a {animal.age}-year-old {animal.breed || animal.type} currently residing in {animal.location.area}.
+                    {animal.name} is a {animal.age}-year-old{' '}
+                    {animal.breed || animal.type} currently residing in{' '}
+                    {animal.location.area}.
                   </p>
                   {animal.status === 'needs_attention' && (
                     <p className="text-yellow-600 dark:text-yellow-400 font-medium">

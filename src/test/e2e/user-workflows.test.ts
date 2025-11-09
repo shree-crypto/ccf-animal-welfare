@@ -1,14 +1,18 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { ID, Permission, Role } from 'appwrite';
 import { databases, storage } from '@/lib/appwrite';
-import { DATABASE_ID, COLLECTIONS, STORAGE_BUCKETS } from '@/lib/constants/database';
+import {
+  DATABASE_ID,
+  COLLECTIONS,
+  STORAGE_BUCKETS,
+} from '@/lib/constants/database';
 import type { AnimalProfile } from '@/types/animal';
 import type { Task } from '@/types/task';
 import type { MedicalRecord } from '@/types/medical';
 
 /**
  * End-to-End User Workflow Tests
- * 
+ *
  * Tests complete user journeys from animal browsing to task management
  * Requirements: 1.1-1.5 (Animal Browsing), 3.1-3.5 (Task Management), 6.1-6.5 (Admin Management)
  */
@@ -38,10 +42,16 @@ describe('E2E: Public User Animal Browsing Journey', () => {
         type: 'dog' as const,
         age: 3,
         breed: 'Golden Retriever',
-        location: { area: 'Main Campus', coordinates: [29.8543, 77.8880] as [number, number] },
+        location: {
+          area: 'Main Campus',
+          coordinates: [29.8543, 77.888] as [number, number],
+        },
         currentFeeder: 'Test Volunteer',
         medicalHistory: [],
-        photos: { profile: 'profile1.jpg', gallery: ['gallery1.jpg', 'gallery2.jpg'] },
+        photos: {
+          profile: 'profile1.jpg',
+          gallery: ['gallery1.jpg', 'gallery2.jpg'],
+        },
         status: 'healthy' as const,
       },
       {
@@ -49,7 +59,10 @@ describe('E2E: Public User Animal Browsing Journey', () => {
         type: 'cat' as const,
         age: 2,
         breed: 'Persian',
-        location: { area: 'Library Area', coordinates: [29.8550, 77.8890] as [number, number] },
+        location: {
+          area: 'Library Area',
+          coordinates: [29.855, 77.889] as [number, number],
+        },
         currentFeeder: 'Test Volunteer',
         medicalHistory: [],
         photos: { profile: 'profile2.jpg', gallery: ['gallery3.jpg'] },
@@ -60,7 +73,10 @@ describe('E2E: Public User Animal Browsing Journey', () => {
         type: 'dog' as const,
         age: 5,
         breed: 'Labrador',
-        location: { area: 'Sports Complex', coordinates: [29.8560, 77.8900] as [number, number] },
+        location: {
+          area: 'Sports Complex',
+          coordinates: [29.856, 77.89] as [number, number],
+        },
         currentFeeder: 'Test Volunteer',
         medicalHistory: [],
         photos: { profile: 'profile3.jpg', gallery: [] },
@@ -100,7 +116,7 @@ describe('E2E: Public User Animal Browsing Journey', () => {
     expect(response).toBeDefined();
     expect(response.documents).toBeDefined();
     expect(response.documents.length).toBeGreaterThanOrEqual(3);
-    
+
     // Verify card data structure
     const animal = response.documents[0] as unknown as AnimalProfile;
     expect(animal.name).toBeDefined();
@@ -124,11 +140,11 @@ describe('E2E: Public User Animal Browsing Journey', () => {
 
   it('should display animal card information (Req 1.3)', async () => {
     const animalId = testData.animalIds[0];
-    const animal = await databases.getDocument(
+    const animal = (await databases.getDocument(
       DATABASE_ID,
       COLLECTIONS.ANIMALS,
       animalId
-    ) as unknown as AnimalProfile;
+    )) as unknown as AnimalProfile;
 
     // Verify all required card fields
     expect(animal.name).toBe('E2E Test Dog Alpha');
@@ -146,7 +162,7 @@ describe('E2E: Public User Animal Browsing Journey', () => {
 
     const dogs = response.documents.filter((doc: any) => doc.type === 'dog');
     expect(dogs.length).toBeGreaterThanOrEqual(2);
-    
+
     dogs.forEach((dog: any) => {
       expect(dog.type).toBe('dog');
     });
@@ -160,7 +176,7 @@ describe('E2E: Public User Animal Browsing Journey', () => {
 
     const cats = response.documents.filter((doc: any) => doc.type === 'cat');
     expect(cats.length).toBeGreaterThanOrEqual(1);
-    
+
     cats.forEach((cat: any) => {
       expect(cat.type).toBe('cat');
     });
@@ -168,11 +184,11 @@ describe('E2E: Public User Animal Browsing Journey', () => {
 
   it('should load additional photos in gallery (Req 1.5)', async () => {
     const animalId = testData.animalIds[0];
-    const animal = await databases.getDocument(
+    const animal = (await databases.getDocument(
       DATABASE_ID,
       COLLECTIONS.ANIMALS,
       animalId
-    ) as unknown as AnimalProfile;
+    )) as unknown as AnimalProfile;
 
     expect(animal.photos.gallery).toBeDefined();
     expect(Array.isArray(animal.photos.gallery)).toBe(true);
@@ -203,7 +219,7 @@ describe('E2E: Volunteer Task Management Journey', () => {
         name: 'Task Test Dog',
         type: 'dog',
         age: 4,
-        location: { area: 'Test Area', coordinates: [29.8543, 77.8880] },
+        location: { area: 'Test Area', coordinates: [29.8543, 77.888] },
         medicalHistory: [],
         photos: { profile: '', gallery: [] },
         status: 'healthy',
@@ -223,7 +239,11 @@ describe('E2E: Volunteer Task Management Journey', () => {
       }
     }
     try {
-      await databases.deleteDocument(DATABASE_ID, COLLECTIONS.ANIMALS, testAnimalId);
+      await databases.deleteDocument(
+        DATABASE_ID,
+        COLLECTIONS.ANIMALS,
+        testAnimalId
+      );
     } catch (error) {
       // Ignore cleanup errors
     }
@@ -322,7 +342,7 @@ describe('E2E: Volunteer Task Management Journey', () => {
 
     expect(allTasks).toBeDefined();
     expect(allTasks.documents.length).toBeGreaterThanOrEqual(3);
-    
+
     // Verify calendar data structure
     allTasks.documents.forEach((task: any) => {
       expect(task.scheduledDate).toBeDefined();
@@ -333,7 +353,7 @@ describe('E2E: Volunteer Task Management Journey', () => {
 
   it('should track task completion status (Req 3.4)', async () => {
     const taskId = testData.taskIds[0];
-    
+
     // Mark task as completed
     const response = await databases.updateDocument(
       DATABASE_ID,
@@ -352,7 +372,7 @@ describe('E2E: Volunteer Task Management Journey', () => {
 
   it('should track volunteer assignments (Req 3.5)', async () => {
     const taskId = testData.taskIds[1];
-    
+
     // Reassign task to different volunteer
     const response = await databases.updateDocument(
       DATABASE_ID,
@@ -419,7 +439,7 @@ describe('E2E: Admin Animal Database Management Journey', () => {
       breed: 'German Shepherd',
       location: {
         area: 'Admin Test Area',
-        coordinates: [29.8543, 77.8880] as [number, number],
+        coordinates: [29.8543, 77.888] as [number, number],
       },
       currentFeeder: 'Admin User',
       medicalHistory: [],
@@ -476,7 +496,9 @@ describe('E2E: Admin Animal Database Management Journey', () => {
 
   it('should upload and associate photos with animal profile (Req 6.2)', async () => {
     // Upload profile photo
-    const profileBlob = new Blob(['profile photo content'], { type: 'image/jpeg' });
+    const profileBlob = new Blob(['profile photo content'], {
+      type: 'image/jpeg',
+    });
     const profileFile = new File([profileBlob], 'admin-dog-profile.jpg', {
       type: 'image/jpeg',
     });
@@ -513,7 +535,10 @@ describe('E2E: Admin Animal Database Management Journey', () => {
         name: 'Bulk Dog 1',
         type: 'dog' as const,
         age: 1,
-        location: { area: 'Bulk Area 1', coordinates: [29.8543, 77.8880] as [number, number] },
+        location: {
+          area: 'Bulk Area 1',
+          coordinates: [29.8543, 77.888] as [number, number],
+        },
         medicalHistory: [],
         photos: { profile: '', gallery: [] },
         status: 'healthy' as const,
@@ -522,7 +547,10 @@ describe('E2E: Admin Animal Database Management Journey', () => {
         name: 'Bulk Dog 2',
         type: 'dog' as const,
         age: 2,
-        location: { area: 'Bulk Area 2', coordinates: [29.8550, 77.8890] as [number, number] },
+        location: {
+          area: 'Bulk Area 2',
+          coordinates: [29.855, 77.889] as [number, number],
+        },
         medicalHistory: [],
         photos: { profile: '', gallery: [] },
         status: 'healthy' as const,
@@ -531,7 +559,10 @@ describe('E2E: Admin Animal Database Management Journey', () => {
         name: 'Bulk Cat 1',
         type: 'cat' as const,
         age: 1,
-        location: { area: 'Bulk Area 3', coordinates: [29.8560, 77.8900] as [number, number] },
+        location: {
+          area: 'Bulk Area 3',
+          coordinates: [29.856, 77.89] as [number, number],
+        },
         medicalHistory: [],
         photos: { profile: '', gallery: [] },
         status: 'healthy' as const,
@@ -553,7 +584,7 @@ describe('E2E: Admin Animal Database Management Journey', () => {
     }
 
     expect(createdIds.length).toBe(3);
-    
+
     // Verify all were created
     for (const id of createdIds) {
       const animal = await databases.getDocument(
@@ -568,11 +599,11 @@ describe('E2E: Admin Animal Database Management Journey', () => {
 
   it('should validate animal data completeness (Req 6.4)', async () => {
     const animalId = testData.animalIds[0];
-    const animal = await databases.getDocument(
+    const animal = (await databases.getDocument(
       DATABASE_ID,
       COLLECTIONS.ANIMALS,
       animalId
-    ) as unknown as AnimalProfile;
+    )) as unknown as AnimalProfile;
 
     // Validate required fields
     expect(animal.name).toBeDefined();
@@ -586,7 +617,9 @@ describe('E2E: Admin Animal Database Management Journey', () => {
     expect(animal.location.coordinates).toBeDefined();
     expect(animal.location.coordinates.length).toBe(2);
     expect(animal.status).toBeDefined();
-    expect(['healthy', 'needs_attention', 'under_treatment'].includes(animal.status)).toBe(true);
+    expect(
+      ['healthy', 'needs_attention', 'under_treatment'].includes(animal.status)
+    ).toBe(true);
   });
 
   it('should search animals by name (Req 6.5)', async () => {

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import { LinkButton } from '@/components/ui/link-button';
 import { Heart, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -38,9 +39,8 @@ export function Header() {
   ];
 
   // Admin only links
-  const adminLinks = user?.role === 'admin' ? [
-    { href: '/admin/animals', label: 'Admin' },
-  ] : [];
+  const adminLinks =
+    user?.role === 'admin' ? [{ href: '/admin/animals', label: 'Admin' }] : [];
 
   // Combine links based on auth state
   const navLinks = [
@@ -58,7 +58,10 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 font-semibold text-lg">
+          <Link
+            href="/"
+            className="flex items-center gap-2 font-semibold text-lg"
+          >
             <Heart className="h-6 w-6 text-primary" />
             <span className="hidden sm:inline">CCF Animal Welfare</span>
             <span className="sm:hidden">CCF</span>
@@ -68,14 +71,14 @@ export function Header() {
           <div className="flex items-center gap-2">
             <nav className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => (
-                <Button
+                <LinkButton
                   key={link.href}
-                  asChild
+                  href={link.href}
                   variant={isActive(link.href) ? 'default' : 'ghost'}
                   size="sm"
                 >
-                  <Link href={link.href}>{link.label}</Link>
-                </Button>
+                  {link.label}
+                </LinkButton>
               ))}
             </nav>
 
@@ -83,15 +86,15 @@ export function Header() {
             <div className="hidden md:flex items-center gap-2 ml-2">
               {/* Theme Switcher */}
               <ThemeSwitcherCompact />
-              
+
               {/* Dark Mode Toggle */}
               <ThemeToggle />
-              
+
               {user ? (
                 <>
                   {/* Notification Center */}
                   <NotificationCenter />
-                  
+
                   {/* User Info & Logout */}
                   <div className="flex items-center gap-2 pl-2 border-l">
                     <span className="text-sm text-muted-foreground">
@@ -110,9 +113,9 @@ export function Header() {
                   </div>
                 </>
               ) : (
-                <Button asChild size="sm">
-                  <Link href="/login">Login</Link>
-                </Button>
+                <LinkButton href="/login" size="sm">
+                  Login
+                </LinkButton>
               )}
             </div>
 
@@ -144,31 +147,35 @@ export function Header() {
           >
             <nav className="flex flex-col p-4 gap-2">
               {navLinks.map((link) => (
-                <Button
+                <LinkButton
                   key={link.href}
-                  asChild
+                  href={link.href}
                   variant={isActive(link.href) ? 'default' : 'ghost'}
                   className="justify-start"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <Link href={link.href}>{link.label}</Link>
-                </Button>
+                  {link.label}
+                </LinkButton>
               ))}
-              
+
               {/* Mobile Auth Actions */}
               <div className="border-t pt-2 mt-2 space-y-2">
                 {/* Theme Switcher for Mobile */}
                 <div className="flex items-center justify-between px-3 py-2">
-                  <span className="text-sm text-muted-foreground">Theme Style</span>
+                  <span className="text-sm text-muted-foreground">
+                    Theme Style
+                  </span>
                   <ThemeSwitcherCompact />
                 </div>
-                
+
                 {/* Dark Mode Toggle for Mobile */}
                 <div className="flex items-center justify-between px-3 py-2">
-                  <span className="text-sm text-muted-foreground">Dark Mode</span>
+                  <span className="text-sm text-muted-foreground">
+                    Dark Mode
+                  </span>
                   <ThemeToggle />
                 </div>
-                
+
                 {user ? (
                   <>
                     <div className="px-3 py-2 text-sm text-muted-foreground">
@@ -187,13 +194,13 @@ export function Header() {
                     </Button>
                   </>
                 ) : (
-                  <Button
-                    asChild
+                  <LinkButton
+                    href="/login"
                     className="w-full justify-start"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <Link href="/login">Login</Link>
-                  </Button>
+                    Login
+                  </LinkButton>
                 )}
               </div>
             </nav>

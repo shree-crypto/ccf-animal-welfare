@@ -1,8 +1,13 @@
 import { z } from 'zod';
 
 export const territorySchema = z.object({
-  name: z.string().min(1, 'Name is required').max(100, 'Name must be less than 100 characters'),
-  boundaries: z.array(z.tuple([z.number(), z.number()])).min(3, 'Territory must have at least 3 boundary points'),
+  name: z
+    .string()
+    .min(1, 'Name is required')
+    .max(100, 'Name must be less than 100 characters'),
+  boundaries: z
+    .array(z.tuple([z.number(), z.number()]))
+    .min(3, 'Territory must have at least 3 boundary points'),
   packSize: z.number().min(0, 'Pack size must be positive'),
   animals: z.array(z.string()),
   assignedVolunteers: z.array(z.string()),

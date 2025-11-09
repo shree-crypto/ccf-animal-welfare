@@ -13,8 +13,13 @@ interface TaskCalendarProps {
   onDateSelect?: (date: Date) => void;
 }
 
-export const TaskCalendar = memo(function TaskCalendar({ tasks, onDateSelect }: TaskCalendarProps) {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+export const TaskCalendar = memo(function TaskCalendar({
+  tasks,
+  onDateSelect,
+}: TaskCalendarProps) {
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    new Date()
+  );
 
   const handleDateSelect = (date: Date | undefined) => {
     setSelectedDate(date);
@@ -26,7 +31,9 @@ export const TaskCalendar = memo(function TaskCalendar({ tasks, onDateSelect }: 
   // Memoize expensive computations
   const tasksForSelectedDate = useMemo(() => {
     return selectedDate
-      ? tasks.filter(task => isSameDay(new Date(task.scheduledDate), selectedDate))
+      ? tasks.filter(task =>
+          isSameDay(new Date(task.scheduledDate), selectedDate)
+        )
       : [];
   }, [tasks, selectedDate]);
 
@@ -65,7 +72,9 @@ export const TaskCalendar = memo(function TaskCalendar({ tasks, onDateSelect }: 
       <Card>
         <CardHeader>
           <CardTitle>
-            {selectedDate ? format(selectedDate, 'MMMM d, yyyy') : 'Select a date'}
+            {selectedDate
+              ? format(selectedDate, 'MMMM d, yyyy')
+              : 'Select a date'}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -78,14 +87,14 @@ export const TaskCalendar = memo(function TaskCalendar({ tasks, onDateSelect }: 
                 >
                   <div className="flex-1">
                     <h4 className="font-medium">{task.title}</h4>
-                    <p className="text-sm text-gray-600 mt-1">{task.description}</p>
+                    <p className="text-sm text-gray-600 mt-1">
+                      {task.description}
+                    </p>
                     <div className="flex gap-2 mt-2">
                       <Badge variant="outline" className="text-xs">
                         {task.type}
                       </Badge>
-                      <Badge className="text-xs">
-                        {task.priority}
-                      </Badge>
+                      <Badge className="text-xs">{task.priority}</Badge>
                     </div>
                   </div>
                   {task.completed && (

@@ -38,6 +38,7 @@
 ## ✅ Features Implemented
 
 ### Notification Types
+
 - [x] Task reminders
 - [x] Task assignments
 - [x] Task completions
@@ -47,12 +48,14 @@
 - [x] Volunteer updates
 
 ### Priority Levels
+
 - [x] Low priority (gray)
 - [x] Medium priority (blue)
 - [x] High priority (orange)
 - [x] Urgent priority (red)
 
 ### Notification Center Features
+
 - [x] Bell icon with unread badge
 - [x] Dropdown notification panel
 - [x] Filter by all/unread
@@ -66,6 +69,7 @@
 - [x] Responsive design
 
 ### Notification Preferences
+
 - [x] Email notifications toggle
 - [x] Push notifications toggle
 - [x] Task reminders toggle
@@ -77,6 +81,7 @@
 - [x] Protected route
 
 ### Real-time Features
+
 - [x] WebSocket-based updates
 - [x] Instant notification delivery
 - [x] Automatic unread count updates
@@ -84,6 +89,7 @@
 - [x] Automatic reconnection
 
 ### Database Operations
+
 - [x] Create notifications
 - [x] Get user notifications with filters
 - [x] Get unread count
@@ -95,6 +101,7 @@
 - [x] Helper functions for common notification types
 
 ### Email Templates
+
 - [x] Task reminder email (HTML + text)
 - [x] Task assigned email (HTML + text)
 - [x] Medical alert email (HTML + text)
@@ -106,6 +113,7 @@
 ## 📋 Setup Checklist (For Deployment)
 
 ### Appwrite Database Setup
+
 - [ ] Create notifications collection
   - [ ] Add all required attributes
   - [ ] Create indexes (recipientId, read)
@@ -116,10 +124,12 @@
   - [ ] Set up permissions
 
 ### Environment Configuration
+
 - [ ] Add NEXT_PUBLIC_APPWRITE_COLLECTION_NOTIFICATIONS to .env.local
 - [ ] Add NEXT_PUBLIC_APPWRITE_COLLECTION_NOTIFICATION_PREFERENCES to .env.local
 
 ### Testing
+
 - [ ] Test notification creation
 - [ ] Test real-time updates
 - [ ] Test notification center UI
@@ -130,6 +140,7 @@
 - [ ] Test on mobile devices
 
 ### Optional: Appwrite Functions
+
 - [ ] Deploy task reminder function
   - [ ] Configure schedule (daily at 8 AM)
   - [ ] Set environment variables
@@ -144,6 +155,7 @@
   - [ ] Test digest generation
 
 ### Optional: Email Service
+
 - [ ] Choose email provider (SMTP/SendGrid/AWS SES)
 - [ ] Set up email account/API keys
 - [ ] Configure email templates
@@ -219,6 +231,7 @@
 All core features of the notification and communication system have been successfully implemented. The system is ready for deployment and testing.
 
 **Next Steps:**
+
 1. Follow QUICK_START_NOTIFICATIONS.md to set up Appwrite collections
 2. Test the notification system in development
 3. Deploy Appwrite Functions for automated notifications (optional)

@@ -1,7 +1,11 @@
 // Notification trigger functions
 // These functions should be called when certain events occur to create notifications
 
-import { createTaskNotification, createMedicalNotification, createNotification } from '@/lib/db/notifications';
+import {
+  createTaskNotification,
+  createMedicalNotification,
+  createNotification,
+} from '@/lib/db/notifications';
 import { Task } from '@/types/task';
 import { MedicalRecord } from '@/types/medical';
 import { AnimalProfile } from '@/types/animal';
@@ -77,10 +81,10 @@ export const triggerMedicalAlertNotification = async (
 ): Promise<void> => {
   try {
     const message = `${medicalRecord.type === 'emergency' ? 'EMERGENCY: ' : ''}${medicalRecord.description}`;
-    
+
     // Create notifications for all relevant volunteers
     await Promise.all(
-      volunteerIds.map((volunteerId) =>
+      volunteerIds.map(volunteerId =>
         createMedicalNotification(
           'medical_alert',
           animal.id,
@@ -106,7 +110,7 @@ export const triggerMedicalFollowupNotification = async (
 ): Promise<void> => {
   try {
     const message = `Follow-up required${medicalRecord.followUpDate ? ` by ${new Date(medicalRecord.followUpDate).toLocaleDateString()}` : ''}`;
-    
+
     await createMedicalNotification(
       'medical_followup',
       animal.id,
@@ -131,7 +135,7 @@ export const triggerVolunteerUpdateNotification = async (
 ): Promise<void> => {
   try {
     await Promise.all(
-      volunteerIds.map((volunteerId) =>
+      volunteerIds.map(volunteerId =>
         createNotification({
           type: 'volunteer_update',
           priority: 'medium',
@@ -160,7 +164,7 @@ export const triggerSystemAnnouncementNotification = async (
 ): Promise<void> => {
   try {
     await Promise.all(
-      volunteerIds.map((volunteerId) =>
+      volunteerIds.map(volunteerId =>
         createNotification({
           type: 'system_announcement',
           priority,

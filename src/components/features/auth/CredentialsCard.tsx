@@ -53,12 +53,12 @@ const roleColors = {
   },
 };
 
-export function CredentialsCard({ 
-  credential, 
-  className, 
-  onAutoFill, 
+export function CredentialsCard({
+  credential,
+  className,
+  onAutoFill,
   onQuickLogin,
-  isSelected = false 
+  isSelected = false,
 }: CredentialsCardProps) {
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const colors = roleColors[credential.role];
@@ -68,7 +68,7 @@ export function CredentialsCard({
       await navigator.clipboard.writeText(text);
       setCopiedField(fieldName);
       toast.success(`${fieldName} copied to clipboard`);
-      
+
       // Reset after 2 seconds
       setTimeout(() => {
         setCopiedField(null);
@@ -79,7 +79,11 @@ export function CredentialsCard({
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent, text: string, fieldName: string) => {
+  const handleKeyDown = (
+    e: React.KeyboardEvent,
+    text: string,
+    fieldName: string
+  ) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       copyToClipboard(text, fieldName);
@@ -91,7 +95,7 @@ export function CredentialsCard({
     if ((e.target as HTMLElement).closest('button')) {
       return;
     }
-    
+
     if (onAutoFill) {
       onAutoFill(credential);
       toast.success(`${credential.title} credentials filled in form`);
@@ -107,19 +111,20 @@ export function CredentialsCard({
   };
 
   return (
-    <Card 
+    <Card
       className={cn(
-        colors.bg, 
-        colors.border, 
+        colors.bg,
+        colors.border,
         'rounded-lg transition-all duration-300 cursor-pointer',
         onAutoFill && 'hover:shadow-lg hover:scale-[1.02]',
-        isSelected && 'ring-2 ring-offset-2 ring-primary shadow-xl scale-[1.02]',
+        isSelected &&
+          'ring-2 ring-offset-2 ring-primary shadow-xl scale-[1.02]',
         className
       )}
       onClick={handleCardClick}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => {
+      onKeyDown={e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           handleCardClick(e as any);
@@ -131,7 +136,11 @@ export function CredentialsCard({
         {/* Header with icon, title, and selection indicator */}
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <span className="text-2xl" role="img" aria-label={`${credential.role} icon`}>
+            <span
+              className="text-2xl"
+              role="img"
+              aria-label={`${credential.role} icon`}
+            >
               {credential.icon}
             </span>
             <h3 className={cn('font-bold text-lg', colors.text)}>
@@ -145,7 +154,9 @@ export function CredentialsCard({
             </div>
           )}
           {!isSelected && onAutoFill && (
-            <MousePointerClick className={cn('h-4 w-4 opacity-50', colors.text)} />
+            <MousePointerClick
+              className={cn('h-4 w-4 opacity-50', colors.text)}
+            />
           )}
         </div>
 
@@ -164,11 +175,11 @@ export function CredentialsCard({
               variant="ghost"
               size="sm"
               className={cn('h-8 w-8 p-0', colors.hover)}
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 copyToClipboard(credential.email, 'Email');
               }}
-              onKeyDown={(e) => {
+              onKeyDown={e => {
                 e.stopPropagation();
                 handleKeyDown(e, credential.email, 'Email');
               }}
@@ -198,11 +209,11 @@ export function CredentialsCard({
               variant="ghost"
               size="sm"
               className={cn('h-8 w-8 p-0', colors.hover)}
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 copyToClipboard(credential.password, 'Password');
               }}
-              onKeyDown={(e) => {
+              onKeyDown={e => {
                 e.stopPropagation();
                 handleKeyDown(e, credential.password, 'Password');
               }}
@@ -218,7 +229,13 @@ export function CredentialsCard({
         </div>
 
         {/* Description/Permissions */}
-        <p className={cn('text-xs mt-2 pt-2 border-t', colors.description, colors.border)}>
+        <p
+          className={cn(
+            'text-xs mt-2 pt-2 border-t',
+            colors.description,
+            colors.border
+          )}
+        >
           {credential.description}
         </p>
 
@@ -228,12 +245,12 @@ export function CredentialsCard({
             variant="outline"
             size="sm"
             className={cn('w-full', colors.border, colors.hover)}
-            onClick={(e) => {
+            onClick={e => {
               e.stopPropagation();
               const both = `${credential.email}\n${credential.password}`;
               copyToClipboard(both, 'Credentials');
             }}
-            onKeyDown={(e) => {
+            onKeyDown={e => {
               e.stopPropagation();
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -246,18 +263,21 @@ export function CredentialsCard({
             <Copy className="h-3 w-3 mr-1" />
             Copy
           </Button>
-          
+
           {onQuickLogin && (
             <Button
               size="sm"
               className={cn(
                 'w-full font-semibold',
-                credential.role === 'admin' && 'bg-red-600 hover:bg-red-700 text-white',
-                credential.role === 'volunteer' && 'bg-green-600 hover:bg-green-700 text-white',
-                credential.role === 'public' && 'bg-blue-600 hover:bg-blue-700 text-white'
+                credential.role === 'admin' &&
+                  'bg-red-600 hover:bg-red-700 text-white',
+                credential.role === 'volunteer' &&
+                  'bg-green-600 hover:bg-green-700 text-white',
+                credential.role === 'public' &&
+                  'bg-blue-600 hover:bg-blue-700 text-white'
               )}
               onClick={handleQuickLoginClick}
-              onKeyDown={(e) => {
+              onKeyDown={e => {
                 e.stopPropagation();
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();

@@ -27,26 +27,32 @@ const USE_MOCK_DATA = true; // Set to false to use Appwrite backend
 ### Mock Data Features
 
 #### 1. Current Metrics
+
 Realistic impact metrics with trends:
+
 - **Animals Rescued**: 247 total, 18 this month (↑12.5%)
 - **Active Volunteers**: 89 total, 12 this week (↑8.3%)
 - **Meals Provided**: 3456 total, 234 this week (stable, ↑0.5%)
 - **Successful Adoptions**: 156 total, 8 this month (↑14.2%)
 
 #### 2. Recent Activities
+
 8 sample activities showing:
+
 - Donations (e.g., "Sarah M. donated ₹500")
 - Adoptions (e.g., "Raj K. adopted Max")
 - Volunteer sign-ups (e.g., "Priya S. joined as volunteer")
 - Rescue reports (e.g., "Anonymous reported rescue case")
 
 #### 3. Historical Trends
+
 - 30 days of trend data for each metric
 - Realistic variation (±15%)
 - Smooth progression over time
 - Configurable period (daily/weekly/monthly)
 
 #### 4. Simulated Real-Time Updates
+
 - New activities appear every 30 seconds
 - Random activity types and names
 - Mimics Appwrite Realtime behavior
@@ -72,6 +78,7 @@ Return data to component
 ### Simulated Network Delay
 
 To make the mock data feel more realistic, we simulate network delays:
+
 - Initial load: 500ms delay
 - Trend data: 300ms delay
 
@@ -80,6 +87,7 @@ This ensures loading states are properly tested.
 ### Simulated Real-Time Updates
 
 The mock implementation includes a timer that:
+
 1. Runs every 30 seconds
 2. Generates a random activity
 3. Adds it to the activity list
@@ -98,7 +106,7 @@ import { useImpactMetrics } from '@/hooks/useImpactMetrics';
 
 function MyComponent() {
   const { metrics, activities, loading, error } = useImpactMetrics();
-  
+
   // Data is automatically mocked
   return <ImpactDashboard metrics={metrics} activities={activities} />;
 }
@@ -119,7 +127,7 @@ import {
   metrics={mockCurrentMetrics}
   activities={mockRecentActivities}
   loading={false}
-/>
+/>;
 ```
 
 ## Switching to Real Backend
@@ -129,6 +137,7 @@ When you're ready to use the Appwrite backend:
 ### Step 1: Set Up Appwrite
 
 Follow the setup guide in `docs/IMPACT_DASHBOARD_SETUP.md`:
+
 1. Create `impact-metrics` collection
 2. Create `recent-activities` collection
 3. Set up indexes and permissions
@@ -196,7 +205,7 @@ Use the `generateMockTrendData` function:
 const customTrend = generateMockTrendData(
   'customMetric',
   50, // base value
-  60  // number of days
+  60 // number of days
 );
 ```
 
@@ -297,6 +306,7 @@ Potential improvements to the mock data system:
 ## Support
 
 For questions about mock data:
+
 1. Check this documentation
 2. Review the mock data file: `src/lib/mock-data/impact.ts`
 3. Check the hook implementation: `src/hooks/useImpactMetrics.ts`

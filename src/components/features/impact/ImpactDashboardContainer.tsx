@@ -1,6 +1,6 @@
 /**
  * ImpactDashboardContainer Component
- * 
+ *
  * Container component that handles data fetching and real-time updates
  * Requirements: 3.3
  */
