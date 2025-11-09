@@ -5,10 +5,12 @@ This document tracks all fixes applied to resolve issues with mock authenticatio
 ## Issue 1: Mock Login Not Working
 
 ### Problem
+
 - Mock credentials not authenticating users
 - Users couldn't access dashboard after login
 
 ### Root Cause
+
 - Mock auth was falling through to real Appwrite on any error
 - Type mismatch between mock User and Appwrite User types
 - AuthContext not properly detecting mock users
@@ -42,6 +44,7 @@ This document tracks all fixes applied to resolve issues with mock authenticatio
    - Clear visual feedback for developers
 
 ### Testing
+
 ```bash
 # Test with these credentials:
 Email: admin@ccf.dev
@@ -60,11 +63,13 @@ Password: admin123
 ## Issue 2: Territory Map Not Rendering
 
 ### Problem
+
 - Map showed "No territories found"
 - Heatmap toggle caused errors
 - Map container was empty
 
 ### Root Causes
+
 1. No mock data for territories (only animals had mock data)
 2. Territories database functions only tried Appwrite
 3. Heatmap required `leaflet.heat` plugin (not installed)
@@ -103,6 +108,7 @@ Password: admin123
    - Listed all 6 territory areas
 
 ### Testing
+
 ```bash
 # Navigate to /territories
 # Check console for:
@@ -121,30 +127,35 @@ Password: admin123
 ## Documentation Created
 
 ### 1. `DEV_CREDENTIALS.md`
+
 - Mock user credentials (admin, volunteer, public)
 - Features by role
 - Troubleshooting steps
 - Important page URLs
 
 ### 2. `TROUBLESHOOTING.md`
+
 - Comprehensive debugging guide
 - Step-by-step solutions
 - Console log examples
 - Common issues and fixes
 
 ### 3. `REFACTORING_SUMMARY.md`
+
 - Component refactoring details
 - Before/after line counts
 - New components created
 - Benefits achieved
 
 ### 4. `TASK_COMPLETION_SUMMARY.md`
+
 - Complete task overview
 - Quality checks
 - Build status
 - Next steps
 
 ### 5. `FIXES_APPLIED.md` (this file)
+
 - Detailed fix documentation
 - Root cause analysis
 - Testing instructions

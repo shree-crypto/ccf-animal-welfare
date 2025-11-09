@@ -1,6 +1,6 @@
 /**
  * ImpactDashboard Component
- * 
+ *
  * Main container for the Live Impact Dashboard
  * Displays real-time metrics, trends, and recent activities
  * Requirements: 3.1, 3.2, 3.3, 3.4, 3.5
@@ -9,7 +9,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ImpactMetrics, RecentActivity as RecentActivityType } from '@/types/impact';
+import {
+  ImpactMetrics,
+  RecentActivity as RecentActivityType,
+} from '@/types/impact';
 import { MetricCard } from './MetricCard';
 import { TrendChart } from './TrendChart';
 import { RecentActivity } from './RecentActivity';
@@ -43,17 +46,17 @@ export function ImpactDashboard({
 
   const formatLastUpdated = () => {
     if (!lastUpdated) return 'Never';
-    
+
     const now = new Date();
     const diff = now.getTime() - lastUpdated.getTime();
     const minutes = Math.floor(diff / 60000);
-    
+
     if (minutes < 1) return 'Just now';
     if (minutes < 60) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
-    
+
     const hours = Math.floor(minutes / 60);
     if (hours < 24) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
-    
+
     return lastUpdated.toLocaleDateString();
   };
 
@@ -78,47 +81,55 @@ export function ImpactDashboard({
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <MetricCard
           title="Animals Rescued"
-          metric={metrics?.animalsRescued || {
-            total: 0,
-            current: 0,
-            trend: 'stable',
-          }}
+          metric={
+            metrics?.animalsRescued || {
+              total: 0,
+              current: 0,
+              trend: 'stable',
+            }
+          }
           icon={<Heart className="h-5 w-5" />}
           description="This month"
           loading={loading}
         />
-        
+
         <MetricCard
           title="Active Volunteers"
-          metric={metrics?.volunteersActive || {
-            total: 0,
-            current: 0,
-            trend: 'stable',
-          }}
+          metric={
+            metrics?.volunteersActive || {
+              total: 0,
+              current: 0,
+              trend: 'stable',
+            }
+          }
           icon={<Users className="h-5 w-5" />}
           description="This week"
           loading={loading}
         />
-        
+
         <MetricCard
           title="Meals Provided"
-          metric={metrics?.mealsProvided || {
-            total: 0,
-            current: 0,
-            trend: 'stable',
-          }}
+          metric={
+            metrics?.mealsProvided || {
+              total: 0,
+              current: 0,
+              trend: 'stable',
+            }
+          }
           icon={<Utensils className="h-5 w-5" />}
           description="This week"
           loading={loading}
         />
-        
+
         <MetricCard
           title="Successful Adoptions"
-          metric={metrics?.successfulAdoptions || {
-            total: 0,
-            current: 0,
-            trend: 'stable',
-          }}
+          metric={
+            metrics?.successfulAdoptions || {
+              total: 0,
+              current: 0,
+              trend: 'stable',
+            }
+          }
           icon={<Home className="h-5 w-5" />}
           description="This month"
           loading={loading}
@@ -157,12 +168,14 @@ export function ImpactDashboard({
       />
 
       {/* Call to Action */}
-      <div className={cn(
-        "text-center py-8 px-4 rounded-lg",
-        config.effects.gradients
-          ? "bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950"
-          : "bg-muted"
-      )}>
+      <div
+        className={cn(
+          'text-center py-8 px-4 rounded-lg',
+          config.effects.gradients
+            ? 'bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950'
+            : 'bg-muted'
+        )}
+      >
         <h3 className="text-xl font-bold text-foreground mb-2">
           Be Part of the Change
         </h3>
@@ -173,10 +186,10 @@ export function ImpactDashboard({
           <a
             href="/donate"
             className={cn(
-              "inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-white transition-colors",
+              'inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-white transition-colors',
               config.effects.gradients
-                ? "bg-blue-600 hover:bg-blue-700"
-                : "bg-primary hover:bg-primary/90"
+                ? 'bg-blue-600 hover:bg-blue-700'
+                : 'bg-primary hover:bg-primary/90'
             )}
           >
             Donate Now

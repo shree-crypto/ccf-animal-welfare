@@ -27,6 +27,7 @@ If mock login isn't working:
    - Should contain user data with role
 
 4. **Clear cache and localStorage**:
+
    ```javascript
    localStorage.clear();
    location.reload();
@@ -41,18 +42,21 @@ If mock login isn't working:
 ## Mock Users
 
 ### Admin User
+
 - **Email**: `admin@ccf.dev`
 - **Password**: `admin123`
 - **Role**: Admin
 - **Access**: Full access to all features including admin dashboard
 
 ### Volunteer User
+
 - **Email**: `volunteer@ccf.dev`
 - **Password**: `volunteer123`
 - **Role**: Volunteer
 - **Access**: Dashboard, tasks, medical records, notifications
 
 ### Public User
+
 - **Email**: `user@ccf.dev`
 - **Password**: `user123`
 - **Role**: Public
@@ -67,6 +71,7 @@ If mock login isn't working:
 ## Important Pages
 
 ### Territory Map
+
 - **URL**: `/territories`
 - **Access**: Public (no login required)
 - **Features**: Interactive map with pack territories, heatmap overlay
@@ -74,11 +79,13 @@ If mock login isn't working:
 - **Mock Data**: 6 territories with different pack sizes automatically loaded in development
 
 ### Dashboard
+
 - **URL**: `/dashboard`
 - **Access**: Volunteer and Admin only
 - **Features**: Task overview, quick actions, statistics
 
 ### Admin Panel
+
 - **URL**: `/admin/animals`
 - **Access**: Admin only
 - **Features**: Animal management, bulk upload, data table
@@ -90,6 +97,7 @@ These credentials only work in development mode (`NODE_ENV=development`). In pro
 ## Features by Role
 
 ### Admin
+
 - ✅ View all animals
 - ✅ Add/Edit/Delete animals
 - ✅ Bulk upload animals
@@ -99,6 +107,7 @@ These credentials only work in development mode (`NODE_ENV=development`). In pro
 - ✅ User management
 
 ### Volunteer
+
 - ✅ View all animals
 - ✅ View medical records
 - ✅ Manage assigned tasks
@@ -108,6 +117,7 @@ These credentials only work in development mode (`NODE_ENV=development`). In pro
 - ❌ Cannot access admin features
 
 ### Public
+
 - ✅ View animal gallery
 - ✅ View territories map
 - ✅ View events

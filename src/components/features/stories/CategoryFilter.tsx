@@ -13,13 +13,16 @@ interface CategoryFilterProps {
   selectedCategory: string;
 }
 
-export function CategoryFilter({ categories, selectedCategory }: CategoryFilterProps) {
+export function CategoryFilter({
+  categories,
+  selectedCategory,
+}: CategoryFilterProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const handleCategoryChange = (category: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    
+
     if (category === 'all') {
       params.delete('category');
     } else {
@@ -32,7 +35,7 @@ export function CategoryFilter({ categories, selectedCategory }: CategoryFilterP
 
   return (
     <div className="flex flex-wrap gap-2">
-      {categories.map((category) => (
+      {categories.map(category => (
         <Button
           key={category.value}
           variant={selectedCategory === category.value ? 'default' : 'outline'}

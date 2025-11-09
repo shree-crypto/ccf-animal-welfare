@@ -15,10 +15,11 @@ Just import and use the components:
 ```tsx
 import { ImpactDashboardContainer } from '@/components/features/impact';
 
-<ImpactDashboardContainer />
+<ImpactDashboardContainer />;
 ```
 
 The mock data includes:
+
 - Realistic impact metrics with trends
 - Recent activities that update every 30 seconds
 - Historical trend data for visualizations
@@ -31,6 +32,7 @@ When you're ready to use the Appwrite backend:
    - Follow `docs/IMPACT_DASHBOARD_SETUP.md` for detailed instructions
 
 2. **Add Environment Variables**
+
    ```env
    NEXT_PUBLIC_APPWRITE_COLLECTION_IMPACT_METRICS=impact-metrics
    NEXT_PUBLIC_APPWRITE_COLLECTION_RECENT_ACTIVITIES=recent-activities
@@ -44,27 +46,30 @@ When you're ready to use the Appwrite backend:
 ### 3. Use the Dashboard
 
 #### On Homepage (Simple)
+
 ```tsx
 import { ImpactDashboardContainer } from '@/components/features/impact';
 
-<ImpactDashboardContainer />
+<ImpactDashboardContainer />;
 ```
 
 #### Full Dashboard with Trends
+
 ```tsx
 import { ImpactDashboardWithTrends } from '@/components/features/impact';
 
-<ImpactDashboardWithTrends />
+<ImpactDashboardWithTrends />;
 ```
 
 #### Custom Implementation
+
 ```tsx
 import { useImpactMetrics } from '@/hooks/useImpactMetrics';
 import { ImpactDashboard } from '@/components/features/impact';
 
 function MyComponent() {
   const { metrics, activities, loading, error } = useImpactMetrics();
-  
+
   return (
     <ImpactDashboard
       metrics={metrics}
@@ -142,6 +147,7 @@ Metrics should be updated regularly (daily or weekly) to keep the dashboard curr
 ### Managing Activities
 
 Activities are automatically created when:
+
 - A donation is processed
 - An adoption is completed
 - A volunteer signs up
@@ -167,16 +173,19 @@ You can also manually add activities for special events or milestones.
 ### Troubleshooting
 
 **Dashboard not showing:**
+
 - Check if collections exist in Appwrite
 - Verify environment variables are set
 - Check browser console for errors
 
 **Metrics not updating:**
+
 - Ensure Appwrite Realtime is enabled
 - Check collection permissions
 - Verify metrics are being created correctly
 
 **Activities not appearing:**
+
 - Check recent-activities collection exists
 - Verify activities have proper timestamps
 - Ensure public read permissions are set
@@ -196,29 +205,35 @@ import {
   metrics={mockCurrentMetrics}
   activities={mockRecentActivities}
   loading={false}
-/>
+/>;
 ```
 
 ## Common Use Cases
 
 ### 1. Homepage Integration
+
 Show simplified dashboard on homepage to build trust.
 
 ### 2. Dedicated Impact Page
+
 Full dashboard with trends at `/impact` for detailed view.
 
 ### 3. Donation Page
+
 Show impact metrics to encourage donations.
 
 ### 4. Annual Reports
+
 Export metrics for annual impact reports.
 
 ### 5. Social Media
+
 Share milestone achievements from the dashboard.
 
 ## Support
 
 For detailed documentation, see:
+
 - `docs/IMPACT_DASHBOARD.md` - Complete feature documentation
 - `docs/IMPACT_DASHBOARD_SETUP.md` - Appwrite setup guide
 - `docs/TASK_2_COMPLETION_SUMMARY.md` - Implementation details

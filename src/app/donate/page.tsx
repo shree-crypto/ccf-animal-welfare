@@ -19,7 +19,8 @@ export default function DonatePage() {
               Support Our Mission
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-              Your generosity helps us provide food, medical care, and shelter to campus animals in need.
+              Your generosity helps us provide food, medical care, and shelter
+              to campus animals in need.
             </p>
           </div>
         </div>
@@ -33,7 +34,8 @@ export default function DonatePage() {
               Why Your Support Matters
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Every contribution, no matter the size, makes a real difference in the lives of campus animals.
+              Every contribution, no matter the size, makes a real difference in
+              the lives of campus animals.
             </p>
           </div>
 
@@ -82,17 +84,20 @@ export default function DonatePage() {
             </h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
-                We believe in complete transparency with our donors. Every rupee donated is carefully 
-                tracked and used exclusively for animal welfare purposes.
+                We believe in complete transparency with our donors. Every rupee
+                donated is carefully tracked and used exclusively for animal
+                welfare purposes.
               </p>
               <p>
-                Our financial records are maintained meticulously, and we provide regular updates on 
-                how donations are utilized. Quarterly reports are shared with all donors detailing 
-                expenses, animals helped, and ongoing projects.
+                Our financial records are maintained meticulously, and we
+                provide regular updates on how donations are utilized. Quarterly
+                reports are shared with all donors detailing expenses, animals
+                helped, and ongoing projects.
               </p>
               <p>
-                As a student-led initiative, we operate with minimal overhead costs, ensuring that 
-                the maximum amount of your donation directly benefits the animals.
+                As a student-led initiative, we operate with minimal overhead
+                costs, ensuring that the maximum amount of your donation
+                directly benefits the animals.
               </p>
             </div>
             <div className="mt-8 text-center">
@@ -112,15 +117,19 @@ export default function DonatePage() {
               Other Ways to Help
             </h2>
             <p className="text-xl text-muted-foreground">
-              Can't donate right now? There are still many ways to support our mission.
+              Can't donate right now? There are still many ways to support our
+              mission.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-8 rounded-xl bg-muted/50 border border-border">
-              <h3 className="text-xl font-semibold mb-3">Volunteer Your Time</h3>
+              <h3 className="text-xl font-semibold mb-3">
+                Volunteer Your Time
+              </h3>
               <p className="text-muted-foreground mb-4">
-                Join our team and contribute your time and skills to animal care activities.
+                Join our team and contribute your time and skills to animal care
+                activities.
               </p>
               <Button asChild variant="outline">
                 <Link href="/contact">Become a Volunteer</Link>
@@ -130,7 +139,8 @@ export default function DonatePage() {
             <div className="text-center p-8 rounded-xl bg-muted/50 border border-border">
               <h3 className="text-xl font-semibold mb-3">Spread Awareness</h3>
               <p className="text-muted-foreground mb-4">
-                Share our mission on social media and help educate others about animal welfare.
+                Share our mission on social media and help educate others about
+                animal welfare.
               </p>
               <Button asChild variant="outline">
                 <Link href="/stories">Share Success Stories</Link>
@@ -140,7 +150,8 @@ export default function DonatePage() {
             <div className="text-center p-8 rounded-xl bg-muted/50 border border-border">
               <h3 className="text-xl font-semibold mb-3">Attend Events</h3>
               <p className="text-muted-foreground mb-4">
-                Participate in our fundraisers, awareness campaigns, and community events.
+                Participate in our fundraisers, awareness campaigns, and
+                community events.
               </p>
               <Button asChild variant="outline">
                 <Link href="/events">View Upcoming Events</Link>
@@ -157,12 +168,11 @@ export default function DonatePage() {
             Make a Difference Today
           </h2>
           <p className="text-xl text-muted-foreground">
-            Your support can save lives and create a better future for campus animals.
+            Your support can save lives and create a better future for campus
+            animals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg">
-              Donate Now
-            </Button>
+            <Button size="lg">Donate Now</Button>
             <Button asChild variant="outline" size="lg">
               <Link href="/contact">Contact Us</Link>
             </Button>

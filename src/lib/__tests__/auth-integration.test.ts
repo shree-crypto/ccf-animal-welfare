@@ -51,7 +51,7 @@ describe('AuthService Integration with MockAuth', () => {
 
     it('should successfully login volunteer user and retrieve role', async () => {
       await authService.login('volunteer@ccf.dev', 'volunteer123');
-      
+
       const currentUser = await authService.getCurrentUser();
       expect(currentUser?.email).toBe('volunteer@ccf.dev');
 
@@ -61,7 +61,7 @@ describe('AuthService Integration with MockAuth', () => {
 
     it('should successfully login public user and retrieve role', async () => {
       await authService.login('user@ccf.dev', 'user123');
-      
+
       const currentUser = await authService.getCurrentUser();
       expect(currentUser?.email).toBe('user@ccf.dev');
 
@@ -80,7 +80,7 @@ describe('AuthService Integration with MockAuth', () => {
     it('should correctly check admin has admin access', async () => {
       await authService.login('admin@ccf.dev', 'admin123');
       const role = await authService.getUserRole();
-      
+
       expect(authService.checkRole(role, 'admin')).toBe(true);
       expect(authService.checkRole(role, 'volunteer')).toBe(true);
       expect(authService.checkRole(role, 'public')).toBe(true);
@@ -89,7 +89,7 @@ describe('AuthService Integration with MockAuth', () => {
     it('should correctly check volunteer has volunteer access', async () => {
       await authService.login('volunteer@ccf.dev', 'volunteer123');
       const role = await authService.getUserRole();
-      
+
       expect(authService.checkRole(role, 'admin')).toBe(false);
       expect(authService.checkRole(role, 'volunteer')).toBe(true);
       expect(authService.checkRole(role, 'public')).toBe(true);
@@ -98,7 +98,7 @@ describe('AuthService Integration with MockAuth', () => {
     it('should correctly check public has only public access', async () => {
       await authService.login('user@ccf.dev', 'user123');
       const role = await authService.getUserRole();
-      
+
       expect(authService.checkRole(role, 'admin')).toBe(false);
       expect(authService.checkRole(role, 'volunteer')).toBe(false);
       expect(authService.checkRole(role, 'public')).toBe(true);
@@ -109,15 +109,15 @@ describe('AuthService Integration with MockAuth', () => {
     it('should persist session across page reloads', async () => {
       // Login
       await authService.login('admin@ccf.dev', 'admin123');
-      
+
       // Simulate page reload by creating new service instance
       const newAuthService = new AuthService();
-      
+
       // Should still have user
       const currentUser = await newAuthService.getCurrentUser();
       expect(currentUser).toBeDefined();
       expect(currentUser?.email).toBe('admin@ccf.dev');
-      
+
       const role = await newAuthService.getUserRole();
       expect(role).toBe('admin');
     });
@@ -126,10 +126,10 @@ describe('AuthService Integration with MockAuth', () => {
       // Login
       await authService.login('volunteer@ccf.dev', 'volunteer123');
       expect(await authService.getCurrentUser()).toBeDefined();
-      
+
       // Logout
       await authService.logout();
-      
+
       // Should not have user
       const currentUser = await authService.getCurrentUser();
       expect(currentUser).toBeNull();
@@ -143,15 +143,15 @@ describe('AuthService Integration with MockAuth', () => {
         'password123',
         'New User'
       );
-      
+
       expect(newUser).toBeDefined();
       expect(newUser.email).toBe('newuser@example.com');
       expect(newUser.name).toBe('New User');
-      
+
       // Should be logged in after registration
       const currentUser = await authService.getCurrentUser();
       expect(currentUser?.email).toBe('newuser@example.com');
-      
+
       // Should have volunteer role
       const role = await authService.getUserRole();
       expect(role).toBe('volunteer');

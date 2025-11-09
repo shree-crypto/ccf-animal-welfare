@@ -5,20 +5,22 @@
 ### Problem: Cannot login with mock credentials
 
 **Symptoms:**
+
 - Login form shows "Invalid credentials" error
 - Console shows Appwrite connection errors
 
 **Solution:**
+
 1. **Check browser console** for these messages:
    ```
    ✅ Mock auth successful: admin@ccf.dev
    ```
-   
 2. **Verify credentials exactly**:
    - Email: `admin@ccf.dev` (not .com)
    - Password: `admin123` (case-sensitive)
 
 3. **Check NODE_ENV**:
+
    ```javascript
    console.log(process.env.NODE_ENV); // Should be 'development'
    ```
@@ -32,6 +34,7 @@
 ### Problem: Logged in but cannot access dashboard
 
 **Symptoms:**
+
 - Login successful
 - Redirected back to login page
 - Or stuck on loading screen
@@ -39,6 +42,7 @@
 **Debugging Steps:**
 
 1. **Check browser console** for these logs:
+
    ```
    🔐 Attempting login for: admin@ccf.dev
    ✅ Mock auth successful: admin@ccf.dev
@@ -59,9 +63,10 @@
    - Should show your email and role
 
 4. **If user is null after login**:
+
    ```javascript
    // In console, check:
-   localStorage.getItem('ccf_mock_session')
+   localStorage.getItem('ccf_mock_session');
    // Should return user data
    ```
 
@@ -72,6 +77,7 @@
 ### Problem: Territory map not showing
 
 **Symptoms:**
+
 - Map shows "No territories found"
 - Empty map with no polygons
 - Map container is blank or shows only base tiles
@@ -79,6 +85,7 @@
 **Debugging Steps:**
 
 1. **Check console logs** for:
+
    ```
    📍 Using mock territories data
    🗺️ Map mounted with 6 territories
@@ -127,10 +134,12 @@ console.log(document.querySelector('.leaflet-container')); // Should find map el
 ### Problem: Heatmap toggle causes error
 
 **Symptoms:**
+
 - Error when clicking "Show Heatmap" checkbox
 - Console shows "heatLayer is not a function"
 
 **Solution:**
+
 - The heatmap has been updated to use CircleMarkers instead of leaflet.heat plugin
 - No additional installation required
 - If you see this error, refresh the page to load the updated component
@@ -140,6 +149,7 @@ console.log(document.querySelector('.leaflet-container')); // Should find map el
 ### Issue: "Failed to compile" errors
 
 **Solution:**
+
 ```bash
 # Clear Next.js cache
 rm -rf .next
@@ -149,6 +159,7 @@ npm run build
 ### Issue: TypeScript errors
 
 **Solution:**
+
 ```bash
 # Check for type errors
 npm run type-check
@@ -160,6 +171,7 @@ npm run type-check
 ### Issue: Styles not loading
 
 **Solution:**
+
 ```bash
 # Reinstall dependencies
 rm -rf node_modules
@@ -169,6 +181,7 @@ npm install
 ### Issue: Mock data not working
 
 **Check:**
+
 1. `NODE_ENV=development` is set
 2. No `NEXT_PUBLIC_USE_MOCK_DATA=false` in .env
 3. Console shows mock data logs
@@ -205,6 +218,7 @@ location.reload();
 ```
 
 This will show detailed logs for:
+
 - Authentication flow
 - API calls
 - Mock data usage

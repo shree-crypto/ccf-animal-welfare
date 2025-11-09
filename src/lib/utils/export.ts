@@ -19,7 +19,7 @@ export function exportAnimalsToCSV(animals: AnimalProfile[]): void {
   ];
 
   // Convert animals to CSV rows
-  const rows = animals.map((animal) => [
+  const rows = animals.map(animal => [
     animal.id,
     animal.name,
     animal.type,
@@ -38,18 +38,21 @@ export function exportAnimalsToCSV(animals: AnimalProfile[]): void {
   // Combine headers and rows
   const csvContent = [
     headers.join(','),
-    ...rows.map((row) => row.map((cell) => `"${cell}"`).join(',')),
+    ...rows.map(row => row.map(cell => `"${cell}"`).join(',')),
   ].join('\n');
 
   // Create blob and download
   const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
   const link = document.createElement('a');
   const url = URL.createObjectURL(blob);
-  
+
   link.setAttribute('href', url);
-  link.setAttribute('download', `animals_export_${new Date().toISOString().split('T')[0]}.csv`);
+  link.setAttribute(
+    'download',
+    `animals_export_${new Date().toISOString().split('T')[0]}.csv`
+  );
   link.style.visibility = 'hidden';
-  
+
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -57,15 +60,20 @@ export function exportAnimalsToCSV(animals: AnimalProfile[]): void {
 
 export function exportAnimalsToJSON(animals: AnimalProfile[]): void {
   const jsonContent = JSON.stringify(animals, null, 2);
-  
-  const blob = new Blob([jsonContent], { type: 'application/json;charset=utf-8;' });
+
+  const blob = new Blob([jsonContent], {
+    type: 'application/json;charset=utf-8;',
+  });
   const link = document.createElement('a');
   const url = URL.createObjectURL(blob);
-  
+
   link.setAttribute('href', url);
-  link.setAttribute('download', `animals_export_${new Date().toISOString().split('T')[0]}.json`);
+  link.setAttribute(
+    'download',
+    `animals_export_${new Date().toISOString().split('T')[0]}.json`
+  );
   link.style.visibility = 'hidden';
-  
+
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

@@ -72,7 +72,9 @@ export function MapControls() {
       {/* Layer Menu */}
       {showLayerMenu && (
         <div className="mt-2 bg-white rounded-lg shadow-lg p-3 min-w-[200px]">
-          <h4 className="text-sm font-semibold text-gray-900 mb-2">Map Layers</h4>
+          <h4 className="text-sm font-semibold text-gray-900 mb-2">
+            Map Layers
+          </h4>
           <div className="space-y-2">
             <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
               <input

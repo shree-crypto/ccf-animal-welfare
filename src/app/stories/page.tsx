@@ -9,8 +9,9 @@ import { CategoryFilter } from '@/components/features/stories/CategoryFilter';
 const successStories = [
   {
     id: '1',
-    title: 'Rocky\'s Recovery Journey',
-    description: 'Rocky was found injured near the main gate with a severe leg wound. Thanks to immediate medical intervention and weeks of dedicated care from our volunteers, Rocky made a full recovery. Today, he\'s healthy, playful, and has become a beloved member of the campus community.',
+    title: "Rocky's Recovery Journey",
+    description:
+      "Rocky was found injured near the main gate with a severe leg wound. Thanks to immediate medical intervention and weeks of dedicated care from our volunteers, Rocky made a full recovery. Today, he's healthy, playful, and has become a beloved member of the campus community.",
     animalName: 'Rocky',
     date: new Date('2024-10-15'),
     category: 'recovery',
@@ -20,7 +21,8 @@ const successStories = [
   {
     id: '2',
     title: 'Bella Finds Her Forever Home',
-    description: 'Bella, a gentle cat who lived near the library, captured the heart of a faculty member. After proper vaccination and health checks coordinated by CCF, Bella was adopted into a loving home. She now enjoys a comfortable life with her new family.',
+    description:
+      'Bella, a gentle cat who lived near the library, captured the heart of a faculty member. After proper vaccination and health checks coordinated by CCF, Bella was adopted into a loving home. She now enjoys a comfortable life with her new family.',
     animalName: 'Bella',
     date: new Date('2024-09-22'),
     category: 'adoption',
@@ -30,7 +32,8 @@ const successStories = [
   {
     id: '3',
     title: 'Successful Vaccination Drive',
-    description: 'Our team successfully vaccinated over 50 campus animals in a single month, protecting them from rabies and other diseases. This milestone was achieved through careful planning, volunteer coordination, and support from local veterinarians.',
+    description:
+      'Our team successfully vaccinated over 50 campus animals in a single month, protecting them from rabies and other diseases. This milestone was achieved through careful planning, volunteer coordination, and support from local veterinarians.',
     animalName: null,
     date: new Date('2024-08-10'),
     category: 'milestone',
@@ -39,8 +42,9 @@ const successStories = [
   },
   {
     id: '4',
-    title: 'Max\'s Rescue from Construction Site',
-    description: 'Max, a young puppy, was trapped in a construction site for two days. Our rapid response team coordinated with campus security to safely rescue him. After medical evaluation and care, Max is now thriving in his territory near the hostel area.',
+    title: "Max's Rescue from Construction Site",
+    description:
+      'Max, a young puppy, was trapped in a construction site for two days. Our rapid response team coordinated with campus security to safely rescue him. After medical evaluation and care, Max is now thriving in his territory near the hostel area.',
     animalName: 'Max',
     date: new Date('2024-11-01'),
     category: 'rescue',
@@ -50,7 +54,8 @@ const successStories = [
   {
     id: '5',
     title: 'Community Awareness Week Success',
-    description: 'Our week-long awareness campaign reached over 1,000 students and staff members. Through workshops, interactive sessions, and demonstrations, we educated the community about responsible animal interaction and the importance of animal welfare.',
+    description:
+      'Our week-long awareness campaign reached over 1,000 students and staff members. Through workshops, interactive sessions, and demonstrations, we educated the community about responsible animal interaction and the importance of animal welfare.',
     animalName: null,
     date: new Date('2024-07-20'),
     category: 'community',
@@ -59,8 +64,9 @@ const successStories = [
   },
   {
     id: '6',
-    title: 'Luna\'s Transformation',
-    description: 'Luna arrived on campus malnourished and fearful. Through consistent feeding, gentle interaction, and medical care, she transformed into a confident, healthy dog. Her story inspired many students to join our volunteer program.',
+    title: "Luna's Transformation",
+    description:
+      'Luna arrived on campus malnourished and fearful. Through consistent feeding, gentle interaction, and medical care, she transformed into a confident, healthy dog. Her story inspired many students to join our volunteer program.',
     animalName: 'Luna',
     date: new Date('2024-06-15'),
     category: 'recovery',
@@ -85,9 +91,10 @@ export default function StoriesPage({
 }) {
   const selectedCategory = searchParams.category || 'all';
 
-  const filteredStories = selectedCategory === 'all' 
-    ? successStories 
-    : successStories.filter(story => story.category === selectedCategory);
+  const filteredStories =
+    selectedCategory === 'all'
+      ? successStories
+      : successStories.filter(story => story.category === selectedCategory);
 
   const featuredStories = successStories.filter(story => story.featured);
 
@@ -99,7 +106,9 @@ export default function StoriesPage({
       milestone: 'bg-blue-500/10 text-blue-700 dark:text-blue-400',
       community: 'bg-orange-500/10 text-orange-700 dark:text-orange-400',
     };
-    return colors[category] || 'bg-gray-500/10 text-gray-700 dark:text-gray-400';
+    return (
+      colors[category] || 'bg-gray-500/10 text-gray-700 dark:text-gray-400'
+    );
   };
 
   return (
@@ -115,7 +124,8 @@ export default function StoriesPage({
               Success Stories
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-              Celebrating the lives we've touched and the difference we've made together.
+              Celebrating the lives we've touched and the difference we've made
+              together.
             </p>
           </div>
         </div>
@@ -134,7 +144,7 @@ export default function StoriesPage({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredStories.map((story) => (
+            {featuredStories.map(story => (
               <div
                 key={story.id}
                 className="group relative overflow-hidden rounded-2xl bg-muted/50 border border-border hover:shadow-xl transition-all duration-300"
@@ -154,7 +164,12 @@ export default function StoriesPage({
                 <div className="p-6 space-y-4">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Calendar className="h-4 w-4" />
-                    <span>{story.date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
+                    <span>
+                      {story.date.toLocaleDateString('en-US', {
+                        month: 'long',
+                        year: 'numeric',
+                      })}
+                    </span>
                   </div>
 
                   <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
@@ -186,13 +201,20 @@ export default function StoriesPage({
             </h2>
 
             {/* Category Filter */}
-            <Suspense fallback={<div className="h-12 bg-muted animate-pulse rounded-lg" />}>
-              <CategoryFilter categories={categories} selectedCategory={selectedCategory} />
+            <Suspense
+              fallback={
+                <div className="h-12 bg-muted animate-pulse rounded-lg" />
+              }
+            >
+              <CategoryFilter
+                categories={categories}
+                selectedCategory={selectedCategory}
+              />
             </Suspense>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {filteredStories.map((story) => (
+            {filteredStories.map(story => (
               <div
                 key={story.id}
                 className="bg-background rounded-xl p-6 border border-border hover:shadow-lg transition-all duration-300"
@@ -203,7 +225,13 @@ export default function StoriesPage({
                   </Badge>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Calendar className="h-4 w-4" />
-                    <span>{story.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                    <span>
+                      {story.date.toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric',
+                      })}
+                    </span>
                   </div>
                 </div>
 
@@ -217,9 +245,7 @@ export default function StoriesPage({
                   </p>
                 )}
 
-                <p className="text-muted-foreground">
-                  {story.description}
-                </p>
+                <p className="text-muted-foreground">{story.description}</p>
               </div>
             ))}
           </div>
@@ -249,22 +275,30 @@ export default function StoriesPage({
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-border">
               <div className="text-5xl font-bold text-primary mb-2">150+</div>
-              <div className="text-lg text-muted-foreground">Animals Cared For</div>
+              <div className="text-lg text-muted-foreground">
+                Animals Cared For
+              </div>
             </div>
 
             <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-border">
               <div className="text-5xl font-bold text-primary mb-2">50+</div>
-              <div className="text-lg text-muted-foreground">Successful Rescues</div>
+              <div className="text-lg text-muted-foreground">
+                Successful Rescues
+              </div>
             </div>
 
             <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-border">
               <div className="text-5xl font-bold text-primary mb-2">200+</div>
-              <div className="text-lg text-muted-foreground">Medical Treatments</div>
+              <div className="text-lg text-muted-foreground">
+                Medical Treatments
+              </div>
             </div>
 
             <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-border">
               <div className="text-5xl font-bold text-primary mb-2">25+</div>
-              <div className="text-lg text-muted-foreground">Happy Adoptions</div>
+              <div className="text-lg text-muted-foreground">
+                Happy Adoptions
+              </div>
             </div>
           </div>
         </div>
@@ -277,7 +311,8 @@ export default function StoriesPage({
             Be Part of the Next Success Story
           </h2>
           <p className="text-xl text-muted-foreground">
-            Your support and involvement can help us create more happy endings for campus animals.
+            Your support and involvement can help us create more happy endings
+            for campus animals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg">

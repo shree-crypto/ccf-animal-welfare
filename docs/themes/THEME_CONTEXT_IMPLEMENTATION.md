@@ -16,6 +16,7 @@ Defines the core types for the theme system:
 - `THEME_CONFIGS`: Predefined configurations for both themes
 
 **Key Features:**
+
 - Custom theme: Vibrant CampusPaws branding with gradients and Aceternity effects
 - Default theme: Clean shadcn/ui minimal styling
 - Each theme has color palette and effects configuration
@@ -25,6 +26,7 @@ Defines the core types for the theme system:
 Implements the React Context for theme management:
 
 **Features:**
+
 - ✅ Theme state management with React Context
 - ✅ localStorage persistence (key: 'campuspaws-theme')
 - ✅ Automatic theme application via `data-theme` attribute on document root
@@ -33,6 +35,7 @@ Implements the React Context for theme management:
 - ✅ Exports `useTheme` hook for easy consumption
 
 **API:**
+
 ```typescript
 const { theme, setTheme, config } = useTheme();
 
@@ -51,6 +54,7 @@ if (config.effects.gradients) {
 ### 3. Example Component (`src/components/features/theme/ThemeExample.tsx`)
 
 Demonstrates usage of the theme context:
+
 - Shows current theme information
 - Displays enabled effects
 - Shows color palette
@@ -61,6 +65,7 @@ Demonstrates usage of the theme context:
 ### Theme Persistence
 
 The theme preference is stored in localStorage with the key `campuspaws-theme`. On initial load:
+
 1. Check localStorage for saved preference
 2. If found and valid, use saved theme
 3. Otherwise, default to 'custom' theme
@@ -69,6 +74,7 @@ The theme preference is stored in localStorage with the key `campuspaws-theme`. 
 ### Performance Optimizations
 
 Following the same pattern as `AuthContext`:
+
 - `useMemo` for context value to prevent unnecessary re-renders
 - `useCallback` for `setTheme` function to maintain referential equality
 - Only re-renders consumers when theme actually changes
@@ -76,17 +82,19 @@ Following the same pattern as `AuthContext`:
 ### Theme Application
 
 The theme is applied to the document root using a data attribute:
+
 ```html
-<html data-theme="custom">
+<html data-theme="custom"></html>
 ```
 
 This allows CSS to target themes:
+
 ```css
-[data-theme="custom"] .themed-element {
+[data-theme='custom'] .themed-element {
   background: linear-gradient(...);
 }
 
-[data-theme="default"] .themed-element {
+[data-theme='default'] .themed-element {
   background: var(--primary);
 }
 ```
@@ -118,7 +126,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 
 function MyComponent() {
   const { theme, config, setTheme } = useTheme();
-  
+
   return (
     <div>
       <p>Current theme: {config.name}</p>
@@ -134,6 +142,7 @@ function MyComponent() {
 ## Testing
 
 A test suite was created at `src/test/integration/theme-context.test.tsx` that verifies:
+
 - Default theme loading
 - localStorage persistence
 - Theme switching
@@ -145,6 +154,7 @@ Note: The test environment configuration was updated to support jsdom for DOM te
 ## Next Steps
 
 The following tasks remain for the theme switcher feature:
+
 - Task 2: Create theme configuration CSS files
 - Task 3: Create theme switcher component
 - Task 4: Update global styles
@@ -175,6 +185,7 @@ To verify the implementation:
 ✅ Task 1: Create Theme Context and Provider - COMPLETE
 
 All sub-tasks completed:
+
 - ✅ Create ThemeContext for managing theme state
 - ✅ Implement theme persistence in localStorage
 - ✅ Add theme types (custom, default)

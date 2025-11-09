@@ -165,6 +165,7 @@
 ## ✅ Files Created
 
 ### Components (6 files)
+
 1. `src/components/features/territories/InteractiveMap.tsx`
 2. `src/components/features/territories/PackInfo.tsx`
 3. `src/components/features/territories/MapControls.tsx`
@@ -173,21 +174,26 @@
 6. `src/components/features/territories/README.md`
 
 ### Pages (1 file)
+
 7. `src/app/territories/page.tsx`
 
 ### Hooks (1 file)
+
 8. `src/hooks/useTerritories.ts`
 
 ### Utilities (1 file)
+
 9. `src/lib/db/seed-territories.ts`
 
 ### Documentation (4 files)
+
 10. `TERRITORY_MAP_GUIDE.md`
 11. `TASK_5_IMPLEMENTATION_SUMMARY.md`
 12. `QUICK_START_TERRITORIES.md`
 13. `TASK_5_CHECKLIST.md`
 
 ### Modified Files (2 files)
+
 14. `src/components/layout/Header.tsx` (added territories link)
 15. `src/app/layout.tsx` (added Leaflet CSS import)
 

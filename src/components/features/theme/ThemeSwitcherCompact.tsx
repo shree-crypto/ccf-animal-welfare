@@ -13,10 +13,10 @@ import { ThemeVariant, THEME_CONFIGS } from '@/types/theme';
 
 /**
  * ThemeSwitcherCompact Component
- * 
+ *
  * Compact icon-only theme switcher for header/navigation.
  * Shows current theme icon and opens dropdown on click.
- * 
+ *
  * Features:
  * - Icon-only display (saves space in header)
  * - Visual theme preview icons
@@ -41,16 +41,18 @@ export function ThemeSwitcherCompact() {
 
   return (
     <Select value={theme} onValueChange={handleThemeChange}>
-      <SelectTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          aria-label={`Current theme: ${currentConfig.name}. Click to change theme.`}
-          className="h-9 w-9"
-        >
-          {getThemeIcon(theme)}
-        </Button>
-      </SelectTrigger>
+      <Button
+        variant="ghost"
+        size="icon"
+        aria-label={`Current theme: ${currentConfig.name}. Click to change theme.`}
+        className="h-9 w-9"
+        onClick={() => {
+          /* Select handles this */
+        }}
+        asChild
+      >
+        <SelectTrigger>{getThemeIcon(theme)}</SelectTrigger>
+      </Button>
       <SelectContent align="end">
         {Object.entries(THEME_CONFIGS).map(([key, config]) => (
           <SelectItem key={key} value={key}>

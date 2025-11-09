@@ -28,7 +28,8 @@ export function AuthDebug() {
           <div>ENV: {process.env.NODE_ENV}</div>
           <div>
             LocalStorage:{' '}
-            {typeof window !== 'undefined' && localStorage.getItem('ccf_mock_session')
+            {typeof window !== 'undefined' &&
+            localStorage.getItem('ccf_mock_session')
               ? '✅ Has session'
               : '❌ No session'}
           </div>

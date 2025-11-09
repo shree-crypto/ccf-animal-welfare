@@ -28,9 +28,9 @@ Themes are applied using the `data-theme` attribute on the root HTML element:
 ```html
 <!-- Default theme -->
 <html data-theme="default">
-
-<!-- Custom theme -->
-<html data-theme="custom">
+  <!-- Custom theme -->
+  <html data-theme="custom"></html>
+</html>
 ```
 
 The ThemeContext (in `src/contexts/ThemeContext.tsx`) manages this attribute and persists the user's choice in localStorage.
@@ -41,13 +41,13 @@ Each theme defines its own set of CSS variables scoped to `[data-theme="..."]`:
 
 ```css
 /* Default theme variables */
-[data-theme="default"] {
+[data-theme='default'] {
   --primary: rgb(59 130 246);
   /* ... */
 }
 
 /* Custom theme variables */
-[data-theme="custom"] {
+[data-theme='custom'] {
   --primary: rgb(51 109 245);
   /* ... */
 }
@@ -58,6 +58,7 @@ Each theme defines its own set of CSS variables scoped to `[data-theme="..."]`:
 **Purpose**: Provide a clean, minimal design for users who prefer simplicity.
 
 **Features**:
+
 - Neutral color palette (grays, subtle blues)
 - No gradients
 - Simple backgrounds
@@ -65,6 +66,7 @@ Each theme defines its own set of CSS variables scoped to `[data-theme="..."]`:
 - Aceternity effects hidden
 
 **Use Cases**:
+
 - Users who prefer minimal design
 - Better performance (no animations)
 - Accessibility-focused experience
@@ -75,6 +77,7 @@ Each theme defines its own set of CSS variables scoped to `[data-theme="..."]`:
 **Purpose**: Showcase the full CampusPaws brand identity with vibrant colors and effects.
 
 **Features**:
+
 - Trust and Action color palette
 - Gradient backgrounds and buttons
 - Aceternity UI effects (AnimatedGradient, BackgroundBeams, Sparkles)
@@ -82,6 +85,7 @@ Each theme defines its own set of CSS variables scoped to `[data-theme="..."]`:
 - Brand-specific styling
 
 **Use Cases**:
+
 - Default experience for most users
 - Marketing and promotional pages
 - Emotional engagement
@@ -130,12 +134,12 @@ Aceternity components are controlled by the theme:
 
 ```css
 /* Custom theme - show effects */
-[data-theme="custom"] .aceternity-effect {
+[data-theme='custom'] .aceternity-effect {
   display: block;
 }
 
 /* Default theme - hide effects */
-[data-theme="default"] .aceternity-effect {
+[data-theme='default'] .aceternity-effect {
   display: none !important;
 }
 ```
@@ -147,8 +151,12 @@ Components should use the `data-aceternity="true"` attribute or `.aceternity-eff
 Both themes support dark mode through the `.dark` class:
 
 ```css
-[data-theme="default"].dark { /* ... */ }
-[data-theme="custom"].dark { /* ... */ }
+[data-theme='default'].dark {
+  /* ... */
+}
+[data-theme='custom'].dark {
+  /* ... */
+}
 ```
 
 Dark mode is independent of theme selection - users can use dark mode with either theme.
@@ -162,13 +170,15 @@ import { useTheme } from '@/contexts/ThemeContext';
 
 function MyComponent() {
   const { theme } = useTheme();
-  
+
   return (
-    <div className={cn(
-      'base-styles',
-      theme === 'custom' && 'gradient-bg',
-      theme === 'default' && 'bg-white'
-    )}>
+    <div
+      className={cn(
+        'base-styles',
+        theme === 'custom' && 'gradient-bg',
+        theme === 'default' && 'bg-white'
+      )}
+    >
       {/* Content */}
     </div>
   );
@@ -183,7 +193,7 @@ import { AnimatedGradient } from '@/components/ui/animated-gradient';
 
 function Hero() {
   const { config } = useTheme();
-  
+
   return (
     <div className="relative">
       {config.features.aceternity && <AnimatedGradient />}
@@ -223,11 +233,13 @@ To add a new theme:
 ## Performance Considerations
 
 ### Default Theme
+
 - Smaller CSS bundle (no gradient/animation styles)
 - Faster rendering (no complex effects)
 - Better for low-end devices
 
 ### Custom Theme
+
 - Larger CSS bundle (includes all effects)
 - More GPU usage (animations, gradients)
 - Best experience on modern devices
@@ -252,7 +264,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 
 function TestPage() {
   const { theme, setTheme } = useTheme();
-  
+
   return (
     <div>
       <button onClick={() => setTheme('default')}>Default</button>

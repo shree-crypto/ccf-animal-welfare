@@ -1,6 +1,6 @@
 /**
  * Impact Dashboard Database Operations
- * 
+ *
  * CRUD operations for impact metrics and recent activities
  * Requirements: 3.1, 3.2, 3.3, 3.4
  */
@@ -22,14 +22,20 @@ import {
   updateImpactMetricsSchema,
   recentActivitySchema,
 } from '@/lib/validations/impact';
-import { normalizePagination, calculatePaginationMeta, QUERY_LIMITS } from './query-config';
+import {
+  normalizePagination,
+  calculatePaginationMeta,
+  QUERY_LIMITS,
+} from './query-config';
 
 // Type for Appwrite document (using any to avoid type conflicts)
 type ImpactMetricsDocument = any;
 type RecentActivityDocument = any;
 
 // Helper to convert Appwrite document to ImpactMetrics
-const documentToImpactMetrics = (doc: ImpactMetricsDocument): ImpactMetrics => ({
+const documentToImpactMetrics = (
+  doc: ImpactMetricsDocument
+): ImpactMetrics => ({
   id: doc.$id,
   animalsRescued: doc.animalsRescued,
   volunteersActive: doc.volunteersActive,
@@ -41,7 +47,9 @@ const documentToImpactMetrics = (doc: ImpactMetricsDocument): ImpactMetrics => (
 });
 
 // Helper to convert Appwrite document to RecentActivity
-const documentToRecentActivity = (doc: RecentActivityDocument): RecentActivity => ({
+const documentToRecentActivity = (
+  doc: RecentActivityDocument
+): RecentActivity => ({
   id: doc.$id,
   type: doc.type,
   displayName: doc.displayName,
@@ -54,27 +62,25 @@ const documentToRecentActivity = (doc: RecentActivityDocument): RecentActivity =
  * Get the current impact metrics
  * Returns the most recent metrics document
  */
-export const getCurrentImpactMetrics = async (): Promise<ImpactMetrics | null> => {
-  try {
-    const response = await databases.listDocuments<ImpactMetricsDocument>(
-      DATABASE_ID,
-      COLLECTIONS.IMPACT_METRICS,
-      [
-        Query.orderDesc('$createdAt'),
-        Query.limit(1),
-      ]
-    );
+export const getCurrentImpactMetrics =
+  async (): Promise<ImpactMetrics | null> => {
+    try {
+      const response = await databases.listDocuments<ImpactMetricsDocument>(
+        DATABASE_ID,
+        COLLECTIONS.IMPACT_METRICS,
+        [Query.orderDesc('$createdAt'), Query.limit(1)]
+      );
 
-    if (response.documents.length === 0) {
+      if (response.documents.length === 0) {
+        return null;
+      }
+
+      return documentToImpactMetrics(response.documents[0]);
+    } catch (error) {
+      console.error('Error fetching current impact metrics:', error);
       return null;
     }
-
-    return documentToImpactMetrics(response.documents[0]);
-  } catch (error) {
-    console.error('Error fetching current impact metrics:', error);
-    return null;
-  }
-};
+  };
 
 /**
  * Create new impact metrics
@@ -134,10 +140,14 @@ export const getHistoricalMetrics = async (
 
   // Date range filters
   if (filters?.startDate) {
-    queries.push(Query.greaterThanEqual('$createdAt', filters.startDate.toISOString()));
+    queries.push(
+      Query.greaterThanEqual('$createdAt', filters.startDate.toISOString())
+    );
   }
   if (filters?.endDate) {
-    queries.push(Query.lessThanEqual('$createdAt', filters.endDate.toISOString()));
+    queries.push(
+      Query.lessThanEqual('$createdAt', filters.endDate.toISOString())
+    );
   }
 
   // Ordering
@@ -176,7 +186,13 @@ export const getHistoricalMetrics = async (
  * Aggregates historical data into daily, weekly, or monthly trends
  */
 export const calculateMetricTrend = async (
-  metricName: keyof Pick<ImpactMetrics, 'animalsRescued' | 'volunteersActive' | 'mealsProvided' | 'successfulAdoptions'>,
+  metricName: keyof Pick<
+    ImpactMetrics,
+    | 'animalsRescued'
+    | 'volunteersActive'
+    | 'mealsProvided'
+    | 'successfulAdoptions'
+  >,
   period: 'daily' | 'weekly' | 'monthly',
   days: number = 30
 ): Promise<MetricTrend> => {
@@ -205,15 +221,14 @@ export const calculateMetricTrend = async (
 /**
  * Get recent activities for the ticker
  */
-export const getRecentActivities = async (limit: number = 10): Promise<RecentActivity[]> => {
+export const getRecentActivities = async (
+  limit: number = 10
+): Promise<RecentActivity[]> => {
   try {
     const response = await databases.listDocuments<RecentActivityDocument>(
       DATABASE_ID,
       COLLECTIONS.RECENT_ACTIVITIES,
-      [
-        Query.orderDesc('timestamp'),
-        Query.limit(limit),
-      ]
+      [Query.orderDesc('timestamp'), Query.limit(limit)]
     );
 
     return response.documents.map(documentToRecentActivity);
@@ -248,21 +263,23 @@ export const createRecentActivity = async (
  * Delete old activities (cleanup function)
  * Keeps only the most recent activities
  */
-export const cleanupOldActivities = async (keepCount: number = 100): Promise<void> => {
+export const cleanupOldActivities = async (
+  keepCount: number = 100
+): Promise<void> => {
   try {
     const response = await databases.listDocuments<RecentActivityDocument>(
       DATABASE_ID,
       COLLECTIONS.RECENT_ACTIVITIES,
-      [
-        Query.orderDesc('timestamp'),
-        Query.offset(keepCount),
-        Query.limit(100),
-      ]
+      [Query.orderDesc('timestamp'), Query.offset(keepCount), Query.limit(100)]
     );
 
     // Delete old activities
     const deletePromises = response.documents.map(doc =>
-      databases.deleteDocument(DATABASE_ID, COLLECTIONS.RECENT_ACTIVITIES, doc.$id)
+      databases.deleteDocument(
+        DATABASE_ID,
+        COLLECTIONS.RECENT_ACTIVITIES,
+        doc.$id
+      )
     );
 
     await Promise.all(deletePromises);

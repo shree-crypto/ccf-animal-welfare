@@ -5,7 +5,15 @@ import { Task } from '@/types/task';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Calendar, CheckCircle2, Circle, Clock, MapPin, Stethoscope, Utensils } from 'lucide-react';
+import {
+  Calendar,
+  CheckCircle2,
+  Circle,
+  Clock,
+  MapPin,
+  Stethoscope,
+  Utensils,
+} from 'lucide-react';
 import { format } from 'date-fns';
 
 interface TaskCardProps {
@@ -28,12 +36,20 @@ const priorityColors = {
   urgent: 'bg-red-100 text-red-800 hover:bg-red-200',
 };
 
-export const TaskCard = memo(function TaskCard({ task, onComplete, onEdit, onDelete }: TaskCardProps) {
+export const TaskCard = memo(function TaskCard({
+  task,
+  onComplete,
+  onEdit,
+  onDelete,
+}: TaskCardProps) {
   const Icon = taskTypeIcons[task.type];
-  const isOverdue = !task.completed && new Date(task.scheduledDate) < new Date();
+  const isOverdue =
+    !task.completed && new Date(task.scheduledDate) < new Date();
 
   return (
-    <Card className={`${task.completed ? 'opacity-60' : ''} ${isOverdue ? 'border-red-300' : ''}`}>
+    <Card
+      className={`${task.completed ? 'opacity-60' : ''} ${isOverdue ? 'border-red-300' : ''}`}
+    >
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-2">
@@ -54,12 +70,14 @@ export const TaskCard = memo(function TaskCard({ task, onComplete, onEdit, onDel
       </CardHeader>
       <CardContent className="space-y-3">
         <p className="text-sm text-gray-600">{task.description}</p>
-        
+
         <div className="flex items-center gap-2 text-sm text-gray-500">
           <Calendar className="h-4 w-4" />
           <span>{format(new Date(task.scheduledDate), 'PPP')}</span>
           {isOverdue && !task.completed && (
-            <Badge variant="destructive" className="ml-2">Overdue</Badge>
+            <Badge variant="destructive" className="ml-2">
+              Overdue
+            </Badge>
           )}
         </div>
 
@@ -81,11 +99,7 @@ export const TaskCard = memo(function TaskCard({ task, onComplete, onEdit, onDel
             </Button>
           )}
           {onEdit && (
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => onEdit(task)}
-            >
+            <Button size="sm" variant="outline" onClick={() => onEdit(task)}>
               Edit
             </Button>
           )}

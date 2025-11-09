@@ -1,6 +1,13 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState, useCallback, useMemo } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+} from 'react';
 import { authService } from '@/lib/auth';
 import { User, AuthContextType, UserRole } from '@/types/auth';
 
@@ -8,7 +15,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 /**
  * AuthProvider manages authentication state and user session.
- * 
+ *
  * Optimization notes:
  * - Uses useMemo to memoize context value and prevent unnecessary re-renders
  * - Uses useCallback for all functions to maintain referential equality
@@ -24,7 +31,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.log('🔍 Checking user...');
       const currentUser = await authService.getCurrentUser();
       console.log('👤 Current user:', currentUser?.email || 'none');
-      
+
       if (currentUser) {
         const role = await authService.getUserRole();
         console.log('🎭 User role:', role);
@@ -46,42 +53,57 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     checkUser();
   }, [checkUser]);
 
-  const login = useCallback(async (email: string, password: string) => {
-    console.log('🔐 Attempting login for:', email);
-    await authService.login(email, password);
-    console.log('✅ Login successful, checking user...');
-    await checkUser();
-  }, [checkUser]);
+  const login = useCallback(
+    async (email: string, password: string) => {
+      console.log('🔐 Attempting login for:', email);
+      await authService.login(email, password);
+      console.log('✅ Login successful, checking user...');
+      await checkUser();
+    },
+    [checkUser]
+  );
 
-  const register = useCallback(async (email: string, password: string, name: string) => {
-    await authService.register(email, password, name);
-    await checkUser();
-  }, [checkUser]);
+  const register = useCallback(
+    async (email: string, password: string, name: string) => {
+      await authService.register(email, password, name);
+      await checkUser();
+    },
+    [checkUser]
+  );
 
   const logout = useCallback(async () => {
     await authService.logout();
     setUser(null);
   }, []);
 
-  const updateProfile = useCallback(async (name: string) => {
-    await authService.updateProfile(name);
-    await checkUser();
-  }, [checkUser]);
+  const updateProfile = useCallback(
+    async (name: string) => {
+      await authService.updateProfile(name);
+      await checkUser();
+    },
+    [checkUser]
+  );
 
-  const checkRole = useCallback((requiredRole: UserRole): boolean => {
-    if (!user || !user.role) return false;
-    return authService.checkRole(user.role, requiredRole);
-  }, [user]);
+  const checkRole = useCallback(
+    (requiredRole: UserRole): boolean => {
+      if (!user || !user.role) return false;
+      return authService.checkRole(user.role, requiredRole);
+    },
+    [user]
+  );
 
-  const value: AuthContextType = useMemo(() => ({
-    user,
-    loading,
-    login,
-    register,
-    logout,
-    updateProfile,
-    checkRole,
-  }), [user, loading, login, register, logout, updateProfile, checkRole]);
+  const value: AuthContextType = useMemo(
+    () => ({
+      user,
+      loading,
+      login,
+      register,
+      logout,
+      updateProfile,
+      checkRole,
+    }),
+    [user, loading, login, register, logout, updateProfile, checkRole]
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

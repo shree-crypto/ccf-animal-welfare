@@ -3,7 +3,10 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { medicalRecordSchema, MedicalRecordFormData } from '@/lib/validations/medical';
+import {
+  medicalRecordSchema,
+  MedicalRecordFormData,
+} from '@/lib/validations/medical';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -45,40 +48,46 @@ interface MedicalRecordFormProps {
   trigger?: React.ReactNode;
 }
 
-export function MedicalRecordForm({ 
-  animalId, 
-  record, 
+export function MedicalRecordForm({
+  animalId,
+  record,
   onSubmit: onSubmitProp,
-  trigger 
+  trigger,
 }: MedicalRecordFormProps) {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [uploadedDocuments, setUploadedDocuments] = useState<string[]>(record?.documents || []);
-  const [medications, setMedications] = useState<string[]>(record?.medications || []);
+  const [uploadedDocuments, setUploadedDocuments] = useState<string[]>(
+    record?.documents || []
+  );
+  const [medications, setMedications] = useState<string[]>(
+    record?.medications || []
+  );
 
   const form = useForm<MedicalRecordFormData>({
     resolver: zodResolver(medicalRecordSchema),
-    defaultValues: record ? {
-      animalId: record.animalId,
-      date: record.date,
-      type: record.type,
-      description: record.description,
-      veterinarian: record.veterinarian || '',
-      medications: record.medications || [],
-      documents: record.documents,
-      followUpRequired: record.followUpRequired,
-      followUpDate: record.followUpDate || '',
-    } : {
-      animalId,
-      date: format(new Date(), "yyyy-MM-dd'T'HH:mm"),
-      type: 'checkup',
-      description: '',
-      veterinarian: '',
-      medications: [],
-      documents: [],
-      followUpRequired: false,
-      followUpDate: '',
-    },
+    defaultValues: record
+      ? {
+          animalId: record.animalId,
+          date: record.date,
+          type: record.type,
+          description: record.description,
+          veterinarian: record.veterinarian || '',
+          medications: record.medications || [],
+          documents: record.documents,
+          followUpRequired: record.followUpRequired,
+          followUpDate: record.followUpDate || '',
+        }
+      : {
+          animalId,
+          date: format(new Date(), "yyyy-MM-dd'T'HH:mm"),
+          type: 'checkup',
+          description: '',
+          veterinarian: '',
+          medications: [],
+          documents: [],
+          followUpRequired: false,
+          followUpDate: '',
+        },
   });
 
   const handleSubmit = async (data: MedicalRecordFormData) => {
@@ -134,13 +143,16 @@ export function MedicalRecordForm({
             {record ? 'Edit Medical Record' : 'Add Medical Record'}
           </DialogTitle>
           <DialogDescription>
-            {record 
-              ? 'Update the medical record details below' 
+            {record
+              ? 'Update the medical record details below'
               : 'Record medical information for this animal'}
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+          <form
+            onSubmit={form.handleSubmit(handleSubmit)}
+            className="space-y-4"
+          >
             <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
@@ -148,7 +160,10 @@ export function MedicalRecordForm({
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Record Type</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select type" />
@@ -277,7 +292,11 @@ export function MedicalRecordForm({
                 Cancel
               </Button>
               <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Saving...' : record ? 'Update Record' : 'Create Record'}
+                {isSubmitting
+                  ? 'Saving...'
+                  : record
+                    ? 'Update Record'
+                    : 'Create Record'}
               </Button>
             </div>
           </form>

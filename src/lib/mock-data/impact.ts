@@ -1,11 +1,11 @@
 /**
  * Mock Impact Dashboard Data
- * 
+ *
  * Mock data for development and testing of the Live Impact Dashboard
- * 
+ *
  * This data is currently used by default in useImpactMetrics hook
  * until the Appwrite backend is fully configured.
- * 
+ *
  * To switch to real backend:
  * 1. Set up Appwrite collections (see docs/IMPACT_DASHBOARD_SETUP.md)
  * 2. Change USE_MOCK_DATA to false in src/hooks/useImpactMetrics.ts
@@ -139,7 +139,10 @@ export const generateMockTrendData = (
     data.push({
       date: date.toISOString(),
       value: Math.max(0, value),
-      label: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+      label: date.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+      }),
     });
   }
 
@@ -163,38 +166,41 @@ export const mockTrendData = {
 /**
  * Mock historical metrics for the last 7 days
  */
-export const mockHistoricalMetrics: ImpactMetrics[] = Array.from({ length: 7 }, (_, i) => {
-  const date = new Date();
-  date.setDate(date.getDate() - (6 - i));
+export const mockHistoricalMetrics: ImpactMetrics[] = Array.from(
+  { length: 7 },
+  (_, i) => {
+    const date = new Date();
+    date.setDate(date.getDate() - (6 - i));
 
-  return {
-    id: `mock-metrics-${i + 1}`,
-    animalsRescued: {
-      total: 247 - (6 - i) * 2,
-      current: 15 + Math.floor(Math.random() * 5),
-      trend: 'up',
-      percentageChange: 10 + Math.random() * 5,
-    },
-    volunteersActive: {
-      total: 89 - (6 - i),
-      current: 10 + Math.floor(Math.random() * 4),
-      trend: 'up',
-      percentageChange: 5 + Math.random() * 5,
-    },
-    mealsProvided: {
-      total: 3456 - (6 - i) * 30,
-      current: 220 + Math.floor(Math.random() * 30),
-      trend: 'stable',
-      percentageChange: Math.random() * 2,
-    },
-    successfulAdoptions: {
-      total: 156 - (6 - i),
-      current: 6 + Math.floor(Math.random() * 3),
-      trend: 'up',
-      percentageChange: 12 + Math.random() * 5,
-    },
-    lastUpdated: date,
-    $createdAt: date.toISOString(),
-    $updatedAt: date.toISOString(),
-  };
-});
+    return {
+      id: `mock-metrics-${i + 1}`,
+      animalsRescued: {
+        total: 247 - (6 - i) * 2,
+        current: 15 + Math.floor(Math.random() * 5),
+        trend: 'up',
+        percentageChange: 10 + Math.random() * 5,
+      },
+      volunteersActive: {
+        total: 89 - (6 - i),
+        current: 10 + Math.floor(Math.random() * 4),
+        trend: 'up',
+        percentageChange: 5 + Math.random() * 5,
+      },
+      mealsProvided: {
+        total: 3456 - (6 - i) * 30,
+        current: 220 + Math.floor(Math.random() * 30),
+        trend: 'stable',
+        percentageChange: Math.random() * 2,
+      },
+      successfulAdoptions: {
+        total: 156 - (6 - i),
+        current: 6 + Math.floor(Math.random() * 3),
+        trend: 'up',
+        percentageChange: 12 + Math.random() * 5,
+      },
+      lastUpdated: date,
+      $createdAt: date.toISOString(),
+      $updatedAt: date.toISOString(),
+    };
+  }
+);

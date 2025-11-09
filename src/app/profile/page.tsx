@@ -20,11 +20,7 @@ export default function ProfilePage() {
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4 py-8">
         <div className="w-full max-w-md space-y-4">
           <ProfileForm />
-          <Button
-            onClick={handleLogout}
-            variant="outline"
-            className="w-full"
-          >
+          <Button onClick={handleLogout} variant="outline" className="w-full">
             Logout
           </Button>
         </div>

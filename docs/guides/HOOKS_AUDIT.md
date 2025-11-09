@@ -26,6 +26,7 @@ November 7, 2025
 **Issue:** The `subscribeToTasks` function returns a cleanup function to unsubscribe from real-time updates, but it wasn't being returned from the useEffect, causing potential memory leaks.
 
 **Before:**
+
 ```typescript
 useEffect(() => {
   if (user?.$id) {
@@ -36,6 +37,7 @@ useEffect(() => {
 ```
 
 **After:**
+
 ```typescript
 useEffect(() => {
   if (user?.$id) {
@@ -57,6 +59,7 @@ useEffect(() => {
 **Solution:** Added ESLint disable comment with explanation, as the current implementation is intentional - we only want to refetch when `autoFetch`, `limit`, or `offset` change.
 
 **Before:**
+
 ```typescript
 useEffect(() => {
   if (autoFetch) {
@@ -66,6 +69,7 @@ useEffect(() => {
 ```
 
 **After:**
+
 ```typescript
 useEffect(() => {
   if (autoFetch) {
@@ -80,14 +84,17 @@ useEffect(() => {
 ## Files Audited
 
 ### Context Providers
+
 - ✅ `src/contexts/AuthContext.tsx` - All hooks properly used with correct dependencies
 - ✅ `src/contexts/NotificationContext.tsx` - Complex real-time subscription logic properly implemented
 
 ### Custom Hooks
+
 - ✅ `src/hooks/useRequireAuth.ts` - Correct dependencies and cleanup
 - ✅ `src/hooks/useTerritories.ts` - Fixed dependency issue (see above)
 
 ### Page Components
+
 - ✅ `src/app/page.tsx` - No hooks violations
 - ✅ `src/app/animals/page.tsx` - Proper useMemo usage
 - ✅ `src/app/dashboard/page.tsx` - Simple hook usage, no issues
@@ -99,6 +106,7 @@ useEffect(() => {
 - ✅ `src/app/profile/page.tsx` - Simple hook usage, no issues
 
 ### Feature Components
+
 - ✅ `src/components/features/notifications/NotificationCenter.tsx` - Complex state management done correctly
 - ✅ `src/components/features/medical/MedicalAlertBanner.tsx` - Proper useEffect with cleanup
 - ✅ `src/components/features/auth/LoginForm.tsx` - React Hook Form integration correct
@@ -109,25 +117,32 @@ useEffect(() => {
 ## Best Practices Observed
 
 ### 1. Proper Memoization
+
 The codebase uses `useMemo` and `useCallback` appropriately:
 
 **AuthContext.tsx:**
+
 ```typescript
-const value: AuthContextType = useMemo(() => ({
-  user,
-  loading,
-  login,
-  register,
-  logout,
-  updateProfile,
-  checkRole,
-}), [user, loading, login, register, logout, updateProfile, checkRole]);
+const value: AuthContextType = useMemo(
+  () => ({
+    user,
+    loading,
+    login,
+    register,
+    logout,
+    updateProfile,
+    checkRole,
+  }),
+  [user, loading, login, register, logout, updateProfile, checkRole]
+);
 ```
 
 ### 2. Cleanup Functions
+
 Real-time subscriptions properly cleaned up:
 
 **NotificationContext.tsx:**
+
 ```typescript
 useEffect(() => {
   if (!user) return;
@@ -143,9 +158,11 @@ useEffect(() => {
 ```
 
 ### 3. Conditional Hook Execution
+
 Proper early returns instead of conditional hook calls:
 
 **useRequireAuth.ts:**
+
 ```typescript
 export function useRequireAuth(requiredRole?: UserRole) {
   const { user, loading, checkRole } = useAuth();
@@ -166,9 +183,11 @@ export function useRequireAuth(requiredRole?: UserRole) {
 ```
 
 ### 4. Custom Hooks Composition
+
 Custom hooks properly compose other hooks:
 
 **useTerritories.ts:**
+
 ```typescript
 export function useTerritories(options: UseTerritoriesOptions = {}) {
   const { autoFetch = true, limit, offset } = options;
@@ -183,9 +202,11 @@ export function useTerritories(options: UseTerritoriesOptions = {}) {
 ## Potential Future Improvements
 
 ### 1. Consider useCallback for Event Handlers
+
 Some components pass event handlers as props without wrapping them in `useCallback`. While not causing issues currently, this could be optimized:
 
 **Example in FilterBar.tsx:**
+
 ```typescript
 // Current
 <Button onClick={() => onFilterChange(newFilters)}>Apply</Button>
@@ -197,6 +218,7 @@ const handleApply = useCallback(() => {
 ```
 
 ### 2. Split Large Context Providers
+
 The `NotificationContext` handles both state and real-time subscriptions. Consider splitting if performance issues arise:
 
 - `NotificationStateContext` - Just the state
@@ -205,20 +227,25 @@ The `NotificationContext` handles both state and real-time subscriptions. Consid
 This would prevent unnecessary re-renders when only actions are needed.
 
 ### 3. Add React.memo to Pure Components
+
 Components like `AnimalCard` and `TaskCard` could benefit from `React.memo` to prevent unnecessary re-renders when parent components update.
 
 ## Verification
 
 ### TypeScript Check
+
 ```bash
 npx tsc --noEmit
 ```
+
 ✅ No errors - All hooks are properly typed
 
 ### Build Check
+
 ```bash
 npm run build
 ```
+
 ✅ Production build successful
 
 ## Conclusion
@@ -229,6 +256,7 @@ The application demonstrates good React hooks practices overall. The two issues 
 2. ✅ **Fixed:** Documented intentional dependency exclusion in useTerritories
 
 All hooks follow React's rules:
+
 - ✅ Only called at the top level
 - ✅ Only called from React functions
 - ✅ Proper dependency arrays

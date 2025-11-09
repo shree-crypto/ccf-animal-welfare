@@ -56,16 +56,19 @@ This directory contains screenshots for theme comparison and documentation.
 ### Using Screenshot Tools
 
 **Windows:**
+
 - Use Snipping Tool or Snip & Sketch
 - Set window to 1920x1080
 - Capture and save
 
 **macOS:**
+
 - Use Cmd+Shift+4 for selection
 - Use Cmd+Shift+3 for full screen
 - Resize if needed
 
 **Linux:**
+
 - Use GNOME Screenshot or Flameshot
 - Set dimensions to 1920x1080
 - Capture and save
@@ -73,24 +76,28 @@ This directory contains screenshots for theme comparison and documentation.
 ## Screenshot Guidelines
 
 ### Composition
+
 - Center important content
 - Show key features clearly
 - Avoid sensitive data
 - Use consistent browser chrome (or hide it)
 
 ### Quality
+
 - PNG format for UI screenshots
 - JPEG for photos (if needed)
 - Optimize file size (use tools like TinyPNG)
 - Keep under 500KB per image
 
 ### Consistency
+
 - Same browser for all screenshots
 - Same zoom level (100%)
 - Same window size (1920x1080)
 - Same time of day (for consistent lighting in photos)
 
 ### Content
+
 - Use mock data (no real personal information)
 - Show realistic but generic content
 - Ensure all text is readable
@@ -125,12 +132,14 @@ screenshots/
 ## Updating Screenshots
 
 When to update:
+
 - Major UI changes
 - Theme modifications
 - New features added
 - Branding updates
 
 Process:
+
 1. Capture new screenshots following guidelines
 2. Replace old files (keep same names)
 3. Update documentation if needed
@@ -141,6 +150,7 @@ Process:
 Recommended tools for screenshot capture and editing:
 
 ### Capture
+
 - **Chrome DevTools** - Built-in, accurate
 - **Firefox Developer Tools** - Built-in, accurate
 - **Flameshot** (Linux) - Feature-rich
@@ -148,12 +158,14 @@ Recommended tools for screenshot capture and editing:
 - **Skitch** (macOS) - Simple and effective
 
 ### Editing
+
 - **GIMP** - Free, powerful
 - **Photopea** - Web-based, Photoshop-like
 - **Paint.NET** (Windows) - Simple, effective
 - **Preview** (macOS) - Built-in, basic editing
 
 ### Optimization
+
 - **TinyPNG** - Web-based, excellent compression
 - **ImageOptim** (macOS) - Lossless optimization
 - **Squoosh** - Web-based, advanced options

@@ -7,6 +7,7 @@ This directory contains integration tests for Appwrite operations including data
 Before running integration tests, ensure you have:
 
 1. **Local Appwrite Instance Running**
+
    ```bash
    docker-compose up -d
    ```
@@ -17,25 +18,30 @@ Before running integration tests, ensure you have:
 
 3. **Database and Collections Set Up**
    - Run the database setup script to create collections and indexes:
+
    ```bash
    npm run dev
    # Navigate to http://localhost:3000 and follow setup instructions
    ```
+
    - Or manually create collections using the Appwrite console
 
 ## Running Tests
 
 ### Run All Integration Tests
+
 ```bash
 npm test -- src/test/integration
 ```
 
 ### Run Specific Test File
+
 ```bash
 npx vitest run src/test/integration/appwrite.test.ts
 ```
 
 ### Run Tests in Watch Mode
+
 ```bash
 npx vitest src/test/integration/appwrite.test.ts
 ```
@@ -43,26 +49,31 @@ npx vitest src/test/integration/appwrite.test.ts
 ## Test Coverage
 
 ### Database CRUD Operations
+
 - **Animal Documents**: Create, read, update, delete, and list operations
 - **Task Documents**: Create, update completion status, and delete
 - **Medical Record Documents**: Create, update with follow-up, and delete
 
 ### Storage Operations
+
 - **Animal Photos**: Upload images, retrieve metadata, list files, and delete
 - **Medical Documents**: Upload PDFs and other documents, and delete
 
 ### Permission Tests
+
 - **Public Read Permissions**: Documents accessible to any user
 - **Team-Based Permissions**: Role-based access control for volunteers and admins
 - **Permission Updates**: Modifying document permissions
 
 ### Query and Filter Tests
+
 - **Pagination**: Limiting and offsetting results
 - **Empty Results**: Handling queries with no matches
 
 ## Test Structure
 
 Tests are organized into describe blocks by feature:
+
 - `Appwrite Database Integration Tests`
   - `Animal CRUD Operations`
   - `Task CRUD Operations`
@@ -86,27 +97,35 @@ Tests are organized into describe blocks by feature:
 ## Troubleshooting
 
 ### Connection Refused Errors
+
 ```
 Error: connect ECONNREFUSED 127.0.0.1:80
 ```
+
 **Solution**: Start the local Appwrite instance with `docker-compose up -d`
 
 ### Missing Collection Errors
+
 ```
 AppwriteException: Collection not found
 ```
+
 **Solution**: Run the database setup script or create collections manually in Appwrite console
 
 ### Permission Errors
+
 ```
 AppwriteException: Unauthorized
 ```
+
 **Solution**: Ensure proper permissions are set on collections and storage buckets
 
 ### Missing Document ID Errors
+
 ```
 AppwriteException: Missing required parameter: "documentId"
 ```
+
 **Solution**: This indicates a previous test failed to create the document. Check that create operations are successful first.
 
 ## Best Practices
